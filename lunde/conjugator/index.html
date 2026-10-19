@@ -1,6 +1,39 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<!-- added for alexbahia site: link back to the main site -->
-<div id="site-backlink" role="navigation" aria-label="Alex Bahia site" style="max-width:1560px;margin:0 auto;box-sizing:border-box;padding:10px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));font:600 12px/1.3 var(--f-ui,sans-serif);letter-spacing:.02em;color:var(--ink-3,#5d6b72)"><a href="../../" style="color:inherit;text-decoration:none">Alex Bahia home</a> <span aria-hidden="true">/</span> <a href="../" style="color:inherit;text-decoration:none">Lunde</a></div>
+<!-- added for alexbahia site: shared header and Lunde sub-nav -->
+<!-- site-header:start -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../../">Alex Bahia</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../poetry/">Poetry</a></li>
+        <li><a href="../../lunde/" aria-current="page">Lunde</a></li>
+        <li><a href="../../gallery/">Gallery</a></li>
+        <li><a href="../../about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- site-header:end -->
+<div class="lunde-chrome">
+<!-- lunde-nav:start -->
+<nav class="lunde-nav" aria-label="Lunde sections">
+  <ul class="lunde-sections">
+    <li><a href="../../lunde/">Overview</a></li>
+    <li><a href="../../lunde/conjugator/" aria-current="page">Old Lundian conjugator</a></li>
+    <li><a href="../../lunde/modern/">Modern Lunde</a></li>
+    <li><a href="../../lunde/modern/lexicon/">Lexicon</a></li>
+  </ul>
+  <ul class="lunde-tool" aria-label="Old Lundian conjugator">
+    <li><a href="index.html" aria-current="page">Conjugator</a></li>
+    <li><a href="grammar.html">Grammar</a></li>
+    <li><a href="grammar.html#cases">Cases</a></li>
+    <li><a href="grammar.html#numbers">Numbers</a></li>
+  </ul>
+</nav>
+<!-- lunde-nav:end -->
+</div>
 <title>Old Lundian Conjugator</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Every Old Lundian verb conjugated and declined by rule, with the derivation of each form.">
@@ -185,6 +218,8 @@
 .ref h2 { margin: 0; font: 800 clamp(22px, 2.5vw, 29px)/1.1 var(--f-ui); font-stretch: 118%; letter-spacing: -.01em; text-wrap: balance; }
 .ref .lede { font-size: 15px; }
 </style>
+<link rel="stylesheet" href="../../assets/chrome.css"><!-- alexbahia site: shared header -->
+<link rel="stylesheet" href="site-theme.css"><!-- alexbahia site: poetry-page palette and fonts -->
 
 <div class="page">
   <header class="mast">
@@ -260,6 +295,12 @@
   </footer>
 </div>
 
+<!-- added for alexbahia site: back/next through the Lunde pages -->
+<div class="lunde-chrome">
+<!-- lunde-pager:start -->
+<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../lunde/" rel="prev"><span>&larr; Back</span> Lunde overview</a><a class="lp-next" href="../../lunde/conjugator/grammar.html" rel="next"><span>Next &rarr;</span> Old Lundian grammar</a></nav>
+<!-- lunde-pager:end -->
+</div>
 <script src="lunde-engine.js"></script>
 <script src="lexicon.js"></script>
 <script src="lunde-tests.js"></script>

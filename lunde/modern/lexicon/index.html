@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
   <style>
     /* Page-scoped styles for the Modern Lunde grammar page (fonts/colors borrowed from the Old Lundian pages). */
-    .ml { --lx: "Gentium Book Plus", Georgia, serif; --ui: "Archivo", system-ui, sans-serif; --ink3: #6b7680; --line: #dfe3e1; --soft: #f1f3f2; }
+    .ml { --lx: "Gentium Book Plus", Georgia, serif; --ui: var(--mono); --ink3: var(--muted); --line: var(--border); --soft: var(--bg); } /* theme: poetry palette via site.css */
     .ml .lx { font-family: var(--lx); font-style: italic; font-size: 1.05em; }
     .ml .meta { color: var(--muted); font-size: .95rem; margin: -.5rem 0 1rem; }
     .ml .meta a { font-weight: 600; }
@@ -30,7 +30,7 @@
     .tbl-wrap { overflow-x: auto; margin: 1rem 0; }
     .ref-table { border-collapse: collapse; font-size: .97rem; background: var(--surface); min-width: 18rem; }
     .ref-table th, .ref-table td { border: 1px solid var(--line); padding: .4rem .7rem; text-align: left; vertical-align: top; }
-    .ref-table th { background: var(--soft); font-family: var(--ui); font-weight: 600; font-size: .85rem; color: #3d4750; }
+    .ref-table th { background: var(--soft); font-family: var(--ui); font-weight: 600; font-size: .85rem; color: var(--text-2); }
     .ref-table.nums td, .ref-table.nums th { text-align: center; padding: .4rem .5rem; }
     .ref-table.grid tbody td:first-child { font-family: var(--ui); }
     ol.ex { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
@@ -59,31 +59,35 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="site-title" href="../../../">Alex Bahia</a>
-      <nav class="site-nav" aria-label="Main">
-        <ul>
+<!-- site-header:start -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../../../">Alex Bahia</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
         <li><a href="../../../">Home</a></li>
         <li><a href="../../../poetry/">Poetry</a></li>
         <li><a href="../../../lunde/" aria-current="page">Lunde</a></li>
-        <li><a href="../../../languages/">Other languages</a></li>
         <li><a href="../../../gallery/">Gallery</a></li>
         <li><a href="../../../about/">About</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- site-header:end -->
   <main id="main" class="wrap ml">
     <p class="breadcrumb"><a href="../../">Lunde</a> / <a href="../">Modern Lunde</a> / Lexicon</p>
     <h1>Lundiyani lexicon</h1>
-    <nav class="sub-nav" aria-label="Lunde sections">
-      <ul>
-        <li><a href="../../">Old Lundian</a></li>
-        <li><a href="../">Modern Lunde</a></li>
-        <li><a href="./" aria-current="page">Lexicon</a></li>
-      </ul>
-    </nav>
+<!-- lunde-nav:start -->
+<nav class="lunde-nav" aria-label="Lunde sections">
+  <ul class="lunde-sections">
+    <li><a href="../../../lunde/">Overview</a></li>
+    <li><a href="../../../lunde/conjugator/">Old Lundian conjugator</a></li>
+    <li><a href="../../../lunde/modern/">Modern Lunde</a></li>
+    <li><a href="../../../lunde/modern/lexicon/" aria-current="page">Lexicon</a></li>
+  </ul>
+</nav>
+<!-- lunde-nav:end -->
     <p class="lede">472 words (489 meanings), from Alex's word list, checked against the <a href="../">grammar reference</a> of Oct 14, 2026. Where the two disagree, the grammar wins.</p>
     <p class="legend"><span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> added from the grammar &nbsp; <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span> corrected to match the grammar &nbsp; <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span> spacing fixed &nbsp; <span class="mk mk-q">?</span> still to check</p>
     <div class="lx-search" id="lx-search" hidden>
@@ -1102,6 +1106,9 @@
 </tbody>
 </table></div></section>
 
+<!-- lunde-pager:start -->
+<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../../lunde/modern/" rel="prev"><span>&larr; Back</span> Modern Lunde grammar</a><a class="lp-next" href="../../../lunde/"><span>Back to the start &rarr;</span> Lunde overview</a></nav>
+<!-- lunde-pager:end -->
   </main>
   <footer class="site-footer">
     <div class="wrap">

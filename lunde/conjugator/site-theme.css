@@ -1,0 +1,25 @@
+/* alexbahia.com theme override for Alex's Old Lundian conjugator and grammar pages.
+   Loaded after lunde.css and the page styles. It only re-points the neutral paper/ink colours and the
+   interface font to the poetry page's palette (EB Garamond, Courier Prime labels).
+   The verb-form colours (--samon, --namon, --exmon and their washes), the case colour and the check
+   colours are NOT touched, in light or dark mode. Lunde words and IPA keep Gentium (--f-lx). */
+:root {
+  --bg: #EDE7DA;        /* poetry desk #E7E0CF, lightened slightly so the verb colours keep 4.5:1 contrast */
+  --panel: #FBF8F1;     /* poetry sheet */
+  --ink: #211C17;
+  --ink-2: #4F463C;
+  --ink-3: #685D50;     /* poetry muted #74695C, darkened slightly for small text on the desk */
+  --line: #D9CEBB;
+  --line-soft: #E6DECE;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 18px 36px -22px rgba(60, 40, 20, .38);
+  --f-ui: 'EB Garamond', Georgia, 'Times New Roman', serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15120E; --panel: #221E19; --ink: #ECE4D4; --ink-2: #CFC5B3; --ink-3: #A99D8B;
+    --line: #3B342B; --line-soft: #2A251F;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 18px 36px -22px rgba(0, 0, 0, .7);
+  }
+}
+/* Small capitals labels in the poetry page's typewriter face */
+.eyebrow { font-family: 'Courier Prime', 'Courier New', ui-monospace, monospace; font-weight: 400; }

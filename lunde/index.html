@@ -9,58 +9,61 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="site-title" href="../">Alex Bahia</a>
-      <nav class="site-nav" aria-label="Main">
-        <ul>
+<!-- site-header:start -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../">Alex Bahia</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
         <li><a href="../">Home</a></li>
         <li><a href="../poetry/">Poetry</a></li>
         <li><a href="../lunde/" aria-current="page">Lunde</a></li>
-        <li><a href="../languages/">Other languages</a></li>
         <li><a href="../gallery/">Gallery</a></li>
         <li><a href="../about/">About</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <main id="main" class="wrap">
-    <h1>Lunde</h1>
-    <nav class="sub-nav" aria-label="Lunde sections">
-      <ul>
-        <li><a href="./" aria-current="page">Old Lundian</a></li>
-        <li><a href="./modern/">Modern Lunde</a></li>
       </ul>
     </nav>
+  </div>
+</header>
+<!-- site-header:end -->
+  <main id="main" class="wrap">
+    <h1>Lunde</h1>
+<!-- lunde-nav:start -->
+<nav class="lunde-nav" aria-label="Lunde sections">
+  <ul class="lunde-sections">
+    <li><a href="../lunde/" aria-current="page">Overview</a></li>
+    <li><a href="../lunde/conjugator/">Old Lundian conjugator</a></li>
+    <li><a href="../lunde/modern/">Modern Lunde</a></li>
+    <li><a href="../lunde/modern/lexicon/">Lexicon</a></li>
+  </ul>
+</nav>
+<!-- lunde-nav:end -->
     <p class="placeholder">Placeholder: Lunde overview goes here.</p>
     <section aria-labelledby="tools-heading">
       <h2 id="tools-heading">Old Lundian</h2>
       <div class="cards">
         <div class="card">
-          <h3><a href="./conjugator/">Conjugator</a></h3>
+          <h3><a href="./conjugator/">Old Lundian conjugator</a></h3>
           <p>Every Old Lundian verb conjugated by rule, with the derivation of each form. Type any verb to build its forms.</p>
-        </div>
-        <div class="card">
-          <h3><a href="./conjugator/grammar.html">Grammar</a></h3>
-          <p>The rules of Old Lundian, from sounds to numbers, with every example built live by the same engine.</p>
-        </div>
-        <div class="card">
-          <h3><a href="./conjugator/grammar.html#cases">Case tool</a></h3>
-          <p>Decline any word: the case endings and a full declension table, built by the same engine. Part of the grammar page.</p>
-        </div>
-        <div class="card">
-          <h3><a href="./conjugator/grammar.html#numbers">Base-12 numbers</a></h3>
-          <p>Lunde counts in base twelve. Type a number to get its Lunde name, its base-twelve digits and its ordinal.</p>
+          <p>Includes the grammar, the case tool and base-12 numbers.</p>
         </div>
       </div>
     </section>
     <section aria-labelledby="modern-heading">
       <h2 id="modern-heading">Modern Lunde</h2>
-      <div class="card">
-        <h3><a href="./modern/">Modern Lunde (Lundiyani)</a></h3>
-        <p>Grammar reference for Lundiyani, the modern form of Lunde: particles, word order, nouns and numbers, and glossed example sentences. <a href="./modern/lexicon/">Lexicon</a> &middot; <a href="./modern/lundiyani-grammar-reference.pdf">PDF version</a>.</p>
+      <div class="cards">
+        <div class="card">
+          <h3><a href="./modern/">Modern Lunde grammar</a></h3>
+          <p>Grammar reference for Lundiyani, the modern form of Lunde: particles, word order, nouns and numbers, and glossed example sentences. <a href="./modern/lundiyani-grammar-reference.pdf">PDF version</a>.</p>
+        </div>
+        <div class="card">
+          <h3><a href="./modern/lexicon/">Lunde lexicon</a></h3>
+          <p>The Lundiyani word list: every word with its meaning and type, checked against the grammar reference.</p>
+        </div>
       </div>
     </section>
+<!-- lunde-pager:start -->
+<nav class="lunde-pager" aria-label="Lunde pages, in order"><span></span><a class="lp-next" href="../lunde/conjugator/" rel="next"><span>Next &rarr;</span> Old Lundian conjugator</a></nav>
+<!-- lunde-pager:end -->
   </main>
   <footer class="site-footer">
     <div class="wrap">

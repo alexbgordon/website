@@ -173,10 +173,26 @@ button{font:inherit;color:inherit}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<link rel="stylesheet" href="../assets/chrome.css"><!-- alexbahia site: shared header -->
 </head>
 <body>
-<!-- added for alexbahia site: link back to the main site -->
-<div id="site-backlink" role="navigation" aria-label="Alex Bahia site" style="max-width:1360px;margin:0 auto;box-sizing:border-box;padding-top:14px;font-family:var(--mono,'Courier New',monospace);font-size:12px;line-height:1.3;letter-spacing:.08em;color:var(--muted,#74695C)"><a href="../" style="color:inherit;text-decoration:none">Alex Bahia home</a> <span aria-hidden="true">/</span> <a href="../lunde/" style="color:inherit;text-decoration:none">Lunde</a> <span aria-hidden="true">/</span> <a href="../gallery/" style="color:inherit;text-decoration:none">Gallery</a> <span aria-hidden="true">/</span> <a href="../about/" style="color:inherit;text-decoration:none">About</a></div>
+<!-- added for alexbahia site: shared header -->
+<!-- site-header:start -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../">Alex Bahia</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../poetry/" aria-current="page">Poetry</a></li>
+        <li><a href="../lunde/">Lunde</a></li>
+        <li><a href="../gallery/">Gallery</a></li>
+        <li><a href="../about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- site-header:end -->
 
 <header class="bar">
   <a class="brand" href="#">ALEX BAHIA POETRY</a>

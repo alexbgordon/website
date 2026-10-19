@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="../../assets/site.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
   <style>
     /* Page-scoped styles for the Modern Lunde grammar page (fonts/colors borrowed from the Old Lundian pages). */
-    .ml { --lx: "Gentium Book Plus", Georgia, serif; --ui: "Archivo", system-ui, sans-serif; --ink3: #6b7680; --line: #dfe3e1; --soft: #f1f3f2; }
+    .ml { --lx: "Gentium Book Plus", Georgia, serif; --ui: var(--mono); --ink3: var(--muted); --line: var(--border); --soft: var(--bg); } /* theme: poetry palette via site.css */
     .ml .lx { font-family: var(--lx); font-style: italic; font-size: 1.05em; }
     .ml .meta { color: var(--muted); font-size: .95rem; margin: -.5rem 0 1rem; }
     .ml .meta a { font-weight: 600; }
@@ -30,7 +30,7 @@
     .tbl-wrap { overflow-x: auto; margin: 1rem 0; }
     .ref-table { border-collapse: collapse; font-size: .97rem; background: var(--surface); min-width: 18rem; }
     .ref-table th, .ref-table td { border: 1px solid var(--line); padding: .4rem .7rem; text-align: left; vertical-align: top; }
-    .ref-table th { background: var(--soft); font-family: var(--ui); font-weight: 600; font-size: .85rem; color: #3d4750; }
+    .ref-table th { background: var(--soft); font-family: var(--ui); font-weight: 600; font-size: .85rem; color: var(--text-2); }
     .ref-table.nums td, .ref-table.nums th { text-align: center; padding: .4rem .5rem; }
     .ref-table.grid tbody td:first-child { font-family: var(--ui); }
     ol.ex { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
@@ -46,31 +46,35 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="site-title" href="../../">Alex Bahia</a>
-      <nav class="site-nav" aria-label="Main">
-        <ul>
+<!-- site-header:start -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../../">Alex Bahia</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
         <li><a href="../../">Home</a></li>
         <li><a href="../../poetry/">Poetry</a></li>
         <li><a href="../../lunde/" aria-current="page">Lunde</a></li>
-        <li><a href="../../languages/">Other languages</a></li>
         <li><a href="../../gallery/">Gallery</a></li>
         <li><a href="../../about/">About</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- site-header:end -->
   <main id="main" class="wrap ml">
     <p class="breadcrumb"><a href="../">Lunde</a> / Modern Lunde</p>
     <h1>Modern Lunde (Lundiyani)</h1>
-    <nav class="sub-nav" aria-label="Lunde sections">
-      <ul>
-        <li><a href="../">Old Lundian</a></li>
-        <li><a href="./" aria-current="page">Modern Lunde</a></li>
-        <li><a href="lexicon/">Lexicon</a></li>
-      </ul>
-    </nav>
+<!-- lunde-nav:start -->
+<nav class="lunde-nav" aria-label="Lunde sections">
+  <ul class="lunde-sections">
+    <li><a href="../../lunde/">Overview</a></li>
+    <li><a href="../../lunde/conjugator/">Old Lundian conjugator</a></li>
+    <li><a href="../../lunde/modern/" aria-current="page">Modern Lunde</a></li>
+    <li><a href="../../lunde/modern/lexicon/">Lexicon</a></li>
+  </ul>
+</nav>
+<!-- lunde-nav:end -->
     <p class="meta">Lundiyani Grammar Reference &middot; Oct 14, 2026 &middot; Alex Bahia &middot; <a href="lexicon/">Lexicon</a> &middot; <a href="lundiyani-grammar-reference.pdf" download>Download the PDF</a> &middot; Old Lundian: <a href="../conjugator/">conjugator</a>, <a href="../conjugator/grammar.html">grammar</a></p>
     <div class="ml-layout">
       <nav class="ml-toc" aria-label="On this page">
@@ -352,6 +356,9 @@
     </section>
       </div>
     </div>
+<!-- lunde-pager:start -->
+<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../lunde/conjugator/grammar.html" rel="prev"><span>&larr; Back</span> Old Lundian grammar</a><a class="lp-next" href="../../lunde/modern/lexicon/" rel="next"><span>Next &rarr;</span> Lunde lexicon</a></nav>
+<!-- lunde-pager:end -->
   </main>
   <footer class="site-footer">
     <div class="wrap">
