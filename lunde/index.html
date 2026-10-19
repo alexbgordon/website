@@ -36,8 +36,9 @@
 <!-- lunde-nav:start -->
 <nav class="lunde-nav" aria-label="Languages">
   <ul class="lunde-sections">
-    <li><a href="../lunde/old-lundian/">Lunde (Old Lundian)</a></li>
-    <li><a href="../lunde/modern-lundian/">Lundiyani (Modern Lundian)</a></li>
+    <li><a href="../lunde/" aria-current="page">Overview</a></li>
+    <li><a href="../lunde/conjugator/lexicon.html">Lunde (Old Lundian)</a></li>
+    <li><a href="../lunde/modern/lexicon/">Lundiyani (Modern Lundian)</a></li>
   </ul>
   <ul class="lunde-tool" aria-hidden="true"></ul>
 </nav>
@@ -57,7 +58,7 @@
   <script>
   /* Old links to /lunde/#old and /lunde/#modern now open each language's own page, at the top. */
   (function () {
-    var go = { old: 'old-lundian/', modern: 'modern-lundian/' }[location.hash.slice(1)];
+    var go = { old: 'conjugator/lexicon.html', modern: 'modern/lexicon/' }[location.hash.slice(1)];
     if (go) location.replace(go);
   }());
   </script>

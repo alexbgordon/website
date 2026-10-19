@@ -1506,7 +1506,7 @@ en llanto [[supernova|6]], ardo y me muero.
 
   function viewIndex() {
     app.innerHTML = '<article class="sheet narrow" aria-label="' + UI.index + '"><h1 class="ixh">' + UI.index.toUpperCase() + '</h1><ol class="ix">' +
-      '<li class="ixpref"><a href="#prologue"><span class="n"></span><span class="t">' + UI.aPreface + '</span><span class="d" aria-hidden="true"></span><span class="c"></span></a></li>' +
+      '<li><a href="#prologue"><span class="n">00</span><span class="t">' + UI.aPreface + '</span><span class="d" aria-hidden="true"></span><span class="c" title="Spanish">ES</span></a></li>' +
       POEMS.map((p, i) => {
         const he = p.dir === 'rtl';
         return '<li><a href="#p-' + p.id + '"><span class="n">' + String(i + 1).padStart(2, '0') + '</span>' +
