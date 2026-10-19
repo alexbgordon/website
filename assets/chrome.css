@@ -1,7 +1,171 @@
 /* Shared page chrome for alexbahia.com: fonts, top header/menu, and the Lunde section sub-nav and pager.
    Taken from Alex's poetry page (paper desk, EB Garamond, Courier Prime menu). Loaded by every page;
    all rules are scoped to .site-header / .lunde-nav / .lunde-pager so they can't leak into page designs. */
-@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Courier+Prime:wght@400;700&display=swap");
+/* Fonts are self-hosted (assets/fonts, SIL Open Font License) and preloaded by every page.
+   font-display: optional means a font that is not ready at first paint is never swapped in later,
+   so text never reflows ("no layout shift"); with the preload it is ready on all but very slow first visits. */
+/* latin-ext */
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url(fonts/CourierPrime-normal-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url(fonts/CourierPrime-normal-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: url(fonts/CourierPrime-normal-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: url(fonts/CourierPrime-normal-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-italic-400-800-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-italic-400-800-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-italic-400-800-greek-ext.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-italic-400-800-greek.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-italic-400-800-vietnamese.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-italic-400-800-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-italic-400-800-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-normal-400-800-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-normal-400-800-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-normal-400-800-greek-ext.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-normal-400-800-greek.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-normal-400-800-vietnamese.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-normal-400-800-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: optional;
+  src: url(fonts/EBGaramond-normal-400-800-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 .site-header {
   --ab-ink: #211C17; --ab-muted: #665C50; --ab-red: #A3241A; --ab-rule: #E2D8C6;
@@ -73,6 +237,44 @@
 .lunde-chrome .lunde-pager { margin: 0 0 40px; }
 .lunde-nav a:focus-visible, .lunde-pager a:focus-visible { outline: 2px solid var(--ab-red); outline-offset: 3px; }
 
-/* The poetry page pads its <body> (Alex's design); cancel that for the header so it sits
-   exactly where it does on every other page. */
-body:has(> #app) > .site-header { margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); }
+
+/* ---- One page card for the whole site ----
+   Every page puts its content on the same sheet of paper: same width, side margins, padding, top offset and
+   minimum height, so nothing moves when you go from page to page. Reading text keeps a comfortable measure
+   inside the card (see .ab-measure and the page styles); wide tools and tables scroll inside it. */
+html { scrollbar-gutter: stable; }
+.ab-card {
+  --ab-sheet: #FBF8F1; --ab-shadow: rgba(60, 40, 20, .38);
+  box-sizing: border-box; display: block; position: relative;
+  width: calc(100% - 32px); max-width: 1360px; margin: 0 auto 44px; padding: 56px 64px;
+  min-height: calc(100vh - 220px); min-height: calc(100svh - 220px);
+  background: var(--ab-sheet); box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 24px 44px -24px var(--ab-shadow);
+  flex: 0 0 auto;
+}
+.ab-card:focus { outline: none; }
+.ab-measure { max-width: 46rem; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ab-card { --ab-sheet: #221E19; --ab-shadow: rgba(0, 0, 0, .7); }
+}
+@media (max-width: 640px) {
+  .ab-card { padding: 32px 22px 36px; }
+}
+/* Shared footer width = card width */
+.site-footer .wrap, .site-footer.ab-foot { box-sizing: border-box; width: calc(100% - 32px); max-width: 1360px; margin: 0 auto; padding: 0 64px 24px; background: none; }
+@media (max-width: 640px) { .site-footer .wrap, .site-footer.ab-foot { padding: 0 22px 24px; } }
+
+/* ---- Languages sub-nav: always the first thing in the card, two rows of fixed height ----
+   Row 1: the overview and one link per language. Row 2: the current language's pages (empty on the overview). */
+.ab-card > .lunde-nav:first-child, .ab-card > :first-child > .lunde-nav { margin-top: 0; }
+.lunde-nav { box-sizing: border-box; height: 78px; margin: 0 0 1.75rem; padding: 0; overflow: hidden; }
+.lunde-nav ul { flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; white-space: nowrap; scrollbar-width: none; }
+.lunde-nav ul::-webkit-scrollbar { display: none; }
+.lunde-nav .lunde-sections { height: 40px; align-items: flex-end; }
+.lunde-nav .lunde-tool { height: 34px; margin: 0; align-items: center; border-top: 0; }
+.lunde-nav .lunde-tool:empty { visibility: hidden; }
+.lunde-nav { border-bottom: 1px solid var(--ab-rule); }
+.lunde-nav li { flex: none; }
+/* The header does not inherit the page's body size (poetry uses 19px), so it is the same height everywhere. */
+.site-header { font-size: 18px; line-height: 1.6; }
+/* The current language in the sub-nav's first row */
+.lunde-nav a[aria-current="true"] { color: var(--ab-red); }

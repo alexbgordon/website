@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preload" href="../../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lunde case conjugator | Alex Bahia</title>
+<meta name="description" content="Decline any Lunde noun or adjective through every case, in the singular and both plurals, with the derivation of each form.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="lunde.css">
+<style>
+/* Grammar layout: a sticky table of contents beside one reading column; tools sit in panels inside it. */
+.gbench-one { grid-template-columns: minmax(0, 1fr) !important; }
+.gbench { display: grid; gap: 24px 40px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 980px) { .gbench { grid-template-columns: 196px minmax(0, 1fr); } }
+.toc { min-width: 0; }
+.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+.toc a { display: flex; gap: 10px; align-items: baseline; text-decoration: none; padding: 6px 8px; border-radius: 6px; color: var(--ink-2); font: 500 14px/1.3 var(--f-ui); }
+.toc a::before { counter-increment: toc; content: counter(toc); font: 600 11px/1 var(--f-ui); color: var(--ink-3); min-width: 1.2em; font-variant-numeric: tabular-nums; }
+.toc a:hover { background: var(--line-soft); color: var(--ink); }
+.toc a[aria-current="true"] { background: var(--ink); color: var(--bg); }
+.toc a[aria-current="true"]::before { color: inherit; opacity: .7; }
+@media (min-width: 980px) {
+  .toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow: auto; }
+}
+@media (max-width: 979px) {
+  .toc ol { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+  .toc li { flex: none; }
+  .toc a { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+}
+
+.gmain { min-width: 0; display: grid; gap: 64px; }
+.gsec { display: grid; gap: 18px; min-width: 0; scroll-margin-top: 12px; }
+.gsec > header { display: grid; gap: 6px; max-width: 72ch; }
+.gsec h2 { margin: 0; font: 800 clamp(24px, 2.8vw, 32px)/1.08 var(--f-ui); font-stretch: 118%; letter-spacing: -.01em; text-wrap: balance; }
+.gsec h3 { margin: 10px 0 0; font: 700 13px/1.2 var(--f-ui); font-stretch: 112%; letter-spacing: .12em; text-transform: uppercase; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.gsec p, .gsec li { max-width: 72ch; }
+.gsec p { margin: 0; }
+.gsec ul.notes, .gsec ol.rules { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.gsec i, .dt i, .tool i { font-family: var(--f-lx); font-size: 1.07em; }
+.sub { display: grid; gap: 12px; }
+
+/* data tables */
+.dt { border-collapse: collapse; width: 100%; font-size: 14px; }
+.dt th, .dt td { text-align: left; padding: 7px 10px; border-top: 1px solid var(--line-soft); vertical-align: baseline; }
+.dt thead th { border-top: 0; border-bottom: 1.5px solid var(--mc); font: 600 10.5px/1.25 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); vertical-align: bottom; }
+.dt tbody th { font-weight: 600; font-size: 13px; color: var(--ink-2); white-space: nowrap; }
+.dt td.w, .dt .w { font: italic 400 17px/1.3 var(--f-lx); color: var(--ink); }
+.dt td.ipa, .dt .ipa { font: 400 16px/1.3 var(--f-lx); color: var(--ink-2); white-space: nowrap; }
+.dt td.why { color: var(--ink-3); font-size: 13px; }
+.dt .exc { color: var(--q); }
+.dt .exc::after { content: "*"; font: 700 11px/1 var(--f-ui); vertical-align: .6em; margin-left: 1px; }
+.dt .pend { color: var(--q); }
+.dt .pend::after { content: "?"; font: 700 11px/1 var(--f-ui); vertical-align: .6em; margin-left: 1px; }
+.dt .dim { color: var(--ink-3); opacity: .55; }
+.dt caption { caption-side: bottom; text-align: left; padding-top: 8px; font-size: 12.5px; color: var(--ink-3); }
+.dt .g { vertical-align: -2px; margin-right: 6px; }
+.tag { font: 600 11px/1 var(--f-ui); letter-spacing: .06em; text-transform: uppercase; color: var(--mc); }
+.flag { display: inline-flex; gap: 6px; align-items: baseline; padding: 6px 10px; border-radius: 6px; background: var(--q-wash); font-size: 13.5px; text-decoration: none; }
+.flag b { font: 700 11px/1 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--q); }
+
+/* tools */
+.tool { display: grid; gap: 12px; padding: 16px; background: var(--panel); border: 1px solid var(--line-soft); border-radius: 12px; box-shadow: var(--shadow); min-width: 0; }
+.tool-h { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; justify-content: space-between; }
+.tool-h h4 { margin: 0; font: 700 14px/1.2 var(--f-ui); }
+.tool-h p { font-size: 13px; color: var(--ink-3); }
+.fields { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: end; }
+.field { display: grid; gap: 4px; min-width: 0; }
+.field label { font: 600 12px/1.2 var(--f-ui); color: var(--ink-2); }
+.field input[type="text"], .field input[type="number"], .field select {
+  box-sizing: border-box; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink);
+  font: italic 400 18px/1.2 var(--f-lx); min-width: 0; width: 100%;
+}
+.field input[type="number"], .field select { font: 400 15px/1.2 var(--f-ui); }
+.field.w1 { flex: 1 1 200px; }
+.field.w2 { flex: 0 1 140px; }
+.check { display: inline-flex; gap: 7px; align-items: center; font-size: 13.5px; color: var(--ink-2); padding-bottom: 9px; cursor: pointer; }
+.out { display: grid; gap: 10px; min-width: 0; }
+.out-err { color: var(--bad); font-size: 14px; margin: 0; }
+.big { font: italic 700 30px/1.15 var(--f-lx); overflow-wrap: anywhere; margin: 0; }
+.syl { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; }
+.syl span { display: grid; gap: 2px; justify-items: center; padding: 6px 10px 7px; border-radius: 8px; border: 1px solid var(--line-soft); background: var(--bg); min-width: 2.2em; }
+.syl b { font: italic 400 20px/1.1 var(--f-lx); }
+.syl small { font: 400 13px/1.1 var(--f-lx); color: var(--ink-3); }
+.syl .s1 { border-color: var(--ink); box-shadow: inset 0 -3px 0 var(--ink); }
+.syl .s1 b { font-weight: 700; }
+.syl .s2 { border-color: var(--ink-3); border-style: dashed; }
+.why { margin: 0; color: var(--ink-2); font-size: 14px; }
+.cellbox { border-top: 1px solid var(--line-soft); padding-top: 4px; }
+.cellbox .chain { margin-top: 6px; }
+.dt button.cf { border: 0; background: none; padding: 2px 4px; margin: -2px -4px; border-radius: 4px; cursor: pointer; font: inherit; color: inherit; text-align: left; }
+.dt button.cf:hover, .dt button.cf[aria-pressed="true"] { background: var(--mw); }
+.dt button.cf[aria-pressed="true"] { box-shadow: inset 0 0 0 1.5px var(--mc); }
+.breakdown { margin: 0; font-size: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.breakdown i { color: var(--ink); }
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px 28px; align-items: start; }
+.big.ipa { font-style: normal; font-weight: 400; font-size: 24px; color: var(--ink-2); }
+.gmain > *, .gsec > *, .sub > *, .pair > *, .tool > *, .out > * { min-width: 0; }
+.dt td.w { white-space: nowrap; }
+.dt td.wrap { white-space: normal; }
+a.fl { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+a.fl:hover { text-decoration-color: var(--ink-2); }
+.dt th.tag { padding-top: 14px; border-top: 0; }
+.c-rnote small { display: block; }
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css"><!-- alexbahia site: shared header -->
+<link rel="stylesheet" href="site-theme.css"><!-- alexbahia site: poetry-page palette and fonts -->
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- added for alexbahia site: shared header and Lunde sub-nav -->
+<!-- site-header:start -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../../">Alex Bahia</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../poetry/">Poetry</a></li>
+        <li><a href="../../lunde/" aria-current="page">Languages</a></li>
+        <li><a href="../../gallery/">Gallery</a></li>
+        <li><a href="../../about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- site-header:end -->
+<div class="tool-sheet ab-card" id="main" tabindex="-1">
+<!-- lunde-nav:start -->
+<nav class="lunde-nav" aria-label="Languages">
+  <ul class="lunde-sections">
+    <li><a href="../../lunde/">Overview</a></li>
+    <li><a href="../../lunde/#old" aria-current="true">Lunde (Old Lundian)</a></li>
+    <li><a href="../../lunde/#modern">Lundiyani (Modern Lundian)</a></li>
+  </ul>
+  <ul class="lunde-tool" aria-label="Lunde pages">
+    <li><a href="../../lunde/conjugator/lexicon.html">Lexicon</a></li>
+    <li><a href="../../lunde/conjugator/grammar.html">Grammar</a></li>
+    <li><a href="../../lunde/conjugator/">Verb conjugator</a></li>
+    <li><a href="../../lunde/conjugator/cases.html" aria-current="page">Case conjugator</a></li>
+    <li><a href="../../lunde/conjugator/numbers.html">Number conjugator</a></li>
+  </ul>
+</nav>
+<!-- lunde-nav:end -->
+<div class="page">
+  <header class="mast">
+    <div class="mast-l">
+      <p class="eyebrow">Lunde · the old, formal register · prototype</p>
+      <h1>Lunde case conjugator (Old Lundian)</h1>
+      <p class="lede">Type any noun or adjective in its bare form and every case is built by rule. Click a form to see how it was built.</p>
+    </div>
+    <div class="mast-r">
+      <a class="badge" id="badge" href="index.html#checks"><span class="dot"></span>Running the checks…</a>
+    </div>
+  </header>
+
+  <div class="gbench gbench-one">
+    <main class="gmain">
+
+<!-- 5. Cases -->
+      <section class="gsec m-case" id="cases" aria-labelledby="cases-h">
+        <header>
+          <p class="eyebrow">Nouns, pronouns, adjectives</p>
+          <h2 id="cases-h">Cases</h2>
+          <p class="lede">Case marking is tripartite: the transitive subject (A), the intransitive subject (S) and the object (O) each have their own form. Unusually, A is the bare form, and S is marked with <i>-m</i>.</p>
+        </header>
+        <ul class="notes">
+          <li><i>Ki labi guse.</i> I love you: <i>ki</i> is bare (A), <i>guse</i> takes <i>-se</i> (O).</li>
+          <li><i>Kim eruj.</i> I die: <i>kim</i> takes <i>-m</i> (S).</li>
+        </ul>
+        <div class="sub">
+          <h3>Endings</h3>
+          <p>Each case is a case consonant + <i>-e</i> (singular), <i>-i</i> (plural animate) or <i>-en</i> (plural inanimate). After a consonant, <i>a</i> goes in first.</p>
+          <div class="tw" data-build="case-endings"></div>
+          <ol class="rules">
+            <li>After a consonant, <i>a</i> is inserted before the ending: <i>osilami, fasturam</i>.</li>
+            <li>Plural transitive subject: <i>-i</i> and <i>-en</i> after a consonant (<i>osili, zenen</i>); after a vowel, <i>y</i> or <i>n</i> goes in first (<i>neyi, nenen</i>).</li>
+            <li>Comitative and abessive: the <i>ū</i> drops after u or ū (<i>fastune, gūne, heneułe</i>); a long last vowel adds <i>v</i> before the suffix. The engine reads "last" as word-final.</li>
+            <li>The exmon participle drops its o before any ending (<i>fastuox → fastuxam</i>); consonant stems keep it (<i>laboxam</i>). <i>ney</i> uses <i>ne-</i> before every ending.</li>
+            <li>Dissimilation never changes a case ending, and the word in front of it stays as it is: <i>veve, keavave, fastuxūłe</i>.</li>
+            <li>Stress never moves: case endings don't count (<i>īs-si-ū-ne</i>).</li>
+            <li>Which mutations the endings cause is still open.</li>
+          </ol>
+        </div>
+        <div class="tool m-case" data-build="tool-decline"></div>
+        <div class="sub">
+          <h3>Personal pronouns</h3>
+          <p>The pronouns take the noun endings on an oblique stem. The engine builds the whole table from the stems; four forms are exceptions the doc lists, marked with *.</p>
+          <div class="tw" data-build="pronouns"></div>
+          <ul class="notes">
+            <li>The g of the 2s oblique forms is optional: <i>(g)use</i>. Plural pronouns lengthen the stem vowel: <i>(g)u-</i> and <i>gū-</i>, <i>da-</i> and <i>dā-</i>.</li>
+            <li>Negation puts the subject pronoun in the abessive, with no verb affix: <i>Kiūłe labi guse</i> (I don't love you).</li>
+          </ul>
+        </div>
+        <div class="sub">
+          <h3>Demonstratives and place words</h3>
+          <p>Demonstratives are bare roots used as adjectives, set by distance and by what can be known: <i>ney</i> this, <i>nal</i> that, <i>gval</i> yonder, <i>maū</i> something unseen whose existence can't be verified.</p>
+          <div class="tw" data-build="demonstratives"></div>
+          <p class="blk-note"><i>maū</i> declines the same way (<i>maūm, maūse</i>) and takes <i>maūne, maūłe</i>, like <i>gū</i>.</p>
+          <div class="tw" data-build="places"></div>
+        </div>
+        <div class="sub">
+          <h3>Articles</h3>
+          <div class="tw"><table class="dt">
+            <thead><tr><th scope="col"></th><th scope="col">Definite (the)</th><th scope="col">Indefinite (a, some)</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Animate singular</th><td class="w">i</td><td class="w">iā</td></tr>
+              <tr><th scope="row">Inanimate singular</th><td class="w">ci</td><td class="w">ān</td></tr>
+              <tr><th scope="row">Plural (both)</th><td class="w">ni</td><td class="w">na</td></tr>
+            </tbody>
+          </table></div>
+          <p class="blk-note">Articles and demonstratives join the next word with a dash: <i>i-Rāmam</i> (the sun), <i>ni-Rāmami</i> (the suns), <i>na-zenen</i> (some times).</p>
+        </div>
+      </section>
+
+          </main>
+  </div>
+</div>
+
+<!-- added for alexbahia site: back/next through the Lunde pages -->
+<!-- lunde-pager:start -->
+<nav class="lunde-pager" aria-label="Languages pages, in order"><a class="lp-back" href="../../lunde/conjugator/" rel="prev"><span>&larr; Previous</span> Lunde verb conjugator</a><a class="lp-next" href="../../lunde/conjugator/numbers.html" rel="next"><span>Next &rarr;</span> Lunde number conjugator</a></nav>
+<!-- lunde-pager:end -->
+</div>
+<footer class="site-footer">
+  <div class="wrap"><p>Lunde case conjugator &middot; engine v0.3 &middot; rules as of Oct 18, 2026</p></div>
+</footer>
+<script src="lunde-engine.js"></script>
+<script src="lexicon.js"></script>
+<script src="lunde-tests.js"></script>
+<script src="lunde-runner.js"></script>
+<script src="lunde-ui.js"></script>
+<script src="grammar.js"></script>
+</body>
+</html>

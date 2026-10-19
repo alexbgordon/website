@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+<link rel="preload" href="../../../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modern Lunde lexicon | Alex Bahia</title>
-  <meta name="description" content="The Lundiyani (Modern Lunde) word list: every word with its meaning and type.">
+  <title>Lundiyani lexicon | Alex Bahia</title>
+  <meta name="description" content="The Lundiyani (Modern Lundian) word list: every word with its meaning and type.">
   <link rel="stylesheet" href="../../../assets/site.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
   <style>
-    /* Page-scoped styles for the Modern Lunde grammar page (fonts/colors borrowed from the Old Lundian pages). */
+    /* Page-scoped styles for the Lundiyani grammar page (fonts/colors borrowed from the Lunde pages). */
     .ml { --lx: "Gentium Book Plus", Georgia, serif; --ui: var(--mono); --ink3: var(--muted); --line: var(--border); --soft: var(--bg); } /* theme: poetry palette via site.css */
     .ml .lx { font-family: var(--lx); font-style: italic; font-size: 1.05em; }
     .ml .meta { color: var(--muted); font-size: .95rem; margin: -.5rem 0 1rem; }
@@ -67,7 +68,7 @@
       <ul>
         <li><a href="../../../">Home</a></li>
         <li><a href="../../../poetry/">Poetry</a></li>
-        <li><a href="../../../lunde/" aria-current="page">Lunde</a></li>
+        <li><a href="../../../lunde/" aria-current="page">Languages</a></li>
         <li><a href="../../../gallery/">Gallery</a></li>
         <li><a href="../../../about/">About</a></li>
       </ul>
@@ -75,26 +76,31 @@
   </div>
 </header>
 <!-- site-header:end -->
-  <main id="main" class="wrap ml">
-    <h1>Modern Lunde lexicon</h1>
+  <main id="main" class="wrap ab-card ml">
 <!-- lunde-nav:start -->
-<nav class="lunde-nav" aria-label="Lunde sections">
+<nav class="lunde-nav" aria-label="Languages">
   <ul class="lunde-sections">
     <li><a href="../../../lunde/">Overview</a></li>
-    <li><a href="../../../lunde/conjugator/">Old Lundian conjugator</a></li>
-    <li><a href="../../../lunde/modern/">Modern Lunde grammar</a></li>
-    <li><a href="../../../lunde/modern/lexicon/" aria-current="page">Modern Lunde lexicon</a></li>
+    <li><a href="../../../lunde/#old">Lunde (Old Lundian)</a></li>
+    <li><a href="../../../lunde/#modern" aria-current="true">Lundiyani (Modern Lundian)</a></li>
+  </ul>
+  <ul class="lunde-tool" aria-label="Lundiyani pages">
+    <li><a href="../../../lunde/modern/lexicon/" aria-current="page">Lexicon</a></li>
+    <li><a href="../../../lunde/modern/">Grammar</a></li>
+    <li><a href="../../../lunde/modern/conjugator/">Verb conjugator</a></li>
+    <li><a href="../../../lunde/modern/numbers.html">Numbers</a></li>
   </ul>
 </nav>
 <!-- lunde-nav:end -->
-    <p class="lede">472 words (489 meanings), from the Lundiyani word list, checked against the <a href="../">grammar reference</a> of Oct 14, 2026. Where the two disagree, the grammar wins.</p>
+    <h1>Lundiyani lexicon (Modern Lundian)</h1>
+    <p class="lede">473 words (490 meanings), from the Lundiyani word list, checked against the <a href="../">grammar reference</a> of Oct 14, 2026. Where the two disagree, the grammar wins.</p>
     <p class="legend"><span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> added from the grammar &nbsp; <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span> corrected to match the grammar &nbsp; <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span> spacing fixed &nbsp; <span class="mk mk-q">?</span> still to check</p>
     <div class="lx-search" id="lx-search" hidden>
       <label for="lx-q"><strong>Search</strong> (word or meaning)</label><br>
       <input id="lx-q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. kora, water, to love">
       <p id="lx-count" aria-live="polite"></p>
     </div>
-    <nav class="letters" aria-label="Letters"><a href="#letter-a">A</a><a href="#letter-b">B</a><a href="#letter-c">C</a><a href="#letter-d">D</a><a href="#letter-e">E</a><a href="#letter-f">F</a><a href="#letter-g">G</a><a href="#letter-i">I</a><a href="#letter-j">J</a><a href="#letter-k">K</a><a href="#letter-l">L</a><a href="#letter-m">M</a><a href="#letter-n">N</a><a href="#letter-o">O</a><a href="#letter-p">P</a><a href="#letter-r">R</a><a href="#letter-s">S</a><a href="#letter-t">T</a><a href="#letter-u">U</a><a href="#letter-v">V</a><a href="#letter-w">W</a><a href="#letter-x">X</a><a href="#letter-y">Y</a><a href="#letter-z">Z</a></nav>
+    <nav class="letters" aria-label="Letters"><a href="#letter-a">A</a><a href="#letter-b">B</a><a href="#letter-c">C</a><a href="#letter-d">D</a><a href="#letter-e">E</a><a href="#letter-f">F</a><a href="#letter-g">G</a><a href="#letter-i">I</a><a href="#letter-j">J</a><a href="#letter-k">K</a><a href="#letter-l">L</a><a href="#letter-l-stroke">Ł</a><a href="#letter-m">M</a><a href="#letter-n">N</a><a href="#letter-o">O</a><a href="#letter-p">P</a><a href="#letter-r">R</a><a href="#letter-s">S</a><a href="#letter-t">T</a><a href="#letter-u">U</a><a href="#letter-v">V</a><a href="#letter-w">W</a><a href="#letter-x">X</a><a href="#letter-y">Y</a><a href="#letter-z">Z</a></nav>
 <section class="lg" id="letter-a" aria-labelledby="h-a"><h2 id="h-a">A</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
 <tbody class="ent" data-s="a 3s animate and"><tr data-w="a"><th scope="row" class="lx" rowspan="2">a</th><td><span class="sn">1.</span> 3s animate </td><td class="ty">pronoun</td></tr>
 <tr data-w="a"><td><span class="sn">2.</span> and </td><td class="ty">particle</td></tr>
@@ -111,11 +117,11 @@
 </tbody>
 <tbody class="ent" data-s="aist to find"><tr data-w="aist"><th scope="row" class="lx" rowspan="1">aist</th><td>to find </td><td class="ty">verb</td></tr>
 </tbody>
+<tbody class="ent" data-s="akał akaxl to lose"><tr data-w="akał"><th scope="row" class="lx" rowspan="1">akał</th><td>to lose  <small class="nt">Spelled akaxl until Oct 18 (ł replaces xl where it is one sound)</small></td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="akałoa akaxloa lost"><tr data-w="akałoa"><th scope="row" class="lx" rowspan="1">akałoa</th><td>lost  <small class="nt">Spelled akaxloa until Oct 18 (ł replaces xl where it is one sound)</small></td><td class="ty">adj</td></tr>
+</tbody>
 <tbody class="ent" data-s="akax to stop"><tr data-w="akax"><th scope="row" class="lx" rowspan="1">akax</th><td>to stop </td><td class="ty">verb</td></tr>
-</tbody>
-<tbody class="ent" data-s="akaxl to lose"><tr data-w="akaxl"><th scope="row" class="lx" rowspan="1">akaxl</th><td>to lose </td><td class="ty">verb</td></tr>
-</tbody>
-<tbody class="ent" data-s="akaxloa lost"><tr data-w="akaxloa"><th scope="row" class="lx" rowspan="1">akaxloa</th><td>lost </td><td class="ty">adj</td></tr>
 </tbody>
 <tbody class="ent" data-s="ake to carry"><tr data-w="ake"><th scope="row" class="lx" rowspan="1">ake</th><td>to carry </td><td class="ty">verb</td></tr>
 </tbody>
@@ -131,6 +137,8 @@
 <tbody class="ent" data-s="alion adult"><tr data-w="alion"><th scope="row" class="lx" rowspan="1">alion</th><td>adult </td><td class="ty">noun</td></tr>
 </tbody>
 <tbody class="ent" data-s="alwa red"><tr data-w="alwa"><th scope="row" class="lx" rowspan="1">alwa</th><td>red </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="ała axla how"><tr data-w="ała"><th scope="row" class="lx" rowspan="1">ała</th><td>how  <small class="nt">Spelled axla until Oct 18 (ł replaces xl where it is one sound)</small></td><td class="ty">question particle</td></tr>
 </tbody>
 <tbody class="ent" data-s="am with"><tr data-w="am"><th scope="row" class="lx" rowspan="1">am</th><td>with <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Earlier form: am — with; by</small></td><td class="ty">preposition</td></tr>
 </tbody>
@@ -195,13 +203,11 @@
 </tbody>
 <tbody class="ent" data-s="axan angry; angered; mad; furious"><tr data-w="axan"><th scope="row" class="lx" rowspan="1">axan</th><td>angry; angered; mad; furious </td><td class="ty">adj</td></tr>
 </tbody>
-<tbody class="ent" data-s="axla how"><tr data-w="axla"><th scope="row" class="lx" rowspan="1">axla</th><td>how </td><td class="ty">question particle</td></tr>
-</tbody>
 <tbody class="ent" data-s="axra to drown"><tr data-w="axra"><th scope="row" class="lx" rowspan="1">axra</th><td>to drown </td><td class="ty">verb</td></tr>
 </tbody>
 <tbody class="ent" data-s="axwe water (not drinkable)"><tr data-w="axwe"><th scope="row" class="lx" rowspan="1">axwe</th><td>water (not drinkable) </td><td class="ty">noun</td></tr>
 </tbody>
-<tbody class="ent" data-s="ayatión 20,736 (twelve to the fourth)"><tr data-w="ayatión"><th scope="row" class="lx" rowspan="1">ayatión</th><td>20,736 (twelve to the fourth) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+<tbody class="ent" data-s="ayation ayatión 20,736 (twelve to the fourth)"><tr data-w="ayation"><th scope="row" class="lx" rowspan="1">ayation</th><td>20,736 (twelve to the fourth) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> <small class="nt">Lundiyani grammar PDF: ayatión; this is Alex’s Oct 18 form</small></td><td class="ty">number</td></tr>
 </tbody>
 </table></div></section>
 <section class="lg" id="letter-b" aria-labelledby="h-b"><h2 id="h-b">B</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
@@ -365,19 +371,17 @@
 </tbody>
 <tbody class="ent" data-s="fisa nine"><tr data-w="fisa"><th scope="row" class="lx" rowspan="1">fisa</th><td>nine <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
 </tbody>
-<tbody class="ent" data-s="fiú eleven"><tr data-w="fiú"><th scope="row" class="lx" rowspan="1">fiú</th><td>eleven <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
-</tbody>
 <tbody class="ent" data-s="fwalyani conlang"><tr data-w="fwalyani"><th scope="row" class="lx" rowspan="1">fwalyani</th><td>conlang </td><td class="ty">noun</td></tr>
 </tbody>
 <tbody class="ent" data-s="fwalyanxi to conlang"><tr data-w="fwalyanxi"><th scope="row" class="lx" rowspan="1">fwalyanxi</th><td>to conlang </td><td class="ty">verb</td></tr>
 </tbody>
 <tbody class="ent" data-s="fwar to make; to create"><tr data-w="fwar"><th scope="row" class="lx" rowspan="1">fwar</th><td>to make; to create </td><td class="ty">verb</td></tr>
 </tbody>
+<tbody class="ent" data-s="fyu fiú eleven"><tr data-w="fyu"><th scope="row" class="lx" rowspan="1">fyu</th><td>eleven <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> <small class="nt">Lundiyani grammar PDF: fiú; this is Alex’s Oct 18 form</small></td><td class="ty">number</td></tr>
+</tbody>
 </table></div></section>
 <section class="lg" id="letter-g" aria-labelledby="h-g"><h2 id="h-g">G</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
-<tbody class="ent" data-s="galatión 1,728 (twelve cubed)"><tr data-w="galatión"><th scope="row" class="lx" rowspan="1">galatión</th><td>1,728 (twelve cubed) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
-</tbody>
-<tbody class="ent" data-s="gvena eight"><tr data-w="gvena"><th scope="row" class="lx" rowspan="1">gvena</th><td>eight <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+<tbody class="ent" data-s="galation galatión 1,728 (twelve cubed)"><tr data-w="galation"><th scope="row" class="lx" rowspan="1">galation</th><td>1,728 (twelve cubed) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> <small class="nt">Lundiyani grammar PDF: galatión; this is Alex’s Oct 18 form</small></td><td class="ty">number</td></tr>
 </tbody>
 </table></div></section>
 <section class="lg" id="letter-i" aria-labelledby="h-i"><h2 id="h-i">I</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
@@ -391,8 +395,6 @@
 <tbody class="ent" data-s="ida to return; to go back"><tr data-w="ida"><th scope="row" class="lx" rowspan="1">ida</th><td>to return; to go back </td><td class="ty">verb</td></tr>
 </tbody>
 <tbody class="ent" data-s="idar to arrive"><tr data-w="idar"><th scope="row" class="lx" rowspan="1">idar</th><td>to arrive <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Earlier form: idari — to arrive</small></td><td class="ty">verb</td></tr>
-</tbody>
-<tbody class="ent" data-s="igyión 144 (twelve squared)"><tr data-w="igyión"><th scope="row" class="lx" rowspan="1">igyión</th><td>144 (twelve squared) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
 </tbody>
 <tbody class="ent" data-s="ilie 1p"><tr data-w="ilie"><th scope="row" class="lx" rowspan="1">ilie</th><td>1p </td><td class="ty">pronoun</td></tr>
 </tbody>
@@ -422,14 +424,16 @@
 </tbody>
 <tbody class="ent" data-s="ixa bright; light"><tr data-w="ixa"><th scope="row" class="lx" rowspan="1">ixa</th><td>bright; light </td><td class="ty">adj</td></tr>
 </tbody>
+<tbody class="ent" data-s="iyion igyión 144 (twelve squared)"><tr data-w="iyion"><th scope="row" class="lx" rowspan="1">iyion</th><td>144 (twelve squared) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> <small class="nt">Lundiyani grammar PDF: igyión; this is Alex’s Oct 18 form</small></td><td class="ty">number</td></tr>
+</tbody>
 <tbody class="ent" data-s="iza to be mean mean, as in evil"><tr data-w="iza"><th scope="row" class="lx" rowspan="2">iza</th><td><span class="sn">1.</span> to be mean </td><td class="ty">verb</td></tr>
 <tr data-w="iza"><td><span class="sn">2.</span> mean, as in evil </td><td class="ty">adj</td></tr>
 </tbody>
 </table></div></section>
 <section class="lg" id="letter-j" aria-labelledby="h-j"><h2 id="h-j">J</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
-<tbody class="ent" data-s="java six"><tr data-w="java"><th scope="row" class="lx" rowspan="1">java</th><td>six <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+<tbody class="ent" data-s="jai jayu five"><tr data-w="jai"><th scope="row" class="lx" rowspan="1">jai</th><td>five <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> <small class="nt">Lundiyani grammar PDF: jayu; this is Alex’s Oct 18 form</small></td><td class="ty">number</td></tr>
 </tbody>
-<tbody class="ent" data-s="jayu five"><tr data-w="jayu"><th scope="row" class="lx" rowspan="1">jayu</th><td>five <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+<tbody class="ent" data-s="jau java six"><tr data-w="jau"><th scope="row" class="lx" rowspan="1">jau</th><td>six <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> <small class="nt">Lundiyani grammar PDF: java; this is Alex’s Oct 18 form</small></td><td class="ty">number</td></tr>
 </tbody>
 <tbody class="ent" data-s="josa to bleed"><tr data-w="josa"><th scope="row" class="lx" rowspan="1">josa</th><td>to bleed </td><td class="ty">verb</td></tr>
 </tbody>
@@ -531,11 +535,11 @@
 </tbody>
 <tbody class="ent" data-s="kuali happy; happiness"><tr data-w="kuali"><th scope="row" class="lx" rowspan="1">kuali</th><td>happy; happiness <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Earlier form: kuali — happy</small></td><td class="ty">adj</td></tr>
 </tbody>
+<tbody class="ent" data-s="kunełi kunexli to cut; to slice"><tr data-w="kunełi"><th scope="row" class="lx" rowspan="1">kunełi</th><td>to cut; to slice  <small class="nt">Spelled kunexli until Oct 18 (ł replaces xl where it is one sound)</small></td><td class="ty">verb</td></tr>
+</tbody>
 <tbody class="ent" data-s="kunerane to stab"><tr data-w="kunerane"><th scope="row" class="lx" rowspan="1">kunerane</th><td>to stab </td><td class="ty">verb</td></tr>
 </tbody>
 <tbody class="ent" data-s="kuneranxi to stab (on purpose)"><tr data-w="kuneranxi"><th scope="row" class="lx" rowspan="1">kuneranxi</th><td>to stab (on purpose) </td><td class="ty">verb</td></tr>
-</tbody>
-<tbody class="ent" data-s="kunexli to cut; to slice"><tr data-w="kunexli"><th scope="row" class="lx" rowspan="1">kunexli</th><td>to cut; to slice </td><td class="ty">verb</td></tr>
 </tbody>
 </table></div></section>
 <section class="lg" id="letter-l" aria-labelledby="h-l"><h2 id="h-l">L</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
@@ -617,9 +621,9 @@
 </tbody>
 <tbody class="ent" data-s="lua to go"><tr data-w="lua"><th scope="row" class="lx" rowspan="1">lua</th><td>to go </td><td class="ty">verb</td></tr>
 </tbody>
-<tbody class="ent" data-s="lua-valia to fall asleep"><tr data-w="lua-valia"><th scope="row" class="lx" rowspan="1">lua-valia</th><td>to fall asleep </td><td class="ty">verb</td></tr>
+<tbody class="ent" data-s="luał luaxl way"><tr data-w="luał"><th scope="row" class="lx" rowspan="1">luał</th><td>way  <small class="nt">Spelled luaxl until Oct 18 (ł replaces xl where it is one sound)</small></td><td class="ty">noun</td></tr>
 </tbody>
-<tbody class="ent" data-s="luaxl way"><tr data-w="luaxl"><th scope="row" class="lx" rowspan="1">luaxl</th><td>way </td><td class="ty">noun</td></tr>
+<tbody class="ent" data-s="lua-valia to fall asleep"><tr data-w="lua-valia"><th scope="row" class="lx" rowspan="1">lua-valia</th><td>to fall asleep </td><td class="ty">verb</td></tr>
 </tbody>
 <tbody class="ent" data-s="luluy excuse"><tr data-w="luluy"><th scope="row" class="lx" rowspan="1">luluy</th><td>excuse </td><td class="ty">noun</td></tr>
 </tbody>
@@ -635,6 +639,14 @@
 <tbody class="ent" data-s="lurani to run"><tr data-w="lurani"><th scope="row" class="lx" rowspan="1">lurani</th><td>to run <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Earlier spelling: “luran i”</small></td><td class="ty">verb</td></tr>
 </tbody>
 <tbody class="ent" data-s="lurankai to move (someone or something)"><tr data-w="lurankai"><th scope="row" class="lx" rowspan="1">lurankai</th><td>to move (someone or something) <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Earlier spelling: “luran kai”</small></td><td class="ty">verb</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-l-stroke" aria-labelledby="h-l-stroke"><h2 id="h-l-stroke">Ł</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="łe- xle- undoing"><tr data-w="łe-"><th scope="row" class="lx" rowspan="1">łe-</th><td>undoing <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> <small class="nt">Spelled xle- until Oct 18 (ł replaces xl where it is one sound)</small></td><td class="ty">prefix</td></tr>
+</tbody>
+<tbody class="ent" data-s="łera xlera to forget"><tr data-w="łera"><th scope="row" class="lx" rowspan="1">łera</th><td>to forget  <small class="nt">Spelled xlera until Oct 18 (ł replaces xl where it is one sound)</small></td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="łexa xlexa to breathe"><tr data-w="łexa"><th scope="row" class="lx" rowspan="1">łexa</th><td>to breathe  <small class="nt">Spelled xlexa until Oct 18 (ł replaces xl where it is one sound)</small></td><td class="ty">verb</td></tr>
 </tbody>
 </table></div></section>
 <section class="lg" id="letter-m" aria-labelledby="h-m"><h2 id="h-m">M</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
@@ -794,8 +806,6 @@
 </tbody>
 </table></div></section>
 <section class="lg" id="letter-r" aria-labelledby="h-r"><h2 id="h-r">R</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
-<tbody class="ent" data-s="ra two"><tr data-w="ra"><th scope="row" class="lx" rowspan="1">ra</th><td>two <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Earlier form: re — two</small></td><td class="ty">number</td></tr>
-</tbody>
 <tbody class="ent" data-s="rai yes"><tr data-w="rai"><th scope="row" class="lx" rowspan="1">rai</th><td>yes </td><td class="ty">interjection</td></tr>
 </tbody>
 <tbody class="ent" data-s="raxarane to genocide"><tr data-w="raxarane"><th scope="row" class="lx" rowspan="1">raxarane</th><td>to genocide </td><td class="ty">verb</td></tr>
@@ -805,6 +815,8 @@
 <tbody class="ent" data-s="raxi to break down"><tr data-w="raxi"><th scope="row" class="lx" rowspan="1">raxi</th><td>to break down </td><td class="ty">verb</td></tr>
 </tbody>
 <tbody class="ent" data-s="rayex dress; cloak"><tr data-w="rayex"><th scope="row" class="lx" rowspan="1">rayex</th><td>dress; cloak </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="re ra two"><tr data-w="re"><th scope="row" class="lx" rowspan="1">re</th><td>two <small class="nt">Lundiyani grammar PDF: ra; this is Alex’s Oct 18 form</small></td><td class="ty">number</td></tr>
 </tbody>
 <tbody class="ent" data-s="rei hot; sexy"><tr data-w="rei"><th scope="row" class="lx" rowspan="1">rei</th><td>hot; sexy </td><td class="ty">adj</td></tr>
 </tbody>
@@ -865,7 +877,7 @@
 </tbody>
 <tbody class="ent" data-s="silu yellow"><tr data-w="silu"><th scope="row" class="lx" rowspan="1">silu</th><td>yellow </td><td class="ty">adj</td></tr>
 </tbody>
-<tbody class="ent" data-s="sión twelve"><tr data-w="sión"><th scope="row" class="lx" rowspan="1">sión</th><td>twelve <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+<tbody class="ent" data-s="sion sión twelve"><tr data-w="sion"><th scope="row" class="lx" rowspan="1">sion</th><td>twelve <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> <small class="nt">Lundiyani grammar PDF: sión; this is Alex’s Oct 18 form</small></td><td class="ty">number</td></tr>
 </tbody>
 <tbody class="ent" data-s="sipa to finish; to end"><tr data-w="sipa"><th scope="row" class="lx" rowspan="1">sipa</th><td>to finish; to end </td><td class="ty">verb</td></tr>
 </tbody>
@@ -902,11 +914,11 @@
 </tbody>
 <tbody class="ent" data-s="strovxi dangerous"><tr data-w="strovxi"><th scope="row" class="lx" rowspan="1">strovxi</th><td>dangerous </td><td class="ty">adj</td></tr>
 </tbody>
+<tbody class="ent" data-s="suł suxl to suck"><tr data-w="suł"><th scope="row" class="lx" rowspan="1">suł</th><td>to suck  <small class="nt">Spelled suxl until Oct 18 (ł replaces xl where it is one sound)</small></td><td class="ty">verb</td></tr>
+</tbody>
 <tbody class="ent" data-s="surovixe to suffer; to be in pain"><tr data-w="surovixe"><th scope="row" class="lx" rowspan="1">surovixe</th><td>to suffer; to be in pain </td><td class="ty">verb</td></tr>
 </tbody>
 <tbody class="ent" data-s="surox pain; suffering"><tr data-w="surox"><th scope="row" class="lx" rowspan="1">surox</th><td>pain; suffering </td><td class="ty">noun</td></tr>
-</tbody>
-<tbody class="ent" data-s="suxl to suck"><tr data-w="suxl"><th scope="row" class="lx" rowspan="1">suxl</th><td>to suck </td><td class="ty">verb</td></tr>
 </tbody>
 <tbody class="ent" data-s="swila to spin"><tr data-w="swila"><th scope="row" class="lx" rowspan="1">swila</th><td>to spin </td><td class="ty">verb</td></tr>
 </tbody>
@@ -989,6 +1001,8 @@
 </tbody>
 </table></div></section>
 <section class="lg" id="letter-u" aria-labelledby="h-u"><h2 id="h-u">U</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="ułe zero 0"><tr data-w="ułe"><th scope="row" class="lx" rowspan="1">ułe</th><td>zero <small class="nt">Alex, Oct 18 (Lunde hūł)</small></td><td class="ty">number</td></tr>
+</tbody>
 <tbody class="ent" data-s="urane to harm"><tr data-w="urane"><th scope="row" class="lx" rowspan="1">urane</th><td>to harm <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Earlier form: surone — to harm; to hurt</small></td><td class="ty">verb</td></tr>
 </tbody>
 </table></div></section>
@@ -1024,6 +1038,8 @@
 <tbody class="ent" data-s="wansi complain"><tr data-w="wansi"><th scope="row" class="lx" rowspan="1">wansi</th><td>complain </td><td class="ty">verb</td></tr>
 </tbody>
 <tbody class="ent" data-s="waran to waste"><tr data-w="waran"><th scope="row" class="lx" rowspan="1">waran</th><td>to waste </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="wena gvena eight"><tr data-w="wena"><th scope="row" class="lx" rowspan="1">wena</th><td>eight <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> <small class="nt">Lundiyani grammar PDF: gvena; this is Alex’s Oct 18 form</small></td><td class="ty">number</td></tr>
 </tbody>
 <tbody class="ent" data-s="wuru wolf"><tr data-w="wuru"><th scope="row" class="lx" rowspan="1">wuru</th><td>wolf <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">noun</td></tr>
 </tbody>
@@ -1065,12 +1081,6 @@
 </tbody>
 <tbody class="ent" data-s="xitka right now"><tr data-w="xitka"><th scope="row" class="lx" rowspan="1">xitka</th><td>right now </td><td class="ty">adv</td></tr>
 </tbody>
-<tbody class="ent" data-s="xle- undoing"><tr data-w="xle-"><th scope="row" class="lx" rowspan="1">xle-</th><td>undoing <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">prefix</td></tr>
-</tbody>
-<tbody class="ent" data-s="xlera to forget"><tr data-w="xlera"><th scope="row" class="lx" rowspan="1">xlera</th><td>to forget </td><td class="ty">verb</td></tr>
-</tbody>
-<tbody class="ent" data-s="xlexa to breathe"><tr data-w="xlexa"><th scope="row" class="lx" rowspan="1">xlexa</th><td>to breathe </td><td class="ty">verb</td></tr>
-</tbody>
 <tbody class="ent" data-s="xora soil; dirt; ground"><tr data-w="xora"><th scope="row" class="lx" rowspan="1">xora</th><td>soil; dirt; ground </td><td class="ty">noun</td></tr>
 </tbody>
 <tbody class="ent" data-s="xwitiwi to whisper; to murmur"><tr data-w="xwitiwi"><th scope="row" class="lx" rowspan="1">xwitiwi</th><td>to whisper; to murmur <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Earlier spelling: “xwit i wi”</small></td><td class="ty">verb</td></tr>
@@ -1106,12 +1116,12 @@
 </table></div></section>
 
 <!-- lunde-pager:start -->
-<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../../lunde/modern/" rel="prev"><span>&larr; Previous</span> Modern Lunde grammar</a><a class="lp-next" href="../../../lunde/"><span>Back to the start &rarr;</span> Lunde overview</a></nav>
+<nav class="lunde-pager" aria-label="Languages pages, in order"><a class="lp-back" href="../../../lunde/conjugator/numbers.html" rel="prev"><span>&larr; Previous</span> Lunde number conjugator</a><a class="lp-next" href="../../../lunde/modern/" rel="next"><span>Next &rarr;</span> Lundiyani grammar</a></nav>
 <!-- lunde-pager:end -->
   </main>
   <footer class="site-footer">
     <div class="wrap">
-      <p>Modern Lunde lexicon &middot; <a href="../">Modern Lunde grammar</a></p>
+      <p>Lundiyani lexicon &middot; <a href="../">Lundiyani grammar</a></p>
     </div>
   </footer>
   <script>

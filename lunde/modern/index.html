@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+<link rel="preload" href="../../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modern Lunde grammar | Alex Bahia</title>
+  <title>Lundiyani grammar | Alex Bahia</title>
   <meta name="description" content="Grammar reference for Lundiyani, the modern form of Lunde: pronouns, word order, verb particles, nouns and numbers, questions, clauses, word formation and glossed example sentences.">
   <link rel="stylesheet" href="../../assets/site.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
   <style>
-    /* Page-scoped styles for the Modern Lunde grammar page (fonts/colors borrowed from the Old Lundian pages). */
+    /* Page-scoped styles for the Lundiyani grammar page (fonts/colors borrowed from the Lunde pages). */
     .ml { --lx: "Gentium Book Plus", Georgia, serif; --ui: var(--mono); --ink3: var(--muted); --line: var(--border); --soft: var(--bg); } /* theme: poetry palette via site.css */
     .ml .lx { font-family: var(--lx); font-style: italic; font-size: 1.05em; }
     .ml .meta { color: var(--muted); font-size: .95rem; margin: -.5rem 0 1rem; }
@@ -56,7 +57,7 @@
       <ul>
         <li><a href="../../">Home</a></li>
         <li><a href="../../poetry/">Poetry</a></li>
-        <li><a href="../../lunde/" aria-current="page">Lunde</a></li>
+        <li><a href="../../lunde/" aria-current="page">Languages</a></li>
         <li><a href="../../gallery/">Gallery</a></li>
         <li><a href="../../about/">About</a></li>
       </ul>
@@ -64,19 +65,24 @@
   </div>
 </header>
 <!-- site-header:end -->
-  <main id="main" class="wrap ml">
-    <h1>Modern Lunde grammar</h1>
+  <main id="main" class="wrap ab-card ml">
 <!-- lunde-nav:start -->
-<nav class="lunde-nav" aria-label="Lunde sections">
+<nav class="lunde-nav" aria-label="Languages">
   <ul class="lunde-sections">
     <li><a href="../../lunde/">Overview</a></li>
-    <li><a href="../../lunde/conjugator/">Old Lundian conjugator</a></li>
-    <li><a href="../../lunde/modern/" aria-current="page">Modern Lunde grammar</a></li>
-    <li><a href="../../lunde/modern/lexicon/">Modern Lunde lexicon</a></li>
+    <li><a href="../../lunde/#old">Lunde (Old Lundian)</a></li>
+    <li><a href="../../lunde/#modern" aria-current="true">Lundiyani (Modern Lundian)</a></li>
+  </ul>
+  <ul class="lunde-tool" aria-label="Lundiyani pages">
+    <li><a href="../../lunde/modern/lexicon/">Lexicon</a></li>
+    <li><a href="../../lunde/modern/" aria-current="page">Grammar</a></li>
+    <li><a href="../../lunde/modern/conjugator/">Verb conjugator</a></li>
+    <li><a href="../../lunde/modern/numbers.html">Numbers</a></li>
   </ul>
 </nav>
 <!-- lunde-nav:end -->
-    <p class="meta">Lundiyani Grammar Reference &middot; Oct 14, 2026 &middot; Alex Bahia &middot; <a href="lexicon/">Lexicon</a> &middot; <a href="lundiyani-grammar-reference.pdf" download>Download the PDF</a> &middot; Old Lundian: <a href="../conjugator/">conjugator</a>, <a href="../conjugator/grammar.html">grammar</a></p>
+    <h1>Lundiyani grammar (Modern Lundian)</h1>
+    <p class="meta">Lundiyani Grammar Reference &middot; Oct 14, 2026 &middot; Alex Bahia &middot; <a href="lexicon/">Lexicon</a> &middot; <a href="lundiyani-grammar-reference.pdf" download>Download the PDF</a> &middot; Lunde: <a href="../conjugator/">conjugator</a>, <a href="../conjugator/grammar.html">grammar</a></p>
     <div class="ml-layout">
       <nav class="ml-toc" aria-label="On this page">
         <p>Contents</p>
@@ -85,13 +91,14 @@
       <div class="ml-body">
     <section class="mref" id="overview" aria-labelledby="overview-h">
       <h2 id="overview-h">Overview and principles</h2>
-<p class="lede">Lundiyani is the modern form of Lunde: an isolating lingua franca spoken across the conworld, much later than Old Lundian and very different from it.</p>
+<p class="lede">Lundiyani is the modern form of Lunde (Old Lundian): an isolating lingua franca spoken across the conworld, much later than Lunde and very different from it.</p>
 <ul>
-<li><strong>History.</strong> Many peoples speak it, so it has dialect and register doublets, borrowings, and changes from Old Lundian that aren&#x27;t always regular. The imperfection is intended.</li>
+<li><strong>History.</strong> Many peoples speak it, so it has dialect and register doublets, borrowings, and changes from Lunde that aren&#x27;t always regular. The imperfection is intended.</li>
 <li><strong>Type.</strong> Verbs never change form. Tense, aspect, mood and negation are separate particles. The only grammatical suffixes are possessive -de and the plurals -i, -en and -nen.</li>
 <li><strong>Etymology.</strong> Most modern words have no worked-out etymology, and none is needed.</li>
 <li><strong>Working method.</strong> New forms are checked against the rules below. Only contradictions with a stated rule and real ambiguities get flagged.</li>
 <li><strong>Sounds.</strong> There is no h sound; Old h is lost (Old hara → ara). x is a different sound.</li>
+<li><strong>Spelling (Oct 18):</strong> <span class="lx">ł</span> = Welsh ll; <span class="lx">xl</span> across a word boundary is <span class="lx">x</span> + <span class="lx">l</span> (<span class="lx">kaxli</span>, from kaxi + -li); <span class="lx">ğ</span> replaces <span class="lx">gy</span>. <small class="upd">The PDF still writes xl and gy.</small></li>
 </ul>
 <p>The full word list is in the <a href="lexicon/">Lexicon</a>.</p>
     </section>
@@ -110,7 +117,7 @@
 </tbody></table></div>
 <ul>
 <li>-de attaches to any word, nouns included: i onde osili (the person&#x27;s eyes).</li>
-<li>-de is a remnant of the Old Lundian genitive (kide, ude, dade).</li>
+<li>-de is a remnant of the Lunde genitive (kide, ude, dade).</li>
 <li>Each other: on-a-oni. ale lau on-a-oni (they love each other).</li>
 <li>Reflexive: amon. a lo kanxi amon (she looked at herself).</li>
 </ul>
@@ -170,16 +177,16 @@
 <tr><td class="lx">ta i lo kora</td><td>I had a cat</td></tr>
 <tr><td class="lx">ta i lan kora</td><td>I don&#x27;t have a cat</td></tr>
 <tr><td class="lx">ta o kora me?</td><td>Do you have a cat?</td></tr>
-<tr><td class="lx">ta nei kawe on ra kiwuri</td><td>This tall person has two dogs</td></tr>
+<tr><td class="lx">ta nei kawe on re kiwuri</td><td>This tall person has two dogs</td></tr>
 </tbody></table></div>
     </section>
     <section class="mref" id="nouns" aria-labelledby="nouns-h">
       <h2 id="nouns-h">Nouns, articles and numbers</h2>
-<p class="lede">Plural nouns take -i, articles come from Old Lundian, and the numbers are the Old Lundian ones, unchanged.</p>
+<p class="lede">Plural nouns take -i, articles come from Lunde, and the numbers are the Lunde ones, unchanged.</p>
 <ul>
 <li>Plural -i: osil → osili (eyes), kiwuru → kiwuri (dogs), kora → kori (cats), on → oni (people).</li>
-<li>Inanimate nouns take -en after a consonant and -nen after a vowel: skin → skinen (books), louba → loubanen (bottles). Irregular: yami → yamo (feet). After any number above one the noun is plural: ra kiwuri (two dogs).</li>
-<li>Articles: the Old Lundian set without its accents (table below). Many speakers also use i with inanimate nouns.</li>
+<li>Inanimate nouns take -en after a consonant and -nen after a vowel: skin → skinen (books), louba → loubanen (bottles). Irregular: yami → yamo (feet). After any number above one the noun is plural: re kiwuri (two dogs).</li>
+<li>Articles: the Lunde set without its accents (table below). Many speakers also use i with inanimate nouns.</li>
 </ul>
 <div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Article</th><th scope="col">Animate</th><th scope="col">Inanimate</th><th scope="col">Plural</th></tr></thead><tbody>
 <tr><td>the</td><td class="lx">i</td><td class="lx">ci</td><td class="lx">ni</td></tr>
@@ -191,10 +198,10 @@
 <li>Comparison: kaw + adjective + da. i wuru lai kaw ko da i kiwuru (the wolf is bigger than the dog).</li>
 <li>Superlative: i kaw + adjective. a lai i kaw leia on nai ci payi’an (she is the most beautiful person in the city).</li>
 </ul>
-<p>Numbers count in base twelve, as in Old Lundian. Before a noun the bare form is used; when counting, é- goes in front (é-na, é-ra).</p>
-<div class="tbl-wrap"><table class="ref-table nums"><thead><tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th><th scope="col">9</th><th scope="col">10</th><th scope="col">11</th><th scope="col">12</th></tr></thead>
-<tbody><tr><td class="lx">na</td><td class="lx">ra</td><td class="lx">ara</td><td class="lx">du</td><td class="lx">jayu</td><td class="lx">java</td><td class="lx">isa</td><td class="lx">gvena</td><td class="lx">fisa</td><td class="lx">dion</td><td class="lx">fiú</td><td class="lx">sión</td></tr></tbody></table></div>
-<p>Powers of twelve: sión (12), igyión (144), galatión (1,728), ayatión (20,736). Numbers are built as in Old Lundian: rasión (24), sión-na (13). The list’s re (two) is outdated.</p>
+<p>Numbers count in base twelve, as in Lunde. Before a noun the bare form is used; when counting, é- goes in front (é-na, é-re). Zero is ułe.</p>
+<div class="tbl-wrap"><table class="ref-table nums"><thead><tr><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th><th scope="col">9</th><th scope="col">10</th><th scope="col">11</th><th scope="col">12</th></tr></thead>
+<tbody><tr><td class="lx">ułe</td><td class="lx">na</td><td class="lx">re</td><td class="lx">ara</td><td class="lx">du</td><td class="lx">jai</td><td class="lx">jau</td><td class="lx">isa</td><td class="lx">wena</td><td class="lx">fisa</td><td class="lx">dion</td><td class="lx">fyu</td><td class="lx">sion</td></tr></tbody></table></div>
+<p>Powers of twelve: sion (12), iyion (144), galation (1,728), ayation (20,736). Numbers are built as in Lunde: resion (24), sion-na (13). Try any number in the <a href="numbers.html">Lundiyani numbers</a> tool. <small class="upd">(Update, Oct 18, 2026: these are Alex’s current forms; the rules are the Lunde ones, the words have changed in pronunciation. The PDF has na, ra, ara, du, jayu, java, isa, gvena, fisa, dion, fiú, sión and sión, igyión, galatión, ayatión, and no zero.)</small></p>
     </section>
     <section class="mref" id="questions" aria-labelledby="questions-h">
       <h2 id="questions-h">Questions</h2>
@@ -211,7 +218,7 @@
 <tr><td class="lx">maxa</td><td>where</td></tr>
 <tr><td class="lx">xar</td><td>when (also: near)</td></tr>
 <tr><td class="lx">anxa</td><td>why</td></tr>
-<tr><td class="lx">axla</td><td>how</td></tr>
+<tr><td class="lx">ała</td><td>how</td></tr>
 <tr><td class="lx">xataw</td><td>how many, how much</td></tr>
 <tr><td class="lx">xati</td><td>what kind</td></tr>
 </tbody></table></div>
@@ -224,7 +231,7 @@
 <li>when: xanarya after the main clause: a lo lai yada xanarya o lo luran (she was singing when you came). When the when-clause comes first, xar, though xanarya also works: xar i lo lai kili, i talei lo yada (when I was young, I used to sing).</li>
 <li>if: as, with lei in both clauses. as o lei luran, i lei lai kuali (if you came, I would be happy).</li>
 <li>Other conjunctions: ema (because), ant (but), anta (before), nes (until), dal or ana (while), no (or).</li>
-<li>Relative clauses: noun + sa + clause, as in Old Lundian, for people and things: i on sa yada lai ide bana (the person who sings is my brother). ci skin sa o lo sila lai leia (the book that you wrote is beautiful). xaon is also used for people: i on xaon lo lai yada lai kuali (the person who was singing is happy).</li>
+<li>Relative clauses: noun + sa + clause, as in Lunde, for people and things: i on sa yada lai ide bana (the person who sings is my brother). ci skin sa o lo sila lai leia (the book that you wrote is beautiful). xaon is also used for people: i on xaon lo lai yada lai kuali (the person who was singing is happy).</li>
 <li>That-clauses: xa. i so xa o na luran (I know that you will come).</li>
 </ul>
 <div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Command</th><th scope="col">Meaning</th></tr></thead><tbody>
@@ -244,7 +251,7 @@
 <tr><td class="lx">-kai</td><td>making someone do it</td><td>edenkai (feed), enakai (explain), iloarikai (make cry); works on any verb</td></tr>
 <tr><td class="lx">-on</td><td>person</td><td>yadaon (singer), kiliyon (child)</td></tr>
 <tr><td class="lx">-li</td><td>thing</td><td>kaxli (name), sipli (end)</td></tr>
-<tr><td class="lx">xle-</td><td>undoing</td><td>xlera (forget), from lera (remember)</td></tr>
+<tr><td class="lx">łe-</td><td>undoing</td><td>łera (forget), from lera (remember)</td></tr>
 </tbody></table></div>
 <p>nia (to make someone feel an emotion) is a separate verb, never a suffix: it can make someone sad, but not make them cry: o lo nia i drese (you made me sad).</p>
 <p>The indefinite words form a grid:</p>
@@ -271,7 +278,7 @@
 <tr><td class="lx">urane</td><td>to harm</td></tr>
 <tr><td class="lx">erane</td><td>to kill, from the Old namon irrana (irrasa, to grab)</td></tr>
 <tr><td class="lx">mana</td><td>spiritual energy; lawmana = to marry</td></tr>
-<tr><td class="lx">na, ra, ara…</td><td>numbers are the Old Lundian ones; re is outdated</td></tr>
+<tr><td class="lx">na, ra, ara…</td><td>numbers are the Lunde ones; re is outdated</td></tr>
 <tr><td class="lx">lurankai</td><td>to move someone; -kai and -xi are part of the word</td></tr>
 <tr><td class="lx">ov</td><td>command particle; replaces o so commands don’t look like “you”</td></tr>
 <tr><td class="lx">ara</td><td>three; Lundiyani has no h (Old hara)</td></tr>
@@ -282,7 +289,7 @@
 <tr><td class="lx">lala, lurani, tu&#x27;ali, taluv, tavnei, vantasi, xwitiwi, nivya</td><td>written without internal spaces; earlier spellings with spaces were typos</td></tr>
 </tbody></table></div>
 <ul>
-<li>Doublets (resa and akaxl, kaxi and kaxli, dal and ana…) are deliberate dialect or register variants. <small class="upd">(Update, Oct 18, 2026: kaxi and kaxli are no longer a doublet: kaxi = to name, a verb; kaxli = name, a noun.)</small><!-- Alex resolved kaxi/kaxli on 2026-10-18; the PDF text above is unchanged. --></li>
+<li>Doublets (resa and akał, kaxi and kaxli, dal and ana…) are deliberate dialect or register variants. <small class="upd">(Update, Oct 18, 2026: kaxi and kaxli are no longer a doublet: kaxi = to name, a verb; kaxli = name, a noun.)</small><!-- Alex resolved kaxi/kaxli on 2026-10-18; the PDF text above is unchanged. --></li>
 <li>au and aw spell the same sound.</li>
 <li>Final a → ai happened in some words only; it is not a rule.</li>
 <li>Karen is not a word; a → al is not a rule.</li>
@@ -304,7 +311,7 @@
 <li value="9"><p class="ex-tr">9. &#x27;Did you have a dog?&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ta</span><span class="g2">have</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">ia</span><span class="g2">INDF</span></span><span class="gw"><span class="g1 lx">kiwuru</span><span class="g2">dog</span></span><span class="gw"><span class="g1 lx">me</span><span class="g2">Q</span></span></div></li>
 <li value="10"><p class="ex-tr">10. &#x27;My cat and your dog are small.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i-de</span><span class="g2">1SG-POSS</span></span><span class="gw"><span class="g1 lx">kora</span><span class="g2">cat</span></span><span class="gw"><span class="g1 lx">ad</span><span class="g2">and</span></span><span class="gw"><span class="g1 lx">o-de</span><span class="g2">2SG-POSS</span></span><span class="gw"><span class="g1 lx">kiwuru</span><span class="g2">dog</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">ki-de</span><span class="g2">small-DE</span></span></div></li>
 <li value="11"><p class="ex-tr">11. &#x27;The person&#x27;s eyes are blue.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">on-de</span><span class="g2">person-POSS</span></span><span class="gw"><span class="g1 lx">osil-i</span><span class="g2">eye-PL</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">laso-de</span><span class="g2">blue-DE</span></span></div></li>
-<li value="12"><p class="ex-tr">12. &#x27;This tall person has two dogs.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ta</span><span class="g2">have</span></span><span class="gw"><span class="g1 lx">nei</span><span class="g2">this</span></span><span class="gw"><span class="g1 lx">kawe</span><span class="g2">tall</span></span><span class="gw"><span class="g1 lx">on</span><span class="g2">person</span></span><span class="gw"><span class="g1 lx">ra</span><span class="g2">two</span></span><span class="gw"><span class="g1 lx">kiwur-i</span><span class="g2">dog-PL</span></span></div></li>
+<li value="12"><p class="ex-tr">12. &#x27;This tall person has two dogs.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ta</span><span class="g2">have</span></span><span class="gw"><span class="g1 lx">nei</span><span class="g2">this</span></span><span class="gw"><span class="g1 lx">kawe</span><span class="g2">tall</span></span><span class="gw"><span class="g1 lx">on</span><span class="g2">person</span></span><span class="gw"><span class="g1 lx">re</span><span class="g2">two</span></span><span class="gw"><span class="g1 lx">kiwur-i</span><span class="g2">dog-PL</span></span></div></li>
 <li value="13"><p class="ex-tr">13. &#x27;I saw a cat, and the cat saw me.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">kana</span><span class="g2">see</span></span><span class="gw"><span class="g1 lx">ia</span><span class="g2">INDF</span></span><span class="gw"><span class="g1 lx">kora,</span><span class="g2">cat</span></span><span class="gw"><span class="g1 lx">ad</span><span class="g2">and</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">kora</span><span class="g2">cat</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">kana</span><span class="g2">see</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span></div></li>
 <li value="14"><p class="ex-tr">14. &#x27;Who loves you?&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">xaon</span><span class="g2">who</span></span><span class="gw"><span class="g1 lx">lau</span><span class="g2">love</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span></div></li>
 <li value="15"><p class="ex-tr">15. &#x27;What are you doing?&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">vera</span><span class="g2">do</span></span><span class="gw"><span class="g1 lx">xa</span><span class="g2">what</span></span></div><div class="gl"><span class="gw"><span class="g1 lx">xa</span><span class="g2">what</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">vera</span><span class="g2">do</span></span></div></li>
@@ -331,14 +338,14 @@
 <li value="14"><p class="ex-tr">14. &#x27;The book that you wrote is beautiful.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">skin</span><span class="g2">book</span></span><span class="gw"><span class="g1 lx">sa</span><span class="g2">REL</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">sila</span><span class="g2">write</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">leia</span><span class="g2">beautiful</span></span></div></li>
 <li value="15"><p class="ex-tr">15. &#x27;We need to talk.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ilie</span><span class="g2">1PL</span></span><span class="gw"><span class="g1 lx">mail</span><span class="g2">need</span></span><span class="gw"><span class="g1 lx">kapa</span><span class="g2">talk</span></span></div></li>
 <li value="16"><p class="ex-tr">16. &#x27;They love each other.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ale</span><span class="g2">3PL</span></span><span class="gw"><span class="g1 lx">lau</span><span class="g2">love</span></span><span class="gw"><span class="g1 lx">on-a-oni</span><span class="g2">each.other</span></span></div></li>
-<li value="17"><p class="ex-tr">17. &#x27;I have twenty-five dogs.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ta</span><span class="g2">have</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">rasión-na</span><span class="g2">twenty-five</span></span><span class="gw"><span class="g1 lx">kiwur-i</span><span class="g2">dog-PL</span></span></div></li>
+<li value="17"><p class="ex-tr">17. &#x27;I have twenty-five dogs.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ta</span><span class="g2">have</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">resion-na</span><span class="g2">twenty-five</span></span><span class="gw"><span class="g1 lx">kiwur-i</span><span class="g2">dog-PL</span></span></div></li>
 </ol>
 <p class="abbr"><strong>New abbreviations:</strong> INDF.PL na (some), CAUS -kai, REL sa. Sentence 6 is the active version; the passive is formed with dei.</p>
 <h3 id="round-3">Round 3, checked</h3>
 <ol class="ex">
 <li value="1"><p class="ex-tr">1. &#x27;The village was destroyed by the warriors.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">pay</span><span class="g2">village</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">dei</span><span class="g2">PASS</span></span><span class="gw"><span class="g1 lx">raxavi</span><span class="g2">destroy</span></span><span class="gw"><span class="g1 lx">amb</span><span class="g2">by</span></span><span class="gw"><span class="g1 lx">ni</span><span class="g2">DEF.PL</span></span><span class="gw"><span class="g1 lx">wakti</span><span class="g2">warrior</span></span></div></li>
 <li value="2"><p class="ex-tr">2. &#x27;I was blinded.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">dei</span><span class="g2">PASS</span></span><span class="gw"><span class="g1 lx">fastixi</span><span class="g2">blind</span></span></div></li>
-<li value="3"><p class="ex-tr">3. &#x27;I bought two bottles and three books.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">dail</span><span class="g2">buy</span></span><span class="gw"><span class="g1 lx">ra</span><span class="g2">two</span></span><span class="gw"><span class="g1 lx">louba-nen</span><span class="g2">bottle-PL</span></span><span class="gw"><span class="g1 lx">ad</span><span class="g2">and</span></span><span class="gw"><span class="g1 lx">ara</span><span class="g2">three</span></span><span class="gw"><span class="g1 lx">skin-en</span><span class="g2">book-PL</span></span></div></li>
+<li value="3"><p class="ex-tr">3. &#x27;I bought two bottles and three books.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">dail</span><span class="g2">buy</span></span><span class="gw"><span class="g1 lx">re</span><span class="g2">two</span></span><span class="gw"><span class="g1 lx">louba-nen</span><span class="g2">bottle-PL</span></span><span class="gw"><span class="g1 lx">ad</span><span class="g2">and</span></span><span class="gw"><span class="g1 lx">ara</span><span class="g2">three</span></span><span class="gw"><span class="g1 lx">skin-en</span><span class="g2">book-PL</span></span></div></li>
 <li value="4"><p class="ex-tr">4. &#x27;The person who sings is my brother.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">on</span><span class="g2">person</span></span><span class="gw"><span class="g1 lx">sa</span><span class="g2">REL</span></span><span class="gw"><span class="g1 lx">yada</span><span class="g2">sing</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">i-de</span><span class="g2">1SG-POSS</span></span><span class="gw"><span class="g1 lx">bana</span><span class="g2">brother</span></span></div></li>
 <li value="5"><p class="ex-tr">5. &#x27;You made me sad.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">nia</span><span class="g2">make</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">drese</span><span class="g2">sad</span></span></div></li>
 <li value="6"><p class="ex-tr">6. &#x27;The dog is big.&#x27; / &#x27;I saw a big dog.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">kiwuru</span><span class="g2">dog</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">ko-de</span><span class="g2">big-DE</span></span></div><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">kana</span><span class="g2">see</span></span><span class="gw"><span class="g1 lx">ia</span><span class="g2">INDF</span></span><span class="gw"><span class="g1 lx">ko</span><span class="g2">big</span></span><span class="gw"><span class="g1 lx">kiwuru</span><span class="g2">dog</span></span></div></li>
@@ -357,12 +364,12 @@
       </div>
     </div>
 <!-- lunde-pager:start -->
-<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../lunde/conjugator/grammar.html" rel="prev"><span>&larr; Previous</span> Old Lundian grammar</a><a class="lp-next" href="../../lunde/modern/lexicon/" rel="next"><span>Next &rarr;</span> Modern Lunde lexicon</a></nav>
+<nav class="lunde-pager" aria-label="Languages pages, in order"><a class="lp-back" href="../../lunde/modern/lexicon/" rel="prev"><span>&larr; Previous</span> Lundiyani lexicon</a><a class="lp-next" href="../../lunde/modern/conjugator/" rel="next"><span>Next &rarr;</span> Lundiyani verb conjugator</a></nav>
 <!-- lunde-pager:end -->
   </main>
   <footer class="site-footer">
     <div class="wrap">
-      <p>Modern Lunde grammar reference &middot; <a href="lundiyani-grammar-reference.pdf">PDF version</a></p>
+      <p>Lundiyani grammar reference &middot; <a href="lundiyani-grammar-reference.pdf">PDF version</a></p>
     </div>
   </footer>
 </body>

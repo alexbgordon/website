@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="preload" href="../../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Old Lundian grammar | Alex Bahia</title>
-<meta name="description" content="The rules of Old Lundian, with every example built live by the Lunde engine.">
+<title>Lunde grammar | Alex Bahia</title>
+<meta name="description" content="The rules of Lunde, with every example built live by the Lunde engine.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
@@ -117,7 +118,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
       <ul>
         <li><a href="../../">Home</a></li>
         <li><a href="../../poetry/">Poetry</a></li>
-        <li><a href="../../lunde/" aria-current="page">Lunde</a></li>
+        <li><a href="../../lunde/" aria-current="page">Languages</a></li>
         <li><a href="../../gallery/">Gallery</a></li>
         <li><a href="../../about/">About</a></li>
       </ul>
@@ -125,20 +126,20 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
   </div>
 </header>
 <!-- site-header:end -->
-<div class="wrap tool-sheet" id="main" tabindex="-1">
+<div class="tool-sheet ab-card" id="main" tabindex="-1">
 <!-- lunde-nav:start -->
-<nav class="lunde-nav" aria-label="Lunde sections">
+<nav class="lunde-nav" aria-label="Languages">
   <ul class="lunde-sections">
     <li><a href="../../lunde/">Overview</a></li>
-    <li><a href="../../lunde/conjugator/" aria-current="page">Old Lundian conjugator</a></li>
-    <li><a href="../../lunde/modern/">Modern Lunde grammar</a></li>
-    <li><a href="../../lunde/modern/lexicon/">Modern Lunde lexicon</a></li>
+    <li><a href="../../lunde/#old" aria-current="true">Lunde (Old Lundian)</a></li>
+    <li><a href="../../lunde/#modern">Lundiyani (Modern Lundian)</a></li>
   </ul>
-  <ul class="lunde-tool" aria-label="Old Lundian conjugator">
-    <li><a href="index.html">Conjugator</a></li>
-    <li><a href="grammar.html" aria-current="page">Grammar</a></li>
-    <li><a href="grammar.html#cases">Cases</a></li>
-    <li><a href="grammar.html#numbers">Numbers</a></li>
+  <ul class="lunde-tool" aria-label="Lunde pages">
+    <li><a href="../../lunde/conjugator/lexicon.html">Lexicon</a></li>
+    <li><a href="../../lunde/conjugator/grammar.html" aria-current="page">Grammar</a></li>
+    <li><a href="../../lunde/conjugator/">Verb conjugator</a></li>
+    <li><a href="../../lunde/conjugator/cases.html">Case conjugator</a></li>
+    <li><a href="../../lunde/conjugator/numbers.html">Number conjugator</a></li>
   </ul>
 </nav>
 <!-- lunde-nav:end -->
@@ -146,7 +147,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
   <header class="mast">
     <div class="mast-l">
       <p class="eyebrow">Lunde · the old, formal register · prototype</p>
-      <h1>Old Lundian grammar</h1>
+      <h1>Lunde grammar (Old Lundian)</h1>
       <p class="lede">The rules of the Grammar Reference, from sounds to numbers. Every example on this page is built live by the same engine that runs the conjugator, and every tool takes your own words.</p>
     </div>
     <div class="mast-r">
@@ -195,7 +196,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
             </table></div>
             <ul class="notes">
               <li>Length is distinctive and often marks the plural: <i>gu-</i> and <i>gū-</i>, <i>-un</i> and <i>-ūn</i>.</li>
-              <li><i>ä</i> comes from a + e (<i>xägy, käi</i>) and sits in some old roots (<i>vär-, käm-, käb-</i>). There is no ë.</li>
+              <li><i>ä</i> comes from a + e (<i>xäğ, käi</i>) and sits in some old roots (<i>vär-, käm-, käb-</i>). There is no ë.</li>
               <li>Unstressed vowels keep their full quality; nothing reduces to /ə/.</li>
               <li>No diphthongs: in a run of vowels, every vowel is pronounced, linked smoothly.</li>
             </ul>
@@ -208,10 +209,11 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
                 <tr><td class="w">p b t d k m n f s z l h</td><td>as in IPA</td><td></td></tr>
                 <tr><td class="w">c</td><td class="ipa">/t͡s/</td><td><i>asoc</i></td></tr>
                 <tr><td class="w">x</td><td class="ipa">/x/</td><td><i>xasa</i></td></tr>
-                <tr><td class="w">xl</td><td class="ipa">/ɬ/</td><td><i>axla</i>; always one sound</td></tr>
+                <tr><td class="w">ł</td><td class="ipa">/ɬ/</td><td><i>ała</i>; one sound, the Welsh ll (once written xl)</td></tr>
+                <tr><td class="w">xl</td><td class="ipa">/x.l/</td><td><i>ixli</i> (ix- + -li): two sounds, only where a root in x meets a suffix in l</td></tr>
                 <tr><td class="w">hy</td><td class="ipa">/xʲ/</td><td><i>kahyasa</i></td></tr>
                 <tr><td class="w">g</td><td class="ipa">/g/ /ɣ/ /k/</td><td>see below</td></tr>
-                <tr><td class="w">gy</td><td class="ipa">/ɟ/</td><td><i>labegy</i></td></tr>
+                <tr><td class="w">ğ</td><td class="ipa">/ɟ/</td><td><i>labeğ</i> (once written gy)</td></tr>
                 <tr><td class="w">j</td><td class="ipa">/ʒ/</td><td><i>luj</i></td></tr>
                 <tr><td class="w">y</td><td class="ipa">/j/</td><td><i>kayà</i></td></tr>
                 <tr><td class="w">ñ</td><td class="ipa">/ɲ/</td><td><i>xayēñ</i></td></tr>
@@ -220,6 +222,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
                 <tr><td class="w">r, rr</td><td class="ipa">/r/, /rː/</td><td><i>lir, irrasa</i></td></tr>
               </tbody>
             </table></div>
+            <p class="blk-note orth-note"><strong>Spelling (Oct 18):</strong> <i>ł</i> = Welsh ll; <i>xl</i> across a word boundary is <i>x</i> + <i>l</i> (<i>ixli</i>); <i>ğ</i> replaces <i>gy</i>.</p>
             <ul class="notes">
               <li><i>g</i> is /g/ only at the start of a word before a vowel (<i>ga</i>); elsewhere /ɣ/, including <i>gv-</i>.</li>
               <li>At the end of a word, <i>g</i> is /k/ (<i>xog</i> <span class="ipa">/xɔk/</span>), <i>d</i> is /ð/ and <i>b</i> is /β/.</li>
@@ -277,14 +280,14 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
               <li>u-stems and short stems use the v form: <i>xa + uvōs → xavunōs</i>.</li>
               <li>e-stems insert h and shorten the second vowel: <i>le + eān → lēhan</i>.</li>
               <li>The īmon <i>ī-</i> is exempt: <i>īkō, īlūs, īxā</i> stand as they are.</li>
-              <li>The pronoun forms <i>daūne</i> and <i>daūxle</i> stand as they are.</li>
+              <li>The pronoun forms <i>daūne</i> and <i>daūłe</i> stand as they are.</li>
             </ul>
           </div>
           <div class="sub">
             <h3>Dissimilation</h3>
             <p>The same consonant on both sides of one vowel: the second one changes.</p>
             <div class="tw" data-build="diss-table"></div>
-            <p class="blk-note">A two-vowel sequence blocks it (<i>veuves, xaix</i>). <i>s</i> never dissimilates. <i>xl</i> is its own sound, so it never counts as an <i>x</i>. Dissimilation never changes a case ending (<i>veve, keavave</i>), but it does work inside verb forms and word-building suffixes (<i>venuos</i>).</p>
+            <p class="blk-note">A two-vowel sequence blocks it (<i>veuves, xaix</i>). <i>s</i> never dissimilates. <i>ł</i> is its own sound, so it never counts as an <i>x</i>; the <i>x</i> of a written <i>xl</i> (<i>ixli</i>) does. Dissimilation never changes a case ending (<i>veve, keavave</i>), but it does work inside verb forms and word-building suffixes (<i>venuos</i>).</p>
           </div>
           <div class="sub">
             <h3>Consonant rules</h3>
@@ -319,7 +322,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
             <thead><tr><th scope="col">Class</th><th scope="col">How the stem is found</th><th scope="col">Verbs</th></tr></thead>
             <tbody>
               <tr><th scope="row">Consonant stem</th><td>base minus -asa</td><td><i>lab-, irr-, vär-, adr-, gist-, keav-, kahy-, en-</i></td></tr>
-              <tr><th scope="row">Short stem</th><td>one consonant sound becomes consonant + a</td><td><i>xa-, ka-, sa-, ta-, xla-</i></td></tr>
+              <tr><th scope="row">Short stem</th><td>one consonant sound becomes consonant + a</td><td><i>xa-, ka-, sa-, ta-, ła-</i></td></tr>
               <tr><th scope="row">u-stem</th><td>the stem ends in u</td><td><i>lu-, eru-, fastu-, ju-, kamu-</i></td></tr>
               <tr><th scope="row">e-stem</th><td>the stem ends in e</td><td><i>le-, ve-, ke-, ede-, tesse-, nile-</i></td></tr>
             </tbody>
@@ -381,9 +384,9 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
           <ol class="rules">
             <li>After a consonant, <i>a</i> is inserted before the ending: <i>osilami, fasturam</i>.</li>
             <li>Plural transitive subject: <i>-i</i> and <i>-en</i> after a consonant (<i>osili, zenen</i>); after a vowel, <i>y</i> or <i>n</i> goes in first (<i>neyi, nenen</i>).</li>
-            <li>Comitative and abessive: the <i>ū</i> drops after u or ū (<i>fastune, gūne, heneuxle</i>); a long last vowel adds <i>v</i> before the suffix. The engine reads "last" as word-final.</li>
+            <li>Comitative and abessive: the <i>ū</i> drops after u or ū (<i>fastune, gūne, heneułe</i>); a long last vowel adds <i>v</i> before the suffix. The engine reads "last" as word-final.</li>
             <li>The exmon participle drops its o before any ending (<i>fastuox → fastuxam</i>); consonant stems keep it (<i>laboxam</i>). <i>ney</i> uses <i>ne-</i> before every ending.</li>
-            <li>Dissimilation never changes a case ending, and the word in front of it stays as it is: <i>veve, keavave, fastuxūxle</i>.</li>
+            <li>Dissimilation never changes a case ending, and the word in front of it stays as it is: <i>veve, keavave, fastuxūłe</i>.</li>
             <li>Stress never moves: case endings don't count (<i>īs-si-ū-ne</i>).</li>
             <li>Which mutations the endings cause is still open.</li>
           </ol>
@@ -395,14 +398,14 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
           <div class="tw" data-build="pronouns"></div>
           <ul class="notes">
             <li>The g of the 2s oblique forms is optional: <i>(g)use</i>. Plural pronouns lengthen the stem vowel: <i>(g)u-</i> and <i>gū-</i>, <i>da-</i> and <i>dā-</i>.</li>
-            <li>Negation puts the subject pronoun in the abessive, with no verb affix: <i>Kiūxle labi guse</i> (I don't love you).</li>
+            <li>Negation puts the subject pronoun in the abessive, with no verb affix: <i>Kiūłe labi guse</i> (I don't love you).</li>
           </ul>
         </div>
         <div class="sub">
           <h3>Demonstratives and place words</h3>
           <p>Demonstratives are bare roots used as adjectives, set by distance and by what can be known: <i>ney</i> this, <i>nal</i> that, <i>gval</i> yonder, <i>maū</i> something unseen whose existence can't be verified.</p>
           <div class="tw" data-build="demonstratives"></div>
-          <p class="blk-note"><i>maū</i> declines the same way (<i>maūm, maūse</i>) and takes <i>maūne, maūxle</i>, like <i>gū</i>.</p>
+          <p class="blk-note"><i>maū</i> declines the same way (<i>maūm, maūse</i>) and takes <i>maūne, maūłe</i>, like <i>gū</i>.</p>
           <div class="tw" data-build="places"></div>
         </div>
         <div class="sub">
@@ -441,12 +444,12 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
           <h3>Quality roots</h3>
           <p>Some roots name a quality directly. In their bare form they work as adjectives and decline like nouns: <i>ilus</i> (beautiful) → <i>ilusam, ilusase</i>. That bare form is also the samon participle, since consonant stems take no e. Their <i>-os</i> noun is the essence of the quality.</p>
           <div class="tw"><table class="dt">
-            <thead><tr><th scope="col"></th><th scope="col">ilus- (beauty)</th><th scope="col">dab- (right)</th><th scope="col">xl- (bad)</th><th scope="col">deres- (sad)</th></tr></thead>
+            <thead><tr><th scope="col"></th><th scope="col">ilus- (beauty)</th><th scope="col">dab- (right)</th><th scope="col">ł- (bad)</th><th scope="col">deres- (sad)</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Adjective</th><td class="w">ilus</td><td class="w">dab</td><td class="w">axla</td><td class="w">deres</td></tr>
-              <tr><th scope="row">Essence (-os)</th><td class="w">ilusos</td><td class="w">dabos</td><td class="w">xlos</td><td></td></tr>
-              <tr><th scope="row">Samon participle</th><td class="w">ilus</td><td class="w">dab</td><td class="w">xla</td><td class="w">deres</td></tr>
-              <tr><th scope="row">Other</th><td><i>ilusox</i> adorned, <i>iluson</i> a beautiful person</td><td></td><td><i>xlanga</i> harmful, <i>xlon</i> a bad person; <i>xlōs, xlōn</i> are different words</td><td><i>dere</i> sorry</td></tr>
+              <tr><th scope="row">Adjective</th><td class="w">ilus</td><td class="w">dab</td><td class="w">ała</td><td class="w">deres</td></tr>
+              <tr><th scope="row">Essence (-os)</th><td class="w">ilusos</td><td class="w">dabos</td><td class="w">łos</td><td></td></tr>
+              <tr><th scope="row">Samon participle</th><td class="w">ilus</td><td class="w">dab</td><td class="w">ła</td><td class="w">deres</td></tr>
+              <tr><th scope="row">Other</th><td><i>ilusox</i> adorned, <i>iluson</i> a beautiful person</td><td></td><td><i>łanga</i> harmful, <i>łon</i> a bad person; <i>łōs, łōn</i> are different words</td><td><i>dere</i> sorry</td></tr>
             </tbody>
           </table></div>
         </div>
@@ -473,11 +476,11 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
           <li>Short stems overlap with verb forms (<i>xōn, xōs, sōs</i>); context is enough.</li>
         </ul>
         <div class="sub">
-          <h3>Prefixes: ende- and xle-</h3>
+          <h3>Prefixes: ende- and łe-</h3>
           <ul class="notes">
             <li><i>ende-</i> intensifies: a verb gets stronger or deeper (<i>endeservaxa</i>, to indoctrinate).</li>
-            <li><i>xle-</i> reverses or undoes: the abessive (without) turned into a prefix.</li>
-            <li><i>ende-</i> loses its e after a vowel-final prefix: <i>ī + ende → īnde-</i>, <i>xle + ende → xlende-</i>. The īmon goes in front of everything.</li>
+            <li><i>łe-</i> reverses or undoes: the abessive (without) turned into a prefix.</li>
+            <li><i>ende-</i> loses its e after a vowel-final prefix: <i>ī + ende → īnde-</i>, <i>łe + ende → łende-</i>. The īmon goes in front of everything.</li>
           </ul>
           <div class="tw" data-build="prefixes"></div>
         </div>
@@ -495,6 +498,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
           <div class="sub">
             <div class="tw" data-build="powers"></div>
             <ul class="notes">
+              <li>Zero is <i>hūł</i>. An empty place inside a bigger number is simply left out: <i>iğiōn-na</i> (145).</li>
               <li><i>ē-</i> is used only when counting; before a noun it drops: <i>ra zenen</i> (twice).</li>
               <li>Multiply: the multiplier goes first, joined (<i>rasiōn</i>, 24). Add: the smaller number follows after a dash (<i>siōn-na</i>, 13). Biggest power first.</li>
               <li>After any number above one, the noun goes plural: <i>ra osili</i> (two eyes).</li>
@@ -520,11 +524,11 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
 
 <!-- added for alexbahia site: back/next through the Lunde pages -->
 <!-- lunde-pager:start -->
-<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../lunde/conjugator/" rel="prev"><span>&larr; Previous</span> Old Lundian conjugator</a><a class="lp-next" href="../../lunde/modern/" rel="next"><span>Next &rarr;</span> Modern Lunde grammar</a></nav>
+<nav class="lunde-pager" aria-label="Languages pages, in order"><a class="lp-back" href="../../lunde/conjugator/lexicon.html" rel="prev"><span>&larr; Previous</span> Lunde lexicon</a><a class="lp-next" href="../../lunde/conjugator/" rel="next"><span>Next &rarr;</span> Lunde verb conjugator</a></nav>
 <!-- lunde-pager:end -->
 </div>
 <footer class="site-footer">
-  <div class="wrap"><p>Old Lundian grammar &middot; engine v0.2 &middot; rules as of Oct 18, 2026</p></div>
+  <div class="wrap"><p>Lunde grammar &middot; engine v0.3 &middot; rules as of Oct 18, 2026</p></div>
 </footer>
 <script src="lunde-engine.js"></script>
 <script src="lexicon.js"></script>

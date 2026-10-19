@@ -1,4 +1,4 @@
-/* alexbahia.com theme override for Alex's Old Lundian conjugator and grammar pages.
+/* alexbahia.com theme override for Alex's Lunde verb conjugator and grammar pages.
    Loaded after lunde.css and the page styles. It only re-points the neutral paper/ink colours and the
    interface font to the poetry page's palette (EB Garamond, Courier Prime labels).
    The verb-form colours (--samon, --namon, --exmon and their washes), the case colour and the check
@@ -33,11 +33,7 @@ body {
   display: flex; flex-direction: column; min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
-.tool-sheet {
-  box-sizing: border-box; width: calc(100% - 32px); max-width: 1360px; margin: 0 auto 44px;
-  padding: 56px 64px; background: #FBF8F1; flex: 1;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 24px 44px -24px rgba(60, 40, 20, .38);
-}
+/* .tool-sheet is the shared .ab-card (assets/chrome.css): width, padding, margins and min-height come from there. */
 .tool-sheet:focus { outline: none; }
 .tool-sheet .page { max-width: none; margin: 0; padding: 0; }
 .tool-sheet .lunde-nav { margin: 0 0 1.75rem; }
@@ -56,12 +52,11 @@ body {
 .skip-link:focus { left: .5rem; top: .5rem; }
 @media (max-width: 640px) {
   body { font-size: 18px; }
-  .tool-sheet { padding: 32px 22px 36px; }
   .site-footer .wrap { padding: 0 22px 24px; }
   .mast h1 { font-size: 1.7rem; }
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) body { background: #15120E; }
-  :root:not([data-theme="light"]) .tool-sheet { background: #221E19; box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 24px 44px -24px rgba(0,0,0,.7); }
+  :root:not([data-theme="light"]) .tool-sheet { box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 24px 44px -24px rgba(0,0,0,.7); }
   :root:not([data-theme="light"]) .site-footer { color: #A99D8B; }
 }

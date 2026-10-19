@@ -1,5 +1,5 @@
 /*
- * Expected forms for the Old Lundian engine, transcribed from the Old Lundian
+ * Expected forms for the Lunde engine, transcribed from the Lunde
  * Grammar Reference (tables and examples) and from forms confirmed in chat, in the
  * macron spelling. Works in Node and in the browser (window.LundeTests).
  * A test with `pending` holds a value the doc still has but a newer decision contradicts.
@@ -31,19 +31,20 @@
   var ANS = 'Your answers, Oct 18';
   var ANS2 = 'Your answers, Oct 18 (second round)';
   var ANS3 = 'Your answers, Oct 18 (third round)';
+  var ANS4 = 'Your answers, Oct 18 (spelling: ł, ğ, zero)';
 
   /* ---- Samon (doc tables) ---- */
   fin('labasa', 'samon', 'present', 'labi labu laba laban labas labūn labān', DOC);
-  fin('labasa', 'samon', 'future', 'labegy labeju labegy labēyn labejas labūnna labana', DOC);
+  fin('labasa', 'samon', 'future', 'labeğ labeju labeğ labēyn labejas labūnna labana', DOC);
   fin('labasa', 'samon', 'past', 'labus labuōs labuōs labuīn labuves labuvōs labuōsen', DOC);
   fin('xasa', 'samon', 'present', 'xai xō xā xan xas xōn xān', DOC);
-  fin('xasa', 'samon', 'future', 'xägy xäju xägy xayēñ xäjas xōnna xana', DOC);
+  fin('xasa', 'samon', 'future', 'xäğ xäju xäğ xayēñ xäjas xōnna xana', DOC);
   fin('xasa', 'samon', 'past', 'xōs xavōs xavōs xavīn xōves xavunōs xavōsen', DOC);
   fin('luasa', 'samon', 'present', 'luj lū lua luan luas luūn luān', DOC);
-  fin('luasa', 'samon', 'future', 'luegy lueju luegy luēyn luejas luūnna luna', DOC);
+  fin('luasa', 'samon', 'future', 'lueğ lueju lueğ luēyn luejas luūnna luna', DOC);
   fin('luasa', 'samon', 'past', 'lūs luvōs luvōs luvīn lūves luvunōs luvōsen', DOC);
   fin('leasa', 'samon', 'present', 'lej leu lea lean leas leūn leān', DOC);
-  fin('leasa', 'samon', 'future', 'lēgy lēju lēgy leyēñ lējas leūnna lena', DOC);
+  fin('leasa', 'samon', 'future', 'lēğ lēju lēğ leyēñ lējas leūnna lena', DOC);
   fin('leasa', 'samon', 'past', 'leus levōs levōs levīn leuves leuvōs levōsen', DOC);
   one('juasa', 'samon', 'present', 0, 'jun', DOC);
   one('keavasa', 'samon', 'past', 4, 'keavunes', DOC);
@@ -96,7 +97,7 @@
 
   /* ---- Full paradigms confirmed in chat ---- */
   fin('sasa', 'samon', 'present', 'sai sō sā san sas sōn sān', CHAT);
-  fin('sasa', 'samon', 'future', 'sägy säju sägy sayēñ säjas sōnna sana', CHAT);
+  fin('sasa', 'samon', 'future', 'säğ säju säğ sayēñ säjas sōnna sana', CHAT);
   fin('sasa', 'samon', 'past', 'sōs savōs savōs savīn sōves savunōs savōsen', CHAT);
   fin('sasa', 'namon', 'present', 'säi säo säa sayēn säs säon säān', CHAT);
   fin('sasa', 'namon', 'future', 'sayà savà sà sàn sayàs savàn sàn', CHAT);
@@ -105,7 +106,7 @@
   fin('sasa', 'exmon', 'future', 'sägi sägu säga sägan sägas sägun sägan', CHAT);
   fin('sasa', 'exmon', 'past', 'sōxi sōgu sōxa sōxan sōxas sōgun sōxan', CHAT);
   fin('enasa', 'samon', 'present', 'eni enu ena enan enas enūn enān', CHAT);
-  fin('enasa', 'samon', 'future', 'enegy eneju enegy enēyn enejas enūnna enana', CHAT);
+  fin('enasa', 'samon', 'future', 'eneğ eneju eneğ enēyn enejas enūnna enana', CHAT);
   fin('enasa', 'samon', 'past', 'enus enuōs enuōs enuīn enuves enuvōs enuōsen', CHAT);
   fin('enasa', 'namon', 'present', 'enei eneo enea enēn enes eneon eneān', CHAT);
   fin('enasa', 'namon', 'future', 'enià enuà enà enàn eniàs enuàn enàn', CHAT);
@@ -114,7 +115,7 @@
   fin('enasa', 'exmon', 'future', 'enegi enegu enega enegan enegas enegun enegan', CHAT);
   fin('enasa', 'exmon', 'past', 'enoxi enogu enoxa enoxan enoxas enogun enoxan', CHAT);
   fin('tesseasa', 'samon', 'present', 'tessej tesseu tessea tessean tesseas tesseūn tesseān', CHAT);
-  fin('tesseasa', 'samon', 'future', 'tessēgy tessēju tessēgy tesseyēñ tessējas tesseūnna tessena', CHAT);
+  fin('tesseasa', 'samon', 'future', 'tessēğ tessēju tessēğ tesseyēñ tessējas tesseūnna tessena', CHAT);
   fin('tesseasa', 'samon', 'past', 'tesseus tessevōs tessevōs tessevīn tesseuves tesseuvōs tessevōsen', CHAT);
   fin('tesseasa', 'namon', 'present', 'tessēi tessēo tessēa tesseyēn tessēs tessēon tessēhan', CHAT);
   fin('tesseasa', 'namon', 'future', 'tesseyà tessevà tesseà tesseàn tesseyàs tessevàn tesseàn', CHAT);
@@ -131,7 +132,7 @@
   fin('kasa', 'namon', 'present', 'käi käo käa kayēn käs käon käān', CHAT);
   fin('kasa', 'namon', 'future', 'kayà kavà kà kàn kayàs kavàn kàn', CHAT);
   fin('kasa', 'namon', 'past', 'kair kōr kar karan karas karun karan', CHAT);
-  fin('irrasa', 'samon', 'future', 'irregy irreju irregy irrēyn irrejas irrūnna irrana', CHAT);
+  fin('irrasa', 'samon', 'future', 'irreğ irreju irreğ irrēyn irrejas irrūnna irrana', CHAT);
   fin('kamuasa', 'namon', 'past', 'kamuir kamūr kamuar kamuran kamuras kamurun kamuran', CHAT);
   fin('kamuasa', 'namon', 'future', 'kamujà kamuvà kamuà kamuàn kamujàs kamuvàn kamuàn', CHAT);
   fin('kahyasa', 'namon', 'present', 'kahyei kahyeo kahyea kahyēn kahyes kahyeon kahyeān', CHAT);
@@ -198,8 +199,8 @@
    ['miadeasa', 'miadevuos'], ['edeasa', 'edevuos'], ['eruasa', 'eruvuos'], ['fastuasa', 'fastuvuos'], ['juasa', 'juvuos'],
    ['kamuasa', 'kamuvuos'], ['värasa', 'värevuos'], ['kahyasa', 'kahyevuos'], ['ajalasa', 'ajalevuos']
   ].forEach(function (p) { dict(p[0], p[1], DOC); });
-  // xl is one sound, so xlasa is a short stem (xla-) like xasa: xlavuos.
-  dict('xlasa', 'xlavuos', ANS2);
+  // ł is one sound, so łasa is a short stem (ła-) like xasa: łavuos.
+  dict('łasa', 'łavuos', ANS2);
 
   /* ---- Adjectives and nouns from verbs ---- */
   der('fastuasa', 'samon participle', 'fastu', DOC);
@@ -270,7 +271,7 @@
   ipa('xog', '/xɔk/', 'Phonology');
   ipa('hekanga', '/hɛ.ˈka.ŋa/', 'Phonology');
   ipa('gval', '/ɣval/', 'Phonology');
-  ipa('axla', '/ˈa.ɬa/', 'Phonology');
+  ipa('ała', '/ˈa.ɬa/', 'Phonology');
   ipa('kahyasa', '/ka.ˈxʲa.sa/', 'Phonology');
   ipa('eked', '/ˈɛ.kɛð/', 'Phonology');
   ipa('dab', '/daβ/', 'Phonology');
@@ -298,49 +299,49 @@
   der('ilusasa', 'namon participle', 'iluser', ANS);
   imp('lasa', 'samon', 'xāla xālun xālas xāya', ANS);
 
-  /* ---- Prefixes ende- and xle- (doc table) ---- */
+  /* ---- Prefixes ende- and łe- (doc table) ---- */
   one('endelabasa', 'samon', 'present', 0, 'endelabi', DOC);
   one('endelabasa', 'namon', 'present', 0, 'endelabei', DOC);
-  one('xlendelabasa', 'samon', 'present', 0, 'xlendelabi', DOC);
-  one('xlendelabasa', 'namon', 'present', 0, 'xlendelabei', DOC);
-  one('xleservasa', 'namon', 'present', 0, 'xleservei', DOC);
+  one('łendelabasa', 'samon', 'present', 0, 'łendelabi', DOC);
+  one('łendelabasa', 'namon', 'present', 0, 'łendelabei', DOC);
+  one('łeservasa', 'namon', 'present', 0, 'łeservei', DOC);
   one('endeservasa', 'exmon', 'present', 0, 'endeservix', DOC);
   one('endefastuasa', 'exmon', 'present', 0, 'endefastuix', DOC);
   imo('endelabasa', 'samon', 'present', 0, 'īndelabi', DOC);
   imo('endelabasa', 'namon', 'present', 0, 'īndelabei', DOC);
-  imo('xlendelabasa', 'samon', 'present', 0, 'īxlendelabi', DOC);
-  imo('xlendelabasa', 'namon', 'present', 0, 'īxlendelabei', DOC);
-  imo('xleservasa', 'namon', 'present', 0, 'īxleservei', DOC);
+  imo('łendelabasa', 'samon', 'present', 0, 'īłendelabi', DOC);
+  imo('łendelabasa', 'namon', 'present', 0, 'īłendelabei', DOC);
+  imo('łeservasa', 'namon', 'present', 0, 'īłeservei', DOC);
   imo('endeservasa', 'exmon', 'present', 0, 'īndeservix', DOC);
   imo('endefastuasa', 'exmon', 'present', 0, 'īndefastuix', DOC);
 
   /* ---- Cases: the adjective declension table ---- */
-  decl('fastu', 'sg', 'fastu fastum fastuse fastuve fastude fastuze fastune fastuxle', DOC);
-  decl('fastur', 'sg', 'fastur fasturam fasturase fasturave fasturade fasturaze fasturūne fasturūxle', DOC);
-  decl('fastanga', 'sg', 'fastanga fastangam fastangase fastangave fastangade fastangaze fastangaūne fastangaūxle', DOC);
+  decl('fastu', 'sg', 'fastu fastum fastuse fastuve fastude fastuze fastune fastułe', DOC);
+  decl('fastur', 'sg', 'fastur fasturam fasturase fasturave fasturade fasturaze fasturūne fasturūłe', DOC);
+  decl('fastanga', 'sg', 'fastanga fastangam fastangase fastangave fastangade fastangaze fastangaūne fastangaūłe', DOC);
   [['A', 'fastuox'], ['S', 'fastuxam'], ['O', 'fastuxase'], ['ALL', 'fastuxave'], ['GEN', 'fastuxade'], ['ABL', 'fastuxaze'], ['COM', 'fastuxūne']
   ].forEach(function (p) { cas('fastuox', p[0], 'sg', p[1], DOC); });
-  // xl is one sound, and dissimilation never changes a case ending: fastuxūxle (the doc's table had fastuxūgle).
-  cas('fastuox', 'ABE', 'sg', 'fastuxūxle', ANS2);
+  // ł is one sound, and dissimilation never changes a case ending: fastuxūłe (the doc's table had fastuxūgle).
+  cas('fastuox', 'ABE', 'sg', 'fastuxūłe', ANS2);
   // Dissimilation never changes a case ending, and the finished word before it stays as it is.
   cas('ve', 'ALL', 'sg', 'veve', ANS2); cas('ve', 'ALL', 'an', 'vevi', ANS2);
   cas('keav', 'ALL', 'sg', 'keavave', ANS2);
 
   /* ---- Cases: demonstratives ---- */
-  decl('ney', 'sg', 'ney nem nese neve nede neze neūne neūxle', DOC);
-  decl('nal', 'sg', 'nal nalam nalase nalave nalade nalaze nalūne nalūxle', DOC);
-  decl('gval', 'sg', 'gval gvalam gvalase gvalave gvalade gvalaze gvalūne gvalūxle', DOC);
+  decl('ney', 'sg', 'ney nem nese neve nede neze neūne neūłe', DOC);
+  decl('nal', 'sg', 'nal nalam nalase nalave nalade nalaze nalūne nalūłe', DOC);
+  decl('gval', 'sg', 'gval gvalam gvalase gvalave gvalade gvalaze gvalūne gvalūłe', DOC);
   cas('ney', 'A', 'an', 'neyi', DOC); cas('ney', 'A', 'in', 'nenen', DOC);
   cas('nal', 'A', 'an', 'nali', DOC); cas('nal', 'A', 'in', 'nalen', DOC);
   cas('gval', 'A', 'an', 'gvali', DOC); cas('gval', 'A', 'in', 'gvalen', DOC);
   cas('maū', 'S', 'sg', 'maūm', DOC); cas('maū', 'O', 'sg', 'maūse', DOC);
-  cas('maū', 'COM', 'sg', 'maūne', DOC); cas('maū', 'ABE', 'sg', 'maūxle', DOC);
+  cas('maū', 'COM', 'sg', 'maūne', DOC); cas('maū', 'ABE', 'sg', 'maūłe', DOC);
 
   /* ---- Cases: place, time, space and question words ---- */
   [['ine', 'ALL', 'ineve'], ['ine', 'ABL', 'ineze'], ['nale', 'ALL', 'naleve'], ['nale', 'ABL', 'naleze'],
    ['nar', 'ALL', 'narave'], ['nar', 'ABL', 'naraze'], ['tēlla', 'ALL', 'tēllave'], ['tēlla', 'ABL', 'tēllaze'],
-   ['xamah', 'ALL', 'xamahave'], ['xamah', 'ABL', 'xamahaze'], ['xa', 'COM', 'xaūne'], ['xa', 'ABE', 'xaūxle'],
-   ['xamah', 'ABE', 'xamahūxle'], ['nar', 'ABE', 'narūxle'],
+   ['xamah', 'ALL', 'xamahave'], ['xamah', 'ABL', 'xamahaze'], ['xa', 'COM', 'xaūne'], ['xa', 'ABE', 'xaūłe'],
+   ['xamah', 'ABE', 'xamahūłe'], ['nar', 'ABE', 'narūłe'],
    ['nä', 'ALL', 'näve'], ['nä', 'ABL', 'näze'], ['men', 'ALL', 'menave'], ['men', 'ABL', 'menaze'],
    ['ibu', 'ALL', 'ibuve'], ['ibu', 'ABL', 'ibuze'], ['bua', 'ALL', 'buave'], ['bua', 'ABL', 'buaze'],
    ['har', 'ALL', 'harave'], ['har', 'ABL', 'haraze'], ['eked', 'ALL', 'ekedave'], ['eked', 'ABL', 'ekedaze'],
@@ -351,30 +352,39 @@
   [['osil', 'A', 'an', 'osili'], ['osil', 'S', 'an', 'osilami'], ['on', 'S', 'an', 'onami'], ['on', 'ABL', 'an', 'onazi'],
    ['on', 'A', 'an', 'oni'], ['rāma', 'S', 'sg', 'rāmam'], ['rāma', 'S', 'an', 'rāmami'], ['vuos', 'A', 'an', 'vuosi'],
    ['zen', 'A', 'in', 'zenen'], ['fastu', 'S', 'an', 'fastumi'], ['albade', 'S', 'sg', 'albadem'], ['albade', 'O', 'sg', 'albadese'],
-   ['albaūne', 'S', 'sg', 'albaūnem'], ['alba', 'GEN', 'sg', 'albade'], ['alba', 'COM', 'sg', 'albaūne'], ['alba', 'ABE', 'sg', 'albaūxle'],
-   ['heneu', 'ABE', 'sg', 'heneuxle'], ['tesseli', 'O', 'sg', 'tesselise'],
+   ['albaūne', 'S', 'sg', 'albaūnem'], ['alba', 'GEN', 'sg', 'albade'], ['alba', 'COM', 'sg', 'albaūne'], ['alba', 'ABE', 'sg', 'albaūłe'],
+   ['heneu', 'ABE', 'sg', 'heneułe'], ['tesseli', 'O', 'sg', 'tesselise'],
    ['fastūos', 'S', 'sg', 'fastūosam'], ['miadeos', 'S', 'sg', 'miadeosam'], ['jūos', 'S', 'sg', 'jūosam'], ['ixa', 'O', 'sg', 'ixase'],
    ['ixa', 'S', 'sg', 'ixam'], ['yūla', 'S', 'sg', 'yūlam'], ['fastuon', 'S', 'sg', 'fastuonam'], ['labver', 'O', 'sg', 'labverase'],
-   ['amon', 'O', 'sg', 'amonase'], ['ilus', 'O', 'sg', 'ilusase'], ['ilus', 'S', 'sg', 'ilusam'], ['axla', 'S', 'sg', 'axlam'],
+   ['amon', 'O', 'sg', 'amonase'], ['ilus', 'O', 'sg', 'ilusase'], ['ilus', 'S', 'sg', 'ilusam'], ['ała', 'S', 'sg', 'ałam'],
    ['dab', 'S', 'sg', 'dabam'], ['ixahekanga', 'S', 'sg', 'ixahekangam'], ['labox', 'S', 'sg', 'laboxam'], ['ajalox', 'S', 'sg', 'ajaloxam'],
    ['miadeox', 'S', 'sg', 'miadexam'], ['fastuox', 'S', 'sg', 'fastuxam']
   ].forEach(function (p) { cas(p[0], p[1], p[2], p[3], DOC); });
 
   /* ---- Personal pronouns: S, O, allative, genitive, ablative, comitative, abessive ---- */
-  pron('1s', 'kim kise kive kide kize kiūne kiūxle', DOC);
-  pron('2s', 'gam guse guve gude guze gune guxle', DOC);
-  pron('3s.a', 'dam dase dave dade daze daūne daūxle', DOC);
-  pron('3s.i', 'nam nase nave nade naze naūne naūxle', DOC);
-  pron('1p', 'īssim īsse īssive īsside īssize īssiūne īssiūxle', DOC);
-  pron('2p', 'gūm gūse gūve gūde gūze gūne gūxle', DOC);
-  pron('3p', 'dām dāse dāve dāde dāze daūne daūxle', DOC);
+  pron('1s', 'kim kise kive kide kize kiūne kiūłe', DOC);
+  pron('2s', 'gam guse guve gude guze gune gułe', DOC);
+  pron('3s.a', 'dam dase dave dade daze daūne daūłe', DOC);
+  pron('3s.i', 'nam nase nave nade naze naūne naūłe', DOC);
+  pron('1p', 'īssim īsse īssive īsside īssize īssiūne īssiūłe', DOC);
+  pron('2p', 'gūm gūse gūve gūde gūze gūne gūłe', DOC);
+  pron('3p', 'dām dāse dāve dāde dāze daūne daūłe', DOC);
 
   /* ---- Numbers (base twelve) ---- */
   'ē-na ē-ra ē-hara ē-du ē-jayu ē-java ē-isa ē-gvena ē-fisa ē-dion ē-fiū ē-siōn'.split(' ').forEach(function (w, i) { num(i + 1, w, DOC, true); });
-  [[12, 'siōn'], [144, 'igyiōn'], [1728, 'galatiōn'], [20736, 'hayatiōn'], [24, 'rasiōn'], [36, 'harasiōn'], [288, 'raigyiōn'],
-   [13, 'siōn-na'], [15, 'siōn-hara'], [25, 'rasiōn-na'], [50, 'dusiōn-ra'], [100, 'gvenasiōn-du'], [2026, 'galatiōn-raigyiōn-dion'], [2, 'ra']
+  [[12, 'siōn'], [144, 'iğiōn'], [1728, 'galatiōn'], [20736, 'hayatiōn'], [24, 'rasiōn'], [36, 'harasiōn'], [288, 'raiğiōn'],
+   [13, 'siōn-na'], [15, 'siōn-hara'], [25, 'rasiōn-na'], [50, 'dusiōn-ra'], [100, 'gvenasiōn-du'], [2026, 'galatiōn-raiğiōn-dion'], [2, 'ra']
   ].forEach(function (p) { num(p[0], p[1], DOC); });
   ord(1, 'na-de', DOC); ord(2, 'ra-de', DOC); ord(12, 'siōn-ade', DOC);
+  num(0, 'hūł', ANS4);
+
+  /* ---- Orthography (Oct 18): ł = /ɬ/ (once xl), ğ = /ɟ/ (once gy); a written xl is x + l ---- */
+  ipa('łasa', '/ˈɬa.sa/', ANS4);
+  ipa('labeğ', '/ˈla.bɛɟ/', ANS4);
+  ipa('iğiōn', '/i.ˈɟi.ˌɔːn/', ANS4);
+  ipa('hūł', '/huːɬ/', ANS4);
+  ipa('ixli', '/ˈix.li/', ANS4);
+  der('ixasa', '-li (object)', 'ixli', ANS4);
 
   /* ---- Manner adverbs ---- */
   adv('ixahekanga', 'ilisixahekanga', DOC);

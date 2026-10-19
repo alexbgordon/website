@@ -1,5 +1,5 @@
 /*
- * Old Lundian Conjugator: page logic.
+ * Lunde verb conjugator: page logic.
  * Needs window.Lunde, window.LundeUI, window.LundeTests, window.LundeRunner and window.LUNDE_LEXICON.
  */
 (function () {

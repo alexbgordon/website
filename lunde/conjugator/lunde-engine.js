@@ -1,6 +1,6 @@
 /*
- * Old Lundian rule engine, v0.2
- * Implements the rules of the Old Lundian Grammar Reference (sessions 1 to 8, Oct 18 2026).
+ * Lunde rule engine, v0.3
+ * Implements the rules of the Lunde Grammar Reference (sessions 1 to 8, Oct 18 2026).
  *
  * Verbs: every form is stem + ending, then the sound rules apply in order:
  *   1. vowel contact at the stem/ending boundary (and "after y, i -> e")
@@ -27,9 +27,12 @@
   var LONG = 'āēīōūǟ';
   var LENGTHEN = { a: 'ā', e: 'ē', i: 'ī', o: 'ō', u: 'ū', 'ä': 'ǟ' };
   var SHORTEN = { 'ā': 'a', 'ē': 'e', 'ī': 'i', 'ō': 'o', 'ū': 'u', 'ǟ': 'ä' };
-  var LETTERS = /^[a-zäàāēīōūǟñ]+$/;
-  // Letter pairs that spell one sound. xl, hy, gy and ng are single consonants; rr is one long consonant.
-  var DIGRAPHS = ['xl', 'hy', 'gy', 'ng', 'rr'];
+  var LETTERS = /^[a-zäàāēīōūǟñłğ]+$/;
+  // Letter pairs that spell one sound. hy and ng are single consonants; rr is one long consonant.
+  // Orthography (Oct 18): the lateral fricative /ɬ/ is written ł (once xl) and /ɟ/ is written ğ (once gy),
+  // so both are single letters. A written xl is now two sounds, x + l, as where a root in x meets
+  // a suffix in l (ix + -li → ixli /ˈix.li/); the engine makes that spelling at such joins by itself.
+  var DIGRAPHS = ['hy', 'ng', 'rr'];
 
   function isV(c) { return !!c && VOWELS.indexOf(c) !== -1; }
   function isLong(c) { return !!c && LONG.indexOf(c) !== -1; }
@@ -67,7 +70,7 @@
   var ENDINGS = {
     samon: {
       present: ['i', 'u', 'a', 'an', 'as', 'ūn', 'ān'],
-      future: ['egy', 'eju', 'egy', 'ēyn', 'ejas', 'ūnna', 'ana'],
+      future: ['eğ', 'eju', 'eğ', 'ēyn', 'ejas', 'ūnna', 'ana'],
       past: ['us', 'uōs', 'uōs', 'uīn', 'uves', 'uvōs', 'uōsen']
     },
     namon: {
@@ -97,7 +100,7 @@
     { id: 'GEN', name: 'genitive', endings: { sg: 'de', an: 'di', 'in': 'den' } },
     { id: 'ABL', name: 'ablative', endings: { sg: 'ze', an: 'zi', 'in': 'zen' } },
     { id: 'COM', name: 'comitative-instrumental', endings: { sg: 'ūne', an: 'ūni', 'in': 'ūnen' } },
-    { id: 'ABE', name: 'abessive', endings: { sg: 'ūxle', an: 'ūxli', 'in': 'ūxlen' } }
+    { id: 'ABE', name: 'abessive', endings: { sg: 'ūłe', an: 'ūłi', 'in': 'ūłen' } }
   ];
 
   /** The ending as it appears after a vowel and after a consonant, for tables: ['m', 'am']. */
@@ -162,13 +165,13 @@
     case_a:   { text: 'after a consonant, a is inserted before the case ending', section: 'Cases' },
     case_yi:  { text: 'plural transitive subject: y goes in before -i after a vowel (neyi)', section: 'Cases' },
     case_nen: { text: 'plural transitive subject: n goes in before -en after a vowel (nenen)', section: 'Cases' },
-    case_u:   { text: 'the ū of -ūne and -ūxle drops after u or ū', section: 'Cases' },
-    case_v:   { text: 'a long last vowel adds v before -ūne and -ūxle', section: 'Cases' },
+    case_u:   { text: 'the ū of -ūne and -ūłe drops after u or ū', section: 'Cases' },
+    case_v:   { text: 'a long last vowel adds v before -ūne and -ūłe', section: 'Cases' },
     obl_ne:   { text: 'ney uses the stem ne- before every ending', section: 'Cases' },
     case_keep:{ text: 'dissimilation never changes a case ending (veve, keavave stay)', section: 'Cases' },
     pron_gam: { text: '2s intransitive subject: gam is irregular', section: 'Pronouns' },
     pron_contract: { text: 'īssi + se contracts to īsse (case endings only)', section: 'Pronouns' },
-    pron_3p:  { text: '3p daūne and daūxle are the same as 3s.a', section: 'Pronouns' },
+    pron_3p:  { text: '3p daūne and daūłe are the same as 3s.a', section: 'Pronouns' },
     adv_ili:  { text: 'manner adverb: ili- before a consonant', section: 'Adverbs' },
     adv_ilis: { text: 'manner adverb: ilis- before a vowel', section: 'Adverbs' },
     irr:      { text: 'irregular: taken from the table, not built by rule', section: 'To be' },
@@ -181,12 +184,12 @@
 
   /**
    * Analyse a samon base (e.g. "labasa", "xasa", "luasa", "leasa").
-   * Consonants are counted as sounds: xl is one consonant, so xlasa is a short stem like xasa.
+   * Consonants are counted as sounds: ł is one consonant, so łasa is a short stem like xasa.
    * For the two-consonant rules, rr (long) and hy count as two, as the doc says.
    */
   function analyze(samon) {
     var w = String(samon || '').trim().toLowerCase();
-    if (!LETTERS.test(w)) { throw new Error('Use Lunde letters only (a–z, ä, à, ā ē ī ō ū ǟ, ñ).'); }
+    if (!LETTERS.test(w)) { throw new Error('Use Lunde letters only (a–z, ä, à, ā ē ī ō ū ǟ, ñ, ł, ğ).'); }
     if (w.length < 4 || w.slice(-3) !== 'asa') { throw new Error('A samon base ends in -asa (like labasa, xasa, luasa).'); }
     var root = w.slice(0, -3);
     if (!root) { throw new Error('A samon base needs a root before -asa.'); }
@@ -196,7 +199,7 @@
     var last = root.charAt(root.length - 1);
 
     if (!hasVowel && toks.length === 1 && !toks[0].gem) {
-      info.cls = 'short';                 // one consonant sound -> consonant + a (xa-, ka-, xla-)
+      info.cls = 'short';                 // one consonant sound -> consonant + a (xa-, ka-, ła-)
       info.stem = root + 'a';
     } else if (last === 'u') {
       info.cls = 'u'; info.stem = root;
@@ -289,7 +292,7 @@
 
   /**
    * Same consonant on both sides of ONE vowel: the second one changes. A two-vowel sequence blocks it.
-   * xl is its own sound (/ɬ/), so the x of xl never counts as an x.
+   * The x of a written xl (x + l, as in ixli) is a real x and counts; ł is a different sound.
    */
   function dissimilate(w, log) {
     var changed = true;
@@ -298,7 +301,7 @@
       for (var i = 0; i + 2 < w.length && !changed; i++) {
         for (var d = 0; d < DISSIMILATION.length; d++) {
           var c = DISSIMILATION[d][0];
-          if (w.charAt(i) === c && isV(w.charAt(i + 1)) && w.charAt(i + 2) === c && !(c === 'x' && w.charAt(i + 3) === 'l')) {
+          if (w.charAt(i) === c && isV(w.charAt(i + 1)) && w.charAt(i + 2) === c) {
             w = w.slice(0, i + 2) + DISSIMILATION[d][1] + w.slice(i + 3);
             log(DISSIMILATION[d][2]);
             changed = true;
@@ -373,7 +376,7 @@
   function join(stem, ending, form) {
     var s = String(stem || '').trim().toLowerCase();
     var e = String(ending || '').trim().toLowerCase().replace(/^-/, '');
-    if (!LETTERS.test(s) || !LETTERS.test(e)) { throw new Error('Use Lunde letters only (a–z, ä, à, ā ē ī ō ū ǟ, ñ).'); }
+    if (!LETTERS.test(s) || !LETTERS.test(e)) { throw new Error('Use Lunde letters only (a–z, ä, à, ā ē ī ō ū ǟ, ñ, ł, ğ).'); }
     var log = makeLogger();
     var w = joinWith(s, e, form || 'samon', log);
     return { form: w, underlying: s + ' + ' + e, rules: log.list, steps: log.steps, ipa: toIPA(w) };
@@ -626,7 +629,7 @@
     var und = word + ' + ' + end;
     var w;
     if (end.charAt(0) === 'ū') {
-      // comitative and abessive: -ūne, -ūxle and their plurals
+      // comitative and abessive: -ūne, -ūłe and their plurals
       if (last === 'u' || last === 'ū') { w = obl + end.slice(1); log('case_u', w); }
       else if (isLong(last)) { w = obl + 'v' + end; log('case_v', w); }
       else { w = obl + end; log.form(w); }
@@ -652,7 +655,7 @@
   function decline(word, opts) {
     opts = opts || {};
     var w = String(word || '').trim().toLowerCase();
-    if (!LETTERS.test(w)) { throw new Error('Use Lunde letters only (a–z, ä, à, ā ē ī ō ū ǟ, ñ).'); }
+    if (!LETTERS.test(w)) { throw new Error('Use Lunde letters only (a–z, ä, à, ā ē ī ō ū ǟ, ñ, ł, ğ).'); }
     var o = { oblique: opts.oblique, obliqueRule: opts.obliqueRule, stressBase: opts.stressBase };
     if (!o.oblique && /[ue]ox$/.test(w)) { o.oblique = w.slice(0, -2) + 'x'; o.obliqueRule = 'ox_obl'; }
     if (!o.oblique && w === 'ney') { o.oblique = 'ne'; o.obliqueRule = 'obl_ne'; }
@@ -686,7 +689,7 @@
     '2s:S': ['gam', 'pron_gam'],
     '1p:O': ['īsse', 'pron_contract'],
     '3p:COM': ['daūne', 'pron_3p'],
-    '3p:ABE': ['daūxle', 'pron_3p']
+    '3p:ABE': ['daūłe', 'pron_3p']
   };
 
   function pronounTable() {
@@ -715,14 +718,16 @@
   /* ------------------------------------------------------------------ */
 
   var DIGITS = ['na', 'ra', 'hara', 'du', 'jayu', 'java', 'isa', 'gvena', 'fisa', 'dion', 'fiū', 'siōn'];
-  var POWERS = [['hayatiōn', 20736], ['galatiōn', 1728], ['igyiōn', 144], ['siōn', 12]];
+  var POWERS = [['hayatiōn', 20736], ['galatiōn', 1728], ['iğiōn', 144], ['siōn', 12]];
+  var ZERO = 'hūł';         // zero (Alex, Oct 18)
   var NUMBER_MAX = 248831;   // 12^5 - 1: the doc names powers up to hayatiōn (12^4)
 
   /** A number as a word: biggest power first, multipliers joined, smaller numbers after a dash. */
   function numberWord(n, opts) {
     n = Number(n);
-    if (!isFinite(n) || n !== Math.floor(n) || n < 1) { throw new Error('Give a whole number from 1 up.'); }
+    if (!isFinite(n) || n !== Math.floor(n) || n < 0) { throw new Error('Give a whole number from 0 up.'); }
     if (n > NUMBER_MAX) { throw new Error('The doc names powers of twelve up to hayatiōn (12⁴), so the largest number is 248,831.'); }
+    if (n === 0) { return { value: 0, form: ZERO, parts: [{ word: ZERO, value: 0, digit: 0, power: null, unit: 1 }] }; }
     var parts = [];
     var rem = n;
     POWERS.forEach(function (p) {
@@ -793,7 +798,7 @@
   var VOWEL_IPA = { a: 'a', e: 'ɛ', i: 'i', o: 'ɔ', u: 'u', 'ä': 'æ', 'à': 'ɑ', 'ā': 'aː', 'ē': 'ɛː', 'ī': 'iː', 'ō': 'ɔː', 'ū': 'uː', 'ǟ': 'æː' };
   var CONS_IPA = { p: 'p', b: 'b', t: 't', d: 'd', k: 'k', m: 'm', n: 'n', f: 'f', s: 's', z: 'z', l: 'l', h: 'h',
     c: 't͡s', x: 'x', j: 'ʒ', y: 'j', 'ñ': 'ɲ', r: 'r', v: 'β', g: 'ɣ',
-    xl: 'ɬ', hy: 'xʲ', gy: 'ɟ', ng: 'ŋ', rr: 'r' };
+    'ł': 'ɬ', 'ğ': 'ɟ', hy: 'xʲ', ng: 'ŋ', rr: 'r' };
   var ONSET_CLUSTERS = { dr: 1, py: 1, gv: 1, xn: 1 };
 
   function phoneOf(toks, i) {
@@ -880,10 +885,10 @@
   }
 
   return {
-    version: '0.2',
+    version: '0.3',
     PERSONS: PERSONS, PRONOUNS: PRONOUNS, IMP_PERSONS: IMP_PERSONS, FORMS: FORMS, TENSES: TENSES,
     RULES: RULES, ENDINGS: ENDINGS, CASES: CASES, NUMBERS: NUMBERS, NUMBER_NAMES: NUMBER_NAMES, caseEndingShapes: caseEndingShapes,
-    DIGITS: DIGITS, POWERS: POWERS, NUMBER_MAX: NUMBER_MAX, DIGRAPHS: DIGRAPHS,
+    DIGITS: DIGITS, POWERS: POWERS, ZERO: ZERO, NUMBER_MAX: NUMBER_MAX, DIGRAPHS: DIGRAPHS,
     analyze: analyze, conjugate: conjugate, contact: contact, join: join, lengthClash: lengthClash, dissimilate: dissimilate,
     buildFinite: buildFinite, imperative: imperative, gerunds: gerunds, dictionaryForm: dictionaryForm,
     derivations: derivations, imon: imon,

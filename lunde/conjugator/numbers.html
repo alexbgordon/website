@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preload" href="../../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lunde number conjugator | Alex Bahia</title>
+<meta name="description" content="Any number as a Lunde number word, in base twelve, with its ordinal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="lunde.css">
+<style>
+/* Grammar layout: a sticky table of contents beside one reading column; tools sit in panels inside it. */
+.gbench-one { grid-template-columns: minmax(0, 1fr) !important; }
+.gbench { display: grid; gap: 24px 40px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 980px) { .gbench { grid-template-columns: 196px minmax(0, 1fr); } }
+.toc { min-width: 0; }
+.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+.toc a { display: flex; gap: 10px; align-items: baseline; text-decoration: none; padding: 6px 8px; border-radius: 6px; color: var(--ink-2); font: 500 14px/1.3 var(--f-ui); }
+.toc a::before { counter-increment: toc; content: counter(toc); font: 600 11px/1 var(--f-ui); color: var(--ink-3); min-width: 1.2em; font-variant-numeric: tabular-nums; }
+.toc a:hover { background: var(--line-soft); color: var(--ink); }
+.toc a[aria-current="true"] { background: var(--ink); color: var(--bg); }
+.toc a[aria-current="true"]::before { color: inherit; opacity: .7; }
+@media (min-width: 980px) {
+  .toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow: auto; }
+}
+@media (max-width: 979px) {
+  .toc ol { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+  .toc li { flex: none; }
+  .toc a { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+}
+
+.gmain { min-width: 0; display: grid; gap: 64px; }
+.gsec { display: grid; gap: 18px; min-width: 0; scroll-margin-top: 12px; }
+.gsec > header { display: grid; gap: 6px; max-width: 72ch; }
+.gsec h2 { margin: 0; font: 800 clamp(24px, 2.8vw, 32px)/1.08 var(--f-ui); font-stretch: 118%; letter-spacing: -.01em; text-wrap: balance; }
+.gsec h3 { margin: 10px 0 0; font: 700 13px/1.2 var(--f-ui); font-stretch: 112%; letter-spacing: .12em; text-transform: uppercase; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.gsec p, .gsec li { max-width: 72ch; }
+.gsec p { margin: 0; }
+.gsec ul.notes, .gsec ol.rules { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.gsec i, .dt i, .tool i { font-family: var(--f-lx); font-size: 1.07em; }
+.sub { display: grid; gap: 12px; }
+
+/* data tables */
+.dt { border-collapse: collapse; width: 100%; font-size: 14px; }
+.dt th, .dt td { text-align: left; padding: 7px 10px; border-top: 1px solid var(--line-soft); vertical-align: baseline; }
+.dt thead th { border-top: 0; border-bottom: 1.5px solid var(--mc); font: 600 10.5px/1.25 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); vertical-align: bottom; }
+.dt tbody th { font-weight: 600; font-size: 13px; color: var(--ink-2); white-space: nowrap; }
+.dt td.w, .dt .w { font: italic 400 17px/1.3 var(--f-lx); color: var(--ink); }
+.dt td.ipa, .dt .ipa { font: 400 16px/1.3 var(--f-lx); color: var(--ink-2); white-space: nowrap; }
+.dt td.why { color: var(--ink-3); font-size: 13px; }
+.dt .exc { color: var(--q); }
+.dt .exc::after { content: "*"; font: 700 11px/1 var(--f-ui); vertical-align: .6em; margin-left: 1px; }
+.dt .pend { color: var(--q); }
+.dt .pend::after { content: "?"; font: 700 11px/1 var(--f-ui); vertical-align: .6em; margin-left: 1px; }
+.dt .dim { color: var(--ink-3); opacity: .55; }
+.dt caption { caption-side: bottom; text-align: left; padding-top: 8px; font-size: 12.5px; color: var(--ink-3); }
+.dt .g { vertical-align: -2px; margin-right: 6px; }
+.tag { font: 600 11px/1 var(--f-ui); letter-spacing: .06em; text-transform: uppercase; color: var(--mc); }
+.flag { display: inline-flex; gap: 6px; align-items: baseline; padding: 6px 10px; border-radius: 6px; background: var(--q-wash); font-size: 13.5px; text-decoration: none; }
+.flag b { font: 700 11px/1 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--q); }
+
+/* tools */
+.tool { display: grid; gap: 12px; padding: 16px; background: var(--panel); border: 1px solid var(--line-soft); border-radius: 12px; box-shadow: var(--shadow); min-width: 0; }
+.tool-h { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; justify-content: space-between; }
+.tool-h h4 { margin: 0; font: 700 14px/1.2 var(--f-ui); }
+.tool-h p { font-size: 13px; color: var(--ink-3); }
+.fields { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: end; }
+.field { display: grid; gap: 4px; min-width: 0; }
+.field label { font: 600 12px/1.2 var(--f-ui); color: var(--ink-2); }
+.field input[type="text"], .field input[type="number"], .field select {
+  box-sizing: border-box; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink);
+  font: italic 400 18px/1.2 var(--f-lx); min-width: 0; width: 100%;
+}
+.field input[type="number"], .field select { font: 400 15px/1.2 var(--f-ui); }
+.field.w1 { flex: 1 1 200px; }
+.field.w2 { flex: 0 1 140px; }
+.check { display: inline-flex; gap: 7px; align-items: center; font-size: 13.5px; color: var(--ink-2); padding-bottom: 9px; cursor: pointer; }
+.out { display: grid; gap: 10px; min-width: 0; }
+.out-err { color: var(--bad); font-size: 14px; margin: 0; }
+.big { font: italic 700 30px/1.15 var(--f-lx); overflow-wrap: anywhere; margin: 0; }
+.syl { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; }
+.syl span { display: grid; gap: 2px; justify-items: center; padding: 6px 10px 7px; border-radius: 8px; border: 1px solid var(--line-soft); background: var(--bg); min-width: 2.2em; }
+.syl b { font: italic 400 20px/1.1 var(--f-lx); }
+.syl small { font: 400 13px/1.1 var(--f-lx); color: var(--ink-3); }
+.syl .s1 { border-color: var(--ink); box-shadow: inset 0 -3px 0 var(--ink); }
+.syl .s1 b { font-weight: 700; }
+.syl .s2 { border-color: var(--ink-3); border-style: dashed; }
+.why { margin: 0; color: var(--ink-2); font-size: 14px; }
+.cellbox { border-top: 1px solid var(--line-soft); padding-top: 4px; }
+.cellbox .chain { margin-top: 6px; }
+.dt button.cf { border: 0; background: none; padding: 2px 4px; margin: -2px -4px; border-radius: 4px; cursor: pointer; font: inherit; color: inherit; text-align: left; }
+.dt button.cf:hover, .dt button.cf[aria-pressed="true"] { background: var(--mw); }
+.dt button.cf[aria-pressed="true"] { box-shadow: inset 0 0 0 1.5px var(--mc); }
+.breakdown { margin: 0; font-size: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.breakdown i { color: var(--ink); }
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px 28px; align-items: start; }
+.big.ipa { font-style: normal; font-weight: 400; font-size: 24px; color: var(--ink-2); }
+.gmain > *, .gsec > *, .sub > *, .pair > *, .tool > *, .out > * { min-width: 0; }
+.dt td.w { white-space: nowrap; }
+.dt td.wrap { white-space: normal; }
+a.fl { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+a.fl:hover { text-decoration-color: var(--ink-2); }
+.dt th.tag { padding-top: 14px; border-top: 0; }
+.c-rnote small { display: block; }
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css"><!-- alexbahia site: shared header -->
+<link rel="stylesheet" href="site-theme.css"><!-- alexbahia site: poetry-page palette and fonts -->
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- added for alexbahia site: shared header and Lunde sub-nav -->
+<!-- site-header:start -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../../">Alex Bahia</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../poetry/">Poetry</a></li>
+        <li><a href="../../lunde/" aria-current="page">Languages</a></li>
+        <li><a href="../../gallery/">Gallery</a></li>
+        <li><a href="../../about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- site-header:end -->
+<div class="tool-sheet ab-card" id="main" tabindex="-1">
+<!-- lunde-nav:start -->
+<nav class="lunde-nav" aria-label="Languages">
+  <ul class="lunde-sections">
+    <li><a href="../../lunde/">Overview</a></li>
+    <li><a href="../../lunde/#old" aria-current="true">Lunde (Old Lundian)</a></li>
+    <li><a href="../../lunde/#modern">Lundiyani (Modern Lundian)</a></li>
+  </ul>
+  <ul class="lunde-tool" aria-label="Lunde pages">
+    <li><a href="../../lunde/conjugator/lexicon.html">Lexicon</a></li>
+    <li><a href="../../lunde/conjugator/grammar.html">Grammar</a></li>
+    <li><a href="../../lunde/conjugator/">Verb conjugator</a></li>
+    <li><a href="../../lunde/conjugator/cases.html">Case conjugator</a></li>
+    <li><a href="../../lunde/conjugator/numbers.html" aria-current="page">Number conjugator</a></li>
+  </ul>
+</nav>
+<!-- lunde-nav:end -->
+<div class="page">
+  <header class="mast">
+    <div class="mast-l">
+      <p class="eyebrow">Lunde · the old, formal register · prototype</p>
+      <h1>Lunde number conjugator (Old Lundian)</h1>
+      <p class="lede">Type any number from 0 to 248,831 and see it as a Lunde number word, digit by digit in base twelve, with the counting form and the ordinal.</p>
+    </div>
+    <div class="mast-r">
+      <a class="badge" id="badge" href="index.html#checks"><span class="dot"></span>Running the checks…</a>
+    </div>
+  </header>
+
+  <div class="gbench gbench-one">
+    <main class="gmain">
+
+<!-- 8. Numbers -->
+      <section class="gsec" id="numbers" aria-labelledby="num-h">
+        <header>
+          <p class="eyebrow">Numbers</p>
+          <h2 id="num-h">Numbers</h2>
+          <p class="lede">Lunde counts in base twelve, which divides evenly by 2, 3, 4 and 6 and can be counted on one hand: the thumb touches the three segments of each finger.</p>
+        </header>
+        <div class="pair">
+          <div class="tw" data-build="digits"></div>
+          <div class="sub">
+            <div class="tw" data-build="powers"></div>
+            <ul class="notes">
+              <li>Zero is <i>hūł</i>. An empty place inside a bigger number is simply left out: <i>iğiōn-na</i> (145).</li>
+              <li><i>ē-</i> is used only when counting; before a noun it drops: <i>ra zenen</i> (twice).</li>
+              <li>Multiply: the multiplier goes first, joined (<i>rasiōn</i>, 24). Add: the smaller number follows after a dash (<i>siōn-na</i>, 13). Biggest power first.</li>
+              <li>After any number above one, the noun goes plural: <i>ra osili</i> (two eyes).</li>
+              <li>Ordinals are the number + the genitive, joined with dashes: <i>na-de</i> (first), <i>siōn-ade</i> (twelfth).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tool" data-build="tool-number"></div>
+      </section>
+
+          </main>
+  </div>
+</div>
+
+<!-- added for alexbahia site: back/next through the Lunde pages -->
+<!-- lunde-pager:start -->
+<nav class="lunde-pager" aria-label="Languages pages, in order"><a class="lp-back" href="../../lunde/conjugator/cases.html" rel="prev"><span>&larr; Previous</span> Lunde case conjugator</a><a class="lp-next" href="../../lunde/modern/lexicon/" rel="next"><span>Next &rarr;</span> Lundiyani lexicon</a></nav>
+<!-- lunde-pager:end -->
+</div>
+<footer class="site-footer">
+  <div class="wrap"><p>Lunde number conjugator &middot; engine v0.3 &middot; rules as of Oct 18, 2026</p></div>
+</footer>
+<script src="lunde-engine.js"></script>
+<script src="lexicon.js"></script>
+<script src="lunde-tests.js"></script>
+<script src="lunde-runner.js"></script>
+<script src="lunde-ui.js"></script>
+<script src="grammar.js"></script>
+</body>
+</html>

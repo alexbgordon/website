@@ -1,5 +1,5 @@
 /*
- * Old Lundian Grammar: page logic. Fills every [data-build] block from the engine.
+ * Lunde grammar: page logic. Fills every [data-build] block from the engine.
  * Needs window.Lunde, window.LundeUI, window.LundeTests, window.LundeRunner and window.LUNDE_LEXICON.
  */
 (function () {
@@ -13,7 +13,7 @@
   var IRREG = LEX.irregular || {};
   var BY_ROOT = {}, BY_BASE = {};
   VERBS.forEach(function (v) { BY_ROOT[v.root] = v; BY_BASE[v.samon] = v; });
-  var LETTERS = /^[a-zäàāēīōūǟñ]+$/;
+  var LETTERS = /^[a-zäàāēīōūǟñłğ]+$/;
 
   function $(id) { return document.getElementById(id); }
   var CACHE = {};
@@ -72,7 +72,7 @@
       var imon = $('ipa-imon').checked;
       var out = $('ipa-out');
       if (!word) { out.innerHTML = '<p class="why">Type a word to see its syllables.</p>'; return; }
-      if (!LETTERS.test(word)) { out.innerHTML = '<p class="out-err">Use Lunde letters only: a to z, ä, à, ā ē ī ō ū ǟ and ñ.</p>'; return; }
+      if (!LETTERS.test(word)) { out.innerHTML = '<p class="out-err">Use Lunde letters only: a to z, ä, à, ā ē ī ō ū ǟ, ñ, ł and ğ.</p>'; return; }
       if (imon && word.charAt(0) !== 'ī') { out.innerHTML = '<p class="out-err">An īmon form starts with ī-. Untick the box or add the ī.</p>'; return; }
       var syl = L.syllabify(word, { imon: imon });
       var st = L.stress(word, { imon: imon });
@@ -191,8 +191,8 @@
 
   function buildClassifyTool(el) {
     el.innerHTML = '<div class="tool-h"><h4>Which class is this verb?</h4><p>Type any samon base, ending in -asa.</p></div>' +
-      '<div class="fields"><div class="field w1"><label for="cls-base">Samon base</label><input id="cls-base" type="text" value="xlasa" autocomplete="off" autocapitalize="off" spellcheck="false"></div></div>' +
-      exampleChips(['labasa', 'xasa', 'xlasa', 'luasa', 'nileasa', 'adrasa', 'kahyasa', 'pyelasa'], 'data-cls') +
+      '<div class="fields"><div class="field w1"><label for="cls-base">Samon base</label><input id="cls-base" type="text" value="łasa" autocomplete="off" autocapitalize="off" spellcheck="false"></div></div>' +
+      exampleChips(['labasa', 'xasa', 'łasa', 'luasa', 'nileasa', 'adrasa', 'kahyasa', 'pyelasa'], 'data-cls') +
       '<div class="out" id="cls-out" aria-live="polite"></div>';
     function update() {
       var base = $('cls-base').value.trim().toLowerCase();
@@ -280,7 +280,7 @@
   }
 
   function buildGerunds(el) {
-    var bases = ['labasa', 'xasa', 'luasa', 'juasa', 'leasa', 'kahyasa', 'xlasa'];
+    var bases = ['labasa', 'xasa', 'luasa', 'juasa', 'leasa', 'kahyasa', 'łasa'];
     var h = '<table class="dt"><thead><tr><th scope="col">Dictionary form</th><th scope="col">Class</th><th scope="col">Samon -ior</th><th scope="col">Namon -inve</th><th scope="col">Exmon -anga</th></tr></thead><tbody>';
     bases.forEach(function (b) {
       var r = C(b);
@@ -375,7 +375,7 @@
         return '<td class="w' + (x.byRule ? ' exc" title="Listed in the doc; the rule alone gives ' + esc(x.byRule) : '') + '">' + esc(show(p, x.form)) + '</td>';
       }).join('') + '</tr>';
     });
-    el.innerHTML = h + '</tbody><caption>* The doc lists these as exceptions: <i>gam</i> (the rule gives gum), <i>īsse</i> (īssise, contracted), <i>daūne</i> and <i>daūxle</i> (dāvūne, dāvūxle). Every other form comes from the rules.</caption></table>';
+    el.innerHTML = h + '</tbody><caption>* The doc lists these as exceptions: <i>gam</i> (the rule gives gum), <i>īsse</i> (īssise, contracted), <i>daūne</i> and <i>daūłe</i> (dāvūne, dāvūłe). Every other form comes from the rules.</caption></table>';
   }
 
   function buildDemonstratives(el) {
@@ -414,7 +414,7 @@
   /* ------------------------------------------------------------------ */
 
   function buildParticiples(el) {
-    var bases = [['fastuasa', 'u-stem'], ['miadeasa', 'e-stem'], ['kasa', 'short stem'], ['labasa', 'consonant stem'], ['dabasa', 'consonant stem'], ['xlasa', 'short stem (xl)']];
+    var bases = [['fastuasa', 'u-stem'], ['miadeasa', 'e-stem'], ['kasa', 'short stem'], ['labasa', 'consonant stem'], ['dabasa', 'consonant stem'], ['łasa', 'short stem (ł)']];
     var types = [['samon participle', 'the subject the event happened to'], ['namon participle', 'an inner state; also figurative'], ['exmon participle', 'the target: someone did this to them'], ['active adjective', 'what causes the state']];
     var h = '<table class="dt"><thead><tr><th scope="col">Verb</th>' + types.map(function (t) { return '<th scope="col" title="' + esc(t[1]) + '">' + esc(t[0]) + '</th>'; }).join('') + '</tr></thead><tbody>';
     bases.forEach(function (b) {
@@ -440,7 +440,7 @@
         return '<td class="w">' + esc(f) + '</td>';
       }).join('') + '</tr>';
     });
-    el.innerHTML = h + '</tbody><caption><i>fastuxūxle</i>: xl is one sound, and dissimilation never changes a case ending (the doc had <i>fastuxūgle</i>).</caption></table>';
+    el.innerHTML = h + '</tbody><caption><i>fastuxūłe</i>: ł is one sound, and dissimilation never changes a case ending (the doc had <i>fastuxūgle</i>).</caption></table>';
   }
 
   function buildNounAdjectives(el) {
@@ -506,8 +506,8 @@
 
   function buildPrefixes(el) {
     var rows = [
-      ['endelabasa', 'samon', 'love deeply'], ['endelabasa', 'namon', 'fall in love inside'], ['xlendelabasa', 'samon', 'fall out of love'],
-      ['xlendelabasa', 'namon', 'be heartbroken'], ['xleservasa', 'namon', 'forget'], ['endeservasa', 'exmon', 'indoctrinate'], ['endefastuasa', 'exmon', 'blind by force']
+      ['endelabasa', 'samon', 'love deeply'], ['endelabasa', 'namon', 'fall in love inside'], ['łendelabasa', 'samon', 'fall out of love'],
+      ['łendelabasa', 'namon', 'be heartbroken'], ['łeservasa', 'namon', 'forget'], ['endeservasa', 'exmon', 'indoctrinate'], ['endefastuasa', 'exmon', 'blind by force']
     ];
     var h = '<table class="dt"><thead><tr><th scope="col">Verb</th><th scope="col">Meaning</th><th scope="col">1s present</th><th scope="col">Īmon</th></tr></thead><tbody>';
     rows.forEach(function (r) {
@@ -526,6 +526,7 @@
 
   function buildDigits(el) {
     var h = '<table class="dt"><thead><tr><th scope="col">Value</th><th scope="col">Counting</th><th scope="col">Before a noun</th></tr></thead><tbody>';
+    if (L.ZERO) { h += '<tr><td>0</td><td class="w">—</td><td class="w">' + esc(L.numberWord(0).form) + '</td></tr>'; }
     L.DIGITS.forEach(function (d, i) {
       h += '<tr><td>' + (i + 1) + '</td><td class="w">' + esc(L.numberWord(i + 1, { counting: true }).form) + '</td><td class="w">' + esc(L.numberWord(i + 1).form) + '</td></tr>';
     });
@@ -542,15 +543,16 @@
   }
 
   function buildNumberTool(el) {
-    el.innerHTML = '<div class="tool-h"><h4>Say a number</h4><p>From 1 to ' + L.NUMBER_MAX.toLocaleString('en-US') + '.</p></div>' +
-      '<div class="fields"><div class="field w2"><label for="num-value">Number</label><input id="num-value" type="number" min="1" max="' + L.NUMBER_MAX + '" step="1" value="2026"></div></div>' +
-      exampleChips([7, 13, 24, 50, 100, 144, 2026, 20736], 'data-num') +
+    el.innerHTML = '<div class="tool-h"><h4>Say a number</h4><p>From 0 to ' + L.NUMBER_MAX.toLocaleString('en-US') + '.</p></div>' +
+      '<div class="fields"><div class="field w2"><label for="num-value">Number</label><input id="num-value" type="number" min="0" max="' + L.NUMBER_MAX + '" step="1" value="2026"></div></div>' +
+      exampleChips([0, 7, 13, 24, 50, 100, 144, 2026, 20736], 'data-num') +
       '<div class="out" id="num-out" aria-live="polite"></div>';
     function update() {
       var v = $('num-value').value;
       var out = $('num-out');
       var r;
       try { r = L.numberWord(v); } catch (e) { out.innerHTML = '<p class="out-err">' + esc(e.message) + '</p>'; return; }
+      if (r.value === 0) { out.innerHTML = '<p class="big">' + esc(r.form) + '</p><p class="why">Zero. Inside a bigger number an empty place is left out.</p>'; return; }
       var digits = r.value.toString(12).split('').map(function (c) { return parseInt(c, 12); });
       out.innerHTML = '<p class="big">' + esc(r.form) + '</p>' +
         '<p class="breakdown">' + r.parts.map(function (p) {
