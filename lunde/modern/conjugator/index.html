@@ -3,84 +3,206 @@
 <head>
 <meta charset="utf-8">
 <link rel="preload" href="../../../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lundiyani verb conjugator | Alex Bahia</title>
-<meta name="description" content="Any Lundiyani (Modern Lundian) verb with any combination of tense, aspect, mood and negation particles, built from the Lundiyani grammar and checked against its worked examples.">
+<meta name="description" content="Any Lundiyani (Modern Lundian) verb with every combination of tense, aspect, mood and negation particles, built by the rules of the Lundiyani grammar.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
 <link rel="stylesheet" href="../../conjugator/lunde.css">
 <style>
-/* Same layout as the Lunde verb conjugator: verb index | verb sheet. */
+/* Same layout as the Lunde verb conjugator: verb index | verb sheet | derivation panel (a bottom sheet below 1180px). */
 .bench { display: grid; gap: 22px 28px; grid-template-columns: minmax(0, 1fr); align-items: start; }
 @media (min-width: 820px) { .bench { grid-template-columns: 214px minmax(0, 1fr); } }
+@media (min-width: 1180px) { .bench { grid-template-columns: 214px minmax(0, 1fr) minmax(300px, 344px); } }
+
+/* verb index */
 .index { display: grid; gap: 8px; align-content: start; min-width: 0; }
-@media (min-width: 820px) { .index { position: sticky; top: 12px; max-height: calc(100vh - 24px); grid-template-rows: auto auto minmax(0, 1fr); } }
+@media (min-width: 820px) {
+  .index {
+    position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px);
+    max-height: calc(100vh - 24px); grid-template-rows: auto auto minmax(0, 1fr);
+  }
+}
+#index-form { display: grid; gap: 6px; margin: 0; }
 .index label { font: 600 12px/1.35 var(--f-ui); color: var(--ink-2); }
-#q { width: 100%; box-sizing: border-box; font: italic 400 17px/1.2 var(--f-lx); padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--ink); min-height: 44px; }
-.icount { margin: 0; font-size: 12px; color: var(--ink-3); }
-.vlist { list-style: none; margin: 0; padding: 0 2px 0 0; overflow: auto; display: grid; gap: 1px; align-content: start; }
-.vi { display: grid; width: 100%; text-align: left; border: 0; background: none; border-radius: 6px; padding: 5px 8px; cursor: pointer; color: inherit; }
+#q {
+  width: 100%; box-sizing: border-box; font: italic 400 17px/1.2 var(--f-lx);
+  padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--ink);
+}
+#q::placeholder { color: var(--ink-3); }
+.icount { margin: 0; font-size: 12px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.vlist { position: relative; list-style: none; margin: 0; padding: 0 2px 0 0; overflow: auto; display: grid; gap: 1px; align-content: start; }
+.vi { display: grid; width: 100%; text-align: left; border: 0; background: none; border-radius: 6px; padding: 5px 8px; cursor: pointer; }
 .vi:hover { background: var(--line-soft); }
 .vi[aria-current="true"] { background: var(--ink); color: var(--bg); }
 .vi-base { font: italic 400 17px/1.25 var(--f-lx); }
 .vi-gloss { font-size: 12px; line-height: 1.3; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .vi[aria-current="true"] .vi-gloss { color: inherit; opacity: .72; }
+.vi-new { border: 1px dashed var(--ink-3); margin-bottom: 4px; }
+.vi-err { font-size: 13px; line-height: 1.4; color: var(--bad); padding: 6px 8px; }
 @media (max-width: 819px) {
   .vlist { display: flex; gap: 6px; overflow-x: auto; padding: 0 0 6px; }
   .vlist > li { flex: none; }
-  .vi { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; min-height: 44px; align-content: center; }
+  .vi { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
   .vi-gloss { display: none; }
+  .vi-new .vi-gloss { display: block; }
+  .vi-err { max-width: 80vw; white-space: normal; }
 }
-.vsheet { min-width: 0; display: grid; gap: 26px; align-content: start; }
-.headword { margin: 0; font: italic 700 clamp(40px, 7vw, 64px)/1.05 var(--f-lx); overflow-wrap: anywhere; }
-.hw-sub { margin: 4px 0 0; color: var(--ink-2); }
-.slots { display: grid; gap: 12px; }
-.slot { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 6px 14px; align-items: center; }
-@media (max-width: 640px) { .slot { grid-template-columns: minmax(0, 1fr); } }
-.slot-n { font-family: 'Courier Prime', 'Courier New', monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
-.seg button { min-height: 36px; }
-.seg button .lx { font-style: italic; }
-.par { border-collapse: collapse; width: 100%; }
-.par th, .par td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
-.par thead th { font: 600 12px/1.3 var(--f-ui); color: var(--ink-3); }
-.ph { font: italic 400 19px/1.3 var(--f-lx); }
-.gl { display: flex; flex-wrap: wrap; gap: 2px 12px; margin-top: 2px; }
-.gw { display: inline-grid; }
-.gw .g2 { font-family: 'Courier Prime', 'Courier New', monospace; font-size: 11.5px; letter-spacing: .04em; color: var(--ink-3); font-style: normal; }
-.st { font-size: 12.5px; white-space: nowrap; }
-.st-a { color: var(--ok); } .st-o { color: var(--ink-3); } .st-n { color: var(--bad); }
-.nc { color: var(--ink-3); font-style: italic; }
-.summary { margin: 0; font-size: 15px; color: var(--ink-2); }
-.summary b { font-weight: 600; }
-.legend-st { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 13px; color: var(--ink-3); margin: 0; }
-.tbl { overflow-x: auto; }
-.ck { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; }
-.ck li { display: grid; grid-template-columns: 1.4em minmax(0, 1fr); gap: 6px; }
-.ck .ok { color: var(--ok); } .ck .no { color: var(--bad); }
-.oq { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 74ch; }
-.ref { margin-top: 56px; display: grid; gap: 14px; }
-.ref > header { display: grid; gap: 6px; max-width: 74ch; padding-top: 18px; border-top: 1px solid var(--line); }
-.ref h2 { margin: 0; }
-/* Conjugation tables, in the Lunde conjugator's layout: one card per particle group, persons down, tense across. */
-.lm { --mc: var(--ink-2); --mw: var(--line-soft); }
-.modes { display: grid; gap: 26px 22px; grid-template-columns: minmax(0, 1fr); }
-@media (min-width: 1600px) { .modes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.mode { display: grid; gap: 6px; min-width: 0; }
+
+/* verb sheet */
+.sheet { min-width: 0; container-type: inline-size; display: grid; gap: 30px; align-content: start; }
+.vhead { display: grid; gap: 10px; }
+.hw-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 18px; }
+.headword { margin: 0; font: italic 700 clamp(40px, 8.5cqi, 68px)/1.02 var(--f-lx); letter-spacing: -.01em; min-width: 0; }
+.hw-btn { border: 0; background: none; padding: 0; font: inherit; letter-spacing: inherit; cursor: pointer; text-align: left; overflow-wrap: anywhere; border-bottom: 2px solid transparent; }
+.hw-btn:hover, .hw-btn.sel { border-bottom-color: var(--line); }
+.hw-ipa { font: 400 19px/1.3 var(--f-lx); color: var(--ink-2); }
+.hw-sub { margin: 0; color: var(--ink-2); font-size: 14px; }
+.hw-sub .lx { font-size: 16.5px; color: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 600 11.5px/1 var(--f-ui); letter-spacing: .03em; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--line); color: var(--ink-2); background: var(--panel); }
+.bases { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 7px; }
+.bases li { display: grid; grid-template-columns: 16px 64px minmax(84px, max-content) minmax(0, 1fr); gap: 2px 10px; align-items: baseline; }
+.bases .g { align-self: center; }
+.b-name, .mode-name { font: 700 11.5px/1 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--mc); }
+.b-form { font: italic 400 19px/1.2 var(--f-lx); }
+.b-mean { font-size: 15px; }
+.b-mean.none { color: var(--ink-3); font-style: italic; }
+.b-tag { font-size: 12px; font-style: normal; color: var(--ink-3); white-space: nowrap; }
+@container (max-width: 540px) {
+  .bases li { grid-template-columns: 16px 64px minmax(0, 1fr); }
+  .b-mean { grid-column: 3; }
+}
+.vnotes { margin: 0; color: var(--ink-2); font-size: 14px; max-width: 72ch; }
+.vq-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: -14px; }
+.vq { display: inline-flex; flex-wrap: wrap; gap: 4px 9px; align-items: baseline; padding: 7px 11px; border-radius: 6px; background: var(--q-wash); text-decoration: none; font-size: 13.5px; }
+.vq:hover { box-shadow: inset 0 0 0 1px var(--q); }
+.vq-n { font: 700 11px/1 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--q); }
+
+.hlbar {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + 8px); z-index: 6;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 14px;
+  padding: 9px 10px 9px 14px; margin-bottom: -16px; border-radius: 8px;
+  background: var(--ink); color: var(--bg); font-size: 13.5px; box-shadow: var(--shadow);
+}
+.hlbar b { font-weight: 600; }
+.hlbar button { border: 1px solid currentColor; background: none; border-radius: 999px; padding: 4px 11px; font-size: 12.5px; cursor: pointer; color: inherit; }
+
+.modes { display: grid; gap: 24px 18px; grid-template-columns: minmax(0, 1fr); }
+@container (min-width: 880px) { .modes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.mode { min-width: 0; display: grid; gap: 4px; align-content: start; }
 .mode-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
-.mode-name { font: 700 11.5px/1 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--mc); }
+.mode-head .g { align-self: center; }
 .mode-base { font: italic 400 18px/1.2 var(--f-lx); }
 .mode-gist { font-size: 12.5px; color: var(--ink-3); }
-.par thead th .lx { text-transform: none; letter-spacing: 0; font: italic 400 13px/1 var(--f-lx); }
-.fm { font-size: 16.5px; }
-.mk { font: 400 9px/1 var(--f-ui); font-style: normal; margin-left: 4px; vertical-align: .5em; }
-.mk-a { color: var(--ok); } .mk-r { color: var(--ink-3); }
+.mode.is-unused .par { opacity: .55; }
+.par.imp tbody th, .par.decl tbody th { width: 1%; }
+.par.decl thead th { vertical-align: bottom; }
+.par.decl .pg { display: block; margin-top: 2px; }
+.par.decl tbody th { padding-block: 4px; }
+
+.nf { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px 18px; margin: 0; }
+.nf > div { display: grid; gap: 2px; align-content: start; min-width: 0; }
+.nf dt { display: flex; align-items: center; gap: 6px; padding-left: 8px; font: 600 11.5px/1.2 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--mc); }
+.nf dt .g { width: 12px; height: 12px; }
+.suf { text-transform: none; letter-spacing: 0; font: italic 400 15px/1 var(--f-lx); color: var(--ink-3); }
+.nf dd { margin: 0; }
+.nf .fm { font-size: 21px; }
+
+.fam { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 18px 28px; }
+.fam-g h4, .used-g h4 { margin: 0 0 4px; font: 600 11.5px/1.2 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.fam-g ul { list-style: none; margin: 0; padding: 0; }
+.fam-g li { display: grid; grid-template-columns: minmax(7.5em, max-content) minmax(0, 1fr); gap: 0 10px; align-items: baseline; border-top: 1px solid var(--line-soft); }
+.fam-t { display: grid; padding: 6px 0; min-width: 0; }
+.fam-l { font-size: 12.5px; color: var(--ink-3); }
+.fam-m { font-size: 14px; color: var(--ink); }
+.attested { margin: 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.8; }
+.att-h { color: var(--ink-3); margin-right: 4px; }
+.att { white-space: nowrap; margin-right: 12px; }
+.att .lx { font-style: italic; font-size: 16px; color: var(--ink); }
+
+.used { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 16px 28px; }
+.used-g { display: grid; align-content: start; }
+.ru {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: baseline;
+  width: 100%; text-align: left; border: 0; border-top: 1px solid var(--line-soft); background: none;
+  padding: 7px 8px; cursor: pointer; font-size: 13.5px; line-height: 1.4;
+}
+.ru:hover { background: var(--line-soft); }
+.ru[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.ru-n { font: 600 12px/1 var(--f-ui); color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ru[aria-pressed="true"] .ru-n { color: inherit; }
+
+/* derivation panel */
+.deriv { min-width: 0; }
+@media (min-width: 1180px) {
+  .deriv {
+    position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px);
+    max-height: calc(100vh - 24px); overflow: auto; box-sizing: border-box;
+    background: var(--panel); border: 1px solid var(--line-soft); border-radius: 12px; box-shadow: var(--shadow);
+    padding: 18px 18px 22px;
+  }
+  .d-close { display: none; }
+}
+@media (max-width: 1179px) {
+  .deriv {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; box-sizing: border-box;
+    max-height: min(72vh, 660px); overflow: auto;
+    background: var(--panel); border-top: 1px solid var(--line); border-radius: 14px 14px 0 0; box-shadow: var(--shadow);
+    padding-top: 16px; padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    transform: translateY(102%); visibility: hidden;
+    transition: transform .22s ease, visibility 0s linear .22s;
+  }
+  .deriv.open { transform: none; visibility: visible; transition: transform .22s ease; }
+}
+.d-top { display: grid; gap: 4px; position: relative; max-width: 640px; margin-inline: auto; }
+.d-close {
+  position: absolute; top: -6px; right: -4px; width: 38px; height: 38px; border: 0; border-radius: 50%;
+  background: var(--line-soft); font: 400 22px/1 var(--f-ui); cursor: pointer;
+}
+.d-form { margin: 8px 0 0; font: italic 700 36px/1.08 var(--f-lx); overflow-wrap: anywhere; padding-right: 40px; }
+.d-ipa { margin: 0; font: 400 17px/1.3 var(--f-lx); color: var(--ink-2); }
+.d-meta { margin: 6px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 13.5px; color: var(--ink-2); }
+.d-meta b { font: 700 11.5px/1 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--mc); }
+.d-meta .lx { font-style: italic; font-size: 16px; color: var(--ink); }
+.d-gloss { flex-basis: 100%; }
+.d-gloss .lx { font-size: 16px; }
+.d-empty { margin: 8px 0 0; color: var(--ink-2); }
+.d-empty a { color: var(--q); font-weight: 600; }
+.d-under-only { margin: 8px 0 0; }
+.d-extra { margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--line-soft); display: grid; gap: 8px; font-size: 13.5px; color: var(--ink-2); }
+.d-extra p { margin: 0; }
+.d-k { font: 600 11px/1 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-right: 4px; }
+.d-extra .lx { font-style: italic; font-size: 17px; color: var(--ink); }
+.d-ipa2 { font-family: var(--f-lx); font-size: 15px; color: var(--ink-2); }
+.d-note { margin: 10px 0 0; font-size: 13.5px; color: var(--ink-2); }
+.d-hint { color: var(--ink-3); font-size: 12.5px; }
+.d-decl { display: grid; gap: 6px; }
+
+/* reference sections */
+.ref { margin-top: 64px; display: grid; gap: 18px; scroll-margin-top: 12px; }
+.ref > header { display: grid; gap: 6px; max-width: 74ch; padding-top: 18px; border-top: 1px solid var(--line); }
+.ref h2 { margin: 0; font: 800 clamp(22px, 2.5vw, 29px)/1.1 var(--f-ui); font-stretch: 118%; letter-spacing: -.01em; text-wrap: balance; }
+.ref .lede { font-size: 15px; }
+
+/* Lundiyani additions: phrases instead of single forms. */
+.lm { --mc: var(--ink-2); --mw: var(--line-soft); }
+.modes { grid-template-columns: minmax(0, 1fr) !important; }
+@container (min-width: 1100px) { .modes { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+.fm { font-size: 15.5px; padding-inline: 6px; }
+.par thead th { white-space: nowrap; }
 .ns { font-size: 13px; white-space: nowrap; }
 .ns small { font-size: 11.5px; }
 .fv { display: block; padding: 0 8px 6px; font-size: 12.5px; color: var(--ink-3); }
-.fv .lx { font-style: italic; }
-.detail { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: var(--panel); display: grid; gap: 6px; }
-.detail .ph { font: italic 400 22px/1.25 var(--f-lx); margin: 0; }
-.detail .why { margin: 0; font-size: 13.5px; color: var(--ink-2); }
-.detail[hidden] { display: none; }
+.fv .lx, .par thead th .lx { font-style: italic; }
+.par thead th .lx { text-transform: none; letter-spacing: 0; font: italic 400 13px/1 var(--f-lx); }
+.gl { display: flex; flex-wrap: wrap; gap: 2px 12px; margin-top: 10px; }
+.gw { display: inline-grid; }
+.gw .lx { font: italic 400 18px/1.25 var(--f-lx); }
+.gw .g2 { font-family: 'Courier Prime', 'Courier New', monospace; font-size: 11.5px; letter-spacing: .04em; color: var(--ink-3); font-style: normal; }
+.c-rnote i { font-family: var(--f-lx); font-size: 1.1em; }
+.b-btn { border: 0; background: none; padding: 0; cursor: pointer; text-align: left; color: inherit; border-bottom: 1px solid var(--line); justify-self: start; }
+.b-btn[aria-current="true"] { border-bottom-color: transparent; font-weight: 700; cursor: default; }
 </style>
 <link rel="stylesheet" href="../../../assets/chrome.css">
 <link rel="stylesheet" href="../../conjugator/site-theme.css">
@@ -124,14 +246,10 @@
     <div class="mast-l">
       <p class="eyebrow">Lundiyani · the modern form of Lunde · prototype</p>
       <h1>Lundiyani verb conjugator (Modern Lundian)</h1>
-      <p class="lede">Lundiyani verbs never change form: tense, aspect, mood and negation are separate particles in a fixed order before the verb. Pick a verb to see its conjugation tables; every phrase is built from the rules of the <a href="../">Lundiyani grammar</a>, and anything the grammar does not specify is shown as a dash.</p>
-    </div>
-    <div class="mast-r">
-      <a class="badge" id="badge" href="#checks"><span class="dot"></span>Running the checks…</a>
-      <nav class="toplinks" aria-label="Sections">
-        <a href="#questions">Open questions</a>
-        <a href="#checks">Checks</a>
-      </nav>
+      <p class="lede">Lundiyani verbs never change form: tense, aspect, mood and negation are separate particles before the verb. Pick a verb, then click any phrase to see how it was built. The rules are in the <a href="../#verbs">Lundiyani grammar</a>.</p>
+      <ul class="key" aria-label="The slot order">
+        <li><b>subject</b></li><li><b>aspect</b> tefri, talei, mai, kiena</li><li><b>negation</b> lan</li><li><b>tense or mood</b> lo, na, lei</li><li><b>lai, dei</b></li><li><b>verb</b></li>
+      </ul>
     </div>
   </header>
 
@@ -144,32 +262,15 @@
       <p class="icount" id="icount"></p>
       <ul class="vlist" id="vlist"></ul>
     </nav>
-    <main class="vsheet" id="sheet">
+
+    <main class="sheet" id="sheet">
       <noscript><p>The conjugator needs JavaScript. The rules it uses are in the <a href="../#verbs">Lundiyani grammar</a>.</p></noscript>
     </main>
+
+    <aside class="deriv" id="deriv" aria-label="How the selected phrase is built" tabindex="-1"></aside>
   </div>
-
-  <section class="ref" id="questions" aria-labelledby="questions-h">
-    <header><p class="eyebrow">Still open</p><h2 id="questions-h">Open questions</h2>
-      <p class="lede">What the grammar leaves unspecified. Until a question is decided the conjugator follows the slot order and marks the result.</p></header>
-    <ol class="oq">
-      <li>Where does <i>lan</i> go next to an aspect particle? The grammar puts it after <i>kiena</i> and <i>tefri</i> (<i>ale kiena lan lo eden</i>); with <i>talei</i> and <i>mai</i> the conjugator follows the slot table (aspect, then <i>lan</i>), which no example shows.</li>
-      <li>Does <i>i tefri lo lai eden</i> mean "had eaten" or "had been eating"? How is the other one said? (open in the grammar)</li>
-      <li>Is the perfect always <i>tefri lo</i>? The only examples have <i>lo</i>; <i>tefri</i> with <i>na</i>, <i>lei</i> or no tense is built by the slot order but not confirmed.</li>
-      <li>Are <i>talei</i> (habitual) and <i>mai</i> (just now) used without <i>lo</i>, for a present habit or with the future? The examples only have <i>talei lo</i> and <i>mai lo</i>.</li>
-      <li>Does <i>kiena lan</i> combine with <i>na</i> or <i>lei</i>, or with no tense ("not yet" now)? Only <i>kiena lan lo</i> is shown.</li>
-      <li>Can <i>lai</i> (progressive) and <i>dei</i> (passive) combine, and in which order? The slot table gives them one slot, so the conjugator offers one or the other.</li>
-      <li>Commands: is the person after the verb also used for <i>i</i>, <i>ne</i>, <i>ole</i> and <i>nilie</i>? The grammar shows <i>ov lua</i> (<i>o</i>), <i>ilie</i>, <i>a</i> and <i>ale</i>, and only <i>lan</i> after <i>ov</i>.</li>
-      <li><i>ta</i> (to have): can it take <i>lai</i> or <i>dei</i>, or aspect particles? Only <i>ta i</i>, <i>ta i lo</i>, <i>ta i lan</i> are shown.</li>
-    </ol>
-  </section>
-
-  <section class="ref" id="checks" aria-labelledby="checks-h">
-    <header><p class="eyebrow">Proof</p><h2 id="checks-h">Checks against the grammar</h2>
-      <p class="ck-sum" id="checks-sum"></p></header>
-    <ul class="ck" id="checks-body"></ul>
-  </section>
 </div>
+
 <!-- lunde-pager:start -->
 <nav class="lunde-pager" aria-label="Languages pages, in order"><a class="lp-back" href="../../../lunde/modern/" rel="prev"><span>&larr; Previous</span> Lundiyani grammar</a><a class="lp-next" href="../../../lunde/modern/numbers.html" rel="next"><span>Next &rarr;</span> Lundiyani numbers</a></nav>
 <!-- lunde-pager:end -->
@@ -183,10 +284,11 @@
 <script>
 (function () {
   'use strict';
-  var L = window.Lundiyani, VERBS = window.LUNDIYANI_VERBS;
+  var L = window.Lundiyani, VERBS = window.LUNDIYANI_VERBS, T = window.LundiyaniTable;
   function $(id) { return document.getElementById(id); }
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-  var state = { verb: null };
+  var WIDE = window.matchMedia('(min-width: 1180px)');
+  var state = { verb: null, sel: null };
   VERBS.forEach(function (v) { v.g = L.verbGloss(v.meanings[0]); });
   var BY = {}; VERBS.forEach(function (v) { BY[v.w] = v; });
 
@@ -198,42 +300,80 @@
       return '<li><button type="button" class="vi" data-w="' + esc(v.w) + '"' + (state.verb === v ? ' aria-current="true"' : '') + '><span class="vi-base">' + esc(v.w) + '</span><span class="vi-gloss">' + esc(v.meanings[0]) + '</span></button></li>';
     }).join('');
   }
+
+  // Word family, as the grammar's word formation gives it: plain verb (experiencing), -xi (on purpose), -kai (making someone do it).
+  function family(v) {
+    var stem = v.w.replace(/(xi|kai)$/, ''), bases = [stem, stem + 'a', stem + 'e'];
+    var base = null;
+    bases.forEach(function (b) { if (!base && BY[b]) { base = b; } });
+    if (!base) { return []; }
+    var short = base.replace(/[ae]$/, ''), out = [{ v: BY[base], name: 'plain', gist: 'experiencing' }];
+    [[base + 'xi', short + 'xi'], [base + 'kai', short + 'kai']].forEach(function (c, i) {
+      var w = BY[c[0]] ? c[0] : (BY[c[1]] ? c[1] : null);
+      if (w && w !== base) { out.push({ v: BY[w], name: i ? '-kai' : '-xi', gist: i ? 'making someone do it' : 'on purpose' }); }
+    });
+    return out.length > 1 ? out : [];
+  }
+
   var cells = {};
+  function headHTML(v) {
+    var fam = family(v);
+    var h = '<header class="vhead"><p class="eyebrow">' + esc(v.type) + ' · never changes form</p>' +
+      '<div class="hw-row"><h2 class="headword">' + esc(v.w) + '</h2></div>' +
+      '<p class="hw-sub">' + esc(v.meanings.join('; ')) + '</p>';
+    if (fam.length) {
+      h += '<ul class="bases lm" aria-label="Word family">' + fam.map(function (f) {
+        return '<li><span></span><span class="b-name">' + esc(f.name) + '</span><button type="button" class="b-form b-btn" data-w="' + esc(f.v.w) + '"' + (f.v === v ? ' aria-current="true"' : '') + '>' + esc(f.v.w) + '</button>' +
+          '<span class="b-mean">' + esc(f.v.meanings[0]) + ' <span class="b-tag">' + esc(f.gist) + '</span></span></li>';
+      }).join('') + '</ul>';
+    }
+    return h + '</header>';
+  }
   function sheet() {
     var v = state.verb; if (!v) { return; }
-    var h = '<header><h2 class="headword">' + esc(v.w) + '</h2><p class="hw-sub">' + esc(v.meanings.join('; ')) + ' · ' + esc(v.type) + '</p></header>';
-    var R = window.LundiyaniTable.render(L, v); cells = R.cells;
-    h += '<div class="detail" id="detail" hidden aria-live="polite"></div>' + R.html;
-    $('sheet').innerHTML = h;
+    var R = T.render(L, v); cells = R.cells;
+    $('sheet').innerHTML = headHTML(v) + R.html;
   }
+  function deriv() {
+    var el = $('deriv'), r = state.sel && cells[state.sel];
+    var top = '<div class="d-top"><button type="button" class="d-close" data-close-sheet aria-label="Close">×</button>';
+    if (!r || !r.covered) {
+      el.innerHTML = top + '<p class="eyebrow">How a phrase is built</p><p class="d-empty">Click any phrase in the tables to see each particle it is built from, in slot order.</p></div>';
+      return;
+    }
+    el.innerHTML = top + '<p class="eyebrow">How this phrase is built</p><p class="d-form">' + esc(r.text) + '</p>' +
+      '<p class="d-meta"><b>' + esc(r.label || '') + '</b></p>' + T.detailHTML(r, L) +
+      (r.formal ? '<p class="d-note">Formal: <span class="lx">' + esc(r.formal.text) + '</span></p>' : '') + '</div>';
+  }
+  function openSheet() { var el = $('deriv'); el.classList.add('open'); el.setAttribute('aria-hidden', 'false'); }
+  function closeSheet() { var el = $('deriv'); el.classList.remove('open'); if (!WIDE.matches) { el.setAttribute('aria-hidden', 'true'); } }
+  function syncSheetMode() { var el = $('deriv'); if (WIDE.matches) { el.classList.remove('open'); el.removeAttribute('aria-hidden'); } else if (!el.classList.contains('open')) { el.setAttribute('aria-hidden', 'true'); } }
+
+  function firstKey() { return 'prog.0.1'; }
   function pick(w, push) {
-    state.verb = BY[w] || VERBS[0];
+    state.verb = BY[w] || BY.eden || VERBS[0];
     if (push) { history.replaceState(null, '', '#' + encodeURIComponent(state.verb.w)); }
     list(); sheet();
+    state.sel = cells[firstKey()] && cells[firstKey()].covered ? firstKey() : null;
+    mark(); deriv();
+  }
+  function mark() {
+    [].forEach.call(document.querySelectorAll('#sheet .fm'), function (x) { x.classList.toggle('sel', x.getAttribute('data-key') === state.sel); });
   }
   $('q').addEventListener('input', list);
   $('vlist').addEventListener('click', function (e) { var b = e.target.closest('.vi'); if (b) { pick(b.getAttribute('data-w'), true); } });
   $('sheet').addEventListener('click', function (e) {
+    var c = e.target.closest('.b-btn[data-w]'); if (c) { pick(c.getAttribute('data-w'), true); return; }
     var b = e.target.closest('.fm'); if (!b) { return; }
-    var r = cells[b.getAttribute('data-key')]; if (!r) { return; }
-    [].forEach.call(document.querySelectorAll('.fm.sel'), function (x) { x.classList.remove('sel'); }); b.classList.add('sel');
-    var d = $('detail'); d.hidden = false;
-    d.innerHTML = '<p class="ph">' + esc(r.text) + '</p>' + window.LundiyaniTable.detailHTML(r);
+    state.sel = b.getAttribute('data-key'); mark(); deriv();
+    if (!WIDE.matches) { openSheet(); }
   });
+  $('deriv').addEventListener('click', function (e) { if (e.target.closest('[data-close-sheet]')) { closeSheet(); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeSheet(); } });
+  if (WIDE.addEventListener) { WIDE.addEventListener('change', syncSheetMode); }
   window.addEventListener('hashchange', function () { pick(decodeURIComponent(location.hash.slice(1)), false); });
+  syncSheetMode();
   pick(decodeURIComponent(location.hash.slice(1)) || 'eden', false);
-
-  var T = L.runChecks(), A = window.LundiyaniTable.checkAll(L, VERBS);
-  var allOk = T.passed === T.total && A.ok === A.total, n = T.total + 1, p = T.passed + (A.ok === A.total ? 1 : 0);
-  var badge = $('badge');
-  badge.innerHTML = '<span class="dot"></span>' + (allOk ? 'All ' + n + ' checks pass' : p + ' of ' + n + ' checks pass');
-  badge.classList.toggle('bad', !allOk);
-  $('checks-sum').textContent = T.passed + ' of ' + T.total + ' verb phrases from the grammar\'s worked examples are rebuilt exactly by the conjugator; ' +
-    A.ok + ' of ' + A.total + ' lexicon verbs render a full conjugation table (' + A.cellsPerVerb + ' cells each) without errors.';
-  $('checks-body').innerHTML = '<li><span class="' + (A.ok === A.total ? 'ok' : 'no') + '">' + (A.ok === A.total ? '✓' : '✗') + '</span><span>Every lexicon verb renders its table: ' + A.ok + ' of ' + A.total +
-    (A.bad.length ? ' (' + esc(A.bad.join('; ')) + ')' : '') + '</span></li>' + T.results.map(function (r) {
-    return '<li><span class="' + (r.ok ? 'ok' : 'no') + '">' + (r.ok ? '✓' : '✗') + '</span><span>' + esc(r.source) + ' → <i>' + esc(r.got) + '</i>' + (r.ok ? '' : ' (expected <i>' + esc(r.expected) + '</i>)') + '</span></li>';
-  }).join('');
 }());
 </script>
 </body>

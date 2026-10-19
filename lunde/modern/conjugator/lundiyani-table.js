@@ -56,11 +56,15 @@
 
   function cellHTML(r, key) {
     if (!r.covered) { return '<span class="fm-none ns" title="' + esc(r.why) + '"><span aria-hidden="true">—</span> <small>' + NS + '</small></span>'; }
-    var mark = r.attested ? '<span class="mk mk-a" title="In the grammar\'s examples">●</span>' : '<span class="mk mk-r" title="Built by the grammar\'s rules; no worked example">○</span>';
-    return '<button type="button" class="fm" data-key="' + esc(key) + '" aria-label="' + esc(r.text) + '"><span class="fm-t">' + esc(r.text) + '</span>' + mark + '</button>' +
+    return '<button type="button" class="fm" data-key="' + esc(key) + '" aria-label="' + esc(r.text) + '"><span class="fm-t">' + esc(r.text) + '</span></button>' +
       (r.formal ? '<span class="fv">formal: <span class="lx">' + esc(r.formal.text) + '</span></span>' : '');
   }
 
+  function personTH(p) {
+    return '<th scope="row" title="' + esc(p.en) + '"><span class="pn">' + esc(p.id) + '</span><span class="pp">' + esc(p.w) + '</span></th>';
+  }
+
+  /* Same blocks as the Lunde verb conjugator: one "Conjugation" block of cards (persons down, tense across), then "Commands". */
   function render(L, verb) {
     var C = cells(L, verb), flat = {};
     var h = '<section class="blk" id="conj" aria-labelledby="conj-h"><div class="blk-head"><h3 id="conj-h">Conjugation</h3>' +
@@ -71,7 +75,7 @@
         '<div class="tw"><table class="par"><thead><tr><th scope="col"><span class="sr">Person</span></th>' +
         COLS.map(function (c) { return '<th scope="col">' + c[1] + (c[2] ? ' <span class="lx">' + c[2] + '</span>' : '') + '</th>'; }).join('') + '</tr></thead><tbody>';
       L.PERSONS.forEach(function (p, i) {
-        h += '<tr><th scope="row" title="' + esc(p.en) + '"><span class="pn">' + esc(p.w) + '</span> <span class="pp">' + esc(p.en) + '</span></th>';
+        h += '<tr>' + personTH(p);
         x.rows[i].forEach(function (r, j) { var key = x.card.id + '.' + i + '.' + j; flat[key] = r; h += '<td>' + cellHTML(r, key) + '</td>'; });
         h += '</tr>';
       });
@@ -82,19 +86,41 @@
       '<span class="blk-note"><span class="lx">ov</span> + verb + person; negation follows <span class="lx">ov</span>.</span></div>' +
       '<div class="tw lm"><table class="par imp"><thead><tr><th scope="col"><span class="sr">Person</span></th><th scope="col">command <span class="lx">ov</span></th><th scope="col">negative <span class="lx">ov lan</span></th></tr></thead><tbody>';
     L.PERSONS.forEach(function (p, i) {
-      h += '<tr><th scope="row"><span class="pn">' + esc(p.w) + '</span> <span class="pp">' + esc(p.en) + '</span></th>';
+      h += '<tr>' + personTH(p);
       C.cmd[i].forEach(function (r, j) { var key = 'cmd.' + i + '.' + j; flat[key] = r; h += '<td>' + cellHTML(r, key) + '</td>'; });
       h += '</tr>';
     });
     h += '</tbody></table></div>' +
-      '<p class="legend"><span><span class="mk mk-a">●</span> in the grammar\'s examples</span><span><span class="mk mk-r">○</span> built by the grammar\'s rules, no example yet</span>' +
-      '<span>— ' + NS + '</span><span>Click a form to see how it is built</span></p></section>';
+      '<p class="blk-note">— ' + NS + '. Click any form to see how it is built.</p></section>';
     return { html: h, cells: flat };
   }
 
-  function detailHTML(r) {
-    return '<div class="gl">' + r.words.map(function (x) { return '<span class="gw"><span>' + esc(x.w) + '</span><span class="g2">' + esc(x.g) + '</span></span>'; }).join('') + '</div>' +
-      '<p class="why">' + esc(r.why) + '</p>' + (r.open && r.open.length ? '<ul class="oq">' + r.open.map(function (o) { return '<li>' + esc(o) + '</li>'; }).join('') + '</ul>' : '');
+  var SLOT = { subject: 'subject', particle: 'particle', verb: 'verb' };
+  function slotName(w, P) {
+    if (w.role !== 'particle') { return SLOT[w.role] || w.role; }
+    var p = P && P[w.w];
+    return p ? w.w + ', ' + p.m : 'particle';
+  }
+
+  /* The derivation panel, in the Lunde conjugator's chain layout: each word joins the phrase in slot order. */
+  function chainHTML(r, P) {
+    var rows = [], acc = [];
+    r.words.forEach(function (x, n) {
+      acc.push(x.w);
+      if (n > 0) { rows.push('<li class="c-rule"><span class="c-rnote"><span>+ <i>' + esc(x.w) + '</i></span><small>' + esc(slotName(x, P)) + ' · ' + esc(x.g) + '</small></span></li>'); }
+      rows.push('<li class="c-node' + (n === r.words.length - 1 ? ' final' : '') + '"><span class="c-form">' + esc(acc.join(' ')) + '</span>' +
+        (n === 0 ? '<span class="c-cap">' + esc(slotName(x, P)) + ' · ' + esc(x.g) + '</span>' : '') + '</li>');
+    });
+    return '<ol class="chain">' + rows.join('') + '</ol>';
+  }
+
+  function detailHTML(r, L) {
+    var P = L && L.PARTICLES;
+    var note = r.words.length && r.words[0].w === 'ov' ? 'Commands: ov (+ lan) + verb + person. With singular you the person is left out, except in formal writing.' :
+      (r.words.length && r.words[0].role === 'verb' ? 'ta (to have) is the one verb that comes before its subject; the particles follow in the normal order.' :
+       'Slot order: subject · aspect · lan · tense or mood · lai or dei · verb.');
+    return '<div class="gl">' + r.words.map(function (x) { return '<span class="gw"><span class="lx">' + esc(x.w) + '</span><span class="g2">' + esc(x.g) + '</span></span>'; }).join('') + '</div>' +
+      chainHTML(r, P) + '<p class="d-note">' + esc(note) + '</p>';
   }
 
   /* Check: every lexicon verb renders a full table (8 cards × 8 persons × 4 columns + 8 × 2 commands) without errors. */

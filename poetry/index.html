@@ -61,10 +61,11 @@ button{font:inherit;color:inherit}
 .epi{margin:0 auto;max-width:27em;text-align:left;font-style:italic;font-size:21px;line-height:1.6;text-wrap:pretty}
 .attr{margin:20px auto 0;max-width:27em;text-align:right;font-size:17px;color:var(--muted)}
 .epi-tr{margin:26px auto 0;max-width:30em;text-align:left;font-size:18px;line-height:1.6;color:var(--ink2);padding-top:20px;border-top:1px solid var(--rule)}
-.tbtn{margin-top:26px;background:none;border:0;min-height:44px;padding:0 8px;font-size:18px;color:var(--ink);cursor:pointer}
-.tbtn[aria-pressed="true"]{color:var(--red)}
+/* the quote's translate toggle: a small control above the quote, on the right, styled like the poems' controls */
+.epi-bar{max-width:27em;margin:-30px auto 6px;display:flex;justify-content:flex-end;font-size:21px}
+.epi-bar .ctl{font-size:13px}
 .enter{display:inline-block;margin-top:34px;padding-block:10px;text-decoration:none;font-size:18px}
-.enter:hover,.tbtn:hover{color:var(--red)}
+.enter:hover{color:var(--red)}
 .coll-open{margin:10px 0 30px;padding-bottom:22px;border-bottom:1px solid var(--rule);text-align:center}.coll-open .co-es{margin:0;font-size:19px;line-height:1.7;letter-spacing:.06em}.coll-open .co-en{margin:12px 0 0;font-size:15px;line-height:1.6;letter-spacing:.05em;font-style:italic;color:var(--ink2)}
 .pref-lead{margin:6px 0 24px;font-size:25px;line-height:1.4;font-style:italic;text-wrap:balance}
 .pref p{margin:0 0 14px;line-height:1.65}
@@ -1473,10 +1474,10 @@ en llanto [[supernova|6]], ardo y me muero.
       '<article class="sheet narrow pref" id="preface-sheet" aria-label="' + UI.preface + '">' +
         '<div class="front">' +
           '<h1 class="sitename">ALEX BAHIA POETRY</h1><div class="redrule"></div>' +
+          '<div class="epi-bar"><button type="button" class="ctl" id="epiBtn" aria-pressed="false" aria-controls="epiTr" aria-label="' + UI.translate + ' the quote"><span class="box" aria-hidden="true">[&nbsp;]</span> ' + UI.translate + '</button></div>' +
           '<blockquote class="epi" lang="es">' + PIZARNIK.es + '</blockquote>' +
           '<p class="attr sc">— Alejandra Pizarnik</p>' +
           '<div class="epi-tr" id="epiTr" lang="' + L + '" hidden>' + PIZARNIK[L] + '</div>' +
-          '<div><button type="button" class="tbtn sc" id="epiBtn" aria-pressed="false" aria-controls="epiTr">' + UI.translate + '</button></div>' +
         '</div>' +
         '<p class="pref-lead">' + P.lead + '</p>' +
         P.body.map(t => '<p>' + t + '</p>').join('') +
@@ -1513,7 +1514,7 @@ en llanto [[supernova|6]], ardo y me muero.
           '<span class="t' + (he ? ' he' : '') + (p.untitled ? ' u' : '') + '"' + (he ? ' dir="rtl" lang="he"' : '') + '>' + esc(p.title) + '</span>' +
           '<span class="d" aria-hidden="true"></span><span class="c" title="' + p.langs.join(', ') + '">' + p.codes + '</span></a></li>';
       }).join('') +
-      '<li class="ixbib"><a href="#bibliography"><span class="n"></span><span class="t">' + UI.bibliography + '</span><span class="d" aria-hidden="true"></span><span class="c"></span></a></li>' +
+      '<li><a href="#bibliography"><span class="n">' + String(POEMS.length + 1).padStart(2, '0') + '</span><span class="t">' + UI.bibliography + '</span><span class="d" aria-hidden="true"></span><span class="c"></span></a></li>' +
       '</ol></article>';
   }
 
@@ -1681,6 +1682,7 @@ en llanto [[supernova|6]], ardo y me muero.
     if (eb) {
       const on = eb.getAttribute('aria-pressed') !== 'true';
       eb.setAttribute('aria-pressed', String(on));
+      eb.querySelector('.box').innerHTML = '[' + (on ? 'x' : '&nbsp;') + ']';
       document.getElementById('epiTr').hidden = !on;
     }
   });

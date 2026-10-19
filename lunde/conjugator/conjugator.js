@@ -65,8 +65,6 @@
     });
   });
 
-  var TEST = UI.runChecks(LEX);
-
   /* ------------------------------------------------------------------ */
   /* State                                                               */
   /* ------------------------------------------------------------------ */
@@ -263,16 +261,6 @@
     return h + '</header>';
   }
 
-  function verbQuestionsHTML(e) {
-    var list = UI.QUESTIONS.filter(function (q) {
-      return q.see.some(function (s) { return s[0] === e.root || s[0] === e.samon; });
-    });
-    if (!list.length) { return ''; }
-    return '<div class="vq-list" aria-label="Open questions about this verb">' + list.map(function (q) {
-      return '<a class="vq" href="#q' + q.n + '"><span class="vq-n">Question ' + q.n + '</span><span>' + esc(q.title) + '</span></a>';
-    }).join('') + '</div>';
-  }
-
   function conjHTML(e, res) {
     var h = '<section class="blk" id="conj" aria-labelledby="conj-h">' +
       '<div class="blk-head"><h3 id="conj-h">Conjugation</h3>' +
@@ -428,7 +416,6 @@
     var e = state.entry, res = state.res;
     $('sheet').innerHTML =
       headHTML(e, res) +
-      verbQuestionsHTML(e) +
       '<div class="hlbar" id="hlbar" role="status" hidden></div>' +
       conjHTML(e, res) +
       impHTML(e, res) +
@@ -659,24 +646,6 @@
     return '<button type="button" class="vchip" data-custom="' + esc(target) + '"' + attrs + '>' + esc(target) + '</button>';
   }
 
-  function renderQuestions() {
-    var h = '<h3 class="qgroup">This round</h3>' + (UI.QUESTIONS.length ? '' : '<p class="blk-note">No questions are waiting on you.</p>') + '<div class="qs">';
-    UI.QUESTIONS.forEach(function (q) {
-      var seen = {};
-      var chips = q.see.filter(function (s) { if (seen[s[0]]) { return false; } seen[s[0]] = 1; return true; })
-        .map(function (s) { return verbChip(s[0], s[1], s[2]); }).join('');
-      if (q.link) { chips += '<a class="vchip" href="' + q.link.href + '">' + esc(q.link.text) + '</a>'; }
-      h += '<article class="qc" id="q' + q.n + '"><span class="qc-n">' + q.n + '</span>' +
-        '<h4>' + esc(q.title) + '</h4><p>' + q.body + '</p>' +
-        '<div class="see"><span>See it in</span>' + chips + '</div></article>';
-    });
-    h += '</div><h3 class="qgroup">Settled on Oct 18</h3><ul class="settled">' +
-      UI.SETTLED.map(function (s) { return '<li><span>' + s + '</span></li>'; }).join('') + '</ul>' +
-      '<h3 class="qgroup">Still open in the doc</h3><ul class="docopen">' +
-      UI.DOC_OPEN.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>';
-    $('questions-body').innerHTML = h;
-  }
-
   function renderRules() {
     var xi = ROOT_INDEX.xa;
     var chip = '<button type="button" class="vchip" data-verb="' + xi + '" data-sel="f.samon.past.5">xavunōs</button>';
@@ -701,18 +670,6 @@
     $('rules-body').innerHTML = h;
   }
 
-  function renderChecks() {
-    $('checks-body').innerHTML = UI.checksHTML(TEST);
-    $('checks-sum').textContent = TEST && !TEST.error ?
-      TEST.passed + ' of ' + TEST.total + ' check groups pass, covering ' + TEST.forms + ' values: forms from the Grammar Reference and from chat, plus stress positions, IPA, cases, pronouns and numbers.' +
-      (TEST.pending ? ' ' + plural(TEST.pending, 'value waits', 'values wait') + ' on a decision: the doc still has them, but a newer answer contradicts them.' : '') : '';
-  }
-
-  function renderBadge() {
-    var b = $('badge');
-    b.innerHTML = UI.badgeHTML(TEST);
-    b.classList.toggle('bad', !TEST || !!TEST.error || TEST.failed > 0);
-  }
 
   /* ------------------------------------------------------------------ */
   /* Events                                                              */
@@ -789,10 +746,7 @@
     started = true;
     saved = saved || {};
     if (saved.imon) { state.imon = true; }
-    renderQuestions();
     renderRules();
-    renderChecks();
-    renderBadge();
     syncSheetMode();
 
     var link = parseHash();

@@ -3,15 +3,40 @@
 <head>
   <meta charset="utf-8">
 <link rel="preload" href="../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Languages | Alex Bahia</title>
   <meta name="description" content="Alex Bahia's invented languages: Lunde (Old Lundian) and Lundiyani (Modern Lundian), each with its own page of tools: lexicon, grammar, conjugators and numbers.">
   <link rel="stylesheet" href="../assets/site.css">
   <style>
-    /* Overview: heading and text only; the sub-nav sits on top and each language's tools are on its own page. */
-    .lang-overview { max-width: 46rem; }
-    .lang-overview p { margin: 0 0 .9rem; }
-    .lang-overview .lang-coming { margin: 1.6rem 0; text-align: center; font-style: italic; font-size: 1.25rem; letter-spacing: .02em; }
+    /* Overview, laid out like the Poetry landing page (poetry/index.html, front view): a narrow centered sheet,
+       a spaced-capitals title over a short red rule, an italic lead, then plain reading text. Same palette and fonts. */
+    .lang-page {
+      --sheet:#FBF8F1; --ink:#211C17; --ink2:#4F463C; --muted:#74695C; --faint:#B5A892; --rule:#E2D8C6; --muted-desk:#665C50; --red:#A3241A;
+      --serif:'EB Garamond',Georgia,'Times New Roman',serif; --mono:'Courier Prime','Courier New',ui-monospace,monospace;
+      background: var(--sheet); color: var(--ink); font-family: var(--serif); font-size: 19px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .lang-page { --sheet:#221E19; --ink:#ECE4D4; --ink2:#CFC5B3; --muted:#A99D8B; --faint:#6A5F51; --rule:#3B342B; --muted-desk:#A99D8B; --red:#E5735E; }
+    }
+    /* the sub-nav as the Poetry bar: one row, 40px, rule under it */
+    .lang-page .lunde-nav { height: 40px; margin: 0 0 1.75rem; }
+    .lang-page .lunde-nav .lunde-sections { gap: 0 26px; }
+    .lang-page .lunde-nav .lunde-sections a { padding-block: 10px; color: var(--muted-desk); }
+    .lang-page .lunde-nav .lunde-sections a:hover { color: var(--ink); }
+    .lang-page .lunde-nav .lunde-sections a[aria-current="page"] { color: var(--red); border-bottom-color: var(--red); }
+    .lang-page .lunde-nav .lunde-tool { display: none; }
+    /* the sheet: Poetry's .sheet.narrow inside the card */
+    .lang-sheet { max-width: 604px; margin: 0 auto; }
+    .lang-front { text-align: center; }
+    .lang-page h1.sitename { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 19px; line-height: 1.6; letter-spacing: .38em; padding-left: .38em; text-transform: uppercase; color: var(--ink); }
+    .redrule { width: 36px; height: 1px; background: var(--red); margin: 22px auto 54px; }
+    .pref-lead { margin: 6px 0 24px; font-size: 25px; line-height: 1.4; font-style: italic; text-wrap: balance; }
+    .lang-sheet p { margin: 0 0 14px; line-height: 1.65; max-width: none; }
+    .lang-sheet strong { font-weight: 600; font-variant-caps: all-small-caps; letter-spacing: .1em; font-size: 1.05em; }
+    .lang-sheet .coming { margin: 22px 0; text-align: center; font-style: italic; }
+    .lang-sheet a { color: inherit; text-decoration-color: var(--faint); text-underline-offset: 3px; }
+    .lang-sheet a:hover { color: var(--red); }
+    @media (max-width: 640px) { .redrule { margin-bottom: 40px; } .pref-lead { font-size: 22px; } .lang-page { font-size: 18px; } }
   </style>
 </head>
 <body>
@@ -32,7 +57,7 @@
   </div>
 </header>
 <!-- site-header:end -->
-  <main id="main" class="wrap ab-card">
+  <div class="ab-card lang-page" id="main" tabindex="-1">
 <!-- lunde-nav:start -->
 <nav class="lunde-nav" aria-label="Languages">
   <ul class="lunde-sections">
@@ -43,13 +68,18 @@
   <ul class="lunde-tool" aria-hidden="true"></ul>
 </nav>
 <!-- lunde-nav:end -->
-    <h1>Languages</h1>
-    <section class="lang-overview" aria-label="Overview">
-      <p>Two invented languages, one old and one modern. <strong>Lunde (Old Lundian)</strong> is the old, formal register: its verbs come in three forms (samon, namon, exmon), its case marking is tripartite and it counts in base twelve. <strong>Lundiyani (Modern Lundian)</strong> is the modern form of Lunde: an isolating lingua franca, much later than Lunde and very different from it, whose verbs never change form.</p>
-      <p class="lang-coming">And more are coming.</p>
-      <p>Each language has its own lexicon, grammar and conjugators. Pick a language above; every form on these pages is built by rule from the grammar. Notebook pages for other invented languages are in the <a href="../gallery/">Gallery</a>.</p>
-    </section>
-  </main>
+    <main>
+      <article class="lang-sheet" aria-labelledby="lang-h">
+        <div class="lang-front">
+          <h1 class="sitename" id="lang-h">Languages</h1><div class="redrule"></div>
+        </div>
+        <p class="pref-lead">Two invented languages, one old and one modern.</p>
+        <p><strong>Lunde (Old Lundian)</strong> is the old, formal register: its verbs come in three forms (samon, namon, exmon), its case marking is tripartite and it counts in base twelve. <strong>Lundiyani (Modern Lundian)</strong> is the modern form of Lunde: an isolating lingua franca, much later than Lunde and very different from it, whose verbs never change form.</p>
+        <p class="coming">And more are coming.</p>
+        <p>Each language has its own lexicon, grammar and conjugators. Pick a language above; every form on these pages is built by rule from the grammar. Notebook pages for other invented languages are in the <a href="../gallery/">Gallery</a>.</p>
+      </article>
+    </main>
+  </div>
   <footer class="site-footer">
     <div class="wrap">
       <p>&copy; 2026 Alex Bahia</p>

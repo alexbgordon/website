@@ -1,54 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
 <link rel="preload" href="../../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lundiyani grammar | Alex Bahia</title>
-  <meta name="description" content="Grammar reference for Lundiyani, the modern form of Lunde: pronouns, word order, verb particles, nouns and numbers, questions, clauses, word formation and glossed example sentences.">
-  <link rel="stylesheet" href="../../assets/site.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
-  <style>
-    /* Page-scoped styles for the Lundiyani grammar page (fonts/colors borrowed from the Lunde pages). */
-    .ml { --lx: "Gentium Book Plus", Georgia, serif; --ui: var(--mono); --ink3: var(--muted); --line: var(--border); --soft: var(--bg); } /* theme: poetry palette via site.css */
-    .ml .lx { font-family: var(--lx); font-style: italic; font-size: 1.05em; }
-    .ml .meta { color: var(--muted); font-size: .95rem; margin: -.5rem 0 1rem; }
-    .ml .meta a { font-weight: 600; }
-    .ml-layout { display: grid; gap: 1.5rem 2.5rem; }
-    @media (max-width: 899px) { .ml-layout { grid-template-columns: minmax(0,1fr); } }
-    @media (min-width: 900px) { .ml-layout { grid-template-columns: 13rem minmax(0,1fr); } .ml-toc { position: sticky; top: 1rem; align-self: start; } }
-    .ml-toc { font-family: var(--ui); font-size: .9rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1rem; }
-    .ml-toc p { margin: 0 0 .4rem; font-weight: 700; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink3); }
-    .ml-toc ol { margin: 0; padding-left: 1.2rem; display: grid; gap: .2rem; }
-    .ml-toc a { text-decoration: none; overflow-wrap: anywhere; }
-    .ml-layout > * { min-width: 0; }
-    .ml-toc a:hover { text-decoration: underline; }
-    .mref { scroll-margin-top: 1rem; padding-top: .25rem; border-top: 1px solid var(--border); margin-bottom: 2.5rem; }
-    .mref:first-child { border-top: 0; }
-    .mref h2 { margin-top: 1rem; }
-    .mref h3 { margin-top: 1.5rem; scroll-margin-top: 1rem; }
-    .mref .lede { font-size: 1.1rem; }
-    .tbl-wrap { overflow-x: auto; margin: 1rem 0; }
-    .ref-table { border-collapse: collapse; font-size: .97rem; background: var(--surface); min-width: 18rem; }
-    .ref-table th, .ref-table td { border: 1px solid var(--line); padding: .4rem .7rem; text-align: left; vertical-align: top; }
-    .ref-table th { background: var(--soft); font-family: var(--ui); font-weight: 600; font-size: .85rem; color: var(--text-2); }
-    .ref-table.nums td, .ref-table.nums th { text-align: center; padding: .4rem .5rem; }
-    .ref-table.grid tbody td:first-child { font-family: var(--ui); }
-    ol.ex { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
-    ol.ex > li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: .7rem .9rem; }
-    .ex-tr { margin: 0 0 .35rem; font-weight: 600; }
-    .gl { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; }
-    .gl + .gl { margin-top: .5rem; padding-top: .5rem; border-top: 1px dashed var(--line); }
-    .gw { display: inline-grid; }
-    .g1 { font-size: 1.1rem; }
-    .g2 { font-family: var(--ui); font-size: .78rem; letter-spacing: .04em; color: var(--ink3); }
-    .abbr { background: var(--soft); border-radius: var(--radius); padding: .7rem .9rem; font-size: .95rem; }
-  </style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lundiyani grammar | Alex Bahia</title>
+<meta name="description" content="The rules of Lundiyani, the modern form of Lunde: sounds, word order, verb particles, pronouns, nouns, word formation, numbers, questions, clauses and glossed example sentences.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="../conjugator/lunde.css">
+<style>
+/* Grammar layout: a sticky table of contents beside one reading column; tools sit in panels inside it. */
+.gbench { display: grid; gap: 24px 40px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 980px) { .gbench { grid-template-columns: 196px minmax(0, 1fr); } }
+.toc { min-width: 0; }
+.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+.toc a { display: flex; gap: 10px; align-items: baseline; text-decoration: none; padding: 6px 8px; border-radius: 6px; color: var(--ink-2); font: 500 14px/1.3 var(--f-ui); }
+.toc a::before { counter-increment: toc; content: counter(toc); font: 600 11px/1 var(--f-ui); color: var(--ink-3); min-width: 1.2em; font-variant-numeric: tabular-nums; }
+.toc a:hover { background: var(--line-soft); color: var(--ink); }
+.toc a[aria-current="true"] { background: var(--ink); color: var(--bg); }
+.toc a[aria-current="true"]::before { color: inherit; opacity: .7; }
+@media (min-width: 980px) {
+  .toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow: auto; }
+}
+@media (max-width: 979px) {
+  .toc ol { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+  .toc li { flex: none; }
+  .toc a { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+}
+
+.gmain { min-width: 0; display: grid; gap: 64px; }
+.gsec { display: grid; gap: 18px; min-width: 0; scroll-margin-top: 12px; }
+.gsec > header { display: grid; gap: 6px; max-width: 72ch; }
+.gsec h2 { margin: 0; font: 800 clamp(24px, 2.8vw, 32px)/1.08 var(--f-ui); font-stretch: 118%; letter-spacing: -.01em; text-wrap: balance; }
+.gsec h3 { margin: 10px 0 0; font: 700 13px/1.2 var(--f-ui); font-stretch: 112%; letter-spacing: .12em; text-transform: uppercase; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.gsec p, .gsec li { max-width: 72ch; }
+.gsec p { margin: 0; }
+.gsec ul.notes, .gsec ol.rules { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.gsec i, .dt i, .tool i { font-family: var(--f-lx); font-size: 1.07em; }
+.sub { display: grid; gap: 12px; }
+
+/* data tables */
+.dt { border-collapse: collapse; width: 100%; font-size: 14px; }
+.dt th, .dt td { text-align: left; padding: 7px 10px; border-top: 1px solid var(--line-soft); vertical-align: baseline; }
+.dt thead th { border-top: 0; border-bottom: 1.5px solid var(--mc); font: 600 10.5px/1.25 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); vertical-align: bottom; }
+.dt tbody th { font-weight: 600; font-size: 13px; color: var(--ink-2); white-space: nowrap; }
+.dt td.w, .dt .w { font: italic 400 17px/1.3 var(--f-lx); color: var(--ink); }
+.dt td.ipa, .dt .ipa { font: 400 16px/1.3 var(--f-lx); color: var(--ink-2); white-space: nowrap; }
+.dt td.why { color: var(--ink-3); font-size: 13px; }
+.dt .exc { color: var(--q); }
+.dt .exc::after { content: "*"; font: 700 11px/1 var(--f-ui); vertical-align: .6em; margin-left: 1px; }
+.dt .pend { color: var(--q); }
+.dt .pend::after { content: "?"; font: 700 11px/1 var(--f-ui); vertical-align: .6em; margin-left: 1px; }
+.dt .dim { color: var(--ink-3); opacity: .55; }
+.dt caption { caption-side: bottom; text-align: left; padding-top: 8px; font-size: 12.5px; color: var(--ink-3); }
+.dt .g { vertical-align: -2px; margin-right: 6px; }
+.tag { font: 600 11px/1 var(--f-ui); letter-spacing: .06em; text-transform: uppercase; color: var(--mc); }
+.flag { display: inline-flex; gap: 6px; align-items: baseline; padding: 6px 10px; border-radius: 6px; background: var(--q-wash); font-size: 13.5px; text-decoration: none; }
+.flag b { font: 700 11px/1 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--q); }
+
+/* tools */
+.tool { display: grid; gap: 12px; padding: 16px; background: var(--panel); border: 1px solid var(--line-soft); border-radius: 12px; box-shadow: var(--shadow); min-width: 0; }
+.tool-h { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; justify-content: space-between; }
+.tool-h h4 { margin: 0; font: 700 14px/1.2 var(--f-ui); }
+.tool-h p { font-size: 13px; color: var(--ink-3); }
+.fields { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: end; }
+.field { display: grid; gap: 4px; min-width: 0; }
+.field label { font: 600 12px/1.2 var(--f-ui); color: var(--ink-2); }
+.field input[type="text"], .field input[type="number"], .field select {
+  box-sizing: border-box; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink);
+  font: italic 400 18px/1.2 var(--f-lx); min-width: 0; width: 100%;
+}
+.field input[type="number"], .field select { font: 400 15px/1.2 var(--f-ui); }
+.field.w1 { flex: 1 1 200px; }
+.field.w2 { flex: 0 1 140px; }
+.check { display: inline-flex; gap: 7px; align-items: center; font-size: 13.5px; color: var(--ink-2); padding-bottom: 9px; cursor: pointer; }
+.out { display: grid; gap: 10px; min-width: 0; }
+.out-err { color: var(--bad); font-size: 14px; margin: 0; }
+.big { font: italic 700 30px/1.15 var(--f-lx); overflow-wrap: anywhere; margin: 0; }
+.syl { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; }
+.syl span { display: grid; gap: 2px; justify-items: center; padding: 6px 10px 7px; border-radius: 8px; border: 1px solid var(--line-soft); background: var(--bg); min-width: 2.2em; }
+.syl b { font: italic 400 20px/1.1 var(--f-lx); }
+.syl small { font: 400 13px/1.1 var(--f-lx); color: var(--ink-3); }
+.syl .s1 { border-color: var(--ink); box-shadow: inset 0 -3px 0 var(--ink); }
+.syl .s1 b { font-weight: 700; }
+.syl .s2 { border-color: var(--ink-3); border-style: dashed; }
+.why { margin: 0; color: var(--ink-2); font-size: 14px; }
+.cellbox { border-top: 1px solid var(--line-soft); padding-top: 4px; }
+.cellbox .chain { margin-top: 6px; }
+.dt button.cf { border: 0; background: none; padding: 2px 4px; margin: -2px -4px; border-radius: 4px; cursor: pointer; font: inherit; color: inherit; text-align: left; }
+.dt button.cf:hover, .dt button.cf[aria-pressed="true"] { background: var(--mw); }
+.dt button.cf[aria-pressed="true"] { box-shadow: inset 0 0 0 1.5px var(--mc); }
+.breakdown { margin: 0; font-size: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.breakdown i { color: var(--ink); }
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px 28px; align-items: start; }
+.big.ipa { font-style: normal; font-weight: 400; font-size: 24px; color: var(--ink-2); }
+.gmain > *, .gsec > *, .sub > *, .pair > *, .tool > *, .out > * { min-width: 0; }
+.dt td.w { white-space: nowrap; }
+.dt td.wrap { white-space: normal; }
+a.fl { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+a.fl:hover { text-decoration-color: var(--ink-2); }
+.dt th.tag { padding-top: 14px; border-top: 0; }
+.c-rnote small { display: block; }
+
+/* Lundiyani: glossed examples (no Lunde counterpart). */
+ol.ex { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+ol.ex > li { padding: 10px 12px; border: 1px solid var(--line-soft); border-radius: 8px; background: var(--panel); max-width: none; }
+.ex-tr { margin: 0 0 6px !important; font-weight: 600; font-size: 14.5px; }
+.gl { display: flex; flex-wrap: wrap; gap: 3px 14px; }
+.gl + .gl { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--line); }
+.gw { display: inline-grid; }
+.g1 { font: italic 400 18px/1.25 var(--f-lx); }
+.g2 { font-family: 'Courier Prime', 'Courier New', monospace; font-size: 11.5px; letter-spacing: .04em; color: var(--ink-3); }
+.abbr { font-size: 13.5px; color: var(--ink-2); }
+.gsec td i { font-family: var(--f-lx); }
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css"><!-- alexbahia site: shared header -->
+<link rel="stylesheet" href="../conjugator/site-theme.css"><!-- alexbahia site: poetry-page palette and fonts -->
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
 <!-- site-header:start -->
 <header class="site-header">
   <div class="header-inner">
@@ -65,7 +137,7 @@
   </div>
 </header>
 <!-- site-header:end -->
-  <main id="main" class="wrap ab-card ml">
+<div class="tool-sheet ab-card" id="main" tabindex="-1">
 <!-- lunde-nav:start -->
 <nav class="lunde-nav" aria-label="Languages">
   <ul class="lunde-sections">
@@ -81,224 +153,346 @@
   </ul>
 </nav>
 <!-- lunde-nav:end -->
-    <h1>Lundiyani grammar (Modern Lundian)</h1>
-    <p class="meta">Lundiyani Grammar Reference &middot; Oct 14, 2026 &middot; Alex Bahia &middot; <a href="lexicon/">Lexicon</a> &middot; <a href="lundiyani-grammar-reference.pdf" download>Download the PDF</a> &middot; Lunde: <a href="../conjugator/">conjugator</a>, <a href="../conjugator/grammar.html">grammar</a></p>
-    <div class="ml-layout">
-      <nav class="ml-toc" aria-label="On this page">
-        <p>Contents</p>
-        <ol><li><a href="#overview">Overview and principles</a></li><li><a href="#pronouns">Pronouns and possession</a></li><li><a href="#word-order">Word order</a></li><li><a href="#verbs">Verbs and particles</a></li><li><a href="#nouns">Nouns, articles and numbers</a></li><li><a href="#questions">Questions</a></li><li><a href="#clauses">Clauses and commands</a></li><li><a href="#word-formation">Word formation</a></li><li><a href="#vocabulary">Vocabulary decisions</a></li><li><a href="#examples">Example sentences</a></li><li><a href="lexicon/">Lexicon (word list)</a></li></ol>
-      </nav>
-      <div class="ml-body">
-    <section class="mref" id="overview" aria-labelledby="overview-h">
-      <h2 id="overview-h">Overview and principles</h2>
-<p class="lede">Lundiyani is the modern form of Lunde (Old Lundian): an isolating lingua franca spoken across the conworld, much later than Lunde and very different from it.</p>
-<ul>
-<li><strong>History.</strong> Many peoples speak it, so it has dialect and register doublets, borrowings, and changes from Lunde that aren&#x27;t always regular. The imperfection is intended.</li>
-<li><strong>Type.</strong> Verbs never change form. Tense, aspect, mood and negation are separate particles. The only grammatical suffixes are possessive -de and the plurals -i, -en and -nen.</li>
-<li><strong>Etymology.</strong> Most modern words have no worked-out etymology, and none is needed.</li>
-<li><strong>Working method.</strong> New forms are checked against the rules below. Only contradictions with a stated rule and real ambiguities get flagged.</li>
-<li><strong>Sounds.</strong> There is no h sound; Old h is lost (Old hara → ara). x is a different sound.</li>
-<li><strong>Spelling (Oct 18):</strong> <span class="lx">ł</span> = Welsh ll; <span class="lx">xl</span> across a word boundary is <span class="lx">x</span> + <span class="lx">l</span> (<span class="lx">kaxli</span>, from kaxi + -li); <span class="lx">ğ</span> replaces <span class="lx">gy</span>. <small class="upd">The PDF still writes xl and gy.</small></li>
-</ul>
-<p>The full word list is in the <a href="lexicon/">Lexicon</a>.</p>
-    </section>
-    <section class="mref" id="pronouns" aria-labelledby="pronouns-h">
-      <h2 id="pronouns-h">Pronouns and possession</h2>
-<p class="lede">Pronouns have one form for subject and object; possessives add -de.</p>
-<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Person</th><th scope="col">Pronoun</th><th scope="col">Possessive</th></tr></thead><tbody>
-<tr><td>1st singular</td><td class="lx">i</td><td>ide (my)</td></tr>
-<tr><td>2nd singular</td><td class="lx">o</td><td>ode (your)</td></tr>
-<tr><td>3rd singular, animate</td><td class="lx">a</td><td>ade (his, her)</td></tr>
-<tr><td>3rd singular, inanimate</td><td class="lx">ne</td><td>nede (its)</td></tr>
-<tr><td>1st plural</td><td class="lx">ilie</td><td>iliede (our)</td></tr>
-<tr><td>2nd plural</td><td class="lx">ole</td><td>olede (your)</td></tr>
-<tr><td>3rd plural, animate</td><td class="lx">ale</td><td>alede (their)</td></tr>
-<tr><td>3rd plural, inanimate</td><td class="lx">nilie</td><td>niliede (their)</td></tr>
-</tbody></table></div>
-<ul>
-<li>-de attaches to any word, nouns included: i onde osili (the person&#x27;s eyes).</li>
-<li>-de is a remnant of the Lunde genitive (kide, ude, dade).</li>
-<li>Each other: on-a-oni. ale lau on-a-oni (they love each other).</li>
-<li>Reflexive: amon. a lo kanxi amon (she looked at herself).</li>
-</ul>
-    </section>
-    <section class="mref" id="word-order" aria-labelledby="word-order-h">
-      <h2 id="word-order-h">Word order</h2>
-<p class="lede">The basic order is subject, verb, object, and modifiers come before what they modify.</p>
-<ul>
-<li>Before the noun: articles, demonstratives, possessors and adjectives. nei kawe on (this tall person), ide kora (my cat).</li>
-<li>Before the verb: negation and every tense, aspect or mood particle.</li>
-<li>After the noun: relative clauses. i on xaon lo lai yada (the person who was singing).</li>
-<li>At the end: the question particle me.</li>
-<li>Prepositions are separate words. No word attaches to another except the suffix -de and the plural endings.</li>
-<li>Exceptions: ta (to have) and commands put the verb before the subject.</li>
-</ul>
-<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Preposition</th><th scope="col">Meaning</th><th scope="col">Example</th></tr></thead><tbody>
-<tr><td class="lx">nai</td><td>in, at, on</td><td>nai ci louba (in the bottle)</td></tr>
-<tr><td class="lx">an</td><td>to, towards</td><td>an ci pay (to the village)</td></tr>
-<tr><td class="lx">de</td><td>from, of</td><td>de ci kala (from the sea)</td></tr>
-<tr><td class="lx">am</td><td>with</td><td>am ide kiwuru (with my dog)</td></tr>
-<tr><td class="lx">amb</td><td>by (the agent)</td><td>amb ni wakti (by the warriors)</td></tr>
-<tr><td class="lx">on</td><td>for</td><td>on o (for you)</td></tr>
-<tr><td class="lx">ewa</td><td>about</td><td>ewa o (about you)</td></tr>
-<tr><td class="lx">anta</td><td>before</td><td>anta o lo luran (before you came)</td></tr>
-</tbody></table></div>
-    </section>
-    <section class="mref" id="verbs" aria-labelledby="verbs-h">
-      <h2 id="verbs-h">Verbs and particles</h2>
-<p class="lede">Verbs never change form; tense, aspect, mood and negation are separate particles between the subject and the verb, and they combine freely.</p>
-<div class="tbl-wrap"><table class="ref-table slots"><thead><tr><th scope="col">Subject</th><th scope="col">Aspect</th><th scope="col">Negation</th><th scope="col">Tense or mood</th><th scope="col">lai, dei</th><th scope="col">Verb</th><th scope="col">Object</th><th scope="col">End</th></tr></thead><tbody>
-<tr><td class="lx">i</td><td class="lx">tefri, talei, mai, kiena</td><td class="lx">lan</td><td class="lx">lo, na, lei</td><td class="lx">lai, dei</td><td class="lx">vera</td><td class="lx">ne</td><td class="lx">me</td></tr>
-</tbody></table></div>
-<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Particle</th><th scope="col">Meaning</th><th scope="col">Example</th></tr></thead><tbody>
-<tr><td class="lx">(none)</td><td>present</td><td>i vera ne (I do it)</td></tr>
-<tr><td class="lx">lo</td><td>past</td><td>i lo lau o (I loved you)</td></tr>
-<tr><td class="lx">na</td><td>future</td><td>i na lau o (I will love you)</td></tr>
-<tr><td class="lx">lai + verb</td><td>progressive</td><td>i lo lai vera ne (I was doing it)</td></tr>
-<tr><td class="lx">dei + verb</td><td>passive</td><td>ci pay lo dei raxavi (the village was destroyed)</td></tr>
-<tr><td class="lx">tefri</td><td>perfect</td><td>i tefri lo eden (I have eaten)</td></tr>
-<tr><td class="lx">tefri lo lai</td><td>past perfect</td><td>i tefri lo lai eden (I had eaten)</td></tr>
-<tr><td class="lx">talei</td><td>habitual, “used to”</td><td>i talei lo yada (I used to sing)</td></tr>
-<tr><td class="lx">mai</td><td>just now</td><td>ilie mai lo eden (we just ate)</td></tr>
-<tr><td class="lx">kiena</td><td>not yet, with lan</td><td>ale kiena lan lo eden (they haven’t eaten yet)</td></tr>
-<tr><td class="lx">lei</td><td>conditional</td><td>as o lei luran, i lei lai kuali (if you came, I would be happy)</td></tr>
-<tr><td class="lx">lan</td><td>negation</td><td>i lan lo lai valia (I wasn’t sleeping)</td></tr>
-</tbody></table></div>
-<ul>
-<li>lai is also the copula (i lo lai kili, I was young) and, at the start of a sentence, means “there is”: lai anei nai ci louba (there is water in the bottle); negated, lan lai anei (there’s no water).</li>
-<li>lan comes after kiena and tefri, which work like adverbs: ale kiena lan lo eden (they haven’t eaten yet).</li>
-<li>A modal or second verb takes the bare verb: i lan sa valia (I can’t sleep), ilie mail kapa (we need to talk).</li>
-<li>Passive: tense + dei + verb, with amb for the agent. ci pay lo dei raxavi amb ni wakti (the village was destroyed by the warriors); i lo dei fastixi (I was blinded). dei comes from Old daze (by him or her), the agent in the Old passive of be + participle + ablative.</li>
-</ul>
-<h3 id="ta">ta (to have)</h3>
-<p>ta is the one verb that comes before its subject; particles and the object follow in the normal order.</p>
-<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Lundiyani</th><th scope="col">Meaning</th></tr></thead><tbody>
-<tr><td class="lx">ta i kora</td><td>I have a cat</td></tr>
-<tr><td class="lx">ta i lo kora</td><td>I had a cat</td></tr>
-<tr><td class="lx">ta i lan kora</td><td>I don&#x27;t have a cat</td></tr>
-<tr><td class="lx">ta o kora me?</td><td>Do you have a cat?</td></tr>
-<tr><td class="lx">ta nei kawe on re kiwuri</td><td>This tall person has two dogs</td></tr>
-</tbody></table></div>
-    </section>
-    <section class="mref" id="nouns" aria-labelledby="nouns-h">
-      <h2 id="nouns-h">Nouns, articles and numbers</h2>
-<p class="lede">Plural nouns take -i, articles come from Lunde, and the numbers are the Lunde ones, unchanged.</p>
-<ul>
-<li>Plural -i: osil → osili (eyes), kiwuru → kiwuri (dogs), kora → kori (cats), on → oni (people).</li>
-<li>Inanimate nouns take -en after a consonant and -nen after a vowel: skin → skinen (books), louba → loubanen (bottles). Irregular: yami → yamo (feet). After any number above one the noun is plural: re kiwuri (two dogs).</li>
-<li>Articles: the Lunde set without its accents (table below). Many speakers also use i with inanimate nouns.</li>
-</ul>
-<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Article</th><th scope="col">Animate</th><th scope="col">Inanimate</th><th scope="col">Plural</th></tr></thead><tbody>
-<tr><td>the</td><td class="lx">i</td><td class="lx">ci</td><td class="lx">ni</td></tr>
-<tr><td>a, some</td><td class="lx">ia</td><td class="lx">an</td><td class="lx">na</td></tr>
-</tbody></table></div>
-<p>an (a) and an (to) share one form; context tells them apart.</p>
-<ul>
-<li>Adjectives after lai: -de marks a permanent quality such as color or size, and only in a plain “X is ADJ” sentence: i onde osili lai lasode (the person’s eyes are blue). It never appears before a noun (ko kiwuru, a big dog) or in comparisons. Without -de the word names a state or an impression: i lai kuali, literally “I am happiness” (kuali = happy, happiness).</li>
-<li>Comparison: kaw + adjective + da. i wuru lai kaw ko da i kiwuru (the wolf is bigger than the dog).</li>
-<li>Superlative: i kaw + adjective. a lai i kaw leia on nai ci payi’an (she is the most beautiful person in the city).</li>
-</ul>
-<p>Numbers count in base twelve, as in Lunde. Before a noun the bare form is used; when counting, é- goes in front (é-na, é-re). Zero is ułe.</p>
-<div class="tbl-wrap"><table class="ref-table nums"><thead><tr><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th><th scope="col">9</th><th scope="col">10</th><th scope="col">11</th><th scope="col">12</th></tr></thead>
-<tbody><tr><td class="lx">ułe</td><td class="lx">na</td><td class="lx">re</td><td class="lx">ara</td><td class="lx">du</td><td class="lx">jai</td><td class="lx">jau</td><td class="lx">isa</td><td class="lx">wena</td><td class="lx">fisa</td><td class="lx">dion</td><td class="lx">fyu</td><td class="lx">sion</td></tr></tbody></table></div>
-<p>Powers of twelve: sion (12), iyion (144), galation (1,728), ayation (20,736). Numbers are built as in Lunde: resion (24), sion-na (13). Try any number in the <a href="numbers.html">Lundiyani numbers</a> tool. <small class="upd">(Update, Oct 18, 2026: these are Alex’s current forms; the rules are the Lunde ones, the words have changed in pronunciation. The PDF has na, ra, ara, du, jayu, java, isa, gvena, fisa, dion, fiú, sión and sión, igyión, galatión, ayatión, and no zero.)</small></p>
-    </section>
-    <section class="mref" id="questions" aria-labelledby="questions-h">
-      <h2 id="questions-h">Questions</h2>
-<p class="lede">Yes/no questions end in me; question words stay where the answer would go, or move to the front.</p>
-<ul>
-<li>o lo vera ne me? (Did you do it?)</li>
-<li>o lai vera xa? or xa o lai vera? (What are you doing?) In place is more grammatical; both are common.</li>
-<li>xaon lau o? (Who loves you?) A subject question word is already in place at the start.</li>
-<li>Questions with a question word take no me.</li>
-</ul>
-<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th></tr></thead><tbody>
-<tr><td class="lx">xa</td><td>what</td></tr>
-<tr><td class="lx">xaon</td><td>who</td></tr>
-<tr><td class="lx">maxa</td><td>where</td></tr>
-<tr><td class="lx">xar</td><td>when (also: near)</td></tr>
-<tr><td class="lx">anxa</td><td>why</td></tr>
-<tr><td class="lx">ała</td><td>how</td></tr>
-<tr><td class="lx">xataw</td><td>how many, how much</td></tr>
-<tr><td class="lx">xati</td><td>what kind</td></tr>
-</tbody></table></div>
-    </section>
-    <section class="mref" id="clauses" aria-labelledby="clauses-h">
-      <h2 id="clauses-h">Clauses and commands</h2>
-<p class="lede">Subordinate clauses open with a conjunction; relative clauses use sa after the noun; commands are ov + verb + person.</p>
-<ul>
-<li>and: a before a consonant, ad before a vowel. ide kora ad ode kiwuru (my cat and your dog).</li>
-<li>when: xanarya after the main clause: a lo lai yada xanarya o lo luran (she was singing when you came). When the when-clause comes first, xar, though xanarya also works: xar i lo lai kili, i talei lo yada (when I was young, I used to sing).</li>
-<li>if: as, with lei in both clauses. as o lei luran, i lei lai kuali (if you came, I would be happy).</li>
-<li>Other conjunctions: ema (because), ant (but), anta (before), nes (until), dal or ana (while), no (or).</li>
-<li>Relative clauses: noun + sa + clause, as in Lunde, for people and things: i on sa yada lai ide bana (the person who sings is my brother). ci skin sa o lo sila lai leia (the book that you wrote is beautiful). xaon is also used for people: i on xaon lo lai yada lai kuali (the person who was singing is happy).</li>
-<li>That-clauses: xa. i so xa o na luran (I know that you will come).</li>
-</ul>
-<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Command</th><th scope="col">Meaning</th></tr></thead><tbody>
-<tr><td class="lx">ov lua</td><td>go! (formally ov lua o)</td></tr>
-<tr><td class="lx">ov lua ilie</td><td>let&#x27;s go</td></tr>
-<tr><td class="lx">ov lua a</td><td>let him or her go</td></tr>
-<tr><td class="lx">ov lua ale</td><td>let them go</td></tr>
-</tbody></table></div>
-<p>The person comes after the verb. With singular you it has fallen out of use (ov eden, eat!), but formal writing keeps it (ov eden o). Negation follows ov: ov lan lua ilie (let’s not go). ov keeps commands apart from o (you).</p>
-    </section>
-    <section class="mref" id="word-formation" aria-labelledby="word-formation-h">
-      <h2 id="word-formation-h">Word formation</h2>
-<p class="lede">A few productive suffixes build new words; unlike the particles, they are part of the word.</p>
-<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Pattern</th><th scope="col">Meaning</th><th scope="col">Examples</th></tr></thead><tbody>
-<tr><td class="lx">plain verb</td><td>experiencing</td><td>kana (see), kawa (hear), ampa (feel)</td></tr>
-<tr><td class="lx">-xi</td><td>doing it actively or on purpose</td><td>kanxi (look), kawxi (listen), ampxi (touch)</td></tr>
-<tr><td class="lx">-kai</td><td>making someone do it</td><td>edenkai (feed), enakai (explain), iloarikai (make cry); works on any verb</td></tr>
-<tr><td class="lx">-on</td><td>person</td><td>yadaon (singer), kiliyon (child)</td></tr>
-<tr><td class="lx">-li</td><td>thing</td><td>kaxli (name), sipli (end)</td></tr>
-<tr><td class="lx">łe-</td><td>undoing</td><td>łera (forget), from lera (remember)</td></tr>
-</tbody></table></div>
-<p>nia (to make someone feel an emotion) is a separate verb, never a suffix: it can make someone sad, but not make them cry: o lo nia i drese (you made me sad).</p>
-<p>The indefinite words form a grid:</p>
-<div class="tbl-wrap"><table class="ref-table grid"><thead><tr><th scope="col"></th><th scope="col">any</th><th scope="col">every</th><th scope="col">some</th><th scope="col">no</th></tr></thead><tbody>
-<tr><td>person</td><td class="lx">avon</td><td class="lx">elion</td><td class="lx">naon</td><td class="lx">lanon</td></tr>
-<tr><td>thing</td><td class="lx">avali</td><td class="lx">eleili</td><td class="lx">li</td><td class="lx">lani</td></tr>
-<tr><td>place</td><td class="lx">avama</td><td class="lx">eleima</td><td class="lx">nama</td><td class="lx">lanma</td></tr>
-<tr><td>time</td><td class="lx">avaya (forever)</td><td class="lx">evai (always)</td><td class="lx">na-a-nari (sometimes)</td><td class="lx">levai (never)</td></tr>
-<tr><td>before a noun</td><td class="lx">ava</td><td class="lx">elei (elei teila, every day)</td><td class="lx"></td><td class="lx"></td></tr>
-</tbody></table></div>
-<!-- Alex's correction (Oct 18): added elei, "every" before a noun (elei teila, every day, Round 1 sentence 3); not in the Oct 14 PDF grid. ava ("any", det) added from Alex's lexicon. -->
-    </section>
-    <section class="mref" id="vocabulary" aria-labelledby="vocabulary-h">
-      <h2 id="vocabulary-h">Vocabulary decisions</h2>
-<p class="lede">These were settled on 2026-10-14 and override the master vocabulary list.</p>
-<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Word</th><th scope="col">Decision</th></tr></thead><tbody>
-<tr><td class="lx">keme, kemxi</td><td>smell, sniff (were kemekeme, kemxikemxi)</td></tr>
-<tr><td class="lx">ini</td><td>here (was ina)</td></tr>
-<tr><td class="lx">nama</td><td>somewhere (was naoma)</td></tr>
-<tr><td class="lx">xar</td><td>when? and near; xanarya is the conjunction “when”</td></tr>
-<tr><td class="lx">o, ole</td><td>you (singular), you (plural)</td></tr>
-<tr><td class="lx">ta</td><td>to have; ave is dropped</td></tr>
-<tr><td class="lx">kime</td><td>short; size words to revisit</td></tr>
-<tr><td class="lx">urane</td><td>to harm</td></tr>
-<tr><td class="lx">erane</td><td>to kill, from the Old namon irrana (irrasa, to grab)</td></tr>
-<tr><td class="lx">mana</td><td>spiritual energy; lawmana = to marry</td></tr>
-<tr><td class="lx">na, ra, ara…</td><td>numbers are the Lunde ones; re is outdated</td></tr>
-<tr><td class="lx">lurankai</td><td>to move someone; -kai and -xi are part of the word</td></tr>
-<tr><td class="lx">ov</td><td>command particle; replaces o so commands don’t look like “you”</td></tr>
-<tr><td class="lx">ara</td><td>three; Lundiyani has no h (Old hara)</td></tr>
-<tr><td class="lx">dei</td><td>passive particle</td></tr>
-<tr><td class="lx">amon</td><td>reflexive: herself, himself, itself</td></tr>
-<tr><td class="lx">adar, idar</td><td>to leave, to arrive; idari is outdated</td></tr>
-<tr><td class="lx">malai</td><td>parent (in general); family and animal words vary by region and all stay</td></tr>
-<tr><td class="lx">lala, lurani, tu&#x27;ali, taluv, tavnei, vantasi, xwitiwi, nivya</td><td>written without internal spaces; earlier spellings with spaces were typos</td></tr>
-</tbody></table></div>
-<ul>
-<li>Doublets (resa and akał, kaxi and kaxli, dal and ana…) are deliberate dialect or register variants. <small class="upd">(Update, Oct 18, 2026: kaxi and kaxli are no longer a doublet: kaxi = to name, a verb; kaxli = name, a noun.)</small><!-- Alex resolved kaxi/kaxli on 2026-10-18; the PDF text above is unchanged. --></li>
-<li>au and aw spell the same sound.</li>
-<li>Final a → ai happened in some words only; it is not a rule.</li>
-<li>Karen is not a word; a → al is not a rule.</li>
-</ul>
-    </section>
-    <section class="mref" id="examples" aria-labelledby="examples-h">
-      <h2 id="examples-h">Example sentences</h2>
-<p class="lede">The first elicited sentences, glossed word by word with two slips fixed (me in 9, ad in 13).</p>
-<h3 id="round-1">Round 1</h3>
+<div class="page">
+  <header class="mast">
+    <div class="mast-l">
+      <p class="eyebrow">Lundiyani · the modern form of Lunde · prototype</p>
+      <h1>Lundiyani grammar (Modern Lundian)</h1>
+      <p class="lede">Lundiyani is the modern form of Lunde (Old Lundian): an isolating lingua franca spoken across the conworld, much later than Lunde and very different from it. Many peoples speak it, so it has dialect and register doublets, borrowings, and changes from Lunde that aren&#x27;t always regular; the imperfection is intended. Verbs never change form, and the only grammatical suffixes are possessive <i>-de</i> and the plurals <i>-i</i>, <i>-en</i> and <i>-nen</i>. Most words have no worked-out etymology, and none is needed.</p>
+    </div>
+  </header>
+
+  <div class="gbench">
+    <nav class="toc" aria-label="Contents">
+      <ol>
+        <li><a href="#sounds">Sounds</a></li>
+        <li><a href="#word-order">Word order</a></li>
+        <li><a href="#verbs">Verbs</a></li>
+        <li><a href="#pronouns">Pronouns and possession</a></li>
+        <li><a href="#nouns">Nouns and adjectives</a></li>
+        <li><a href="#word-formation">Word formation</a></li>
+        <li><a href="#numbers">Numbers</a></li>
+        <li><a href="#questions">Questions</a></li>
+        <li><a href="#clauses">Clauses</a></li>
+        <li><a href="#vocabulary">Vocabulary</a></li>
+        <li><a href="#examples">Example sentences</a></li>
+      </ol>
+    </nav>
+
+    <main class="gmain">
+
+      <!-- 1. Sounds -->
+      <section class="gsec" id="sounds" aria-labelledby="sounds-h">
+        <header>
+          <p class="eyebrow">Phonology</p>
+          <h2 id="sounds-h">Sounds</h2>
+          <p class="lede">Lundiyani has lost the Lunde h, keeps x as its own sound, and writes ł and ğ as Lunde does.</p>
+        </header>
+        <ul class="notes">
+          <li>There is no h sound: Lunde h is lost (Lunde <i>hara</i> → <i>ara</i>, three). <i>x</i> is a different sound and stays.</li>
+          <li><i>au</i> and <i>aw</i> spell the same sound.</li>
+          <li>Final a → ai happened in some words only; it is not a rule.</li>
+        </ul>
+        <div class="sub">
+          <h3>Spelling</h3>
+          <ul class="notes">
+            <li><i>ł</i> is one sound, the Welsh ll.</li>
+            <li>A written <i>xl</i> is <i>x</i> + <i>l</i>, where a word in x meets a suffix in l: <i>kaxli</i> (kaxi + -li).</li>
+            <li><i>ğ</i> replaces <i>gy</i>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 2. Word order -->
+      <section class="gsec" id="word-order" aria-labelledby="word-order-h">
+        <header>
+          <p class="eyebrow">Syntax</p>
+          <h2 id="word-order-h">Word order</h2>
+          <p class="lede">The basic order is subject, verb, object, and modifiers come before what they modify.</p>
+        </header>
+        <ol class="rules">
+          <li>Before the noun: articles, demonstratives, possessors and adjectives. <i>nei kawe on</i> (this tall person), <i>ide kora</i> (my cat).</li>
+          <li>Before the verb: negation and every tense, aspect or mood particle.</li>
+          <li>After the noun: relative clauses. <i>i on xaon lo lai yada</i> (the person who was singing).</li>
+          <li>At the end: the question particle <i>me</i>.</li>
+          <li>Prepositions are separate words. No word attaches to another except the suffix <i>-de</i> and the plural endings.</li>
+          <li>Exceptions: <i>ta</i> (to have) and commands put the verb before the subject.</li>
+        </ol>
+        <div class="sub">
+          <h3>Prepositions</h3>
+          <div class="tw"><table class="dt"><thead><tr><th scope="col">Preposition</th><th scope="col">Meaning</th><th scope="col">Example</th></tr></thead><tbody>
+              <tr><td class="w">nai</td><td>in, at, on</td><td><i>nai ci louba</i> (in the bottle)</td></tr>
+              <tr><td class="w">an</td><td>to, towards</td><td><i>an ci pay</i> (to the village)</td></tr>
+              <tr><td class="w">de</td><td>from, of</td><td><i>de ci kala</i> (from the sea)</td></tr>
+              <tr><td class="w">am</td><td>with</td><td><i>am ide kiwuru</i> (with my dog)</td></tr>
+              <tr><td class="w">amb</td><td>by (the agent)</td><td><i>amb ni wakti</i> (by the warriors)</td></tr>
+              <tr><td class="w">on</td><td>for</td><td><i>on o</i> (for you)</td></tr>
+              <tr><td class="w">ewa</td><td>about</td><td><i>ewa o</i> (about you)</td></tr>
+              <tr><td class="w">anta</td><td>before</td><td><i>anta o lo luran</i> (before you came)</td></tr>
+            </tbody></table></div>
+        </div>
+      </section>
+
+      <!-- 3. Verbs -->
+      <section class="gsec" id="verbs" aria-labelledby="verbs-h">
+        <header>
+          <p class="eyebrow">Morphology</p>
+          <h2 id="verbs-h">Verbs</h2>
+          <p class="lede">Verbs never change form. Tense, aspect, mood and negation are separate particles between the subject and the verb, and they combine freely.</p>
+        </header>
+        <div class="sub">
+          <h3>Slot order</h3>
+          <div class="tw"><table class="dt"><thead><tr><th scope="col">Subject</th><th scope="col">Aspect</th><th scope="col">Negation</th><th scope="col">Tense or mood</th><th scope="col">lai, dei</th><th scope="col">Verb</th><th scope="col">Object</th><th scope="col">End</th></tr></thead><tbody>
+              <tr><td class="w">i</td><td class="w">tefri, talei, mai, kiena</td><td class="w">lan</td><td class="w">lo, na, lei</td><td class="w">lai, dei</td><td class="w">vera</td><td class="w">ne</td><td class="w">me</td></tr>
+            </tbody></table></div>
+        </div>
+        <div class="sub">
+          <h3>Particles</h3>
+          <div class="tw"><table class="dt"><thead><tr><th scope="col">Particle</th><th scope="col">Meaning</th><th scope="col">Example</th></tr></thead><tbody>
+              <tr><td class="w">(none)</td><td>present</td><td><i>i vera ne</i> (I do it)</td></tr>
+              <tr><td class="w">lo</td><td>past</td><td><i>i lo lau o</i> (I loved you)</td></tr>
+              <tr><td class="w">na</td><td>future</td><td><i>i na lau o</i> (I will love you)</td></tr>
+              <tr><td class="w">lai + verb</td><td>progressive</td><td><i>i lo lai vera ne</i> (I was doing it)</td></tr>
+              <tr><td class="w">dei + verb</td><td>passive</td><td><i>ci pay lo dei raxavi</i> (the village was destroyed)</td></tr>
+              <tr><td class="w">tefri</td><td>perfect</td><td><i>i tefri lo eden</i> (I have eaten)</td></tr>
+              <tr><td class="w">tefri lo lai</td><td>past perfect</td><td><i>i tefri lo lai eden</i> (I had eaten)</td></tr>
+              <tr><td class="w">talei</td><td>habitual, “used to”</td><td><i>i talei lo yada</i> (I used to sing)</td></tr>
+              <tr><td class="w">mai</td><td>just now</td><td><i>ilie mai lo eden</i> (we just ate)</td></tr>
+              <tr><td class="w">kiena</td><td>not yet, with lan</td><td><i>ale kiena lan lo eden</i> (they haven’t eaten yet)</td></tr>
+              <tr><td class="w">lei</td><td>conditional</td><td><i>as o lei luran, i lei lai kuali</i> (if you came, I would be happy)</td></tr>
+              <tr><td class="w">lan</td><td>negation</td><td><i>i lan lo lai valia</i> (I wasn’t sleeping)</td></tr>
+            </tbody></table></div>
+          <ul class="notes">
+            <li><i>lai</i> is also the copula (<i>i lo lai kili</i>, I was young) and, at the start of a sentence, means “there is”: <i>lai anei nai ci louba</i> (there is water in the bottle); negated, <i>lan lai anei</i> (there’s no water).</li>
+            <li><i>lan</i> comes after <i>kiena</i> and <i>tefri</i>, which work like adverbs: <i>ale kiena lan lo eden</i> (they haven’t eaten yet).</li>
+            <li>A modal or second verb takes the bare verb: <i>i lan sa valia</i> (I can’t sleep), <i>ilie mail kapa</i> (we need to talk).</li>
+          </ul>
+        </div>
+        <div class="sub">
+          <h3>Passive</h3>
+          <p>Tense + <i>dei</i> + verb, with <i>amb</i> for the agent: <i>ci pay lo dei raxavi amb ni wakti</i> (the village was destroyed by the warriors); <i>i lo dei fastixi</i> (I was blinded). <i>dei</i> comes from Lunde <i>daze</i> (by him or her), the agent in the Lunde passive of be + participle + ablative.</p>
+        </div>
+        <div class="sub" id="ta">
+          <h3>ta (to have)</h3>
+          <p><i>ta</i> is the one verb that comes before its subject; particles and the object follow in the normal order.</p>
+          <div class="tw"><table class="dt"><thead><tr><th scope="col">Lundiyani</th><th scope="col">Meaning</th></tr></thead><tbody>
+              <tr><td class="w">ta i kora</td><td>I have a cat</td></tr>
+              <tr><td class="w">ta i lo kora</td><td>I had a cat</td></tr>
+              <tr><td class="w">ta i lan kora</td><td>I don&#x27;t have a cat</td></tr>
+              <tr><td class="w">ta o kora me?</td><td>Do you have a cat?</td></tr>
+              <tr><td class="w">ta nei kawe on re kiwuri</td><td>This tall person has two dogs</td></tr>
+            </tbody></table></div>
+        </div>
+        <div class="sub" id="commands">
+          <h3>Commands</h3>
+          <p>Commands are <i>ov</i> + verb + person.</p>
+          <div class="tw"><table class="dt"><thead><tr><th scope="col">Command</th><th scope="col">Meaning</th></tr></thead><tbody>
+              <tr><td class="w">ov lua</td><td>go! (formally <i>ov lua o</i>)</td></tr>
+              <tr><td class="w">ov lua ilie</td><td>let&#x27;s go</td></tr>
+              <tr><td class="w">ov lua a</td><td>let him or her go</td></tr>
+              <tr><td class="w">ov lua ale</td><td>let them go</td></tr>
+            </tbody></table></div>
+          <ul class="notes">
+            <li>The person comes after the verb. With singular you it has fallen out of use (<i>ov eden</i>, eat!), but formal writing keeps it (<i>ov eden o</i>).</li>
+            <li>Negation follows <i>ov</i>: <i>ov lan lua ilie</i> (let’s not go).</li>
+            <li><i>ov</i> keeps commands apart from <i>o</i> (you).</li>
+          </ul>
+          <p class="blk-note">Every verb with every particle is in the <a href="conjugator/">verb conjugator</a>.</p>
+        </div>
+      </section>
+
+      <!-- 4. Pronouns and possession -->
+      <section class="gsec" id="pronouns" aria-labelledby="pronouns-h">
+        <header>
+          <p class="eyebrow">Pronouns</p>
+          <h2 id="pronouns-h">Pronouns and possession</h2>
+          <p class="lede">Pronouns have one form for subject and object; possessives add -de.</p>
+        </header>
+        <div class="tw"><table class="dt"><thead><tr><th scope="col">Person</th><th scope="col">Pronoun</th><th scope="col">Possessive</th></tr></thead><tbody>
+              <tr><td>1st singular</td><td class="w">i</td><td><i>ide</i> (my)</td></tr>
+              <tr><td>2nd singular</td><td class="w">o</td><td><i>ode</i> (your)</td></tr>
+              <tr><td>3rd singular, animate</td><td class="w">a</td><td><i>ade</i> (his, her)</td></tr>
+              <tr><td>3rd singular, inanimate</td><td class="w">ne</td><td><i>nede</i> (its)</td></tr>
+              <tr><td>1st plural</td><td class="w">ilie</td><td><i>iliede</i> (our)</td></tr>
+              <tr><td>2nd plural</td><td class="w">ole</td><td><i>olede</i> (your)</td></tr>
+              <tr><td>3rd plural, animate</td><td class="w">ale</td><td><i>alede</i> (their)</td></tr>
+              <tr><td>3rd plural, inanimate</td><td class="w">nilie</td><td><i>niliede</i> (their)</td></tr>
+            </tbody></table></div>
+        <ul class="notes">
+          <li><i>-de</i> attaches to any word, nouns included: <i>i onde osili</i> (the person&#x27;s eyes).</li>
+          <li><i>-de</i> is a remnant of the Lunde genitive (<i>kide, ude, dade</i>).</li>
+          <li>Each other: <i>on-a-oni</i>. <i>ale lau on-a-oni</i> (they love each other).</li>
+          <li>Reflexive: <i>amon</i>. <i>a lo kanxi amon</i> (she looked at herself).</li>
+        </ul>
+      </section>
+
+      <!-- 5. Nouns and adjectives -->
+      <section class="gsec" id="nouns" aria-labelledby="nouns-h">
+        <header>
+          <p class="eyebrow">Nouns, articles, adjectives</p>
+          <h2 id="nouns-h">Nouns and adjectives</h2>
+          <p class="lede">Plural nouns take -i, and the articles come from Lunde.</p>
+        </header>
+        <ul class="notes">
+          <li>Plural <i>-i</i>: <i>osil → osili</i> (eyes), <i>kiwuru → kiwuri</i> (dogs), <i>kora → kori</i> (cats), <i>on → oni</i> (people).</li>
+          <li>Inanimate nouns take <i>-en</i> after a consonant and <i>-nen</i> after a vowel: <i>skin → skinen</i> (books), <i>louba → loubanen</i> (bottles). Irregular: <i>yami → yamo</i> (feet).</li>
+          <li>After any number above one the noun is plural: <i>re kiwuri</i> (two dogs).</li>
+        </ul>
+        <div class="sub">
+          <h3>Articles</h3>
+          <p>The Lunde set without its accents. Many speakers also use <i>i</i> with inanimate nouns.</p>
+          <div class="tw"><table class="dt"><thead><tr><th scope="col"></th><th scope="col">Animate</th><th scope="col">Inanimate</th><th scope="col">Plural</th></tr></thead><tbody>
+              <tr><td>the</td><td class="w">i</td><td class="w">ci</td><td class="w">ni</td></tr>
+              <tr><td>a, some</td><td class="w">ia</td><td class="w">an</td><td class="w">na</td></tr>
+            </tbody></table></div>
+          <p class="blk-note"><i>an</i> (a) and <i>an</i> (to) share one form; context tells them apart.</p>
+        </div>
+        <div class="sub">
+          <h3>Adjectives</h3>
+          <ul class="notes">
+            <li>After <i>lai</i>, <i>-de</i> marks a permanent quality such as color or size, and only in a plain “X is ADJ” sentence: <i>i onde osili lai lasode</i> (the person’s eyes are blue). It never appears before a noun (<i>ko kiwuru</i>, a big dog) or in comparisons.</li>
+            <li>Without <i>-de</i> the word names a state or an impression: <i>i lai kuali</i>, literally “I am happiness” (<i>kuali</i> = happy, happiness).</li>
+            <li>Comparison: <i>kaw</i> + adjective + <i>da</i>. <i>i wuru lai kaw ko da i kiwuru</i> (the wolf is bigger than the dog).</li>
+            <li>Superlative: <i>i kaw</i> + adjective. <i>a lai i kaw leia on nai ci payi’an</i> (she is the most beautiful person in the city).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 6. Word formation -->
+      <section class="gsec" id="word-formation" aria-labelledby="word-formation-h">
+        <header>
+          <p class="eyebrow">Derivation</p>
+          <h2 id="word-formation-h">Word formation</h2>
+          <p class="lede">A few productive suffixes build new words; unlike the particles, they are part of the word.</p>
+        </header>
+        <div class="tw"><table class="dt"><thead><tr><th scope="col">Pattern</th><th scope="col">Meaning</th><th scope="col">Examples</th></tr></thead><tbody>
+              <tr><td class="w">plain verb</td><td>experiencing</td><td><i>kana</i> (see), <i>kawa</i> (hear), <i>ampa</i> (feel)</td></tr>
+              <tr><td class="w">-xi</td><td>doing it actively or on purpose</td><td><i>kanxi</i> (look), <i>kawxi</i> (listen), <i>ampxi</i> (touch)</td></tr>
+              <tr><td class="w">-kai</td><td>making someone do it</td><td><i>edenkai</i> (feed), <i>enakai</i> (explain), <i>iloarikai</i> (make cry); works on any verb</td></tr>
+              <tr><td class="w">-on</td><td>person</td><td><i>yadaon</i> (singer), <i>kiliyon</i> (child)</td></tr>
+              <tr><td class="w">-li</td><td>thing</td><td><i>kaxli</i> (name), <i>sipli</i> (end)</td></tr>
+              <tr><td class="w">łe-</td><td>undoing</td><td><i>łera</i> (forget), from <i>lera</i> (remember)</td></tr>
+            </tbody></table></div>
+        <ul class="notes">
+          <li><i>nia</i> (to make someone feel an emotion) is a separate verb, never a suffix: it can make someone sad, but not make them cry: <i>o lo nia i drese</i> (you made me sad).</li>
+          <li><i>kaxi</i> = to name (a verb); <i>kaxli</i> = name (a noun).</li>
+          <li>Doublets (<i>resa</i> and <i>akał</i>, <i>dal</i> and <i>ana</i>…) are deliberate dialect or register variants.</li>
+        </ul>
+        <div class="sub">
+          <h3>Indefinite words</h3>
+          <div class="tw"><table class="dt"><thead><tr><th scope="col"></th><th scope="col">any</th><th scope="col">every</th><th scope="col">some</th><th scope="col">no</th></tr></thead><tbody>
+              <tr><td>person</td><td class="w">avon</td><td class="w">elion</td><td class="w">naon</td><td class="w">lanon</td></tr>
+              <tr><td>thing</td><td class="w">avali</td><td class="w">eleili</td><td class="w">li</td><td class="w">lani</td></tr>
+              <tr><td>place</td><td class="w">avama</td><td class="w">eleima</td><td class="w">nama</td><td class="w">lanma</td></tr>
+              <tr><td>time</td><td class="w">avaya (forever)</td><td class="w">evai (always)</td><td class="w">na-a-nari (sometimes)</td><td class="w">levai (never)</td></tr>
+              <tr><td>before a noun</td><td class="w">ava</td><td class="w">elei (<i>elei teila</i>, every day)</td><td class="w"></td><td class="w"></td></tr>
+            </tbody></table></div>
+        </div>
+      </section>
+
+      <!-- 7. Numbers -->
+      <section class="gsec" id="numbers" aria-labelledby="numbers-h">
+        <header>
+          <p class="eyebrow">Numbers</p>
+          <h2 id="numbers-h">Numbers</h2>
+          <p class="lede">Lundiyani counts in base twelve, as Lunde does, with the Lunde rules.</p>
+        </header>
+        <div class="tw"><table class="dt"><thead><tr><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th><th scope="col">9</th><th scope="col">10</th><th scope="col">11</th><th scope="col">12</th></tr></thead><tbody>
+              <tr><td class="w">ułe</td><td class="w">na</td><td class="w">re</td><td class="w">ara</td><td class="w">du</td><td class="w">jai</td><td class="w">jau</td><td class="w">isa</td><td class="w">wena</td><td class="w">fisa</td><td class="w">dion</td><td class="w">fyu</td><td class="w">sion</td></tr>
+            </tbody></table></div>
+        <ul class="notes">
+          <li>Before a noun the bare form is used; when counting, <i>é-</i> goes in front (<i>é-na, é-re</i>). Zero is <i>ułe</i>.</li>
+          <li>Powers of twelve: <i>sion</i> (12), <i>iyion</i> (144), <i>galation</i> (1,728), <i>ayation</i> (20,736).</li>
+          <li>Numbers are built as in Lunde: <i>resion</i> (24), <i>sion-na</i> (13).</li>
+        </ul>
+        <p class="blk-note">Try any number in the <a href="numbers.html">Lundiyani numbers</a> tool.</p>
+      </section>
+
+      <!-- 8. Questions -->
+      <section class="gsec" id="questions" aria-labelledby="questions-h">
+        <header>
+          <p class="eyebrow">Syntax</p>
+          <h2 id="questions-h">Questions</h2>
+          <p class="lede">Yes/no questions end in me; question words stay where the answer would go, or move to the front.</p>
+        </header>
+        <ul class="notes">
+          <li><i>o lo vera ne me?</i> (Did you do it?)</li>
+          <li><i>o lai vera xa?</i> or <i>xa o lai vera?</i> (What are you doing?) In place is more grammatical; both are common.</li>
+          <li><i>xaon lau o?</i> (Who loves you?) A subject question word is already in place at the start.</li>
+          <li>Questions with a question word take no <i>me</i>.</li>
+        </ul>
+        <div class="tw"><table class="dt"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th></tr></thead><tbody>
+              <tr><td class="w">xa</td><td>what</td></tr>
+              <tr><td class="w">xaon</td><td>who</td></tr>
+              <tr><td class="w">maxa</td><td>where</td></tr>
+              <tr><td class="w">xar</td><td>when (also: near)</td></tr>
+              <tr><td class="w">anxa</td><td>why</td></tr>
+              <tr><td class="w">ała</td><td>how</td></tr>
+              <tr><td class="w">xataw</td><td>how many, how much</td></tr>
+              <tr><td class="w">xati</td><td>what kind</td></tr>
+            </tbody></table></div>
+      </section>
+
+      <!-- 9. Clauses -->
+      <section class="gsec" id="clauses" aria-labelledby="clauses-h">
+        <header>
+          <p class="eyebrow">Syntax</p>
+          <h2 id="clauses-h">Clauses</h2>
+          <p class="lede">Subordinate clauses open with a conjunction; relative clauses use sa after the noun.</p>
+        </header>
+        <ul class="notes">
+          <li>and: <i>a</i> before a consonant, <i>ad</i> before a vowel. <i>ide kora ad ode kiwuru</i> (my cat and your dog).</li>
+          <li>when: <i>xanarya</i> after the main clause: <i>a lo lai yada xanarya o lo luran</i> (she was singing when you came). When the when-clause comes first, <i>xar</i>, though <i>xanarya</i> also works: <i>xar i lo lai kili, i talei lo yada</i> (when I was young, I used to sing).</li>
+          <li>if: <i>as</i>, with <i>lei</i> in both clauses. <i>as o lei luran, i lei lai kuali</i> (if you came, I would be happy).</li>
+          <li>Other conjunctions: <i>ema</i> (because), <i>ant</i> (but), <i>anta</i> (before), <i>nes</i> (until), <i>dal</i> or <i>ana</i> (while), <i>no</i> (or).</li>
+          <li>Relative clauses: noun + <i>sa</i> + clause, as in Lunde, for people and things: <i>i on sa yada lai ide bana</i> (the person who sings is my brother). <i>ci skin sa o lo sila lai leia</i> (the book that you wrote is beautiful). <i>xaon</i> is also used for people: <i>i on xaon lo lai yada lai kuali</i> (the person who was singing is happy).</li>
+          <li>That-clauses: <i>xa</i>. <i>i so xa o na luran</i> (I know that you will come).</li>
+        </ul>
+        <p class="blk-note">Commands are under <a class="fl" href="#commands">Verbs</a>.</p>
+      </section>
+
+      <!-- 10. Vocabulary -->
+      <section class="gsec" id="vocabulary" aria-labelledby="vocabulary-h">
+        <header>
+          <p class="eyebrow">Lexicon</p>
+          <h2 id="vocabulary-h">Vocabulary</h2>
+          <p class="lede">Decisions on single words, Oct 14, 2026. Every word is in the <a href="lexicon/">lexicon</a>.</p>
+        </header>
+        <div class="tw"><table class="dt"><thead><tr><th scope="col">Word</th><th scope="col">Decision</th></tr></thead><tbody>
+              <tr><td class="w">keme, kemxi</td><td>smell, sniff</td></tr>
+              <tr><td class="w">ini</td><td>here</td></tr>
+              <tr><td class="w">nama</td><td>somewhere</td></tr>
+              <tr><td class="w">xar</td><td>when? and near; <i>xanarya</i> is the conjunction “when”</td></tr>
+              <tr><td class="w">o, ole</td><td>you (singular), you (plural)</td></tr>
+              <tr><td class="w">ta</td><td>to have</td></tr>
+              <tr><td class="w">kime</td><td>short; size words to revisit</td></tr>
+              <tr><td class="w">urane</td><td>to harm</td></tr>
+              <tr><td class="w">erane</td><td>to kill, from the Lunde namon <i>irrana</i> (<i>irrasa</i>, to grab)</td></tr>
+              <tr><td class="w">mana</td><td>spiritual energy; <i>lawmana</i> = to marry</td></tr>
+              <tr><td class="w">na, ra, ara…</td><td>the numbers are the Lunde ones</td></tr>
+              <tr><td class="w">lurankai</td><td>to move someone; -kai and -xi are part of the word</td></tr>
+              <tr><td class="w">ov</td><td>command particle, so commands don’t look like “you”</td></tr>
+              <tr><td class="w">ara</td><td>three; Lundiyani has no h (Lunde <i>hara</i>)</td></tr>
+              <tr><td class="w">dei</td><td>passive particle</td></tr>
+              <tr><td class="w">amon</td><td>reflexive: herself, himself, itself</td></tr>
+              <tr><td class="w">adar, idar</td><td>to leave, to arrive</td></tr>
+              <tr><td class="w">malai</td><td>parent (in general); family and animal words vary by region and all stay</td></tr>
+              <tr><td class="w">lala, lurani, tu&#x27;ali, taluv, tavnei, vantasi, xwitiwi, nivya</td><td>written without internal spaces</td></tr>
+            </tbody></table></div>
+        <ul class="notes">
+          <li><i>Karen</i> is not a word; a → al is not a rule.</li>
+        </ul>
+      </section>
+
+      <!-- 11. Example sentences -->
+      <section class="gsec" id="examples" aria-labelledby="examples-h">
+        <header>
+          <p class="eyebrow">Glossed sentences</p>
+          <h2 id="examples-h">Example sentences</h2>
+          <p class="lede">The first elicited sentences, glossed word by word.</p>
+        </header>
+        <div class="sub">
+          <h3 id="round-1">Round 1</h3>
 <ol class="ex">
 <li value="1"><p class="ex-tr">1. &#x27;I have eaten.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">tefri</span><span class="g2">PRF</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">eden</span><span class="g2">eat</span></span></div></li>
 <li value="2"><p class="ex-tr">2. &#x27;I had eaten when you came.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">tefri</span><span class="g2">PRF</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">eden</span><span class="g2">eat</span></span><span class="gw"><span class="g1 lx">xanarya</span><span class="g2">when</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">luran</span><span class="g2">come</span></span></div></li>
@@ -318,9 +512,10 @@
 <li value="16"><p class="ex-tr">16. &#x27;The person who was singing is happy.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">on</span><span class="g2">person</span></span><span class="gw"><span class="g1 lx">xaon</span><span class="g2">who</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">yada</span><span class="g2">sing</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">kuali</span><span class="g2">happy</span></span></div></li>
 <li value="17"><p class="ex-tr">17. &#x27;Let&#x27;s eat! Let&#x27;s go!&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ov</span><span class="g2">IMP</span></span><span class="gw"><span class="g1 lx">eden</span><span class="g2">eat</span></span><span class="gw"><span class="g1 lx">ilie</span><span class="g2">1PL</span></span></div><div class="gl"><span class="gw"><span class="g1 lx">ov</span><span class="g2">IMP</span></span><span class="gw"><span class="g1 lx">lua</span><span class="g2">go</span></span><span class="gw"><span class="g1 lx">ilie</span><span class="g2">1PL</span></span></div></li>
 </ol>
-<!-- Alex's corrections (Oct 18): talei is glossed HAB (habitual) instead of the PDF's IPFV "imperfective" (here and in Round 1 sentence 3); the command particle is ov (the PDF note said "IMP command o"). -->
 <p class="abbr" id="abbreviations"><strong>Abbreviations:</strong> PRF perfect (tefri), HAB habitual (talei), REC just now (mai), YET not yet (kiena), COND conditional (lei), NEG lan, IMP command ov, DEF and INDF the articles i and ia, POSS -de, PL plural -i.</p>
-<h3 id="round-2">Round 2, checked</h3>
+        </div>
+        <div class="sub">
+          <h3 id="round-2">Round 2</h3>
 <ol class="ex">
 <li value="1"><p class="ex-tr">1. &#x27;There is water in the bottle.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">anei</span><span class="g2">water</span></span><span class="gw"><span class="g1 lx">nai</span><span class="g2">in</span></span><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">louba</span><span class="g2">bottle</span></span></div></li>
 <li value="2"><p class="ex-tr">2. &#x27;Some people came to the village.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">na</span><span class="g2">INDF.PL</span></span><span class="gw"><span class="g1 lx">on-i</span><span class="g2">person-PL</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">luran</span><span class="g2">come</span></span><span class="gw"><span class="g1 lx">an</span><span class="g2">to</span></span><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">pay</span><span class="g2">village</span></span></div></li>
@@ -341,7 +536,9 @@
 <li value="17"><p class="ex-tr">17. &#x27;I have twenty-five dogs.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ta</span><span class="g2">have</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">resion-na</span><span class="g2">twenty-five</span></span><span class="gw"><span class="g1 lx">kiwur-i</span><span class="g2">dog-PL</span></span></div></li>
 </ol>
 <p class="abbr"><strong>New abbreviations:</strong> INDF.PL na (some), CAUS -kai, REL sa. Sentence 6 is the active version; the passive is formed with dei.</p>
-<h3 id="round-3">Round 3, checked</h3>
+        </div>
+        <div class="sub">
+          <h3 id="round-3">Round 3</h3>
 <ol class="ex">
 <li value="1"><p class="ex-tr">1. &#x27;The village was destroyed by the warriors.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">pay</span><span class="g2">village</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">dei</span><span class="g2">PASS</span></span><span class="gw"><span class="g1 lx">raxavi</span><span class="g2">destroy</span></span><span class="gw"><span class="g1 lx">amb</span><span class="g2">by</span></span><span class="gw"><span class="g1 lx">ni</span><span class="g2">DEF.PL</span></span><span class="gw"><span class="g1 lx">wakti</span><span class="g2">warrior</span></span></div></li>
 <li value="2"><p class="ex-tr">2. &#x27;I was blinded.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">dei</span><span class="g2">PASS</span></span><span class="gw"><span class="g1 lx">fastixi</span><span class="g2">blind</span></span></div></li>
@@ -359,18 +556,33 @@
 <li value="14"><p class="ex-tr">14. &#x27;She looked at herself.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">a</span><span class="g2">3SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">kanxi</span><span class="g2">look</span></span><span class="gw"><span class="g1 lx">amon</span><span class="g2">self</span></span></div></li>
 <li value="15"><p class="ex-tr">15. &#x27;The cat&#x27;s eyes are green.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">kora-de</span><span class="g2">cat-POSS</span></span><span class="gw"><span class="g1 lx">osil-i</span><span class="g2">eye-PL</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">reiki-de</span><span class="g2">green-DE</span></span></div></li>
 </ol>
-<p class="abbr"><strong>New abbreviations:</strong> PASS dei, DEF.PL ni. Commands in the earlier rounds now use ov.</p>
-    </section>
-      </div>
-    </div>
+<p class="abbr"><strong>New abbreviations:</strong> PASS dei, DEF.PL ni.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
 <!-- lunde-pager:start -->
 <nav class="lunde-pager" aria-label="Languages pages, in order"><a class="lp-back" href="../../lunde/modern/lexicon/" rel="prev"><span>&larr; Previous</span> Lundiyani lexicon</a><a class="lp-next" href="../../lunde/modern/conjugator/" rel="next"><span>Next &rarr;</span> Lundiyani verb conjugator</a></nav>
 <!-- lunde-pager:end -->
-  </main>
-  <footer class="site-footer">
-    <div class="wrap">
-      <p>Lundiyani grammar reference &middot; <a href="lundiyani-grammar-reference.pdf">PDF version</a></p>
-    </div>
-  </footer>
+</div>
+<footer class="site-footer">
+  <div class="wrap"><p>Lundiyani grammar &middot; rules as of Oct 18, 2026 &middot; <a href="lundiyani-grammar-reference.pdf">PDF version</a></p></div>
+</footer>
+<script>
+// Contents: mark the section being read (as on the Lunde grammar page).
+(function () {
+  var links = document.querySelectorAll('.toc a');
+  if (!('IntersectionObserver' in window)) { return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) { return; }
+      for (var k = 0; k < links.length; k++) { links[k].setAttribute('aria-current', links[k].getAttribute('href') === '#' + en.target.id ? 'true' : 'false'); }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px' });
+  [].forEach.call(document.querySelectorAll('.gsec'), function (s) { io.observe(s); });
+}());
+</script>
 </body>
 </html>

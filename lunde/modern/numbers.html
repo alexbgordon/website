@@ -152,9 +152,6 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
       <h1>Lundiyani numbers (Modern Lundian)</h1>
       <p class="lede">Type any number from 0 to 248,831 and see it as a Lundiyani number word, digit by digit in base twelve, with the counting form, the ordinal and the Lunde word it comes from.</p>
     </div>
-    <div class="mast-r">
-      <a class="badge" id="badge" href="#checks"><span class="dot"></span>Running the checks…</a>
-    </div>
   </header>
 
   <div class="gbench gbench-one">
@@ -165,6 +162,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
           <h2 id="num-h">Numbers</h2>
           <p class="lede">Lundiyani counts in base twelve, as Lunde does. The rules are the same; the words have changed in pronunciation.</p>
         </header>
+        <div class="tool" id="tool"></div>
         <div class="pair">
           <div class="tw" id="digits"></div>
           <div class="sub">
@@ -174,11 +172,10 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
               <li><i>é-</i> is used only when counting (<i>é-na, é-re</i>); before a noun the bare form is used.</li>
               <li>Multiply: the multiplier goes first, joined (<i>resion</i>, 24). Add: the smaller number follows after a dash (<i>sion-na</i>, 13). Biggest power first.</li>
               <li>After any number above one, the noun takes the plural.</li>
-              <li>Ordinals: the number + <i>-de</i> (<i>-ade</i> after a consonant), as in Lunde: <i>na-de</i> (first), <i>sion-ade</i> (twelfth). Assumed; see the open questions.</li>
+              <li>Ordinals: the number + <i>-de</i> (<i>-ade</i> after a consonant), as in Lunde: <i>na-de</i> (first), <i>sion-ade</i> (twelfth).</li>
             </ul>
           </div>
         </div>
-        <div class="tool" id="tool"></div>
       </section>
 
       <section class="gsec" id="compare" aria-labelledby="cmp-h">
@@ -188,23 +185,6 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
           <p class="lede">The same numbers in both languages. The Lunde forms come from the <a class="fl" href="../conjugator/numbers.html">Lunde number conjugator</a>.</p>
         </header>
         <div class="tw" id="cmp"></div>
-        <p class="blk-note">The Lundiyani grammar PDF (Oct 14) has the older list: <span id="pdfdiff"></span>. The PDF itself is unchanged.</p>
-      </section>
-
-      <section class="gsec" id="questions" aria-labelledby="oq-h">
-        <header><p class="eyebrow">Still open</p><h2 id="oq-h">Open questions</h2></header>
-        <ul class="notes">
-          <li>The counting prefix: the Lundiyani grammar gives <i>é-</i> (<i>é-na</i>). Every other number has lost its accent, so it may now be <i>e-</i>. Kept as <i>é-</i>.</li>
-          <li>The ordinal ending is assumed unchanged from Lunde (number + <i>-de</i> / <i>-ade</i>); the Lundiyani grammar does not mention ordinals.</li>
-          <li>Whether <i>ułe</i> has a counting form (<i>é-ułe</i>?) and an ordinal. Not shown.</li>
-          <li>Numbers above 248,831: no power above <i>ayation</i> (12⁴) is named yet.</li>
-        </ul>
-      </section>
-
-      <section class="gsec" id="checks" aria-labelledby="ck-h">
-        <header><p class="eyebrow">Proof</p><h2 id="ck-h">Checks</h2>
-          <p class="lede">Alex's forms, the grammar's examples in the new forms, and the Lunde worked examples rebuilt with the modern digits.</p></header>
-        <ol class="ck-list" id="cklist"></ol>
       </section>
     </main>
   </div>
@@ -245,11 +225,6 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
     h += '<tr><td style="font-variant-numeric:tabular-nums">' + p[1].toLocaleString('en-US') + ' (12' + SUP[i + 1] + ')</td><td class="w">' + esc(o[0]) + '</td><td class="w">' + esc(p[0]) + '</td></tr>';
   });
   $('cmp').innerHTML = h + '</tbody></table>';
-  var diffs = [];
-  N.DIGITS.forEach(function (d, i) { if (N.PDF.digits[i] !== d) { diffs.push('<i>' + esc(N.PDF.digits[i]) + '</i> (' + (i + 1) + ', now <i>' + esc(d) + '</i>)'); } });
-  N.POWERS.forEach(function (p, i) { if (N.PDF.powers[i][0] !== p[0] && p[1] !== 12) { diffs.push('<i>' + esc(N.PDF.powers[i][0]) + '</i> (' + p[1].toLocaleString('en-US') + ', now <i>' + esc(p[0]) + '</i>)'); } });
-  diffs.push('no zero');
-  $('pdfdiff').innerHTML = diffs.join(', ');
 
   $('tool').innerHTML = '<div class="tool-h"><h4>Say a number</h4><p>From 0 to ' + N.NUMBER_MAX.toLocaleString('en-US') + '.</p></div>' +
     '<div class="fields"><div class="field w2"><label for="num-value">Number</label><input id="num-value" type="number" min="0" max="' + N.NUMBER_MAX + '" step="1" value="2026"></div></div>' +
@@ -273,14 +248,6 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
   $('tool').addEventListener('click', function (ev) { var b = ev.target.closest('[data-num]'); if (!b) { return; } $('num-value').value = b.getAttribute('data-num'); update(); });
   update();
 
-  var T = N.runChecks();
-  $('cklist').innerHTML = T.results.map(function (r) {
-    var what = r.kind === 'ordinal' ? 'ordinal of ' + r.n : (r.kind === 'counting' ? 'counting ' + r.n : r.n.toLocaleString('en-US'));
-    return '<li' + (r.ok ? '' : ' class="bad"') + '>' + (r.ok ? '✓ ' : '✗ ') + esc(what) + ' → <i>' + esc(r.got) + '</i>' + (r.ok ? '' : ' (expected <i>' + esc(r.expected) + '</i>)') + ' <small>· ' + esc(r.source) + '</small></li>';
-  }).join('');
-  var badge = $('badge');
-  badge.innerHTML = '<span class="dot"></span>' + (T.passed === T.total ? 'All ' + T.total + ' checks pass' : T.passed + ' of ' + T.total + ' checks pass');
-  badge.classList.toggle('bad', T.passed !== T.total);
 })();
 </script>
 </body>

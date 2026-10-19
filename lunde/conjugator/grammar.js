@@ -573,27 +573,6 @@
   }
 
   /* ------------------------------------------------------------------ */
-  /* Questions                                                           */
-  /* ------------------------------------------------------------------ */
-
-  function buildQuestions(el) {
-    var h = '<h3 class="qgroup">This round</h3>' + (UI.QUESTIONS.length ? '' : '<p class="blk-note">No questions are waiting on you.</p>') + '<div class="qs">';
-    UI.QUESTIONS.forEach(function (q) {
-      var seen = {};
-      var chips = q.see.filter(function (s) { if (seen[s[0]]) { return false; } seen[s[0]] = 1; return true; }).map(function (s) {
-        var v = BY_ROOT[s[0]] || BY_BASE[s[0]];
-        return '<a class="vchip" href="' + verbHref(s[0], s[1], s[2]) + '">' + esc(v ? v.samon : s[0]) + '</a>';
-      }).join('');
-      if (q.link) { chips += '<a class="vchip" href="' + q.link.href.replace('grammar.html', '') + '">' + esc(q.link.text) + '</a>'; }
-      h += '<article class="qc" id="q' + q.n + '"><span class="qc-n">' + q.n + '</span><h4>' + esc(q.title) + '</h4><p>' + q.body + '</p>' +
-        '<div class="see"><span>See it in</span>' + chips + '</div></article>';
-    });
-    h += '</div><h3 class="qgroup">Settled on Oct 18</h3><ul class="settled">' + UI.SETTLED.map(function (s) { return '<li><span>' + s + '</span></li>'; }).join('') + '</ul>' +
-      '<h3 class="qgroup">Still open in the doc</h3><ul class="docopen">' + UI.DOC_OPEN.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>';
-    el.innerHTML = h;
-  }
-
-  /* ------------------------------------------------------------------ */
   /* Start                                                               */
   /* ------------------------------------------------------------------ */
 
@@ -604,8 +583,7 @@
     'case-endings': buildCaseEndings, 'tool-decline': buildDeclineTool, 'pronouns': buildPronouns, 'demonstratives': buildDemonstratives, 'places': buildPlaces,
     'participles': buildParticiples, 'adj-declension': buildAdjDeclension, 'noun-adjectives': buildNounAdjectives, 'tool-adverb': buildAdverbTool,
     'suffixes': buildSuffixes, 'prefixes': buildPrefixes,
-    'digits': buildDigits, 'powers': buildPowers, 'tool-number': buildNumberTool,
-    'questions': buildQuestions
+    'digits': buildDigits, 'powers': buildPowers, 'tool-number': buildNumberTool
   };
   var blocks = document.querySelectorAll('[data-build]');
   for (var i = 0; i < blocks.length; i++) {
@@ -615,10 +593,6 @@
     catch (err) { blocks[i].innerHTML = '<p class="out-err">This part could not be built: ' + esc(err.message) + '</p>'; }
   }
 
-  var TEST = UI.runChecks(LEX);
-  var badge = $('badge');
-  badge.innerHTML = UI.badgeHTML(TEST);
-  badge.classList.toggle('bad', !TEST || !!TEST.error || TEST.failed > 0);
 
   // Contents: mark the section being read.
   var links = document.querySelectorAll('.toc a');
