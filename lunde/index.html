@@ -5,34 +5,13 @@
 <link rel="preload" href="../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Languages | Alex Bahia</title>
-  <meta name="description" content="Alex Bahia's invented languages: Lunde (Old Lundian) and Lundiyani (Modern Lundian), each with a lexicon, a grammar and conjugators.">
+  <meta name="description" content="Alex Bahia's invented languages: Lunde (Old Lundian) and Lundiyani (Modern Lundian), each with its own page of tools: lexicon, grammar, conjugators and numbers.">
   <link rel="stylesheet" href="../assets/site.css">
   <style>
-    /* Language tabs, in the poetry page's style. Without JS the tab bar stays hidden and both panels show. */
+    /* Overview: heading and text only; the sub-nav sits on top and each language's tools are on its own page. */
     .lang-overview { max-width: 46rem; }
     .lang-overview p { margin: 0 0 .9rem; }
-    .lang-tablist { display: flex; gap: 0 28px; margin: 2.25rem 0 0; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
-    .lang-tablist[hidden] { display: none; }
-    .lang-tablist button {
-      flex: none; background: none; border: 0; border-bottom: 2px solid transparent; margin: 0 0 -1px; padding: 12px 0 10px; min-height: 44px; cursor: pointer;
-      font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); white-space: nowrap;
-    }
-    .lang-tablist button:hover { color: var(--text); }
-    .lang-tablist button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
-    .lang-panel { padding-top: 1.75rem; }
-    .lang-panel + .lang-panel { margin-top: 2.5rem; }
-    .js-tabs .lang-panel + .lang-panel { margin-top: 0; }
-    .lang-panel[hidden] { display: none; }
-    .lang-h { margin: 0 0 .4rem; }
-    .js-tabs .lang-h { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-    .lang-intro { margin: 0 0 1.25rem; max-width: 46rem; color: var(--text-2); font-style: italic; }
-    .lang-items { list-style: none; margin: 0; padding: 0; display: grid; gap: 0 48px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
-    .lang-items li { border-top: 1px solid var(--border); padding: 14px 0 16px; }
-    .lang-items a { display: flex; align-items: baseline; gap: 14px; text-decoration: none; color: var(--text); min-height: 44px; }
-    .lang-items a:hover .li-t { color: var(--accent); }
-    .li-n { flex: none; width: 2.4ch; font-family: var(--mono); font-size: 14px; color: var(--accent); font-variant-numeric: tabular-nums; }
-    .li-t { font-size: 1.3rem; letter-spacing: .02em; }
-    .lang-items p { margin: 0 0 0 calc(2.4ch + 14px); font-size: .95rem; color: var(--muted); line-height: 1.5; }
+    .lang-overview .lang-coming { margin: 1.6rem 0; text-align: center; font-style: italic; font-size: 1.25rem; letter-spacing: .02em; }
   </style>
 </head>
 <body>
@@ -57,9 +36,8 @@
 <!-- lunde-nav:start -->
 <nav class="lunde-nav" aria-label="Languages">
   <ul class="lunde-sections">
-    <li><a href="../lunde/" aria-current="page">Overview</a></li>
-    <li><a href="../lunde/#old">Lunde (Old Lundian)</a></li>
-    <li><a href="../lunde/#modern">Lundiyani (Modern Lundian)</a></li>
+    <li><a href="../lunde/old-lundian/">Lunde (Old Lundian)</a></li>
+    <li><a href="../lunde/modern-lundian/">Lundiyani (Modern Lundian)</a></li>
   </ul>
   <ul class="lunde-tool" aria-hidden="true"></ul>
 </nav>
@@ -67,37 +45,9 @@
     <h1>Languages</h1>
     <section class="lang-overview" aria-label="Overview">
       <p>Two invented languages, one old and one modern. <strong>Lunde (Old Lundian)</strong> is the old, formal register: its verbs come in three forms (samon, namon, exmon), its case marking is tripartite and it counts in base twelve. <strong>Lundiyani (Modern Lundian)</strong> is the modern form of Lunde: an isolating lingua franca, much later than Lunde and very different from it, whose verbs never change form.</p>
-      <p>Each language has its own lexicon, grammar and conjugators. Pick a language below; every form on these pages is built by rule from the grammar. Notebook pages for other invented languages are in the <a href="../gallery/">Gallery</a>.</p>
+      <p class="lang-coming">And more are coming.</p>
+      <p>Each language has its own lexicon, grammar and conjugators. Pick a language above; every form on these pages is built by rule from the grammar. Notebook pages for other invented languages are in the <a href="../gallery/">Gallery</a>.</p>
     </section>
-<!-- lunde-tabs:start -->
-<div class="lang-tabs" id="languages">
-  <div class="lang-tablist" role="tablist" aria-label="Languages" hidden><button type="button" role="tab" id="tab-old" aria-controls="old" aria-selected="false" tabindex="-1">Lunde (Old Lundian)</button><button type="button" role="tab" id="tab-modern" aria-controls="modern" aria-selected="false" tabindex="-1">Lundiyani (Modern Lundian)</button></div>
-  <section class="lang-panel" id="old" role="tabpanel" aria-labelledby="tab-old">
-    <h2 class="lang-h">Lunde (Old Lundian)</h2>
-    <p class="lang-intro">The old, formal register: verbs in three forms (samon, namon, exmon), tripartite case marking and base-twelve numbers.</p>
-    <ol class="lang-items">
-      <li><a href="../lunde/conjugator/lexicon.html"><span class="li-n">01</span><span class="li-t">Lexicon</span></a><p>Every word the engine knows: verbs, derived words, nouns, pronouns, articles, demonstratives and numbers.</p></li>
-      <li><a href="../lunde/conjugator/grammar.html"><span class="li-n">02</span><span class="li-t">Grammar</span></a><p>The reference: sounds, stress, sound rules, verbs, cases, adjectives, word formation and numbers.</p></li>
-      <li><a href="../lunde/conjugator/"><span class="li-n">03</span><span class="li-t">Verb conjugator</span></a><p>Every verb conjugated by rule, with the derivation of each form. Type any verb to build its forms.</p></li>
-      <li><a href="../lunde/conjugator/cases.html"><span class="li-n">04</span><span class="li-t">Case conjugator</span></a><p>Decline any noun, adjective or participle through every case, in the singular and both plurals.</p></li>
-      <li><a href="../lunde/conjugator/numbers.html"><span class="li-n">05</span><span class="li-t">Number conjugator</span></a><p>Any number from 0 to 248,831 as a Lunde number word, in base twelve, with its ordinal.</p></li>
-    </ol>
-  </section>
-  <section class="lang-panel" id="modern" role="tabpanel" aria-labelledby="tab-modern">
-    <h2 class="lang-h">Lundiyani (Modern Lundian)</h2>
-    <p class="lang-intro">The modern form of Lunde: an isolating lingua franca, much later than Lunde and very different from it.</p>
-    <ol class="lang-items">
-      <li><a href="../lunde/modern/lexicon/"><span class="li-n">01</span><span class="li-t">Lexicon</span></a><p>The Lundiyani word list: every word with its meaning and type, checked against the grammar.</p></li>
-      <li><a href="../lunde/modern/"><span class="li-n">02</span><span class="li-t">Grammar</span></a><p>Particles, word order, nouns and numbers, questions, clauses and glossed example sentences. Also as a PDF.</p></li>
-      <li><a href="../lunde/modern/conjugator/"><span class="li-n">03</span><span class="li-t">Verb conjugator</span></a><p>Any verb with any combination of tense, aspect, mood and negation particles, checked against the grammar's examples.</p></li>
-      <li><a href="../lunde/modern/numbers.html"><span class="li-n">04</span><span class="li-t">Numbers</span></a><p>Any number from 0 to 248,831 in base twelve, with the Lunde word it comes from.</p></li>
-    </ol>
-  </section>
-</div>
-<!-- lunde-tabs:end -->
-<!-- lunde-pager:start -->
-<nav class="lunde-pager" aria-label="Languages pages, in order"><span></span><a class="lp-next" href="../lunde/conjugator/lexicon.html" rel="next"><span>Next &rarr;</span> Lunde lexicon</a></nav>
-<!-- lunde-pager:end -->
   </main>
   <footer class="site-footer">
     <div class="wrap">
@@ -105,35 +55,10 @@
     </div>
   </footer>
   <script>
-  /* Language tabs: an accessible tablist (arrow keys, Home/End). The selected tab is kept in the URL hash
-     (#old, #modern, ...), so a page or the sub-nav can link straight to one language. */
+  /* Old links to /lunde/#old and /lunde/#modern now open each language's own page, at the top. */
   (function () {
-    var box = document.getElementById('languages'); if (!box) return;
-    var list = box.querySelector('[role="tablist"]'), tabs = [].slice.call(list.querySelectorAll('[role="tab"]'));
-    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
-    box.classList.add('js-tabs'); list.hidden = false;
-    panels.forEach(function (p) { p.setAttribute('tabindex', '0'); });
-    function select(i, focus, push) {
-      tabs.forEach(function (t, j) { var on = j === i; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; panels[j].hidden = !on; });
-      if (focus) tabs[i].focus();
-      if (push) history.replaceState(null, '', '#' + panels[i].id);
-    }
-    function fromHash() {
-      var id = location.hash.slice(1), i = panels.map(function (p) { return p.id; }).indexOf(id);
-      select(i < 0 ? 0 : i, false, false);
-      if (i >= 0) window.scrollTo(0, 0);   /* the hash picks a tab; it should not jump the page */
-    }
-    tabs.forEach(function (t, i) {
-      t.addEventListener('click', function () { select(i, false, true); });
-      t.addEventListener('keydown', function (e) {
-        var k = e.key, n = tabs.length, j = null;
-        if (k === 'ArrowRight') j = (i + 1) % n; else if (k === 'ArrowLeft') j = (i - 1 + n) % n;
-        else if (k === 'Home') j = 0; else if (k === 'End') j = n - 1;
-        if (j !== null) { e.preventDefault(); select(j, true, true); }
-      });
-    });
-    window.addEventListener('hashchange', fromHash);
-    fromHash();
+    var go = { old: 'old-lundian/', modern: 'modern-lundian/' }[location.hash.slice(1)];
+    if (go) location.replace(go);
   }());
   </script>
 </body>

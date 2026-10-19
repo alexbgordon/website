@@ -60,6 +60,27 @@
 .ref { margin-top: 56px; display: grid; gap: 14px; }
 .ref > header { display: grid; gap: 6px; max-width: 74ch; padding-top: 18px; border-top: 1px solid var(--line); }
 .ref h2 { margin: 0; }
+/* Conjugation tables, in the Lunde conjugator's layout: one card per particle group, persons down, tense across. */
+.lm { --mc: var(--ink-2); --mw: var(--line-soft); }
+.modes { display: grid; gap: 26px 22px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1600px) { .modes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.mode { display: grid; gap: 6px; min-width: 0; }
+.mode-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.mode-name { font: 700 11.5px/1 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--mc); }
+.mode-base { font: italic 400 18px/1.2 var(--f-lx); }
+.mode-gist { font-size: 12.5px; color: var(--ink-3); }
+.par thead th .lx { text-transform: none; letter-spacing: 0; font: italic 400 13px/1 var(--f-lx); }
+.fm { font-size: 16.5px; }
+.mk { font: 400 9px/1 var(--f-ui); font-style: normal; margin-left: 4px; vertical-align: .5em; }
+.mk-a { color: var(--ok); } .mk-r { color: var(--ink-3); }
+.ns { font-size: 13px; white-space: nowrap; }
+.ns small { font-size: 11.5px; }
+.fv { display: block; padding: 0 8px 6px; font-size: 12.5px; color: var(--ink-3); }
+.fv .lx { font-style: italic; }
+.detail { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: var(--panel); display: grid; gap: 6px; }
+.detail .ph { font: italic 400 22px/1.25 var(--f-lx); margin: 0; }
+.detail .why { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+.detail[hidden] { display: none; }
 </style>
 <link rel="stylesheet" href="../../../assets/chrome.css">
 <link rel="stylesheet" href="../../conjugator/site-theme.css">
@@ -86,9 +107,8 @@
 <!-- lunde-nav:start -->
 <nav class="lunde-nav" aria-label="Languages">
   <ul class="lunde-sections">
-    <li><a href="../../../lunde/">Overview</a></li>
-    <li><a href="../../../lunde/#old">Lunde (Old Lundian)</a></li>
-    <li><a href="../../../lunde/#modern" aria-current="true">Lundiyani (Modern Lundian)</a></li>
+    <li><a href="../../../lunde/old-lundian/">Lunde (Old Lundian)</a></li>
+    <li><a href="../../../lunde/modern-lundian/" aria-current="true">Lundiyani (Modern Lundian)</a></li>
   </ul>
   <ul class="lunde-tool" aria-label="Lundiyani pages">
     <li><a href="../../../lunde/modern/lexicon/">Lexicon</a></li>
@@ -103,7 +123,7 @@
     <div class="mast-l">
       <p class="eyebrow">Lundiyani · the modern form of Lunde · prototype</p>
       <h1>Lundiyani verb conjugator (Modern Lundian)</h1>
-      <p class="lede">Lundiyani verbs never change form: tense, aspect, mood and negation are separate particles in a fixed order before the verb. Pick a verb and the particles; every phrase is built from the rules of the <a href="../">Lundiyani grammar</a>, and anything the grammar does not cover is shown as not covered.</p>
+      <p class="lede">Lundiyani verbs never change form: tense, aspect, mood and negation are separate particles in a fixed order before the verb. Pick a verb to see its conjugation tables; every phrase is built from the rules of the <a href="../">Lundiyani grammar</a>, and anything the grammar does not specify is shown as a dash.</p>
     </div>
     <div class="mast-r">
       <a class="badge" id="badge" href="#checks"><span class="dot"></span>Running the checks…</a>
@@ -158,13 +178,14 @@
 </footer>
 <script src="lundiyani-engine.js"></script>
 <script src="verbs.js"></script>
+<script src="lundiyani-table.js"></script>
 <script>
 (function () {
   'use strict';
   var L = window.Lundiyani, VERBS = window.LUNDIYANI_VERBS;
   function $(id) { return document.getElementById(id); }
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-  var state = { verb: null, aspect: '', neg: false, tense: 'lo', voice: '', mode: 'statement', formal: false };
+  var state = { verb: null };
   VERBS.forEach(function (v) { v.g = L.verbGloss(v.meanings[0]); });
   var BY = {}; VERBS.forEach(function (v) { BY[v.w] = v; });
 
@@ -176,51 +197,12 @@
       return '<li><button type="button" class="vi" data-w="' + esc(v.w) + '"' + (state.verb === v ? ' aria-current="true"' : '') + '><span class="vi-base">' + esc(v.w) + '</span><span class="vi-gloss">' + esc(v.meanings[0]) + '</span></button></li>';
     }).join('');
   }
-  function seg(name, opts, cur) {
-    return '<div class="seg" role="group" aria-label="' + esc(name) + '">' + opts.map(function (o) {
-      return '<button type="button" data-k="' + o[0] + '" data-v="' + o[1] + '" aria-pressed="' + (String(cur) === String(o[1])) + '">' + o[2] + '</button>';
-    }).join('') + '</div>';
-  }
-  function gloss(r) {
-    return '<div class="gl" aria-hidden="true">' + r.words.map(function (x) { return '<span class="gw"><span>' + esc(x.w) + '</span><span class="g2">' + esc(x.g) + '</span></span>'; }).join('') + '</div>';
-  }
-  function status(r) {
-    if (!r.covered) { return '<span class="st st-n">not covered</span>'; }
-    return r.attested ? '<span class="st st-a">● in the examples</span>' : '<span class="st st-o">○ by the slot order</span>';
-  }
+  var cells = {};
   function sheet() {
     var v = state.verb; if (!v) { return; }
-    var cmd = state.mode === 'command';
     var h = '<header><h2 class="headword">' + esc(v.w) + '</h2><p class="hw-sub">' + esc(v.meanings.join('; ')) + ' · ' + esc(v.type) + '</p></header>';
-    h += '<div class="slots">' +
-      '<div class="slot"><span class="slot-n">Sentence</span>' + seg('Sentence type', [['mode', 'statement', 'Statement'], ['mode', 'command', 'Command (<span class="lx">ov</span>)']], state.mode) + '</div>';
-    if (!cmd) {
-      h += '<div class="slot"><span class="slot-n">Aspect</span>' + seg('Aspect', [['aspect', '', 'none'], ['aspect', 'tefri', '<span class="lx">tefri</span> perfect'], ['aspect', 'talei', '<span class="lx">talei</span> habitual'], ['aspect', 'mai', '<span class="lx">mai</span> just now'], ['aspect', 'kiena', '<span class="lx">kiena</span> not yet']], state.aspect) + '</div>' +
-        '<div class="slot"><span class="slot-n">Negation</span>' + seg('Negation', [['neg', 'false', 'none'], ['neg', 'true', '<span class="lx">lan</span> negative']], state.neg) + '</div>' +
-        '<div class="slot"><span class="slot-n">Tense or mood</span>' + seg('Tense or mood', [['tense', '', 'present'], ['tense', 'lo', '<span class="lx">lo</span> past'], ['tense', 'na', '<span class="lx">na</span> future'], ['tense', 'lei', '<span class="lx">lei</span> conditional']], state.tense) + '</div>' +
-        '<div class="slot"><span class="slot-n">lai / dei</span>' + seg('Progressive or passive', [['voice', '', 'none'], ['voice', 'lai', '<span class="lx">lai</span> progressive'], ['voice', 'dei', '<span class="lx">dei</span> passive']], state.voice) + '</div>';
-    } else {
-      h += '<div class="slot"><span class="slot-n">Negation</span>' + seg('Negation', [['neg', 'false', 'none'], ['neg', 'true', '<span class="lx">lan</span> negative']], state.neg) + '</div>' +
-        '<div class="slot"><span class="slot-n">Singular you</span>' + seg('Singular you', [['formal', 'false', 'everyday (no <span class="lx">o</span>)'], ['formal', 'true', 'formal (with <span class="lx">o</span>)']], state.formal) + '</div>';
-    }
-    h += '</div>';
-    var rows = L.PERSONS.map(function (p) {
-      var r = L.build(v, { person: p.id, aspect: state.aspect, neg: state.neg, tense: state.tense, voice: state.voice, command: cmd, formal: state.formal });
-      return { p: p, r: r };
-    });
-    var first = rows[0].r;
-    h += '<p class="summary">' + (first.covered ? '<b>' + esc(first.label) + '</b>' + (cmd ? '' : ' · particles: <span class="lx">' + esc(first.sig || '(none)') + '</span>') : '<b>Not covered by the grammar.</b> ' + esc(first.why)) + '</p>';
-    if (first.covered) {
-      h += '<div class="tbl"><table class="par"><thead><tr><th scope="col">Person</th><th scope="col">Verb phrase</th><th scope="col">Status</th></tr></thead><tbody>' +
-        rows.map(function (x) {
-          return '<tr><th scope="row"><span class="lx">' + esc(x.p.w) + '</span> <small>' + esc(x.p.en) + '</small></th><td>' +
-            (x.r.covered ? '<span class="ph">' + esc(x.r.text) + '</span>' + gloss(x.r) : '<span class="nc">not covered</span>') + '</td><td title="' + esc(x.r.why) + '">' + status(x.r) + '</td></tr>';
-        }).join('') + '</tbody></table></div>';
-      var open = {}; rows.forEach(function (x) { (x.r.open || []).forEach(function (o) { open[o] = 1; }); });
-      var ol = Object.keys(open);
-      h += '<p class="legend-st"><span>● in the examples: this particle sequence occurs in a worked example</span><span>○ by the slot order: built by the rule, no example yet</span></p>';
-      if (ol.length) { h += '<ul class="oq">' + ol.map(function (o) { return '<li>' + esc(o) + '</li>'; }).join('') + '</ul>'; }
-    }
+    var R = window.LundiyaniTable.render(L, v); cells = R.cells;
+    h += '<div class="detail" id="detail" hidden aria-live="polite"></div>' + R.html;
     $('sheet').innerHTML = h;
   }
   function pick(w, push) {
@@ -231,22 +213,24 @@
   $('q').addEventListener('input', list);
   $('vlist').addEventListener('click', function (e) { var b = e.target.closest('.vi'); if (b) { pick(b.getAttribute('data-w'), true); } });
   $('sheet').addEventListener('click', function (e) {
-    var b = e.target.closest('.seg button'); if (!b) { return; }
-    var k = b.getAttribute('data-k'), val = b.getAttribute('data-v');
-    state[k] = (k === 'neg' || k === 'formal') ? val === 'true' : val;
-    if (k === 'aspect' && val === 'kiena') { state.neg = true; }
-    sheet();
-    var again = document.querySelector('.seg button[data-k="' + k + '"][data-v="' + val + '"]'); if (again) { again.focus(); }
+    var b = e.target.closest('.fm'); if (!b) { return; }
+    var r = cells[b.getAttribute('data-key')]; if (!r) { return; }
+    [].forEach.call(document.querySelectorAll('.fm.sel'), function (x) { x.classList.remove('sel'); }); b.classList.add('sel');
+    var d = $('detail'); d.hidden = false;
+    d.innerHTML = '<p class="ph">' + esc(r.text) + '</p>' + window.LundiyaniTable.detailHTML(r);
   });
   window.addEventListener('hashchange', function () { pick(decodeURIComponent(location.hash.slice(1)), false); });
   pick(decodeURIComponent(location.hash.slice(1)) || 'eden', false);
 
-  var T = L.runChecks();
+  var T = L.runChecks(), A = window.LundiyaniTable.checkAll(L, VERBS);
+  var allOk = T.passed === T.total && A.ok === A.total, n = T.total + 1, p = T.passed + (A.ok === A.total ? 1 : 0);
   var badge = $('badge');
-  badge.innerHTML = '<span class="dot"></span>' + (T.passed === T.total ? 'All ' + T.total + ' checks pass' : T.passed + ' of ' + T.total + ' checks pass');
-  badge.classList.toggle('bad', T.passed !== T.total);
-  $('checks-sum').textContent = T.passed + ' of ' + T.total + ' verb phrases from the grammar\'s worked examples are rebuilt exactly by the conjugator.';
-  $('checks-body').innerHTML = T.results.map(function (r) {
+  badge.innerHTML = '<span class="dot"></span>' + (allOk ? 'All ' + n + ' checks pass' : p + ' of ' + n + ' checks pass');
+  badge.classList.toggle('bad', !allOk);
+  $('checks-sum').textContent = T.passed + ' of ' + T.total + ' verb phrases from the grammar\'s worked examples are rebuilt exactly by the conjugator; ' +
+    A.ok + ' of ' + A.total + ' lexicon verbs render a full conjugation table (' + A.cellsPerVerb + ' cells each) without errors.';
+  $('checks-body').innerHTML = '<li><span class="' + (A.ok === A.total ? 'ok' : 'no') + '">' + (A.ok === A.total ? '✓' : '✗') + '</span><span>Every lexicon verb renders its table: ' + A.ok + ' of ' + A.total +
+    (A.bad.length ? ' (' + esc(A.bad.join('; ')) + ')' : '') + '</span></li>' + T.results.map(function (r) {
     return '<li><span class="' + (r.ok ? 'ok' : 'no') + '">' + (r.ok ? '✓' : '✗') + '</span><span>' + esc(r.source) + ' → <i>' + esc(r.got) + '</i>' + (r.ok ? '' : ' (expected <i>' + esc(r.expected) + '</i>)') + '</span></li>';
   }).join('');
 }());
