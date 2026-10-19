@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Old Lundian Grammar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="The rules of Old Lundian, with every example built live by the Lunde engine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="lunde.css">
+<style>
+/* Grammar layout: a sticky table of contents beside one reading column; tools sit in panels inside it. */
+.gbench { display: grid; gap: 24px 40px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 980px) { .gbench { grid-template-columns: 196px minmax(0, 1fr); } }
+.toc { min-width: 0; }
+.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+.toc a { display: flex; gap: 10px; align-items: baseline; text-decoration: none; padding: 6px 8px; border-radius: 6px; color: var(--ink-2); font: 500 14px/1.3 var(--f-ui); }
+.toc a::before { counter-increment: toc; content: counter(toc); font: 600 11px/1 var(--f-ui); color: var(--ink-3); min-width: 1.2em; font-variant-numeric: tabular-nums; }
+.toc a:hover { background: var(--line-soft); color: var(--ink); }
+.toc a[aria-current="true"] { background: var(--ink); color: var(--bg); }
+.toc a[aria-current="true"]::before { color: inherit; opacity: .7; }
+@media (min-width: 980px) {
+  .toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow: auto; }
+}
+@media (max-width: 979px) {
+  .toc ol { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+  .toc li { flex: none; }
+  .toc a { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+}
+
+.gmain { min-width: 0; display: grid; gap: 64px; }
+.gsec { display: grid; gap: 18px; min-width: 0; scroll-margin-top: 12px; }
+.gsec > header { display: grid; gap: 6px; max-width: 72ch; }
+.gsec h2 { margin: 0; font: 800 clamp(24px, 2.8vw, 32px)/1.08 var(--f-ui); font-stretch: 118%; letter-spacing: -.01em; text-wrap: balance; }
+.gsec h3 { margin: 10px 0 0; font: 700 13px/1.2 var(--f-ui); font-stretch: 112%; letter-spacing: .12em; text-transform: uppercase; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.gsec p, .gsec li { max-width: 72ch; }
+.gsec p { margin: 0; }
+.gsec ul.notes, .gsec ol.rules { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.gsec i, .dt i, .tool i { font-family: var(--f-lx); font-size: 1.07em; }
+.sub { display: grid; gap: 12px; }
+
+/* data tables */
+.dt { border-collapse: collapse; width: 100%; font-size: 14px; }
+.dt th, .dt td { text-align: left; padding: 7px 10px; border-top: 1px solid var(--line-soft); vertical-align: baseline; }
+.dt thead th { border-top: 0; border-bottom: 1.5px solid var(--mc); font: 600 10.5px/1.25 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); vertical-align: bottom; }
+.dt tbody th { font-weight: 600; font-size: 13px; color: var(--ink-2); white-space: nowrap; }
+.dt td.w, .dt .w { font: italic 400 17px/1.3 var(--f-lx); color: var(--ink); }
+.dt td.ipa, .dt .ipa { font: 400 16px/1.3 var(--f-lx); color: var(--ink-2); white-space: nowrap; }
+.dt td.why { color: var(--ink-3); font-size: 13px; }
+.dt .exc { color: var(--q); }
+.dt .exc::after { content: "*"; font: 700 11px/1 var(--f-ui); vertical-align: .6em; margin-left: 1px; }
+.dt .pend { color: var(--q); }
+.dt .pend::after { content: "?"; font: 700 11px/1 var(--f-ui); vertical-align: .6em; margin-left: 1px; }
+.dt .dim { color: var(--ink-3); opacity: .55; }
+.dt caption { caption-side: bottom; text-align: left; padding-top: 8px; font-size: 12.5px; color: var(--ink-3); }
+.dt .g { vertical-align: -2px; margin-right: 6px; }
+.tag { font: 600 11px/1 var(--f-ui); letter-spacing: .06em; text-transform: uppercase; color: var(--mc); }
+.flag { display: inline-flex; gap: 6px; align-items: baseline; padding: 6px 10px; border-radius: 6px; background: var(--q-wash); font-size: 13.5px; text-decoration: none; }
+.flag b { font: 700 11px/1 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--q); }
+
+/* tools */
+.tool { display: grid; gap: 12px; padding: 16px; background: var(--panel); border: 1px solid var(--line-soft); border-radius: 12px; box-shadow: var(--shadow); min-width: 0; }
+.tool-h { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; justify-content: space-between; }
+.tool-h h4 { margin: 0; font: 700 14px/1.2 var(--f-ui); }
+.tool-h p { font-size: 13px; color: var(--ink-3); }
+.fields { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: end; }
+.field { display: grid; gap: 4px; min-width: 0; }
+.field label { font: 600 12px/1.2 var(--f-ui); color: var(--ink-2); }
+.field input[type="text"], .field input[type="number"], .field select {
+  box-sizing: border-box; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink);
+  font: italic 400 18px/1.2 var(--f-lx); min-width: 0; width: 100%;
+}
+.field input[type="number"], .field select { font: 400 15px/1.2 var(--f-ui); }
+.field.w1 { flex: 1 1 200px; }
+.field.w2 { flex: 0 1 140px; }
+.check { display: inline-flex; gap: 7px; align-items: center; font-size: 13.5px; color: var(--ink-2); padding-bottom: 9px; cursor: pointer; }
+.out { display: grid; gap: 10px; min-width: 0; }
+.out-err { color: var(--bad); font-size: 14px; margin: 0; }
+.big { font: italic 700 30px/1.15 var(--f-lx); overflow-wrap: anywhere; margin: 0; }
+.syl { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; }
+.syl span { display: grid; gap: 2px; justify-items: center; padding: 6px 10px 7px; border-radius: 8px; border: 1px solid var(--line-soft); background: var(--bg); min-width: 2.2em; }
+.syl b { font: italic 400 20px/1.1 var(--f-lx); }
+.syl small { font: 400 13px/1.1 var(--f-lx); color: var(--ink-3); }
+.syl .s1 { border-color: var(--ink); box-shadow: inset 0 -3px 0 var(--ink); }
+.syl .s1 b { font-weight: 700; }
+.syl .s2 { border-color: var(--ink-3); border-style: dashed; }
+.why { margin: 0; color: var(--ink-2); font-size: 14px; }
+.cellbox { border-top: 1px solid var(--line-soft); padding-top: 4px; }
+.cellbox .chain { margin-top: 6px; }
+.dt button.cf { border: 0; background: none; padding: 2px 4px; margin: -2px -4px; border-radius: 4px; cursor: pointer; font: inherit; color: inherit; text-align: left; }
+.dt button.cf:hover, .dt button.cf[aria-pressed="true"] { background: var(--mw); }
+.dt button.cf[aria-pressed="true"] { box-shadow: inset 0 0 0 1.5px var(--mc); }
+.breakdown { margin: 0; font-size: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.breakdown i { color: var(--ink); }
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px 28px; align-items: start; }
+.big.ipa { font-style: normal; font-weight: 400; font-size: 24px; color: var(--ink-2); }
+.gmain > *, .gsec > *, .sub > *, .pair > *, .tool > *, .out > * { min-width: 0; }
+.dt td.w { white-space: nowrap; }
+.dt td.wrap { white-space: normal; }
+a.fl { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+a.fl:hover { text-decoration-color: var(--ink-2); }
+.dt th.tag { padding-top: 14px; border-top: 0; }
+.c-rnote small { display: block; }
+</style>
+</head>
+<body>
+<!-- added for alexbahia site: link back to the main site -->
+<div id="site-backlink" role="navigation" aria-label="Alex Bahia site" style="max-width:1560px;margin:0 auto;box-sizing:border-box;padding:10px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));font:600 12px/1.3 var(--f-ui,sans-serif);letter-spacing:.02em;color:var(--ink-3,#5d6b72)"><a href="../../" style="color:inherit;text-decoration:none">Alex Bahia home</a> <span aria-hidden="true">/</span> <a href="../" style="color:inherit;text-decoration:none">Lunde</a></div>
+<div class="page">
+  <header class="mast">
+    <div class="mast-l">
+      <p class="eyebrow">Lunde · the old, formal register · prototype</p>
+      <h1>Old Lundian Grammar</h1>
+      <p class="lede">The rules of the Grammar Reference, from sounds to numbers. Every example on this page is built live by the same engine that runs the conjugator, and every tool takes your own words.</p>
+    </div>
+    <div class="mast-r">
+      <nav class="sitenav" aria-label="Pages">
+        <a href="index.html">Conjugator</a>
+        <a href="grammar.html" aria-current="page">Grammar</a>
+      </nav>
+      <a class="badge" id="badge" href="index.html#checks"><span class="dot"></span>Running the checks…</a>
+    </div>
+  </header>
+
+  <div class="gbench">
+    <nav class="toc" aria-label="Contents">
+      <ol>
+        <li><a href="#sounds">Sounds</a></li>
+        <li><a href="#stress">Stress</a></li>
+        <li><a href="#sound-rules">Sound rules</a></li>
+        <li><a href="#verbs">Verbs</a></li>
+        <li><a href="#cases">Cases</a></li>
+        <li><a href="#adjectives">Adjectives</a></li>
+        <li><a href="#word-formation">Word formation</a></li>
+        <li><a href="#numbers">Numbers</a></li>
+        <li><a href="#questions">Open questions</a></li>
+      </ol>
+    </nav>
+
+    <main class="gmain">
+
+      <!-- 1. Sounds -->
+      <section class="gsec" id="sounds" aria-labelledby="sounds-h">
+        <header>
+          <p class="eyebrow">Phonology</p>
+          <h2 id="sounds-h">Sounds</h2>
+          <p class="lede">Seven vowel qualities, length marked with a macron, no diphthongs, no lexical tone, and stress you can predict.</p>
+        </header>
+        <div class="pair">
+          <div class="sub">
+            <h3>Vowels</h3>
+            <div class="tw"><table class="dt">
+              <thead><tr><th scope="col">Letter</th><th scope="col">Sound</th><th scope="col">Long</th></tr></thead>
+              <tbody>
+                <tr><td class="w">a</td><td class="ipa">/a/</td><td><i>ā</i> <span class="ipa">/aː/</span></td></tr>
+                <tr><td class="w">e</td><td class="ipa">/ɛ/</td><td><i>ē</i> <span class="ipa">/ɛː/</span></td></tr>
+                <tr><td class="w">i</td><td class="ipa">/i/</td><td><i>ī</i> <span class="ipa">/iː/</span></td></tr>
+                <tr><td class="w">o</td><td class="ipa">/ɔ/</td><td><i>ō</i> <span class="ipa">/ɔː/</span></td></tr>
+                <tr><td class="w">u</td><td class="ipa">/u/</td><td><i>ū</i> <span class="ipa">/uː/</span></td></tr>
+                <tr><td class="w">ä</td><td class="ipa">/æ/</td><td><i>ǟ</i> <span class="ipa">/æː/</span></td></tr>
+                <tr><td class="w">à</td><td class="ipa">/ɑ/</td><td></td></tr>
+              </tbody>
+            </table></div>
+            <ul class="notes">
+              <li>Length is distinctive and often marks the plural: <i>gu-</i> and <i>gū-</i>, <i>-un</i> and <i>-ūn</i>.</li>
+              <li><i>ä</i> comes from a + e (<i>xägy, käi</i>) and sits in some old roots (<i>vär-, käm-, käb-</i>). There is no ë.</li>
+              <li>Unstressed vowels keep their full quality; nothing reduces to /ə/.</li>
+              <li>No diphthongs: in a run of vowels, every vowel is pronounced, linked smoothly.</li>
+            </ul>
+          </div>
+          <div class="sub">
+            <h3>Consonants</h3>
+            <div class="tw"><table class="dt">
+              <thead><tr><th scope="col">Letter</th><th scope="col">Sound</th><th scope="col">Example</th></tr></thead>
+              <tbody>
+                <tr><td class="w">p b t d k m n f s z l h</td><td>as in IPA</td><td></td></tr>
+                <tr><td class="w">c</td><td class="ipa">/t͡s/</td><td><i>asoc</i></td></tr>
+                <tr><td class="w">x</td><td class="ipa">/x/</td><td><i>xasa</i></td></tr>
+                <tr><td class="w">xl</td><td class="ipa">/ɬ/</td><td><i>axla</i>; always one sound</td></tr>
+                <tr><td class="w">hy</td><td class="ipa">/xʲ/</td><td><i>kahyasa</i></td></tr>
+                <tr><td class="w">g</td><td class="ipa">/g/ /ɣ/ /k/</td><td>see below</td></tr>
+                <tr><td class="w">gy</td><td class="ipa">/ɟ/</td><td><i>labegy</i></td></tr>
+                <tr><td class="w">j</td><td class="ipa">/ʒ/</td><td><i>luj</i></td></tr>
+                <tr><td class="w">y</td><td class="ipa">/j/</td><td><i>kayà</i></td></tr>
+                <tr><td class="w">ñ</td><td class="ipa">/ɲ/</td><td><i>xayēñ</i></td></tr>
+                <tr><td class="w">ng</td><td class="ipa">/ŋ/</td><td><i>hekanga</i></td></tr>
+                <tr><td class="w">v</td><td class="ipa">/β/, /v/ after g</td><td><i>luvōs, gval</i></td></tr>
+                <tr><td class="w">r, rr</td><td class="ipa">/r/, /rː/</td><td><i>lir, irrasa</i></td></tr>
+              </tbody>
+            </table></div>
+            <ul class="notes">
+              <li><i>g</i> is /g/ only at the start of a word before a vowel (<i>ga</i>); elsewhere /ɣ/, including <i>gv-</i>.</li>
+              <li>At the end of a word, <i>g</i> is /k/ (<i>xog</i> <span class="ipa">/xɔk/</span>), <i>d</i> is /ð/ and <i>b</i> is /β/.</li>
+              <li>Doubled consonants are long. There is no /ʃ/.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tool" data-build="tool-ipa"></div>
+      </section>
+
+      <!-- 2. Stress -->
+      <section class="gsec" id="stress" aria-labelledby="stress-h">
+        <header>
+          <p class="eyebrow">Phonology</p>
+          <h2 id="stress-h">Stress</h2>
+          <p class="lede">Every vowel is its own syllable. Then the first of these that applies places the main stress.</p>
+        </header>
+        <ol class="rules">
+          <li>Case endings never count: stress is set on the word before they are added (<i>īs-si-ū-ne</i>).</li>
+          <li>The īmon <i>ī-</i> always takes the main stress (<i>ī-la-bi</i>).</li>
+          <li>Otherwise the last long vowel that is not in the final syllable (<i>tēl-la-ve</i>, <i>fas-tū-os</i>). A long vowel in the final syllable does not attract it (<i>la-būn</i>).</li>
+          <li>Otherwise the second-to-last syllable in words of up to three syllables, and the third-to-last in longer words.</li>
+          <li>Any other long vowel gets a secondary stress.</li>
+        </ol>
+        <div class="tw" data-build="stress-table"></div>
+      </section>
+
+      <!-- 3. Sound rules -->
+      <section class="gsec" id="sound-rules" aria-labelledby="sr-h">
+        <header>
+          <p class="eyebrow">Morphophonology</p>
+          <h2 id="sr-h">Sound rules</h2>
+          <p class="lede">When a stem and an ending meet, these rules decide the result. They run in a fixed order.</p>
+        </header>
+        <div class="sub" data-build="pipeline"></div>
+        <div class="sub">
+          <h3>Vowel contact</h3>
+          <p>What happens when the stem ends in a vowel and the ending starts with one. The grid is built from the engine, from the endings that really occur.</p>
+          <div data-build="vowel-matrix"></div>
+        </div>
+        <div class="tool" data-build="tool-join"></div>
+        <div class="pair">
+          <div class="sub">
+            <h3>Glides</h3>
+            <ul class="notes">
+              <li>An <i>i</i> between two vowels becomes a glide: <i>y</i> after a or e, <i>j</i> after u (<i>kayà, leyà, kamujà, lujor</i>).</li>
+              <li>After <i>y</i>, <i>i</i> becomes <i>e</i>, in every ending (<i>kahye, kahyer, kahyeà, kahyex, kahyeor</i>).</li>
+              <li>An inserted <i>y</i> before <i>-ēyn</i> turns the ending's <i>yn</i> into <i>ñ</i> (<i>xayēñ, leyēñ, kahyēñ</i>).</li>
+            </ul>
+          </div>
+          <div class="sub">
+            <h3>Length rule</h3>
+            <p>Two long vowels may not stand in neighboring syllables. The repairs:</p>
+            <ul class="notes">
+              <li>u-stems and short stems use the v form: <i>xa + uvōs → xavunōs</i>.</li>
+              <li>e-stems insert h and shorten the second vowel: <i>le + eān → lēhan</i>.</li>
+              <li>The īmon <i>ī-</i> is exempt: <i>īkō, īlūs, īxā</i> stand as they are.</li>
+              <li>The pronoun forms <i>daūne</i> and <i>daūxle</i> stand as they are.</li>
+            </ul>
+          </div>
+          <div class="sub">
+            <h3>Dissimilation</h3>
+            <p>The same consonant on both sides of one vowel: the second one changes.</p>
+            <div class="tw" data-build="diss-table"></div>
+            <p class="blk-note">A two-vowel sequence blocks it (<i>veuves, xaix</i>). <i>s</i> never dissimilates. <i>xl</i> is its own sound, so it never counts as an <i>x</i>. Dissimilation never changes a case ending (<i>veve, keavave</i>), but it does work inside verb forms and word-building suffixes (<i>venuos</i>).</p>
+          </div>
+          <div class="sub">
+            <h3>Consonant rules</h3>
+            <ul class="notes">
+              <li><i>x → g</i> between o or u and a following u: <i>labugun, labogu</i>. After a, x stays (<i>laxu</i>).</li>
+              <li><i>b → v</i> before the exmon imperative <i>g</i>: <i>lāvga</i>.</li>
+              <li>Stems ending in two consonants (rr and hy count as two) put the person vowel before a suffix consonant in imperatives: <i>īrraya, adruddu, ādruga</i>.</li>
+              <li>Pronoun contraction: <i>īssi + se → īsse</i>, in case endings only.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Verbs -->
+      <section class="gsec" id="verbs" aria-labelledby="verbs-h">
+        <header>
+          <p class="eyebrow">Morphology</p>
+          <h2 id="verbs-h">Verbs</h2>
+          <p class="lede">A verb (<i>vuos</i>, plural <i>vuosi</i>) is built as root, then form, then tense, then person. Each verb has three forms, each with its own base.</p>
+        </header>
+        <div class="tw"><table class="dt">
+          <thead><tr><th scope="col">Form</th><th scope="col">Base</th><th scope="col">Meaning</th><th scope="col">Example</th></tr></thead>
+          <tbody>
+            <tr class="m-samon"><th scope="row"><span class="th-mode"><svg class="g" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4.6" fill="currentColor"/></svg>samon</span></th><td class="w">-asa</td><td>the event itself: direct, plain statement</td><td><i>kasa</i> look, <i>kamuasa</i> be burning</td></tr>
+            <tr class="m-namon"><th scope="row"><span class="th-mode"><svg class="g" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.1" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="8" r="2.5" fill="currentColor"/></svg>namon</span></th><td class="w">-ana</td><td>experienced from inside, not directed</td><td><i>kana</i> see, <i>kamuana</i> burn with passion</td></tr>
+            <tr class="m-exmon"><th scope="row"><span class="th-mode"><svg class="g" viewBox="0 0 16 16" aria-hidden="true"><circle cx="5" cy="8" r="3.6" fill="currentColor"/><path d="M9.6 8h4.6M12 5.6 14.4 8 12 10.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>exmon</span></th><td class="w">-axa</td><td>directed outward, onto a target</td><td><i>kaxa</i> show, <i>fastuaxa</i> make blind</td></tr>
+          </tbody>
+        </table></div>
+        <div class="sub">
+          <h3>Stem classes</h3>
+          <div class="tw"><table class="dt">
+            <thead><tr><th scope="col">Class</th><th scope="col">How the stem is found</th><th scope="col">Verbs</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Consonant stem</th><td>base minus -asa</td><td><i>lab-, irr-, vär-, adr-, gist-, keav-, kahy-, en-</i></td></tr>
+              <tr><th scope="row">Short stem</th><td>one consonant sound becomes consonant + a</td><td><i>xa-, ka-, sa-, ta-, xla-</i></td></tr>
+              <tr><th scope="row">u-stem</th><td>the stem ends in u</td><td><i>lu-, eru-, fastu-, ju-, kamu-</i></td></tr>
+              <tr><th scope="row">e-stem</th><td>the stem ends in e</td><td><i>le-, ve-, ke-, ede-, tesse-, nile-</i></td></tr>
+            </tbody>
+          </table></div>
+          <p class="blk-note">No o-stems or i-stems exist. Stems ending in r or l keep the person vowel in the namon past plural; stems ending in two consonants (rr and hy count as two) behave specially in imperatives.</p>
+        </div>
+        <div class="tool" data-build="tool-classify"></div>
+        <div class="sub">
+          <h3>Person and number</h3>
+          <ul class="notes">
+            <li>Person vowels run through the whole system: <i>i</i> = 1st, <i>u</i> = 2nd, <i>a</i> = 3rd.</li>
+            <li>Number markers: <i>-s</i> for 1p, <i>-n</i> for inanimate and the other plurals. A long vowel often marks the plural.</li>
+            <li>Persons: <i>ki</i> 1s, <i>gū</i> 2s, <i>da</i> 3s animate, <i>ne</i> 3s inanimate, <i>īssi</i> 1p, <i>gūn</i> 2p, <i>dan</i> 3p.</li>
+          </ul>
+        </div>
+        <div class="sub">
+          <h3>Endings</h3>
+          <p>As they attach to a consonant stem. With vowel stems, the sound rules decide the result.</p>
+          <div class="pair" data-build="endings"></div>
+        </div>
+        <div class="sub">
+          <h3>Imperatives</h3>
+          <ul class="notes">
+            <li><span class="tag m-samon">samon</span> the stem with its last vowel made long, + <i>-a, -un, -as, -ya</i>. Two-consonant stems put <i>a</i> before <i>-ya</i> (<i>īrraya</i>). The last vowel is the last vowel letter: <i>maīla</i>.</li>
+            <li><span class="tag m-namon">namon</span> the stem + a doubled consonant + <i>-u, -un, -us, -e</i>: <i>dd</i> after a vowel (<i>xaddu</i>), the final consonant doubled after a single consonant (<i>labbu</i>), the person vowel then <i>dd</i> after two consonants (<i>adruddu</i>).</li>
+            <li><span class="tag m-exmon">exmon</span> the stem with its last vowel made long, + <i>g</i> + <i>-a, -un, -as, -e</i>. <i>b</i> becomes <i>v</i> before <i>g</i> (<i>lāvga</i>); two-consonant stems put the person vowel before <i>g</i> (<i>ādruga</i>).</li>
+            <li>The four persons are 2s, 2p, 1p (let us) and 3 (let him, her, it). The īmon never combines with the imperative.</li>
+          </ul>
+          <div class="tw" data-build="imperatives"></div>
+        </div>
+        <div class="sub">
+          <h3>Īmon</h3>
+          <p>The īmon (conditional, subjunctive) is a prefix on any finite form: <i>ī-</i> before a consonant, <i>y-</i> before a vowel. With the past it reads as <i>would have</i>. It is exempt from the length rule, and the i → e rule after y does not touch it.</p>
+          <div class="tw" data-build="imon"></div>
+        </div>
+        <div class="sub">
+          <h3>Gerunds and the dictionary form</h3>
+          <p>Each form has its own gerund ending: <i>-ior</i> (samon), <i>-inve</i> (namon), <i>-anga</i> (exmon). The dictionary form is the root + <i>-evuos</i> after a consonant, or the stem + <i>-vuos</i> after a vowel; dissimilation applies (<i>keavenuos</i>).</p>
+          <div class="tw" data-build="gerunds"></div>
+          <p class="blk-note">Every form of every verb is in the <a href="index.html">conjugator</a>.</p>
+        </div>
+      </section>
+
+      <!-- 5. Cases -->
+      <section class="gsec m-case" id="cases" aria-labelledby="cases-h">
+        <header>
+          <p class="eyebrow">Nouns, pronouns, adjectives</p>
+          <h2 id="cases-h">Cases</h2>
+          <p class="lede">Case marking is tripartite: the transitive subject (A), the intransitive subject (S) and the object (O) each have their own form. Unusually, A is the bare form, and S is marked with <i>-m</i>.</p>
+        </header>
+        <ul class="notes">
+          <li><i>Ki labi guse.</i> I love you: <i>ki</i> is bare (A), <i>guse</i> takes <i>-se</i> (O).</li>
+          <li><i>Kim eruj.</i> I die: <i>kim</i> takes <i>-m</i> (S).</li>
+        </ul>
+        <div class="sub">
+          <h3>Endings</h3>
+          <p>Each case is a case consonant + <i>-e</i> (singular), <i>-i</i> (plural animate) or <i>-en</i> (plural inanimate). After a consonant, <i>a</i> goes in first.</p>
+          <div class="tw" data-build="case-endings"></div>
+          <ol class="rules">
+            <li>After a consonant, <i>a</i> is inserted before the ending: <i>osilami, fasturam</i>.</li>
+            <li>Plural transitive subject: <i>-i</i> and <i>-en</i> after a consonant (<i>osili, zenen</i>); after a vowel, <i>y</i> or <i>n</i> goes in first (<i>neyi, nenen</i>).</li>
+            <li>Comitative and abessive: the <i>ū</i> drops after u or ū (<i>fastune, gūne, heneuxle</i>); a long last vowel adds <i>v</i> before the suffix. The engine reads "last" as word-final.</li>
+            <li>The exmon participle drops its o before any ending (<i>fastuox → fastuxam</i>); consonant stems keep it (<i>laboxam</i>). <i>ney</i> uses <i>ne-</i> before every ending.</li>
+            <li>Dissimilation never changes a case ending, and the word in front of it stays as it is: <i>veve, keavave, fastuxūxle</i>.</li>
+            <li>Stress never moves: case endings don't count (<i>īs-si-ū-ne</i>).</li>
+            <li>Which mutations the endings cause is still open.</li>
+          </ol>
+        </div>
+        <div class="tool m-case" data-build="tool-decline"></div>
+        <div class="sub">
+          <h3>Personal pronouns</h3>
+          <p>The pronouns take the noun endings on an oblique stem. The engine builds the whole table from the stems; four forms are exceptions the doc lists, marked with *.</p>
+          <div class="tw" data-build="pronouns"></div>
+          <ul class="notes">
+            <li>The g of the 2s oblique forms is optional: <i>(g)use</i>. Plural pronouns lengthen the stem vowel: <i>(g)u-</i> and <i>gū-</i>, <i>da-</i> and <i>dā-</i>.</li>
+            <li>Negation puts the subject pronoun in the abessive, with no verb affix: <i>Kiūxle labi guse</i> (I don't love you).</li>
+          </ul>
+        </div>
+        <div class="sub">
+          <h3>Demonstratives and place words</h3>
+          <p>Demonstratives are bare roots used as adjectives, set by distance and by what can be known: <i>ney</i> this, <i>nal</i> that, <i>gval</i> yonder, <i>maū</i> something unseen whose existence can't be verified.</p>
+          <div class="tw" data-build="demonstratives"></div>
+          <p class="blk-note"><i>maū</i> declines the same way (<i>maūm, maūse</i>) and takes <i>maūne, maūxle</i>, like <i>gū</i>.</p>
+          <div class="tw" data-build="places"></div>
+        </div>
+        <div class="sub">
+          <h3>Articles</h3>
+          <div class="tw"><table class="dt">
+            <thead><tr><th scope="col"></th><th scope="col">Definite (the)</th><th scope="col">Indefinite (a, some)</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Animate singular</th><td class="w">i</td><td class="w">iā</td></tr>
+              <tr><th scope="row">Inanimate singular</th><td class="w">ci</td><td class="w">ān</td></tr>
+              <tr><th scope="row">Plural (both)</th><td class="w">ni</td><td class="w">na</td></tr>
+            </tbody>
+          </table></div>
+          <p class="blk-note">Articles and demonstratives join the next word with a dash: <i>i-Rāmam</i> (the sun), <i>ni-Rāmami</i> (the suns), <i>na-zenen</i> (some times).</p>
+        </div>
+      </section>
+
+      <!-- 6. Adjectives -->
+      <section class="gsec" id="adjectives" aria-labelledby="adj-h">
+        <header>
+          <p class="eyebrow">Morphology</p>
+          <h2 id="adj-h">Adjectives</h2>
+          <p class="lede">Adjectives are participles: each comes from a verb root, one per form, and declines exactly like a noun. The form decides whom the adjective describes.</p>
+        </header>
+        <div class="tw" data-build="participles"></div>
+        <ul class="notes">
+          <li>Consonant stems add <i>e</i>, like e-stems: <i>dabe, iluse</i>; <i>daber, iluser</i>. This keeps u-stems distinct (<i>fastu, fastur</i>).</li>
+          <li>The active adjective uses the bare root: every u-stem drops its u (<i>fastanga, janga, langa, eranga, kamanga</i>); other stems keep their vowel. It may match the exmon gerund (<i>labanga</i>); that is accepted.</li>
+          <li>Not every verb needs all three participles.</li>
+        </ul>
+        <div class="sub">
+          <h3>Declension</h3>
+          <p>Adjectives take the noun endings exactly, plurals included.</p>
+          <div class="tw" data-build="adj-declension"></div>
+        </div>
+        <div class="sub">
+          <h3>Quality roots</h3>
+          <p>Some roots name a quality directly. In their bare form they work as adjectives and decline like nouns: <i>ilus</i> (beautiful) → <i>ilusam, ilusase</i>. That bare form is also the samon participle, since consonant stems take no e. Their <i>-os</i> noun is the essence of the quality.</p>
+          <div class="tw"><table class="dt">
+            <thead><tr><th scope="col"></th><th scope="col">ilus- (beauty)</th><th scope="col">dab- (right)</th><th scope="col">xl- (bad)</th><th scope="col">deres- (sad)</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Adjective</th><td class="w">ilus</td><td class="w">dab</td><td class="w">axla</td><td class="w">deres</td></tr>
+              <tr><th scope="row">Essence (-os)</th><td class="w">ilusos</td><td class="w">dabos</td><td class="w">xlos</td><td></td></tr>
+              <tr><th scope="row">Samon participle</th><td class="w">ilus</td><td class="w">dab</td><td class="w">xla</td><td class="w">deres</td></tr>
+              <tr><th scope="row">Other</th><td><i>ilusox</i> adorned, <i>iluson</i> a beautiful person</td><td></td><td><i>xlanga</i> harmful, <i>xlon</i> a bad person; <i>xlōs, xlōn</i> are different words</td><td><i>dere</i> sorry</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="sub">
+          <h3>Adjectives from nouns, and adverbs</h3>
+          <p>A noun becomes an adjective through a case: the genitive (red by nature), the comitative (marked with red) and the abessive (without red). These then decline like any e-final word: <i>albadem, albadese</i>.</p>
+          <div class="tw" data-build="noun-adjectives"></div>
+          <p><i>ili-</i> before a consonant, <i>ilis-</i> before a vowel, + an adjective or a noun makes a manner adverb. Adverbs don't decline and go after the verb. A noun + <i>hekanga</i> (giving) makes an X-giving adjective: <i>ixahekanga</i> (bright), <i>erūoshekanga</i> (deadly).</p>
+          <div class="tool" data-build="tool-adverb"></div>
+        </div>
+      </section>
+
+      <!-- 7. Word formation -->
+      <section class="gsec" id="word-formation" aria-labelledby="wf-h">
+        <header>
+          <p class="eyebrow">Derivation</p>
+          <h2 id="wf-h">Word formation</h2>
+          <p class="lede">Six suffixes turn verbs into nouns, plus <i>-on</i> for people. Vowel-initial suffixes follow the vowel-contact rules; consonant-initial ones attach directly.</p>
+        </header>
+        <div class="tw" data-build="suffixes"></div>
+        <ul class="notes">
+          <li><i>-os</i> marks essences: things that carry meaning or life beyond their substance. It takes the stem, and a stem-final u lengthens (<i>jūos, fastūos</i>).</li>
+          <li><i>-ver</i> or <i>-on</i> for intransitive verbs: <i>miadever</i> is going mad, <i>miadeon</i> is mad.</li>
+          <li>Short stems overlap with verb forms (<i>xōn, xōs, sōs</i>); context is enough.</li>
+        </ul>
+        <div class="sub">
+          <h3>Prefixes: ende- and xle-</h3>
+          <ul class="notes">
+            <li><i>ende-</i> intensifies: a verb gets stronger or deeper (<i>endeservaxa</i>, to indoctrinate).</li>
+            <li><i>xle-</i> reverses or undoes: the abessive (without) turned into a prefix.</li>
+            <li><i>ende-</i> loses its e after a vowel-final prefix: <i>ī + ende → īnde-</i>, <i>xle + ende → xlende-</i>. The īmon goes in front of everything.</li>
+          </ul>
+          <div class="tw" data-build="prefixes"></div>
+        </div>
+      </section>
+
+      <!-- 8. Numbers -->
+      <section class="gsec" id="numbers" aria-labelledby="num-h">
+        <header>
+          <p class="eyebrow">Numbers</p>
+          <h2 id="num-h">Numbers</h2>
+          <p class="lede">Lunde counts in base twelve, which divides evenly by 2, 3, 4 and 6 and can be counted on one hand: the thumb touches the three segments of each finger.</p>
+        </header>
+        <div class="pair">
+          <div class="tw" data-build="digits"></div>
+          <div class="sub">
+            <div class="tw" data-build="powers"></div>
+            <ul class="notes">
+              <li><i>ē-</i> is used only when counting; before a noun it drops: <i>ra zenen</i> (twice).</li>
+              <li>Multiply: the multiplier goes first, joined (<i>rasiōn</i>, 24). Add: the smaller number follows after a dash (<i>siōn-na</i>, 13). Biggest power first.</li>
+              <li>After any number above one, the noun goes plural: <i>ra osili</i> (two eyes).</li>
+              <li>Ordinals are the number + the genitive, joined with dashes: <i>na-de</i> (first), <i>siōn-ade</i> (twelfth).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tool" data-build="tool-number"></div>
+      </section>
+
+      <!-- 9. Open questions -->
+      <section class="gsec" id="questions" aria-labelledby="gq-h">
+        <header>
+          <p class="eyebrow">For you to decide</p>
+          <h2 id="gq-h">Open questions</h2>
+          <p class="lede">The same questions as on the conjugator. Each link opens the verb at the form in question.</p>
+        </header>
+        <div data-build="questions"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="foot">
+    <span>Engine v0.2 · rules as of Oct 18 2026</span>
+    <span>Source: <a href="https://claude.ai/code/artifact/4706b91e-ef2a-4a69-89d8-d26564a85157" target="_blank" rel="noopener">Old Lundian Grammar Reference</a></span>
+  </footer>
+</div>
+
+<script src="lunde-engine.js"></script>
+<script src="lexicon.js"></script>
+<script src="lunde-tests.js"></script>
+<script src="lunde-runner.js"></script>
+<script src="lunde-ui.js"></script>
+<script src="grammar.js"></script>
+</body>
+</html>

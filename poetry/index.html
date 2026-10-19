@@ -1,0 +1,1225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- doctype/html/head/charset/viewport wrapper added for alexbahia site; original content below is unchanged -->
+<title>Alex Bahia Poetry</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Frank+Ruhl+Libre:wght@400;500&family=Shippori+Mincho:wght@400;500&family=Courier+Prime:wght@400;700&family=Noto+Serif+Ethiopic:wght@400&display=swap">
+<style>
+/* Layout: one sheet of paper on a desk. The poem keeps its own column and a right-hand margin carries
+   the notes, each level with its word. Translation splits the sheet in half (mirrored for Hebrew). */
+:root{
+  --desk:#E7E0CF; --sheet:#FBF8F1; --ink:#211C17; --ink2:#4F463C; --muted:#74695C; --faint:#B5A892;
+  --rule:#E2D8C6; --red:#A3241A; --wash:#F0D8CE; --shadow:rgba(60,40,20,.38);
+  --serif:'EB Garamond','Shippori Mincho','Noto Serif Ethiopic',Georgia,'Times New Roman',serif;
+  --hebrew:'Frank Ruhl Libre','EB Garamond','Times New Roman',serif;
+  --mono:'Courier Prime','Courier New',ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--desk:#15120E;--sheet:#221E19;--ink:#ECE4D4;--ink2:#CFC5B3;--muted:#A99D8B;--faint:#6A5F51;--rule:#3B342B;--red:#E5735E;--wash:#52302A;--shadow:rgba(0,0,0,.7);color-scheme:dark}
+}
+:root[data-theme="dark"]{--desk:#15120E;--sheet:#221E19;--ink:#ECE4D4;--ink2:#CFC5B3;--muted:#A99D8B;--faint:#6A5F51;--rule:#3B342B;--red:#E5735E;--wash:#52302A;--shadow:rgba(0,0,0,.7);color-scheme:dark}
+
+body{background:var(--desk);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 80px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+button{font:inherit;color:inherit}
+
+/* ---- top bar ---- */
+.bar{max-width:1360px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 28px;padding-block:22px 26px}
+.brand{font-size:16px;letter-spacing:.34em;text-decoration:none;padding-block:10px}
+.nav{display:flex;flex-wrap:wrap;gap:0 26px;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.nav a{color:var(--muted);text-decoration:none;display:inline-block;padding-block:10px;border-bottom:1px solid transparent}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="page"]{color:var(--red);border-bottom-color:var(--red)}
+
+/* ---- the sheet ---- */
+.sheet{position:relative;background:var(--sheet);max-width:1080px;margin:0 auto;padding:72px 80px 60px 96px;box-sizing:border-box;
+  box-shadow:0 1px 2px rgba(0,0,0,.08),0 24px 44px -24px var(--shadow)}
+.sheet.narrow{max-width:780px;padding:72px 88px 64px}
+.sheet.wide{max-width:1380px}
+.sheet + .sheet{margin-top:44px}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.label.red{color:var(--red)}
+.sc{font-variant-caps:all-small-caps;letter-spacing:.14em}
+
+/* ---- front page ---- */
+.front{text-align:center}
+.sitename{margin:0;font-size:19px;letter-spacing:.38em;padding-left:.38em}
+.redrule{width:36px;height:1px;background:var(--red);margin:22px auto 54px}
+.epi{margin:0 auto;max-width:27em;text-align:left;font-style:italic;font-size:21px;line-height:1.6;text-wrap:pretty}
+.attr{margin:20px auto 0;max-width:27em;text-align:right;font-size:17px;color:var(--muted)}
+.epi-tr{margin:26px auto 0;max-width:30em;text-align:left;font-size:18px;line-height:1.6;color:var(--ink2);padding-top:20px;border-top:1px solid var(--rule)}
+.tbtn{margin-top:26px;background:none;border:0;min-height:44px;padding:0 8px;font-size:18px;color:var(--ink);cursor:pointer}
+.tbtn[aria-pressed="true"]{color:var(--red)}
+.enter{display:inline-block;margin-top:34px;padding-block:10px;text-decoration:none;font-size:18px}
+.enter:hover,.tbtn:hover{color:var(--red)}
+.pref-lead{margin:6px 0 24px;font-size:25px;line-height:1.4;font-style:italic;text-wrap:balance}
+.pref p{margin:0 0 14px;line-height:1.65}
+.pref h2{margin:44px 0 18px;font-weight:500;font-size:19px;color:var(--red)}
+.pref .lg{margin:0 0 14px;padding-left:1.4em;text-indent:-1.4em;font-size:18px;line-height:1.6}
+.pref .lg b{font-weight:600}
+.biblio{list-style:none;margin:0;padding:0;font-size:19px;line-height:1.95}
+
+/* ---- index ---- */
+.ixh{margin:0 0 34px;text-align:center;font-weight:400;font-size:19px;letter-spacing:.38em;padding-left:.38em}
+.ix{list-style:none;margin:0;padding:0}
+.ix a{display:flex;align-items:baseline;gap:14px;padding-block:11px;text-decoration:none}
+.ix .n{flex:none;width:2.4ch;font-family:var(--mono);font-size:14px;color:var(--red);font-variant-numeric:tabular-nums}
+.ix .t{font-size:21px;letter-spacing:.16em;text-transform:uppercase;min-width:0}
+.ix .t.he{font-family:var(--hebrew);font-size:24px;letter-spacing:0}
+.ix .t.u{text-transform:none;letter-spacing:.01em;font-style:italic}
+.ix .d{flex:1 1 24px;min-width:24px;border-bottom:1px dotted var(--faint);transform:translateY(-6px)}
+.ix .c{flex:none;font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--red)}
+.ix a:hover .t{color:var(--red)}
+
+/* ---- poem page ---- */
+.pg{display:grid;grid-template-columns:minmax(0,1fr) 220px;column-gap:44px;row-gap:44px}
+.ph{text-align:center;min-width:0}
+.ptitle{margin:0;font-weight:400;font-size:32px;line-height:1.25;letter-spacing:.3em;padding-left:.3em;text-transform:uppercase;text-wrap:balance}
+.ptitle[dir="rtl"]{font-family:var(--hebrew);font-size:46px;letter-spacing:0;padding-left:0;text-transform:none}
+.ptitle.untitled{text-transform:none;letter-spacing:.01em;padding-left:0;font-style:italic}
+.proma{margin:2px 0 0;font-style:italic;font-size:17px;color:var(--muted)}
+.plangs{margin:12px 0 0;font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--red)}
+.ctls{display:flex;flex-wrap:wrap;justify-content:center;gap:0 22px;margin-top:10px}
+.ctl{background:none;border:0;min-height:44px;padding:0 4px;cursor:pointer;font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ctl .box{color:var(--red)}
+.ctl:hover:not(:disabled),.ctl[aria-pressed="true"]{color:var(--ink)}
+.ctl:disabled{color:var(--faint);cursor:not-allowed}
+.ctl:disabled .box{color:var(--faint)}
+.about{border-left:1px solid var(--rule);padding-left:22px;font-size:15px;line-height:1.5;display:flex;flex-direction:column;min-width:0}
+.about .tx{margin:0;font-style:italic;color:var(--ink2)}
+.about .nl{margin-top:auto;padding-top:22px}
+
+.rows{position:relative;min-width:0;font-size:20px;line-height:1.7}
+.r{display:grid;grid-template-columns:minmax(0,1fr)}
+.l{white-space:pre-wrap;padding-inline-start:calc(var(--pad,0em) + 1.4em);text-indent:-1.4em}
+.l.epi{font-size:.85em;line-height:1.65;color:var(--ink2);margin-inline-start:2em}
+.ro{font-style:italic;font-size:15px;line-height:1.35;color:var(--muted);margin:0 0 7px;padding-inline-start:1.4em}
+.o[dir="rtl"]{font-family:var(--hebrew);font-size:1.3em;line-height:1.55}
+.o[dir="rtl"] .ro{font-family:var(--serif);text-align:right;padding-inline:0 1.4em}
+.tr{color:var(--ink);min-width:0}
+.cols .o,.cols .tr{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-bottom:18px;line-height:1.5}
+.cols .tt{display:block;font-family:var(--serif);font-size:20px;letter-spacing:.2em;color:var(--ink);margin-top:2px}
+.cols .o[dir="rtl"] .tt{font-family:var(--hebrew);letter-spacing:0;font-size:24px}
+
+.sec{margin:2.4em 0 1.1em;color:var(--red);text-align:center}
+.rows > .sec:first-child{margin-top:.3em}
+.sec .num{display:block;font-size:15px;letter-spacing:.24em;padding-left:.24em;margin-bottom:2px}
+.sec .line{display:flex;align-items:center;gap:18px}
+.sec .line::before,.sec .line::after{content:"";flex:1;height:1px;background:currentColor;opacity:.55}
+.sec .t{font-size:18px;letter-spacing:.3em;padding-left:.3em;line-height:1.4}
+.sec .t.big{font-size:26px;letter-spacing:.14em;padding-left:.14em}
+.sec .t.he{font-family:var(--hebrew);font-size:26px;letter-spacing:0;padding-left:0}
+.sec .sro{font-style:italic;font-size:15px;margin-top:2px}
+
+/* note anchors: a red number at rest; the phrase lights up when clicked */
+.a{background:none;border:0;padding:0 3px;margin:0 -3px;border-radius:3px;cursor:pointer;text-indent:0;line-height:inherit;white-space:pre-wrap;transition:background-color .15s}
+.a sup{color:var(--red);font-family:var(--serif);font-size:.56em;margin-inline-start:1px;font-weight:500;line-height:0;font-style:normal}
+.a:hover{background:color-mix(in srgb,var(--wash) 55%,transparent)}
+.a[aria-pressed="true"]{background:var(--wash)}
+
+.margin{position:relative;border-left:1px solid var(--rule)}
+.mn{position:absolute;left:0;right:0;display:block;text-align:left;background:none;border:0;border-radius:4px;cursor:pointer;
+  padding:3px 8px 5px 22px;font-size:15px;line-height:1.45;color:var(--muted);transition:top .2s ease,background-color .15s}
+.mn:hover{color:var(--ink)}
+.mn .n{color:var(--red);margin-right:8px}
+.mn .lab.he{font-family:var(--hebrew);font-size:1.15em}
+.mn .bd{display:none;margin-top:6px;font-style:italic;color:var(--ink2)}
+.mn.on{left:10px;right:-14px;padding:12px 14px 14px;background:var(--wash);color:var(--ink)}
+.mn.on .n{font-size:24px;line-height:1;vertical-align:-2px}
+.mn.on .bd{display:block}
+
+/* translation: the sheet is cut in half */
+.split .rows{font-size:18px}
+.split .r{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:48px}
+.split .rows::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--rule)}
+.split .sec{position:relative;background:var(--sheet);padding-block:4px}
+
+.pn{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;margin-top:64px;padding-top:12px;border-top:1px solid var(--rule)}
+.pn a{text-decoration:none;font-style:italic;font-size:18px;padding-block:10px}
+.pn a:hover{color:var(--red)}
+.pn .mid{font-style:normal;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* phone: the margin folds away and a clicked note rises from the bottom */
+.card{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--sheet);border-top:1px solid var(--rule);box-shadow:0 -14px 34px -14px var(--shadow);
+  padding:14px max(18px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
+.card .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.card .x{background:none;border:0;min-width:44px;min-height:44px;font-size:24px;color:var(--muted);cursor:pointer}
+.card .lab{margin:2px 0 6px;font-size:19px}
+.card .lab.he{font-family:var(--hebrew)}
+.card .bd{margin:0;font-style:italic;color:var(--ink2);font-size:16px}
+
+@media (max-width:900px){
+  .sheet,.sheet.narrow,.sheet.wide{padding:44px 22px 40px}
+  .pg{grid-template-columns:minmax(0,1fr);row-gap:28px}
+  .about{border-left:0;padding-left:0;text-align:center}
+  .about .nl{display:none}
+  .margin{display:none}
+  .split .r{grid-template-columns:minmax(0,1fr)}
+  .split .rows::before{display:none}
+  .split .r .o{order:0}
+  .split .r .tr{order:1;color:var(--muted);font-style:italic;margin-bottom:.5em}
+  .split .r.cols{display:none}
+  .ix a{flex-wrap:wrap;row-gap:0}
+  .ix .d{display:none}
+  .ix .c{flex-basis:100%;padding-left:calc(2.4ch + 14px)}
+  .rows{font-size:19px}
+  .o[dir="rtl"]{font-size:1.12em}
+  .ptitle[dir="rtl"]{font-size:38px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<!-- added for alexbahia site: link back to the main site -->
+<div id="site-backlink" role="navigation" aria-label="Alex Bahia site" style="max-width:1360px;margin:0 auto;box-sizing:border-box;padding-top:14px;font-family:var(--mono,'Courier New',monospace);font-size:12px;line-height:1.3;letter-spacing:.08em;color:var(--muted,#74695C)"><a href="../" style="color:inherit;text-decoration:none">Alex Bahia home</a> <span aria-hidden="true">/</span> <a href="../lunde/" style="color:inherit;text-decoration:none">Lunde</a> <span aria-hidden="true">/</span> <a href="../gallery/" style="color:inherit;text-decoration:none">Gallery</a> <span aria-hidden="true">/</span> <a href="../about/" style="color:inherit;text-decoration:none">About</a></div>
+
+<header class="bar">
+  <a class="brand" href="#">ALEX BAHIA POETRY</a>
+  <nav class="nav" aria-label="Main">
+    <a href="#preface" data-r="preface">Preface</a>
+    <a href="#poems" data-r="poems">Poems</a>
+    <a href="#bibliography" data-r="bibliography">Bibliography</a>
+  </nav>
+</header>
+<main id="app"></main>
+<div class="card" id="card" role="region" aria-label="Note" hidden>
+  <div class="top"><span class="label red" id="cardN"></span><button class="x" id="cardX" type="button" aria-label="Close note">×</button></div>
+  <p class="lab" id="cardL"></p>
+  <p class="bd" id="cardB"></p>
+</div>
+
+<script>
+/* =====================================================================
+   ALEX BAHIA POETRY — content
+   ---------------------------------------------------------------------
+   One poem = one `src` string. How to write it:
+     blank line            stanza break (two blank lines = a bigger break)
+     leading tabs          indent, one tab stop each (like Word's tabs)
+     spaces inside a line  kept exactly as typed
+     # I. TITLE            section header ("I." becomes the small numeral)
+     > text                epigraph line
+     = text                romanization of the line just above
+     ~en text              English translation of the line just above
+                           (~fr and ~es work the same way)
+     *italic*  **bold**    formatting
+     [[phrase|3]]          note anchor: puts a red 3 after the phrase
+   Notes: write them in `notes: {3: {en: '...'}}`. Empty = TBD.
+   ===================================================================== */
+
+const SITE = {
+  title: 'Alex Bahia Poetry',
+  lang: 'en'
+};
+
+const PIZARNIK = {
+  es: 'Siento que los signos, las palabras, insinúan, hacen alusión. Este modo complejo de sentir el lenguaje me induce a creer que el lenguaje no puede expresar la realidad; que solamente podemos hablar de lo obvio. De allí mis deseos de hacer poemas terriblemente exactos a pesar de mi surrealismo innato y de trabajar con elementos de las sombras interiores. Es esto lo que ha caracterizado a mis poemas.',
+  en: 'I feel that signs, that words, insinuate, allude. This complex way of feeling language leads me to believe that language cannot express reality; that we can only speak of the obvious. Hence my desire to make poems that are terribly exact, despite my innate surrealism, and to work with elements of the inner shadows. This is what has characterized my poems.',
+  fr: "Je sens que les signes, que les mots, insinuent, font allusion. Cette manière complexe de sentir le langage m'amène à croire que le langage ne peut pas exprimer la réalité ; que nous ne pouvons parler que de l'évident. De là mon désir de faire des poèmes terriblement exacts, malgré mon surréalisme inné, et de travailler avec des éléments des ombres intérieures. C'est cela qui a caractérisé mes poèmes."
+};
+
+const PREFACE = {
+  en: {
+    lead: 'I wrote these because I needed to get them out of me.',
+    body: [
+      'I have never thought in one language. I was inventing languages before I could properly write in any of them — I still do — and along the way I learned real ones, and each of them took a different part of me. Writing this collection has been how I found out what those parts were. It has also been the calmest thing I do.',
+      "The collection is shaped like a river: it begins at the source, a forest on an island in the Pacific Northwest, and runs to the estuary, where fresh water meets salt and nothing stays separate. Read it in order if you want the river. Read anywhere if you don't.",
+      "You don't need to read any of these languages. The translations are complete. The notes beside each poem are for anyone who wants to see what the translation had to leave behind — a pun in Greek, a Hebrew verb that means both <i>wave</i> and <i>uncover</i>, a Japanese word that is both an echo and a child."
+    ],
+    langsTitle: 'The languages, and what each one is for',
+    langs: [
+      ['Hebrew', "ancestors rather than family; my father's side, history, faith held at arm's length. It is the language I doubt in. The tradition it comes from does not ask you to accept things blindly — it argues, it demands proof, it wrestles. So do these poems."],
+      ['French', 'my first language, the language of my childhood and of my inner voice. Family, literature, the sonnet, rhyme, the forms I was taught to respect. My French education leaking through.'],
+      ['English', 'the language of the world, and of thinking clearly. Sometimes it is only a bridge between the others. Sometimes it is the poem itself, and then I write it inside its own tradition: iambic pentameter, the decasyllable, the line that has been used for six hundred years.'],
+      ['Spanish', 'love, and being a teenager, which I mostly was in Spanish. Fire, passion, <i>duende</i>. The tradition and the music I keep going back to.'],
+      ['Italian', 'beauty and structure at once. Bright, exact, austere when it wants to be. The <i>lauda</i>, the <i>jubilus</i>, the Song of Songs.'],
+      ['Japanese', 'impermanence, and the admiration of it. Somber, reflective, unhurried. Saigyō, Kajii, Chiyo-ni. <i>Mono no aware</i>: the ache that a thing is passing while you are still looking at it.'],
+      ['Catalan', 'Barcelona, which is my favorite city, and which I love enough to want to say so in her own language. Her history, her food, her architecture. I wanted to be an architect when I was small.'],
+      ['Latin and Greek', 'history, morality, myth. They carry an authority nothing else does. Greek bends into shapes no other language I know can hold; Latin I have studied for two years and am still learning to hear.']
+    ],
+    coda: ['And others', 'appear where they must — because they are part of me, or because the story could only be told in the language it happened in.']
+  }
+};
+
+const BIBLIO = [
+  'Chaim Vital, <i>Sefer Etz Chaim</i>',
+  'The Tanakh',
+  'Ovid, <i>Metamorphoses</i>',
+  'Ono no Komachi',
+  'Izumi Shikibu',
+  'Saigyō',
+  'Kajii Motojirō, “Under the Cherry Trees”',
+  'Sakaguchi Ango, “In the Forest, Under the Cherries in Full Bloom”',
+  'Chiyo-ni',
+  'Federico García Lorca',
+  'Luis Cernuda, <i>Si el hombre pudiera decir lo que ama</i>',
+  'Rainer Maria Rilke',
+  'Luis de Góngora',
+  'Rosalía',
+  '<i>Me.</i>'
+];
+
+const POEMS = [
+
+{ id: 'sakura', title: 'Sakura', langs: ['Spanish', 'Japanese'], codes: 'ES · JA', dir: 'ltr', script: true, src: `
+# 序
+= jo
+
+Te pensé hasta
+en Japón, '24,
+viendo sakuras
+cayendo desde el cielo.
+
+# 蕾
+= tsubomi
+
+En Japón dicen
+que los muertos duermen
+[[bajo los sakuras|1]],
+cobrados por la tierra,
+
+y allí siguen, enroscados,
+dándoles pan diario.
+De allí, enraizado,
+vendría el rosa de sus flores.
+
+# 満開
+= mankai
+
+Flor de sakura,
+cae en tu ojo siniestro.
+Dos deshojados,
+tú y yo, juntos en el suelo.
+
+Bajo el [[hanafubuki|2]],
+un [[monogatari-e|3]],
+del color del amor
+eran las flores de Kajii.
+
+Rosas del [[Ai|4]] pasado
+raíz a rama— rojo mutado.
+[[愛 が 哀 に なる|5]]、
+= ai ga ai ni naru,
+le corre sangre clara, [[Amaru|6]].
+
+# 散る
+= chiru
+
+Que tuviéramos algo, no lo sabré.
+Es que yo por ti me enloquecí,
+Te di todo: sangre, amor, aire
+pa' que pudieses florecer.
+
+Jamás supe y jamás sabré
+lo que pasaba por tu mente.
+Me desangraba, y ahí quedabas,
+clavado, de piedra, sin decir nada.
+
+No cuidabas tus pasos:
+entonces me dejaste caer,
+un romántico desesperado,
+tal el último pétalo que cayó ayer.
+
+# 落花
+= rakka
+
+Un día, a tu lado de nuevo,
+me desperté, y el alma también.
+Te miré otra vez, y la última fue.
+
+# 葉桜
+= hazakura
+
+Cada primavera vuelvo pensándote
+cuando los cerezos, hasta en Nueva York,
+se encienden de rosa; les grito tu nombre—
+名を呼べば、[[木霊か子供|7]]?
+= na wo yobeba, kodama ka kodomo?
+
+Y aunque oír tu nombre aún me dé escalofríos,
+y aunque ahora solo queden hojas en las ramas
+—verdes, tranquilas, pero ya sin flores—
+atesoro que algo tan bonito pueda durar tan poco tiempo.
+` },
+
+{ id: 'barcelona', title: 'Barcelona', langs: ['Catalan'], codes: 'CA', dir: 'ltr', script: false,
+  trTitle: { en: 'Barcelona', fr: 'Barcelone', es: 'Barcelona' }, src: `
+On l'atzur mediterrani
+~en Where the Mediterranean azure
+~fr Où l'azur méditerranéen
+~es Donde el azur mediterráneo
+abraça el robust [[Montjuïc|1]];
+~en embraces robust Montjuïc;
+~fr embrasse le robuste Montjuïc ;
+~es abraza el robusto Montjuïc;
+i entre els dos: [[dracs i roses|2]],
+~en and between the two: dragons and roses,
+~fr et entre les deux : dragons et roses,
+~es y entre los dos: dragones y rosas,
+Barcelona, tu enlluernes.
+~en Barcelona, you dazzle.
+~fr Barcelone, tu éblouis.
+~es Barcelona, tú deslumbras.
+
+L'aire embriaga dolçament,
+~en The air intoxicates sweetly,
+~fr L'air enivre doucement,
+~es El aire embriaga dulcemente,
+i la calor de l'or vermell,
+~en and the heat of the red gold,
+~fr et la chaleur de l'or vermeil,
+~es y el calor del oro rojo,
+palpable pels carrers.
+~en palpable through the streets.
+~fr palpable dans les rues.
+~es palpable por las calles.
+
+Que bonic, divagar pel parc
+~en How lovely, to drift through the park
+~fr Que c'est beau, divaguer dans le parc
+~es Qué bonito, divagar por el parque
+de la [[salamandra|3]],
+~en of the salamander,
+~fr de la salamandre,
+~es de la salamandra,
+
+*on és normal dir-se Alexandre.*
+~en *where it is normal to be called Alexandre.*
+~fr *où il est normal de s'appeler Alexandre.*
+~es *donde es normal llamarse Alexandre.*
+` },
+
+{ id: 'andromeda', title: 'ΑΝΔΡΟΜΕΔΑ', roma: 'Andromeda', langs: ['English', 'Greek', 'Latin', 'Amharic'], codes: 'EN · GRC · LA · AM', dir: 'ltr', script: true, src: `
+> *quam simul ad duras religatam bracchia cautes*
+> *vidit* [[*Abantiades*|1]]*, nisi quod levis aura capillos*
+> *moverat et tepido manabant lumina fletu,*
+> *marmoreum ratus esset opus;* (Ovid, *Metamorphoses* 4.672–675)
+
+# I. SENTENCE
+
+\t\t\t\t\tThe sea's
+\t\t\tmighty ego,
+to be assuaged
+
+demanded that the girl be bound and caged.
+Beautiful of terror, bound to that stone,
+and gilded ropes held fast her wrists, her waist,
+yet she it was who held him with her gaze.
+
+A savior sent from heaven, cut her free,
+and thought her marble — cold, and carved to be
+admired — until the wind disturbed her hair,
+a burning tear undid the statue there.
+
+He drew her from the deep; his hands, a yoke,
+closed 'round a ring, another chain to choke;
+her mother's debt, for which with life she'd pay,
+priced like a bride, she too was giv'n away.
+
+and carried she was,
+\t\t\tfrom monster
+\t\t\t\t\tto marriage.
+
+# II. ONOMA
+
+Κηφῆος θυγάτηρ,
+= Kēphēos thygátēr,
+Κασσιεπείης ἀνάσσης,
+= Kassiepeíēs anássēs,
+νηρηΐδων καλλίων  — ΑΝΔΡΟΜΕΔΑ,
+= nērēḯdōn kallíōn — Andromeda,
+ἀλλ᾽ ἦν ἀνδρὸς μεδομένη;
+= all' ēn andròs medoménē?
+ἢ ἀνδρῶν [[**μέδουσα;**|2]]
+= ē andrôn médousa?
+
+# III. [[ጩኸት|3]]
+= č'uhät
+
+[[⟦ - - - ⟧|4]]
+
+«እኔ፡ብርጭቆ፡አይደለሁም። ኦብሲዲያን፡ሲሰበር፡እኔ፡የበለጠ፡ስለታም፡እሆናለሁ።»
+= «Ǝne bǝrč'ǝqo aydellehum. Obsidiyan sīsebber, ǝne yebelet'e sǝlet'am ǝhonallehu.»
+
+# IV. APPROACH
+
+Nearly everything in the universe
+is receding—redshifted.
+ΑΝΔΡΟΜΕΔΑ is, however, falling
+onto us —[[blueshifted|5]]
+
+at a hundred and ten
+kilometers a second.
+
+Her core holds a hundred million suns of appetite,
+an appetite twenty times the one we keep.
+For so long, they feared this dark at her core
+and painted it      away.
+
+In roughly four billion years,
+they say, the galaxies will meet.
+She whose fate men once decided
+now holds ours.
+
+The bound woman is coming,
+and she has grown greater now
+than we can fathom.
+
+And I wonder, as I admire from afar,
+the celestial vault that dazzles the night,
+if she is blazing home, or rather seeks revenge.
+` },
+
+{ id: 'plus-ultra', title: 'Plus Ultra', langs: ['Italian', 'Latin'], codes: 'IT · LA', dir: 'ltr', script: false, src: `
+# I. REQUIEM
+
+Mattina d’ottobre,
+‘na cassa di pino, chiaro.
+quattro maniglie d'ottone,
+col chiodo di pena, storto.
+
+ornamento.   in morte
+nessuno guarda
+
+rose bianche, già stanche,
+legate con lo spago;
+né la cera che cola
+e s'indurisce sul marmo,
+
+sandalo.   in scandalo
+nessuno sente
+
+Un Odore di terra bagnata,
+d'incenso e di catrame,
+fuori, sull'asfalto
+colombi e due gomme,
+
+incerti.   in transitu
+nessuno riprende
+
+una catena d'oro
+sul collo di [[Nana|1]],
+e le sue mani guidando
+la luce per buio.
+
+benedicendo.   in capulo
+tutti conoscono
+
+il uomo nel legno,
+con la mia faccia,
+le mie mani e paure
+pettinate per bene
+
+ornamento.   post mortem
+nessuno sapra:
+
+mai ci credevo
+quello che dissero.
+[[*Qual io fui vivo,*|2]]
+*tal son morto.*
+
+# II. IN PARADISUM
+
+Ed entra il coro:
+
+[[*In paradisum deducant te angeli*|3]] —
+
+e la voce, cristallina,
+scende, e non è suono:
+
+E l'armonia angelica,
+l'aria organometallica,
+mi passa per capum
+ignis est deorum.
+
+Non spero: spiro.
+Non ci credo: ne crepo.
+La mia hybris implode
+in milli trilli santi,
+
+e dall'implosione
+la spinta prendo.
+
+*Lux perpetua*
+
+*Perpetua*, immo:
+Sed nōn hīc:
+Nōn vestra:
+Nunquam vestra erat
+
+# III. CONGEDO I
+
+Dunque vado.
+
+Addio alla creta,
+al fango ed alla radice,
+al pane, al vino,
+alla ruggine sui cancelli.
+
+Addio alla cera
+che si scioglie
+per illuminare un santo
+di gesso.
+
+Addio alle cose
+che finiscono.
+
+Una rosa mi mira
+e per un momento resto.
+[[La rosa del principe|4]],
+l'unica, la mia,
+quella che avevo addomesticato.
+
+Resto.
+
+E poi vado lo stesso.
+
+Addio pur a lui,
+piccolo, laggiù,
+che tiene ancora il cappello in mano
+e non sa alzare la testa.
+
+# IV. CONGEDO II
+
+Dunque prendo volo.
+
+La nuvola si apre
+Non per il Portalo
+La gravità graziosa
+per me non è più grave.
+
+
+O Dio, se ci sei davvero,
+a Te vengo a parlare !
+
+Non mi fido di Te,
+e non Ti chiedo venia,
+ché mai crederò
+in quello che non mi lasci tocare !
+
+I muri fiammanti
+del mondo li rompo —
+Vado oltre i mondi,
+e sino ad Andromeda: addio.
+
+E a Te, darò un bacio.
+Ed a Lucifero pure !
+
+*Qual io fui vivo,*
+*tal son morto !*
+
+# V. PLUS ULTRA
+
+Su le colonne antiche
+stava inciso: [[*non plus ultra.*|5]]
+Non oltre. Férmati.
+
+Nec caelum est,
+nec profundum est,
+nec medium est
+—così diceva a Roma
+mentre ardeva !
+
+Non giungo.
+Non voglio giungere.
+
+Movo ove il lume
+ancor non ha un nome,
+
+*plus ultra,*
+*plus ultra,*
+
+e più in là !
+` },
+
+{ id: 'nana', title: 'Nana', langs: ['French'], codes: 'FR', dir: 'ltr', script: false, src: `
+*Buvant la nuit pour rendre le jour,*
+*les [[orchidées|1]] de Nana demeurent toujours.*
+
+
+Nana enchante un champ de [[poussière étoilée|2]].
+Elle bêche et remue la terre nourricière,
+tout en leur chantant une éternelle prière,
+et chaque orchidée, un petit astre blessé.
+
+Et quand une étincelle chue du ciel, brisée,
+que Nana recueille de sa main tutélaire,
+replante et nourrit de son amour de grand-mère,
+brille — elle sourit d’un grand sourire comblé.
+
+Et quand mes yeux, versent des perles de diamants,
+des éclats de chagrin, elle essuie ardemment,
+faisant vivre l’instant; l’apaiser doucement.
+
+Quand elle ne sera plus là pour nous bercer,
+Nana brillera sur nous, puis sur les bébés,
+faisant vivre les fleurs; béantes calmement.
+
+
+*Buvant la nuit pour rendre l’amour,*
+*les orchidées de Nana brilleront toujours.*
+` },
+
+{ id: 'no-tengas-rencor', title: 'No tengas rencor, amor.', untitled: true, langs: ['Spanish'], codes: 'ES', dir: 'ltr', script: false, src: `
+*No tengas rencor, amor.*
+*Sabe que yo*
+*no te he olvidado.*
+
+La vida es una estrella
+que brilla, brilla.
+Antes no sabes que arde,
+solo da, y da,
+rosas rayas buscando
+tu ojo llorando.
+
+Y tú, [[niño omnisciente|1]],
+quien brillas, brillas,
+no sabes que ocultas
+tus gastas, gastas
+te regalas entero
+\t*al cielo que ni te mira.*
+
+
+QUE IMPLOTANDO EXPLOTE
+QUE OFUSCANDO ALUMBRE
+QUE CREANDO DESTROCE
+Y QUE MATANDO AME
+` },
+
+{ id: 'safek', title: 'סָפֵק בלי סוף', roma: 'Safek Bli Sof', langs: ['Hebrew'], codes: 'HE', dir: 'rtl', script: true,
+  trTitle: { en: 'Doubt Without End' }, src: `
+# הַיְרִידָה
+= ha-yeridah
+
+[[אוֹר אֵין־סוֹף|1]]
+= Or Ein Sof
+~en Light without end.
+מִלֵּא הַכֹּל, וְלֹא הָיָה מָקוֹם
+= mille ha-kol, ve-lo hayah makom
+~en It filled all, and there was no room.
+[[צִמְצֵם|2]] אֶת־עַצְמוֹ, וַיְהִי חָלָל
+= tzimtzem et-atzmo, va-yehi chalal
+~en It contracted itself, and there was a void.
+וּבֶחָלָל — קַו שֶׁל אוֹר
+= u-ve-chalal — kav shel or
+~en And in the void — a line of light.
+וְהָאוֹר בִּקֵּשׁ כֵּלִים
+= ve-ha-or bikkesh kelim
+~en And the light sought vessels.
+עָשׂוּ לוֹ כֵּלִים, וְלֹא הֵכִילוּ
+= asu lo kelim, ve-lo hekhilu
+~en They made it vessels, and they could not contain it.
+כִּי רַב הָאוֹר מִן־הַכְּלִי
+= ki rav ha-or min ha-keli
+~en For the light was greater than the vessel.
+[[וַיִּשָּׁבְרוּ|3]]. וַיִּפְּלוּ נִיצוֹצוֹת
+= va-yishavru. va-yiplu nitzotzot
+~en And they shattered. And sparks fell.
+נִיצוֹץ בְּכָל־דָּבָר, נִיצוֹץ בְּכָל־אָדָם
+= nitzotz be-khol davar, nitzotz be-khol adam
+~en A spark in every thing, a spark in every man.
+
+# הַשַּׁרְשֶׁרֶת
+= ha-sharsheret
+
+בְּרֵאשִׁית הָיָה קוֹל
+= bereshit hayah kol
+~en In the beginning was a voice.
+וּמִשֶּׁנִּשְׁבַּר הַקּוֹל — הָיוּ שָׂפוֹת
+= u-mishe-nishbar ha-kol — hayu safot
+~en And when the voice broke — there were tongues.
+
+וּבַשָּׂפוֹת הָיוּ דְּבָרִים
+= u-va-safot hayu dvarim
+~en And in the tongues were words / things.
+וּמִדָּבָר אֶחָד — אָדָם
+= u-mi-davar echad — adam
+~en And from one word — a man.
+מִצַּלְעוֹ צָמְחָה חַוָּה
+= mi-tzal'o tzamchah Chavah
+~en From his rib grew Eve.
+וּמִשְּׁנֵיהֶם — אֲנַחְנוּ
+= u-mi-shneihem — anachnu
+~en And from the two of them — we.
+וּבָנוּ שָׁכְנוּ קוֹלוֹת
+= u-vanu shakhnu kolot
+~en And in us dwelt voices.
+וּבַקּוֹלוֹת — הַדִּבּוּר
+= u-va-kolot — ha-dibbur
+~en And in the voices — speech.
+וּבַדִּבּוּר — מִלָּה
+= u-va-dibbur — milah
+~en And from the speech — a word.
+וְהַמִּלָּה הַהִיא הָיְתָה אֲנִי
+= ve-ha-milah ha-hi haytah ani
+~en And that word became me.
+
+# [ נְשִׁימָה ]
+= neshimah
+
+# הָעֲלִיָּה
+= ha-aliyah
+
+וַאֲנִי — חֵלֶק מִן־הָעוֹלָם
+= va-ani — chelek min ha-olam
+~en And I — a part of the world.
+וְהָעוֹלָם נִשְׁפָּךְ בְּתוֹכִי
+= ve-ha-olam nishpach be-tokhi
+~en And the world pours into me.
+אֲנִי כּוֹתֵב, וְהַשָּׂפוֹת נִכְנָסוֹת בִּי
+= ani kotev, ve-ha-safot nikhnasot bi
+~en I write, and the tongues enter into me.
+אֲנִי אוֹהֵב אוֹתָן, וְהֵן מְמַלְּאוֹת אוֹתִי
+= ani ohev otan, ve-hen memal'ot oti
+~en I love them, and they fill me.
+וְאֵיךְ יָכֹל אֲנִי לְהָכִיל אֶת־הָעוֹלָם
+= ve-eikh yakhol ani lehakhil et ha-olam
+~en And how can I contain the world,
+וְהָעוֹלָם — הֲלֹא יֵשֵׁב בְּמַעֲרֶכֶת שֶׁמֶשׁ
+= ve-ha-olam — halo yeshev be-ma'arekhet shemesh
+~en when the world itself must sit in a solar system,
+וְהַשֶּׁמֶשׁ תִּכָּנֵס בַּיְקוּם
+= ve-ha-shemesh tikanes ba-yekum
+~en and the sun must fit inside the universe,
+וְהַיְקוּם יִתְפֹּס מָקוֹם בְּתוֹךְ סִפּוּר
+= ve-ha-yekum yitpos makom be-tokh sippur
+~en and the universe takes up room inside a story,
+וְהַסִּפּוּר יִצְטַמְצֵם בְּתוֹךְ סֵפֶר
+= ve-ha-sippur yitztamtzem be-tokh sefer
+~en and the story contracts itself inside a book —
+וְהַסֵּפֶר, אוֹמְרִים, מֵאוֹתִיּוֹת נַעֲשָׂה
+= ve-ha-sefer, omrim, me-otiyot na'asah
+~en and the book, they say, was made from letters,
+וְהָאוֹתִיּוֹת — אוֹתִיּוֹת שֶׁל אוֹר
+= ve-ha-otiyot — otiyot shel or
+~en and the letters — letters of light,
+
+וְהָאוֹר — דִּבְרֵי אֱמֶת
+= ve-ha-or — divrei emet
+~en and the light — words of truth,
+וְהָאֱמֶת, אוֹמְרִים, מִמֶּנּוּ יָצְאָה
+= ve-ha-emet, omrim, mimenu yatz'ah
+~en and the truth, they say, came out from Him.
+
+# [ נְשִׁימָה ]
+= neshimah
+
+# הַמַּחֲנָק
+= ha-machanak
+
+וְאִם מִמֶּנּוּ הַכֹּל
+= ve-im mimenu ha-kol
+~en And if all is from Him —
+לָמָּה לֹא אֶרְאֶה אוֹתוֹ
+= lamah lo er'eh oto
+~en why do I not see Him?
+לָמָּה נִסְתָּר, לָמָּה שׁוֹתֵק
+= lamah nistar, lamah shotek
+~en Why hidden, why silent?
+לָמָּה [[עֲשָׂרָה עוֹלָמוֹת|4]] בֵּינִי וּבֵינוֹ
+= lamah asarah olamot beini u-veino
+~en Why ten worlds between me and Him?
+לָמָּה, לָמָּה, לָמָּה
+= lamah, lamah, lamah
+~en Why, why, why?
+אֵין סוֹף — מִי אַתָּה
+= Ein Sof — mi atah
+~en Infinite — who are You?
+
+# הַהִתְגַּלּוּת הַהֲפוּכָה
+= ha-hitgalut ha-hafukhah
+
+אָמַרְתָּ: אָנֹכִי עֹשֶׂה כֹּל
+= amarta: Anokhi oseh kol
+~en You said: I am the one who makes all.
+אָמַרְתָּ: נֹטֶה שָׁמַיִם לְבַדִּי
+= amarta: noteh shamayim levadi
+~en You said: I alone stretch out the heavens.
+אָמַרְתָּ: יוֹצֵר אוֹר וּבוֹרֵא חֹשֶׁךְ
+= amarta: yotzer or u-vore choshekh
+~en You said: I form light and create darkness.
+אָמַרְתָּ: אֲנִי הַקּוֹרֵא בְשִׁמְךָ
+= amarta: ani ha-kore be-shimkha
+~en You said: I am the one who calls you by name.
+אִם קָרָאתָ בִשְׁמִי — לָמָּה לֹא אֵדַע אוֹתְךָ
+= im karata bi-shmi — lamah lo eda otkha
+~en If You called me by my name — why do I not know You?
+
+
+אִם אַתָּה יוֹצֵר הָאוֹר — לָמָּה אֲנִי בַּחֹשֶׁךְ
+= im atah yotzer ha-or — lamah ani ba-choshekh
+~en If You form the light — why am I in the dark?
+[[הָאוֹתִיּוֹת שְׁאָלוּנִי|5]], אָמַרְתָּ
+= ha-otiyot she'aluni, amarta
+~en Ask Me of the things to come, You said,
+וְאָנֹכִי — שׁוֹאֵל, וְאֵין עוֹנֶה
+= ve-anokhi — sho'el, ve-ein oneh
+~en and I — I ask, and none answers.
+אָכֵן אַתָּה אֵל מִסְתַּתֵּר
+= akhen atah El mistater
+~en Truly You are a God who hides —
+הַאִם הִסְתַּתַּרְתָּ כָּל־כָּךְ עָמֹק
+= ha-im histatarta kol kakh amok
+~en have You hidden Yourself so deep
+עַד שֶׁאַתָּה בְּעַצְמְךָ
+= ad she-atah be-atzmekha
+~en that even You
+
+אֵינְךָ מוֹצֵא אֶת־עַצְמְךָ
+= eynkha motze et-atzmekha
+~en cannot find Yourself?
+` },
+
+{ id: 'lashon', title: 'לָשׁוֹן', roma: 'Lashon', langs: ['Hebrew'], codes: 'HE', dir: 'rtl', script: true, src: `
+הַלָּשׁוֹן קְדוֹשָׁה, וְעַל־כֵּן [[חֶרֶב פִּיפִיּוֹת|1]]
+= Ha-lashon kdoshah, ve-al ken cherev pifiyot
+הֵם אוֹמְרִים: מָוֶת וְחַיִּים [[בְּיַד־לָשׁוֹן|2]]
+= Hem omrim: mavet ve-chayyim be-yad lashon
+וְהָאוֹחֵז בָּהּ — יִזָּהֵר פֶּן תַּחְתֹּךְ בּוֹ
+= Ve-ha-ochez bah — yizaher pen tachtokh bo
+
+
+לֹא אֲנִי בָּאתִי [[אֶל־הַלָּשׁוֹן|3]]
+= Lo ani bati el ha-lashon
+[[וָאָבֹא|4]] בַּלָּשׁוֹן וְהַלָּשׁוֹן בִּי בָּאָה
+= va-avo ba-lashon ve-ha-lashon bi ba'ah
+בָּהּ אֲנִי חוֹשֵׁב, וַאֲנִי רוֹאֶה בָּהּ
+= Bah ani choshev, va-ani ro'eh bah
+` },
+
+{ id: 'maskil', title: 'מַשְׂכִּיל לְזֶרַע יִשְׂרָאֵל', roma: 'Maskil le-Zera Yisrael', langs: ['Hebrew'], codes: 'HE', dir: 'rtl', script: true, src: `
+[[כְּאַיָּל תַּעֲרֹג|1]] עַל־אֲפִיקֵי מָיִם
+= Ke-ayal ta'arog al afikei mayim
+כֵּן נַפְשִׁי תַעֲרֹג אֵלֶיךָ אֱלֹהִים
+= Ken nafshi ta'arog eilekha Elohim
+צָמְאָה נַפְשִׁי לְמַעַנְךָ
+= Tzam'ah nafshi le-ma'ankha
+אַךְ יָרֵאתִי פֶּן־לֹא תַעֲנֶה
+= Akh yareti pen lo ta'aneh
+
+וַתַּשְׁלִיכֵנִי מְצוּלָה בִּלְבַב יַמִּים
+= Va-tashlikheni metzulah bi-lvav yamim
+מִשְׁבָּר עַל מִשְׁבָּר עָבַר עָלַי
+= Mishbar al mishbar avar alai
+וַיִּקְרָא [[גַּל|2]] אֶל גַּל בַּלָּיְלָה
+= Va-yikra gal el gal ba-laylah
+וְלֹא נִשְׁמַע עוֹד, כִּי עַד־נֶפֶשׁ בָּאוּ מָיִם
+= Ve-lo nishma od, ki ad nefesh ba'u mayim
+
+קוֹרֵא אֲנִי בַּתְּהִלִּים
+= Kore ani ba-Tehillim
+יְהַלְלוּהוּ שָׁמַיִם וָאָרֶץ
+= Yehaleluhu shamayim va-aretz
+יַמִּים וְכָל־רֹמֵשׂ בָּם
+= Yamim ve-khol romes bam
+אַךְ אֵיךְ אֲהַלֵּל
+= Akh eikh ahalel
+
+וְסָבָתִי לֹא יָדְעָה עִבְרִית
+= Ve-savati lo yad'ah ivrit
+וְאִמָּהּ הִטְבִּילוּהָ [[בְּמַיִם אֲחֵרִים|3]]
+= Ve-imah hitbiluha be-mayim acherim
+אֵינֶנִּי מַאֲמִין כְּפִי שֶׁהֵם הֶאֱמִינוּ
+= Eineni ma'amin kefi she-hem he'eminu
+אֲנִי מוֹדֵד עוֹלָם בְּמִסְפָּר וּבְסָפֵק
+= Ani moded olam be-mispar u-ve-safek
+
+כָּלוּ עֵינַי מְיַחֵל לֵאלֹהָי
+= Kalu einai meyachel l'Elohai
+[[גַּל עֵינַי|4]] וְאַבִּיטָה, אֱלֹהָי
+= Gal einai ve-abitah, Elohai
+מַדּוּעַ כְּשֶׁאֲנִי הוֹגֶה מִלָּה עַתִּיקָה
+= Madua kshe-ani hogeh milah atikah
+מַשֶּׁהוּ קוֹרֶה בִּי, מַשֶּׁהוּ בִּי כּוֹרֵעַ
+= Mashehu koreh bi, mashehu bi korea
+
+עַל־כֵּן אֶכְתֹּב לְמַעַן אֶשְׁאַף רוּחַ
+= Al ken ekhtov le-ma'an esh'af ruach
+אֶכְתֹּב לְמַעַן לֹא אֶטְבַּע
+= Ekhtov le-ma'an lo etba
+כִּי הַכּוֹתֵב מֵרִים רֹאשׁוֹ
+= Ki ha-kotev merim rosho
+מְעַט מְעַט מֵעַל הַתְּהוֹם
+= Me'at me'at me'al ha-tehom
+` },
+
+{ id: '777', title: '777', titleNote: 1, langs: ['Spanish'], codes: 'ES', dir: 'ltr', script: false, src: `
+Mientras por competir con tu ojo puro,
+siete prismas del sol le muerden fuego;
+mientras, en fractales del mundo ciego,
+siete golpes magullan, los enduro;
+
+Mientras con ambos labios al sol juro,
+No negar mi sed que es sin sosiego;
+mientras me ahúma aire sangre, me entrego,
+de la raíz a rama, al claroscuro:
+
+ruego el aire, el fuego, el trueno y la mente,
+y responde el sol al explotar en oro,
+matando pensamientos de repente.
+
+No solo en luz o en halo me enamoro,
+mas con destello último, juntamente,
+en llanto [[supernova|2]], ardo y me muero
+` }
+
+];
+
+</script>
+<script>
+(function () {
+  const L = SITE.lang;
+  const UI = { en: {
+    translate: 'Translate', enter: 'Enter the poems →', preface: 'Preface', bibliography: 'Bibliography', index: 'Index',
+    about: 'About this poem', aboutTBD: '[The inspiration behind the poem — TBD]', notes: 'Notes', noteTBD: '[Note — TBD]',
+    roma: 'Romanization', tr: 'Translation', soon: 'soon', note: 'Note', original: 'Original'
+  } }[L];
+  const LANGNAME = { en: 'English', fr: 'Français', es: 'Español' };
+  const app = document.getElementById('app');
+  const card = document.getElementById('card');
+  const state = { roma: false, split: false, note: null, poem: null };
+  try { const s = JSON.parse(localStorage.getItem('abp') || '{}'); state.roma = !!s.roma; state.split = !!s.split; } catch (e) {}
+  const save = () => { try { localStorage.setItem('abp', JSON.stringify({ roma: state.roma, split: state.split })); } catch (e) {} };
+
+  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const isHe = s => /[֐-׿]/.test(s);
+  const isBig = s => /[぀-鿿ሀ-፿]/.test(s);
+
+  /* ---------- the poem format ---------- */
+  function tok(str) {
+    const re = /\[\[([\s\S]+?)\|(\d+)\]\]|\*\*([^*]+)\*\*|\*([^*]+)\*/g;
+    const out = []; let last = 0, m;
+    while ((m = re.exec(str))) {
+      if (m.index > last) out.push({ k: 't', s: str.slice(last, m.index) });
+      if (m[1] !== undefined) out.push({ k: 'n', n: +m[2], inner: tok(m[1]) });
+      else if (m[3] !== undefined) out.push({ k: 'b', s: m[3] });
+      else out.push({ k: 'i', s: m[4] });
+      last = re.lastIndex;
+    }
+    if (last < str.length) out.push({ k: 't', s: str.slice(last) });
+    return out;
+  }
+  const plain = toks => toks.map(t => t.inner ? plain(t.inner) : t.s).join('');
+  function inl(toks, notes) {
+    return toks.map(t => {
+      if (t.k === 't') return esc(t.s);
+      if (t.k === 'i') return '<i>' + esc(t.s) + '</i>';
+      if (t.k === 'b') return '<b>' + esc(t.s) + '</b>';
+      if (notes && !notes.some(x => x.n === t.n)) notes.push({ n: t.n, label: plain(t.inner).trim() });
+      return '<button type="button" class="a" data-n="' + t.n + '" aria-pressed="false">' + inl(t.inner) + '<sup>' + t.n + '</sup></button>';
+    }).join('');
+  }
+  function parse(src) {
+    const rows = src.replace(/^\n+|\s+$/g, '').split('\n');
+    const blocks = []; let blank = 0;
+    const push = b => {
+      const prev = blocks[blocks.length - 1];
+      if (blank && prev && b.k !== 'sec' && prev.k !== 'sec') blocks.push({ k: 'gap', n: blank });
+      blank = 0; blocks.push(b);
+    };
+    for (const raw of rows) {
+      if (raw.trim() === '') { blank++; continue; }
+      const last = blocks[blocks.length - 1];
+      if (raw.startsWith('= ')) { if (last) last.roma = raw.slice(2); continue; }
+      const tm = raw.match(/^~([a-z]{2}) (.*)$/);
+      if (tm) { if (last) { last.tr = last.tr || {}; last.tr[tm[1]] = tm[2]; } continue; }
+      let s = raw, indent = 0;
+      while (s[0] === '\t') { indent++; s = s.slice(1); }
+      if (s.startsWith('# ')) {
+        const body = s.slice(2), mm = body.match(/^([IVXLC]+)\.\s+(.+)$/);
+        push({ k: 'sec', num: mm ? mm[1] : '', text: mm ? mm[2] : body });
+        continue;
+      }
+      const epi = s.startsWith('> ');
+      push({ k: 'line', epi: epi, indent: indent, text: epi ? s.slice(2) : s });
+    }
+    return blocks;
+  }
+  const hasTr = p => new RegExp('^~' + L + ' ', 'm').test(p.src);
+
+  /* ---------- views ---------- */
+  function setNav(r) {
+    document.querySelectorAll('.nav a').forEach(a => { if (a.dataset.r === r) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  }
+
+  function viewFront() {
+    const P = PREFACE[L];
+    app.innerHTML =
+      '<article class="sheet narrow front" aria-label="Epigraph">' +
+        '<p class="sitename">ALEX BAHIA POETRY</p><div class="redrule"></div>' +
+        '<blockquote class="epi" lang="es">' + PIZARNIK.es + '</blockquote>' +
+        '<p class="attr sc">— Alejandra Pizarnik</p>' +
+        '<div class="epi-tr" id="epiTr" lang="' + L + '" hidden>' + PIZARNIK[L] + '</div>' +
+        '<div><button type="button" class="tbtn sc" id="epiBtn" aria-pressed="false" aria-controls="epiTr">' + UI.translate + '</button></div>' +
+        '<a class="enter sc" href="#poems">' + UI.enter + '</a>' +
+      '</article>' +
+      '<article class="sheet narrow pref" id="preface-sheet" aria-label="' + UI.preface + '">' +
+        '<p class="label red">' + UI.preface + '</p>' +
+        '<p class="pref-lead">' + P.lead + '</p>' +
+        P.body.map(t => '<p>' + t + '</p>').join('') +
+        '<h2 class="sc">' + P.langsTitle + '</h2>' +
+        P.langs.map(([n, d]) => '<p class="lg"><b class="sc">' + n + '</b> — ' + d + '</p>').join('') +
+        '<p class="lg" style="margin-top:22px"><b class="sc">' + P.coda[0] + '</b> ' + P.coda[1] + '</p>' +
+      '</article>';
+  }
+
+  function viewIndex() {
+    app.innerHTML = '<article class="sheet narrow" aria-label="' + UI.index + '"><h1 class="ixh">INDEX</h1><ol class="ix">' +
+      POEMS.map((p, i) => {
+        const he = p.dir === 'rtl';
+        return '<li><a href="#p-' + p.id + '"><span class="n">' + String(i + 1).padStart(2, '0') + '</span>' +
+          '<span class="t' + (he ? ' he' : '') + (p.untitled ? ' u' : '') + '"' + (he ? ' dir="rtl" lang="he"' : '') + '>' + esc(p.title) + '</span>' +
+          '<span class="d" aria-hidden="true"></span><span class="c" title="' + p.langs.join(', ') + '">' + p.codes + '</span></a></li>';
+      }).join('') + '</ol></article>';
+  }
+
+  function viewBiblio() {
+    app.innerHTML = '<article class="sheet narrow" aria-label="' + UI.bibliography + '"><h1 class="ixh">BIBLIOGRAPHY</h1><ul class="biblio">' +
+      BIBLIO.map(b => '<li>' + b + '</li>').join('') + '</ul></article>';
+  }
+
+  function viewPoem(id) {
+    const i = POEMS.findIndex(p => p.id === id);
+    if (i < 0) { location.hash = 'poems'; return; }
+    const p = POEMS[i], rtl = p.dir === 'rtl', canTr = hasTr(p);
+    const roma = state.roma && p.script, split = state.split && canTr;
+    const notes = [];
+    let title = esc(p.title);
+    if (p.titleNote) { notes.push({ n: p.titleNote, label: p.title }); title = '<button type="button" class="a" data-n="' + p.titleNote + '" aria-pressed="false">' + title + '<sup>' + p.titleNote + '</sup></button>'; }
+
+    let rows = '';
+    if (split) {
+      const oc = '<div class="o"' + (rtl ? ' dir="rtl"' : '') + '>' + UI.original + ' · ' + p.langs.join(' · ') + '<span class="tt"' + (rtl ? ' lang="he"' : '') + '>' + esc(p.title) + '</span></div>';
+      const tc = '<div class="tr">' + LANGNAME[L] + '<span class="tt">' + esc((p.trTitle && p.trTitle[L]) || '') + '</span></div>';
+      rows += '<div class="r cols">' + (rtl ? tc + oc : oc + tc) + '</div>';
+    }
+    for (const b of parse(p.src)) {
+      if (b.k === 'gap') { rows += '<div aria-hidden="true" style="height:' + (b.n * 1.15).toFixed(2) + 'em"></div>'; continue; }
+      if (b.k === 'sec') {
+        const cls = isHe(b.text) ? ' he' : isBig(b.text) ? ' big' : '';
+        rows += '<div class="sec"' + (isHe(b.text) ? ' dir="rtl" lang="he"' : '') + '>' + (b.num ? '<span class="num">' + b.num + '</span>' : '') +
+          '<div class="line"><span class="t' + cls + '">' + inl(tok(b.text), notes) + '</span></div>' +
+          (roma && b.roma ? '<div class="sro" dir="ltr">' + esc(b.roma) + '</div>' : '') + '</div>';
+        continue;
+      }
+      const o = '<div class="o"' + (rtl ? ' dir="rtl" lang="he"' : '') + '><div class="l' + (b.epi ? ' epi' : '') + '" style="--pad:' + (b.indent * 2.6).toFixed(1) + 'em">' + inl(tok(b.text), notes) + '</div>' +
+        (roma && b.roma ? '<div class="ro" dir="ltr">' + esc(b.roma) + '</div>' : '') + '</div>';
+      if (split) {
+        const t = '<div class="tr" lang="' + L + '">' + (b.tr && b.tr[L] ? '<div class="l" style="--pad:' + (b.indent * 2.6).toFixed(1) + 'em">' + inl(tok(b.tr[L])) + '</div>' : '') + '</div>';
+        rows += '<div class="r">' + (rtl ? t + o : o + t) + '</div>';
+      } else rows += '<div class="r">' + o + '</div>';
+    }
+
+    const prev = POEMS[(i + POEMS.length - 1) % POEMS.length], next = POEMS[(i + 1) % POEMS.length];
+    const box = on => '<span class="box">[' + (on ? 'x' : '&nbsp;') + ']</span> ';
+    const marginNotes = notes.map(nt => '<button type="button" class="mn" data-n="' + nt.n + '" aria-expanded="false"><span class="n">' + nt.n + '</span><span class="lab' + (isHe(nt.label) ? ' he' : '') + '" dir="auto">' + esc(nt.label) + '</span><span class="bd">' + UI.noteTBD + '</span></button>').join('');
+
+    app.innerHTML =
+      '<article class="sheet' + (split ? ' wide split' : '') + '" aria-label="' + esc(p.roma || p.title) + '"><div class="pg">' +
+        '<header class="ph">' +
+          '<h1 class="ptitle' + (p.untitled ? ' untitled' : '') + '" dir="' + p.dir + '"' + (rtl ? ' lang="he"' : '') + '>' + title + '</h1>' +
+          (p.roma ? '<p class="proma">' + esc(p.roma) + '</p>' : '') +
+          '<p class="plangs">' + p.langs.join(' · ').toUpperCase() + '</p>' +
+          '<div class="ctls">' +
+            (p.script ? '<button type="button" class="ctl" data-act="roma" aria-pressed="' + roma + '">' + box(roma) + UI.roma + '</button>' : '') +
+            '<button type="button" class="ctl" data-act="split" aria-pressed="' + split + '"' + (canTr ? '' : ' disabled') + '>' + box(split) + UI.tr + (canTr ? '' : ' · ' + UI.soon) + '</button>' +
+          '</div>' +
+        '</header>' +
+        '<aside class="about" aria-label="' + UI.about + '"><p class="label">' + UI.about + '</p><p class="tx">' + UI.aboutTBD + '</p>' +
+          (notes.length ? '<p class="label nl">' + UI.notes + '</p>' : '') + '</aside>' +
+        '<div class="rows">' + rows + '</div>' +
+        '<div class="margin" aria-label="' + UI.notes + '">' + marginNotes + '</div>' +
+      '</div>' +
+      '<nav class="pn" aria-label="Other poems"><a href="#p-' + prev.id + '"' + (prev.dir === 'rtl' ? ' lang="he"' : '') + '>← ' + esc(prev.title) + '</a>' +
+        '<a class="mid" href="#poems">' + UI.index + '</a>' +
+        '<a href="#p-' + next.id + '"' + (next.dir === 'rtl' ? ' lang="he"' : '') + '>' + esc(next.title) + ' →</a></nav>' +
+      '</article>';
+    state.poem = p;
+    state.notes = notes;
+    applyNote();
+  }
+
+  /* ---------- notes ---------- */
+  const narrow = () => window.matchMedia('(max-width: 900px)').matches;
+  function placeNotes() {
+    const margin = app.querySelector('.margin');
+    if (!margin || narrow()) return;
+    const base = margin.getBoundingClientRect().top;
+    const items = [...margin.querySelectorAll('.mn')].map(mn => {
+      const a = app.querySelector('.a[data-n="' + mn.dataset.n + '"]');
+      return { mn: mn, y: a ? a.getBoundingClientRect().top - base : 0 };
+    }).sort((x, y) => x.y - y.y);
+    let cur = 0;
+    for (const it of items) {
+      const top = Math.max(Math.round(it.y) - (it.mn.classList.contains('on') ? 10 : 2), cur);
+      it.mn.style.top = top + 'px';
+      cur = top + it.mn.offsetHeight + 10;
+    }
+    margin.style.minHeight = cur + 'px';
+  }
+  function applyNote() {
+    const n = state.note;
+    app.querySelectorAll('.a').forEach(a => a.setAttribute('aria-pressed', String(+a.dataset.n === n)));
+    app.querySelectorAll('.mn').forEach(m => { const on = +m.dataset.n === n; m.classList.toggle('on', on); m.setAttribute('aria-expanded', String(on)); });
+    const nt = n != null && state.notes ? state.notes.find(x => x.n === n) : null;
+    if (nt && narrow()) {
+      document.getElementById('cardN').textContent = UI.note + ' ' + n;
+      const lab = document.getElementById('cardL');
+      lab.textContent = nt.label; lab.className = 'lab' + (isHe(nt.label) ? ' he' : ''); lab.dir = 'auto';
+      document.getElementById('cardB').textContent = UI.noteTBD;
+      card.hidden = false;
+    } else card.hidden = true;
+    placeNotes();
+  }
+  function toggleNote(n) { state.note = state.note === n ? null : n; applyNote(); }
+
+  /* ---------- routing ---------- */
+  function route() {
+    const h = decodeURIComponent(location.hash.slice(1));
+    state.note = null; state.notes = null; card.hidden = true;
+    if (h.startsWith('p-')) { setNav('poems'); viewPoem(h.slice(2)); window.scrollTo(0, 0); }
+    else if (h === 'poems') { setNav('poems'); viewIndex(); window.scrollTo(0, 0); }
+    else if (h === 'bibliography') { setNav('bibliography'); viewBiblio(); window.scrollTo(0, 0); }
+    else {
+      setNav(h === 'preface' ? 'preface' : '');
+      viewFront();
+      if (h === 'preface') { const el = document.getElementById('preface-sheet'); if (el) el.scrollIntoView(); } else window.scrollTo(0, 0);
+    }
+  }
+
+  document.addEventListener('click', e => {
+    const a = e.target.closest('.a, .mn');
+    if (a) { toggleNote(+a.dataset.n); return; }
+    if (e.target.closest('#cardX')) { state.note = null; applyNote(); return; }
+    const c = e.target.closest('.ctl');
+    if (c && !c.disabled && state.poem) {
+      if (c.dataset.act === 'roma') state.roma = !state.roma; else state.split = !state.split;
+      save();
+      const y = window.scrollY, n = state.note;
+      viewPoem(state.poem.id);
+      state.note = n; applyNote();
+      window.scrollTo(0, y);
+      const again = app.querySelector('.ctl[data-act="' + c.dataset.act + '"]'); if (again) again.focus();
+      return;
+    }
+    const eb = e.target.closest('#epiBtn');
+    if (eb) {
+      const on = eb.getAttribute('aria-pressed') !== 'true';
+      eb.setAttribute('aria-pressed', String(on));
+      document.getElementById('epiTr').hidden = !on;
+    }
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && state.note != null) { state.note = null; applyNote(); } });
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(applyNote, 120); });
+  window.addEventListener('hashchange', route);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeNotes);
+  window.addEventListener('load', placeNotes);
+  route();
+})();
+</script>
+</body>
+</html>

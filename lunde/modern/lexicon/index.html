@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lexicon | Modern Lunde (Lundiyani) | Alex Bahia</title>
+  <meta name="description" content="The Lundiyani (Modern Lunde) word list: every word with its meaning and type.">
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <style>
+    /* Page-scoped styles for the Modern Lunde grammar page (fonts/colors borrowed from the Old Lundian pages). */
+    .ml { --lx: "Gentium Book Plus", Georgia, serif; --ui: "Archivo", system-ui, sans-serif; --ink3: #6b7680; --line: #dfe3e1; --soft: #f1f3f2; }
+    .ml .lx { font-family: var(--lx); font-style: italic; font-size: 1.05em; }
+    .ml .meta { color: var(--muted); font-size: .95rem; margin: -.5rem 0 1rem; }
+    .ml .meta a { font-weight: 600; }
+    .ml-layout { display: grid; gap: 1.5rem 2.5rem; }
+    @media (min-width: 900px) { .ml-layout { grid-template-columns: 13rem minmax(0,1fr); } .ml-toc { position: sticky; top: 1rem; align-self: start; } }
+    .ml-toc { font-family: var(--ui); font-size: .9rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1rem; }
+    .ml-toc p { margin: 0 0 .4rem; font-weight: 700; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink3); }
+    .ml-toc ol { margin: 0; padding-left: 1.2rem; display: grid; gap: .2rem; }
+    .ml-toc a { text-decoration: none; }
+    .ml-toc a:hover { text-decoration: underline; }
+    .mref { scroll-margin-top: 1rem; padding-top: .25rem; border-top: 1px solid var(--border); margin-bottom: 2.5rem; }
+    .mref:first-child { border-top: 0; }
+    .mref h2 { margin-top: 1rem; }
+    .mref h3 { margin-top: 1.5rem; scroll-margin-top: 1rem; }
+    .mref .lede { font-size: 1.1rem; }
+    .tbl-wrap { overflow-x: auto; margin: 1rem 0; }
+    .ref-table { border-collapse: collapse; font-size: .97rem; background: var(--surface); min-width: 18rem; }
+    .ref-table th, .ref-table td { border: 1px solid var(--line); padding: .4rem .7rem; text-align: left; vertical-align: top; }
+    .ref-table th { background: var(--soft); font-family: var(--ui); font-weight: 600; font-size: .85rem; color: #3d4750; }
+    .ref-table.nums td, .ref-table.nums th { text-align: center; padding: .4rem .5rem; }
+    .ref-table.grid tbody td:first-child { font-family: var(--ui); }
+    ol.ex { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+    ol.ex > li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: .7rem .9rem; }
+    .ex-tr { margin: 0 0 .35rem; font-weight: 600; }
+    .gl { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; }
+    .gl + .gl { margin-top: .5rem; padding-top: .5rem; border-top: 1px dashed var(--line); }
+    .gw { display: inline-grid; }
+    .g1 { font-size: 1.1rem; }
+    .g2 { font-family: var(--ui); font-size: .78rem; letter-spacing: .04em; color: var(--ink3); }
+    .abbr { background: var(--soft); border-radius: var(--radius); padding: .7rem .9rem; font-size: .95rem; }
+    .lex th[scope=row] { font-weight: 400; white-space: nowrap; background: var(--surface); }
+    .lex td.ty { font-family: var(--ui); font-size: .85rem; color: var(--ink3); white-space: nowrap; }
+    .lex .sn { color: var(--ink3); font-family: var(--ui); font-size: .85rem; }
+    .lex .nt { display: block; color: var(--ink3); font-size: .85rem; }
+    .lex { width: 100%; }
+    .mk { display: inline-block; font-family: var(--ui); font-size: .7rem; font-weight: 600; letter-spacing: .04em; padding: .05rem .4rem; border-radius: 99px; vertical-align: .1em; margin-left: .25rem; }
+    .mk-pdf { background: #e6edf3; color: #2f4f6f; } .mk-cor { background: #f6e7d3; color: #7a4a12; } .mk-fix { background: #e8efe6; color: #3d5a36; } .mk-q { background: #f3e1e1; color: #8a2b2b; cursor: help; }
+    .letters { display: flex; flex-wrap: wrap; gap: .25rem; margin: 1rem 0; font-family: var(--ui); }
+    .letters a { display: inline-block; min-width: 2rem; text-align: center; padding: .3rem .4rem; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); text-decoration: none; font-weight: 600; }
+    .lx-search { margin: 1rem 0; } .lx-search input { width: 100%; max-width: 26rem; font: inherit; padding: .5rem .7rem; border: 1px solid var(--border); border-radius: var(--radius); }
+    .lx-search p { margin: .3rem 0 0; font-size: .9rem; color: var(--ink3); }
+    .lg { scroll-margin-top: 1rem; } .lg h2 { margin-top: 1.5rem; }
+    .legend { font-size: .9rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="site-title" href="../../../">Alex Bahia</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+        <li><a href="../../../">Home</a></li>
+        <li><a href="../../../poetry/">Poetry</a></li>
+        <li><a href="../../../lunde/" aria-current="page">Lunde</a></li>
+        <li><a href="../../../languages/">Other languages</a></li>
+        <li><a href="../../../gallery/">Gallery</a></li>
+        <li><a href="../../../about/">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap ml">
+    <p class="breadcrumb"><a href="../../">Lunde</a> / <a href="../">Modern Lunde</a> / Lexicon</p>
+    <h1>Lundiyani lexicon</h1>
+    <nav class="sub-nav" aria-label="Lunde sections">
+      <ul>
+        <li><a href="../../">Old Lundian</a></li>
+        <li><a href="../">Modern Lunde</a></li>
+        <li><a href="./" aria-current="page">Lexicon</a></li>
+      </ul>
+    </nav>
+    <p class="lede">472 words (489 meanings), from Alex's word list, checked against the <a href="../">grammar reference</a> of Oct 14, 2026. Where the two disagree, the grammar wins.</p>
+    <p class="legend"><span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span> added from the grammar &nbsp; <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span> corrected to match the grammar &nbsp; <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span> spacing fixed &nbsp; <span class="mk mk-q">?</span> still to check</p>
+    <div class="lx-search" id="lx-search" hidden>
+      <label for="lx-q"><strong>Search</strong> (word or meaning)</label><br>
+      <input id="lx-q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. kora, water, to love">
+      <p id="lx-count" aria-live="polite"></p>
+    </div>
+    <nav class="letters" aria-label="Letters"><a href="#letter-a">A</a><a href="#letter-b">B</a><a href="#letter-c">C</a><a href="#letter-d">D</a><a href="#letter-e">E</a><a href="#letter-f">F</a><a href="#letter-g">G</a><a href="#letter-i">I</a><a href="#letter-j">J</a><a href="#letter-k">K</a><a href="#letter-l">L</a><a href="#letter-m">M</a><a href="#letter-n">N</a><a href="#letter-o">O</a><a href="#letter-p">P</a><a href="#letter-r">R</a><a href="#letter-s">S</a><a href="#letter-t">T</a><a href="#letter-u">U</a><a href="#letter-v">V</a><a href="#letter-w">W</a><a href="#letter-x">X</a><a href="#letter-y">Y</a><a href="#letter-z">Z</a></nav>
+<section class="lg" id="letter-a" aria-labelledby="h-a"><h2 id="h-a">A</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="a 3s animate and"><tr data-w="a"><th scope="row" class="lx" rowspan="2">a</th><td><span class="sn">1.</span> 3s animate </td><td class="ty">pronoun</td></tr>
+<tr data-w="a"><td><span class="sn">2.</span> and </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="ad and (before a vowel)"><tr data-w="ad"><th scope="row" class="lx" rowspan="1">ad</th><td>and (before a vowel) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">conjunction</td></tr>
+</tbody>
+<tbody class="ent" data-s="adar to leave"><tr data-w="adar"><th scope="row" class="lx" rowspan="1">adar</th><td>to leave </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="ai ok"><tr data-w="ai"><th scope="row" class="lx" rowspan="1">ai</th><td>ok </td><td class="ty">interjection</td></tr>
+</tbody>
+<tbody class="ent" data-s="aiker boring; dull; bland"><tr data-w="aiker"><th scope="row" class="lx" rowspan="1">aiker</th><td>boring; dull; bland </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="aiki fast"><tr data-w="aiki"><th scope="row" class="lx" rowspan="1">aiki</th><td>fast </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="aist to find"><tr data-w="aist"><th scope="row" class="lx" rowspan="1">aist</th><td>to find </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="akax to stop"><tr data-w="akax"><th scope="row" class="lx" rowspan="1">akax</th><td>to stop </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="akaxl to lose"><tr data-w="akaxl"><th scope="row" class="lx" rowspan="1">akaxl</th><td>to lose </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="akaxloa lost"><tr data-w="akaxloa"><th scope="row" class="lx" rowspan="1">akaxloa</th><td>lost </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="ake to carry"><tr data-w="ake"><th scope="row" class="lx" rowspan="1">ake</th><td>to carry </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="akei to choose"><tr data-w="akei"><th scope="row" class="lx" rowspan="1">akei</th><td>to choose </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="ala bad absolutely not"><tr data-w="ala"><th scope="row" class="lx" rowspan="2">ala</th><td><span class="sn">1.</span> bad </td><td class="ty">adj</td></tr>
+<tr data-w="ala"><td><span class="sn">2.</span> absolutely not </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="alda goodbye; bye"><tr data-w="alda"><th scope="row" class="lx" rowspan="1">alda</th><td>goodbye; bye </td><td class="ty">interjection</td></tr>
+</tbody>
+<tbody class="ent" data-s="ale 3p"><tr data-w="ale"><th scope="row" class="lx" rowspan="1">ale</th><td>3p </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="alion adult"><tr data-w="alion"><th scope="row" class="lx" rowspan="1">alion</th><td>adult </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="alwa red"><tr data-w="alwa"><th scope="row" class="lx" rowspan="1">alwa</th><td>red </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="am with"><tr data-w="am"><th scope="row" class="lx" rowspan="1">am</th><td>with <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: am — with; by</small></td><td class="ty">preposition</td></tr>
+</tbody>
+<tbody class="ent" data-s="amb by"><tr data-w="amb"><th scope="row" class="lx" rowspan="1">amb</th><td>by </td><td class="ty">preposition</td></tr>
+</tbody>
+<tbody class="ent" data-s="amon reflexive: herself, himself, itself"><tr data-w="amon"><th scope="row" class="lx" rowspan="1">amon</th><td>reflexive: herself, himself, itself <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="amonxi by yourself (with yourself)"><tr data-w="amonxi"><th scope="row" class="lx" rowspan="1">amonxi</th><td>by yourself (with yourself) </td><td class="ty">phrase</td></tr>
+</tbody>
+<tbody class="ent" data-s="ampa to feel (physically)"><tr data-w="ampa"><th scope="row" class="lx" rowspan="1">ampa</th><td>to feel (physically) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="ampxi to touch"><tr data-w="ampxi"><th scope="row" class="lx" rowspan="1">ampxi</th><td>to touch </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="an to; towards a, some (inanimate)"><tr data-w="an"><th scope="row" class="lx" rowspan="2">an</th><td><span class="sn">1.</span> to; towards </td><td class="ty">preposition</td></tr>
+<tr data-w="an"><td><span class="sn">2.</span> a, some (inanimate) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">article</td></tr>
+</tbody>
+<tbody class="ent" data-s="ana as; while; during"><tr data-w="ana"><th scope="row" class="lx" rowspan="1">ana</th><td>as; while; during </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="anaria time"><tr data-w="anaria"><th scope="row" class="lx" rowspan="1">anaria</th><td>time </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="and feeling; emotion"><tr data-w="and"><th scope="row" class="lx" rowspan="1">and</th><td>feeling; emotion </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="andeur to feel (emotionally, mentally)"><tr data-w="andeur"><th scope="row" class="lx" rowspan="1">andeur</th><td>to feel (emotionally, mentally) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="anei water (drinkable, clear)"><tr data-w="anei"><th scope="row" class="lx" rowspan="1">anei</th><td>water (drinkable, clear) </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="aneva to pour out; to flow"><tr data-w="aneva"><th scope="row" class="lx" rowspan="1">aneva</th><td>to pour out; to flow </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="anevakai to water (something)"><tr data-w="anevakai"><th scope="row" class="lx" rowspan="1">anevakai</th><td>to water (something) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="anewa to empathize"><tr data-w="anewa"><th scope="row" class="lx" rowspan="1">anewa</th><td>to empathize </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="ant but"><tr data-w="ant"><th scope="row" class="lx" rowspan="1">ant</th><td>but </td><td class="ty">conjunction</td></tr>
+</tbody>
+<tbody class="ent" data-s="anta before"><tr data-w="anta"><th scope="row" class="lx" rowspan="1">anta</th><td>before </td><td class="ty">preposition</td></tr>
+</tbody>
+<tbody class="ent" data-s="anxa why"><tr data-w="anxa"><th scope="row" class="lx" rowspan="1">anxa</th><td>why </td><td class="ty">question particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="anya sore; uncomfortable"><tr data-w="anya"><th scope="row" class="lx" rowspan="1">anya</th><td>sore; uncomfortable </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="ara three"><tr data-w="ara"><th scope="row" class="lx" rowspan="1">ara</th><td>three <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+<tbody class="ent" data-s="arxa other"><tr data-w="arxa"><th scope="row" class="lx" rowspan="1">arxa</th><td>other </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="as if"><tr data-w="as"><th scope="row" class="lx" rowspan="1">as</th><td>if </td><td class="ty">conjunction</td></tr>
+</tbody>
+<tbody class="ent" data-s="aserv to fall for; to believe naively"><tr data-w="aserv"><th scope="row" class="lx" rowspan="1">aserv</th><td>to fall for; to believe naively </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="asoc please 7"><tr data-w="asoc"><th scope="row" class="lx" rowspan="1">asoc</th><td>please 7 <span class="mk mk-q" title="meaning ends in a stray “7” in Notion; kept as is">?</span><small class="nt">Check: meaning ends in a stray “7” in Notion; kept as is</small></td><td class="ty">interjection</td></tr>
+</tbody>
+<tbody class="ent" data-s="ava any"><tr data-w="ava"><th scope="row" class="lx" rowspan="1">ava</th><td>any </td><td class="ty">det/particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="avaiz to shame; to humiliate"><tr data-w="avaiz"><th scope="row" class="lx" rowspan="1">avaiz</th><td>to shame; to humiliate </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="avali anything"><tr data-w="avali"><th scope="row" class="lx" rowspan="1">avali</th><td>anything </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="avama anywhere"><tr data-w="avama"><th scope="row" class="lx" rowspan="1">avama</th><td>anywhere </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="avaya forever"><tr data-w="avaya"><th scope="row" class="lx" rowspan="1">avaya</th><td>forever </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="avon anyone"><tr data-w="avon"><th scope="row" class="lx" rowspan="1">avon</th><td>anyone </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="axan angry; angered; mad; furious"><tr data-w="axan"><th scope="row" class="lx" rowspan="1">axan</th><td>angry; angered; mad; furious </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="axla how"><tr data-w="axla"><th scope="row" class="lx" rowspan="1">axla</th><td>how </td><td class="ty">question particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="axra to drown"><tr data-w="axra"><th scope="row" class="lx" rowspan="1">axra</th><td>to drown </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="axwe water (not drinkable)"><tr data-w="axwe"><th scope="row" class="lx" rowspan="1">axwe</th><td>water (not drinkable) </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="ayatión 20,736 (twelve to the fourth)"><tr data-w="ayatión"><th scope="row" class="lx" rowspan="1">ayatión</th><td>20,736 (twelve to the fourth) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-b" aria-labelledby="h-b"><h2 id="h-b">B</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="baixa to blame"><tr data-w="baixa"><th scope="row" class="lx" rowspan="1">baixa</th><td>to blame </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="bak closed"><tr data-w="bak"><th scope="row" class="lx" rowspan="1">bak</th><td>closed </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="baki to close"><tr data-w="baki"><th scope="row" class="lx" rowspan="1">baki</th><td>to close </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="bana brother"><tr data-w="bana"><th scope="row" class="lx" rowspan="1">bana</th><td>brother <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="bay fault"><tr data-w="bay"><th scope="row" class="lx" rowspan="1">bay</th><td>fault </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="brax shoulder; upper back muscle; lower neck area"><tr data-w="brax"><th scope="row" class="lx" rowspan="1">brax</th><td>shoulder; upper back muscle; lower neck area </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="buwa brown"><tr data-w="buwa"><th scope="row" class="lx" rowspan="1">buwa</th><td>brown </td><td class="ty">adj</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-c" aria-labelledby="h-c"><h2 id="h-c">C</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="cela coral color (light red/pinkish/orangish)"><tr data-w="cela"><th scope="row" class="lx" rowspan="1">cela</th><td>coral color (light red/pinkish/orangish) </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="ci the (inanimate)"><tr data-w="ci"><th scope="row" class="lx" rowspan="1">ci</th><td>the (inanimate) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">article</td></tr>
+</tbody>
+<tbody class="ent" data-s="cixi heart"><tr data-w="cixi"><th scope="row" class="lx" rowspan="1">cixi</th><td>heart </td><td class="ty">noun</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-d" aria-labelledby="h-d"><h2 id="h-d">D</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="da than"><tr data-w="da"><th scope="row" class="lx" rowspan="1">da</th><td>than </td><td class="ty">conjunction</td></tr>
+</tbody>
+<tbody class="ent" data-s="dail to buy"><tr data-w="dail"><th scope="row" class="lx" rowspan="1">dail</th><td>to buy </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="dal while"><tr data-w="dal"><th scope="row" class="lx" rowspan="1">dal</th><td>while </td><td class="ty">conjunction</td></tr>
+</tbody>
+<tbody class="ent" data-s="dalar melancholy"><tr data-w="dalar"><th scope="row" class="lx" rowspan="1">dalar</th><td>melancholy </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="dalawra melancholic"><tr data-w="dalawra"><th scope="row" class="lx" rowspan="1">dalawra</th><td>melancholic </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="dalod to wait"><tr data-w="dalod"><th scope="row" class="lx" rowspan="1">dalod</th><td>to wait </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="darav all across; all around"><tr data-w="darav"><th scope="row" class="lx" rowspan="1">darav</th><td>all across; all around </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="dawa good; nice"><tr data-w="dawa"><th scope="row" class="lx" rowspan="1">dawa</th><td>good; nice </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="daxi to dig; to stick inside; to shove inside"><tr data-w="daxi"><th scope="row" class="lx" rowspan="1">daxi</th><td>to dig; to stick inside; to shove inside </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="-de possessive suffix; with lai, a permanent quality"><tr data-w="-de"><th scope="row" class="lx" rowspan="1">-de</th><td>possessive suffix; with lai, a permanent quality <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">suffix</td></tr>
+</tbody>
+<tbody class="ent" data-s="de of; from"><tr data-w="de"><th scope="row" class="lx" rowspan="1">de</th><td>of; from </td><td class="ty">preposition</td></tr>
+</tbody>
+<tbody class="ent" data-s="dei passive particle"><tr data-w="dei"><th scope="row" class="lx" rowspan="1">dei</th><td>passive particle <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="delak saddle"><tr data-w="delak"><th scope="row" class="lx" rowspan="1">delak</th><td>saddle </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="delaka saddled up"><tr data-w="delaka"><th scope="row" class="lx" rowspan="1">delaka</th><td>saddled up </td><td class="ty">adj/participle</td></tr>
+</tbody>
+<tbody class="ent" data-s="delaki to ride"><tr data-w="delaki"><th scope="row" class="lx" rowspan="1">delaki</th><td>to ride </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="delakkai to saddle (something) up"><tr data-w="delakkai"><th scope="row" class="lx" rowspan="1">delakkai</th><td>to saddle (something) up </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="delani to lean back; to arch"><tr data-w="delani"><th scope="row" class="lx" rowspan="1">delani</th><td>to lean back; to arch </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="dere sorry"><tr data-w="dere"><th scope="row" class="lx" rowspan="1">dere</th><td>sorry </td><td class="ty">interjection</td></tr>
+</tbody>
+<tbody class="ent" data-s="derese depressed; very sad"><tr data-w="derese"><th scope="row" class="lx" rowspan="1">derese</th><td>depressed; very sad </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="dew to let; to allow"><tr data-w="dew"><th scope="row" class="lx" rowspan="1">dew</th><td>to let; to allow </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="dewar to let go; to release"><tr data-w="dewar"><th scope="row" class="lx" rowspan="1">dewar</th><td>to let go; to release </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="dewba allowed"><tr data-w="dewba"><th scope="row" class="lx" rowspan="1">dewba</th><td>allowed </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="dion ten"><tr data-w="dion"><th scope="row" class="lx" rowspan="1">dion</th><td>ten <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+<tbody class="ent" data-s="dran to walk"><tr data-w="dran"><th scope="row" class="lx" rowspan="1">dran</th><td>to walk </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="drav across; over"><tr data-w="drav"><th scope="row" class="lx" rowspan="1">drav</th><td>across; over </td><td class="ty">prep/adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="dravai to work"><tr data-w="dravai"><th scope="row" class="lx" rowspan="1">dravai</th><td>to work </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="dravano to cross"><tr data-w="dravano"><th scope="row" class="lx" rowspan="1">dravano</th><td>to cross </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="drese sad"><tr data-w="drese"><th scope="row" class="lx" rowspan="1">drese</th><td>sad </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="du four"><tr data-w="du"><th scope="row" class="lx" rowspan="1">du</th><td>four <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-e" aria-labelledby="h-e"><h2 id="h-e">E</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="é- counting prefix (é-na, é-ra)"><tr data-w="é-"><th scope="row" class="lx" rowspan="1">é-</th><td>counting prefix (é-na, é-ra) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">prefix</td></tr>
+</tbody>
+<tbody class="ent" data-s="eden to eat"><tr data-w="eden"><th scope="row" class="lx" rowspan="1">eden</th><td>to eat </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="edenkai to feed"><tr data-w="edenkai"><th scope="row" class="lx" rowspan="1">edenkai</th><td>to feed </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="eilai so (more formal)"><tr data-w="eilai"><th scope="row" class="lx" rowspan="1">eilai</th><td>so (more formal) </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="ek state/country"><tr data-w="ek"><th scope="row" class="lx" rowspan="1">ek</th><td>State/country </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="ekai to give"><tr data-w="ekai"><th scope="row" class="lx" rowspan="1">ekai</th><td>to give </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="eldur nature"><tr data-w="eldur"><th scope="row" class="lx" rowspan="1">eldur</th><td>nature </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="elei every"><tr data-w="elei"><th scope="row" class="lx" rowspan="1">elei</th><td>every </td><td class="ty">det</td></tr>
+</tbody>
+<tbody class="ent" data-s="eleili everything"><tr data-w="eleili"><th scope="row" class="lx" rowspan="1">eleili</th><td>everything </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="eleima everywhere"><tr data-w="eleima"><th scope="row" class="lx" rowspan="1">eleima</th><td>everywhere </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="elele early"><tr data-w="elele"><th scope="row" class="lx" rowspan="1">elele</th><td>early </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="elion everyone"><tr data-w="elion"><th scope="row" class="lx" rowspan="1">elion</th><td>everyone </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="elxi alone; lonely"><tr data-w="elxi"><th scope="row" class="lx" rowspan="1">elxi</th><td>alone; lonely </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="ema because"><tr data-w="ema"><th scope="row" class="lx" rowspan="1">ema</th><td>because </td><td class="ty">conjunction</td></tr>
+</tbody>
+<tbody class="ent" data-s="-en plural suffix (inanimate, after a consonant)"><tr data-w="-en"><th scope="row" class="lx" rowspan="1">-en</th><td>plural suffix (inanimate, after a consonant) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">suffix</td></tr>
+</tbody>
+<tbody class="ent" data-s="ena to understand"><tr data-w="ena"><th scope="row" class="lx" rowspan="1">ena</th><td>to understand </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="enakai to explain"><tr data-w="enakai"><th scope="row" class="lx" rowspan="1">enakai</th><td>to explain </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="enand to express"><tr data-w="enand"><th scope="row" class="lx" rowspan="1">enand</th><td>to express </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="enda then"><tr data-w="enda"><th scope="row" class="lx" rowspan="1">enda</th><td>then </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="eneu voice"><tr data-w="eneu"><th scope="row" class="lx" rowspan="1">eneu</th><td>voice </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="enpyeli beginning; a start"><tr data-w="enpyeli"><th scope="row" class="lx" rowspan="1">enpyeli</th><td>beginning; a start </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="epyeza to start; to begin"><tr data-w="epyeza"><th scope="row" class="lx" rowspan="1">epyeza</th><td>to start; to begin </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="erane to kill"><tr data-w="erane"><th scope="row" class="lx" rowspan="1">erane</th><td>to kill </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="eruas to die"><tr data-w="eruas"><th scope="row" class="lx" rowspan="1">eruas</th><td>to die </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="eruves death"><tr data-w="eruves"><th scope="row" class="lx" rowspan="1">eruves</th><td>death </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="erwas dead"><tr data-w="erwas"><th scope="row" class="lx" rowspan="1">erwas</th><td>dead </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="eto again"><tr data-w="eto"><th scope="row" class="lx" rowspan="1">eto</th><td>again </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="evai always"><tr data-w="evai"><th scope="row" class="lx" rowspan="1">evai</th><td>always </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="evi life"><tr data-w="evi"><th scope="row" class="lx" rowspan="1">evi</th><td>life </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="ewa about"><tr data-w="ewa"><th scope="row" class="lx" rowspan="1">ewa</th><td>about </td><td class="ty">prep/adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="exi hot (high temperature)"><tr data-w="exi"><th scope="row" class="lx" rowspan="1">exi</th><td>hot (high temperature) </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="eylo similar"><tr data-w="eylo"><th scope="row" class="lx" rowspan="1">eylo</th><td>similar </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="eyo same"><tr data-w="eyo"><th scope="row" class="lx" rowspan="1">eyo</th><td>same </td><td class="ty">adj</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-f" aria-labelledby="h-f"><h2 id="h-f">F</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="fasti to go blind"><tr data-w="fasti"><th scope="row" class="lx" rowspan="1">fasti</th><td>to go blind </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="fastix blinding (so bright it makes you blind)"><tr data-w="fastix"><th scope="row" class="lx" rowspan="1">fastix</th><td>blinding (so bright it makes you blind) </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="fastixi to blind (someone)"><tr data-w="fastixi"><th scope="row" class="lx" rowspan="1">fastixi</th><td>to blind (someone) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="fisa nine"><tr data-w="fisa"><th scope="row" class="lx" rowspan="1">fisa</th><td>nine <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+<tbody class="ent" data-s="fiú eleven"><tr data-w="fiú"><th scope="row" class="lx" rowspan="1">fiú</th><td>eleven <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+<tbody class="ent" data-s="fwalyani conlang"><tr data-w="fwalyani"><th scope="row" class="lx" rowspan="1">fwalyani</th><td>conlang </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="fwalyanxi to conlang"><tr data-w="fwalyanxi"><th scope="row" class="lx" rowspan="1">fwalyanxi</th><td>to conlang </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="fwar to make; to create"><tr data-w="fwar"><th scope="row" class="lx" rowspan="1">fwar</th><td>to make; to create </td><td class="ty">verb</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-g" aria-labelledby="h-g"><h2 id="h-g">G</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="galatión 1,728 (twelve cubed)"><tr data-w="galatión"><th scope="row" class="lx" rowspan="1">galatión</th><td>1,728 (twelve cubed) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+<tbody class="ent" data-s="gvena eight"><tr data-w="gvena"><th scope="row" class="lx" rowspan="1">gvena</th><td>eight <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-i" aria-labelledby="h-i"><h2 id="h-i">I</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="-i plural suffix"><tr data-w="-i"><th scope="row" class="lx" rowspan="1">-i</th><td>plural suffix <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">suffix</td></tr>
+</tbody>
+<tbody class="ent" data-s="i 1s the (animate)"><tr data-w="i"><th scope="row" class="lx" rowspan="2">i</th><td><span class="sn">1.</span> 1s </td><td class="ty">pronoun</td></tr>
+<tr data-w="i"><td><span class="sn">2.</span> the (animate) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">article</td></tr>
+</tbody>
+<tbody class="ent" data-s="ia a, some (animate)"><tr data-w="ia"><th scope="row" class="lx" rowspan="1">ia</th><td>a, some (animate) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">article</td></tr>
+</tbody>
+<tbody class="ent" data-s="ida to return; to go back"><tr data-w="ida"><th scope="row" class="lx" rowspan="1">ida</th><td>to return; to go back </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="idar to arrive"><tr data-w="idar"><th scope="row" class="lx" rowspan="1">idar</th><td>to arrive <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: idari — to arrive</small></td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="igyión 144 (twelve squared)"><tr data-w="igyión"><th scope="row" class="lx" rowspan="1">igyión</th><td>144 (twelve squared) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+<tbody class="ent" data-s="ilie 1p"><tr data-w="ilie"><th scope="row" class="lx" rowspan="1">ilie</th><td>1p </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="ilis like"><tr data-w="ilis"><th scope="row" class="lx" rowspan="1">ilis</th><td>like </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="ilivi surface"><tr data-w="ilivi"><th scope="row" class="lx" rowspan="1">ilivi</th><td>surface </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="iloar tear"><tr data-w="iloar"><th scope="row" class="lx" rowspan="1">iloar</th><td>tear </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="iloari to cry"><tr data-w="iloari"><th scope="row" class="lx" rowspan="1">iloari</th><td>to cry </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="iloarikai to make (someone) cry"><tr data-w="iloarikai"><th scope="row" class="lx" rowspan="1">iloarikai</th><td>to make (someone) cry <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="ilu pink"><tr data-w="ilu"><th scope="row" class="lx" rowspan="1">ilu</th><td>pink </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="iludi sunset"><tr data-w="iludi"><th scope="row" class="lx" rowspan="1">iludi</th><td>sunset </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="ilusi beautiful; gorgeous"><tr data-w="ilusi"><th scope="row" class="lx" rowspan="1">ilusi</th><td>beautiful; gorgeous </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="iluza magenta"><tr data-w="iluza"><th scope="row" class="lx" rowspan="1">iluza</th><td>magenta </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="ini here"><tr data-w="ini"><th scope="row" class="lx" rowspan="1">ini</th><td>here <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: ina — here</small></td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="isa seven"><tr data-w="isa"><th scope="row" class="lx" rowspan="1">isa</th><td>seven <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+<tbody class="ent" data-s="itka now"><tr data-w="itka"><th scope="row" class="lx" rowspan="1">itka</th><td>now </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="ixa bright; light"><tr data-w="ixa"><th scope="row" class="lx" rowspan="1">ixa</th><td>bright; light </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="iza to be mean mean, as in evil"><tr data-w="iza"><th scope="row" class="lx" rowspan="2">iza</th><td><span class="sn">1.</span> to be mean </td><td class="ty">verb</td></tr>
+<tr data-w="iza"><td><span class="sn">2.</span> mean, as in evil </td><td class="ty">adj</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-j" aria-labelledby="h-j"><h2 id="h-j">J</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="java six"><tr data-w="java"><th scope="row" class="lx" rowspan="1">java</th><td>six <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+<tbody class="ent" data-s="jayu five"><tr data-w="jayu"><th scope="row" class="lx" rowspan="1">jayu</th><td>five <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+<tbody class="ent" data-s="josa to bleed"><tr data-w="josa"><th scope="row" class="lx" rowspan="1">josa</th><td>to bleed </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="joseva to gush; to bleed profusely"><tr data-w="joseva"><th scope="row" class="lx" rowspan="1">joseva</th><td>to gush; to bleed profusely </td><td class="ty">verb</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-k" aria-labelledby="h-k"><h2 id="h-k">K</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="ka very"><tr data-w="ka"><th scope="row" class="lx" rowspan="1">ka</th><td>very </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="ka&#x27;a more (e.g. ‘one more’ = ka&#x27;a na)"><tr data-w="ka&#x27;a"><th scope="row" class="lx" rowspan="1">ka&#x27;a</th><td>more (e.g. ‘one more’ = ka&#x27;a na) <small class="nt">Notion: ka’ and ka’’a (both wrong, per Alex)</small></td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="-kai making someone do it"><tr data-w="-kai"><th scope="row" class="lx" rowspan="1">-kai</th><td>making someone do it <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">suffix</td></tr>
+</tbody>
+<tbody class="ent" data-s="ka&#x27;iya to reach up"><tr data-w="ka&#x27;iya"><th scope="row" class="lx" rowspan="1">ka&#x27;iya</th><td>to reach up </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kala sea; ocean"><tr data-w="kala"><th scope="row" class="lx" rowspan="1">kala</th><td>sea; ocean </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="kalaw to love (romantically)"><tr data-w="kalaw"><th scope="row" class="lx" rowspan="1">kalaw</th><td>to love (romantically) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kamar to burn (passive)"><tr data-w="kamar"><th scope="row" class="lx" rowspan="1">kamar</th><td>to burn (passive) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kamarxi to intentionally burn something"><tr data-w="kamarxi"><th scope="row" class="lx" rowspan="1">kamarxi</th><td>to intentionally burn something </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kamraxa burned"><tr data-w="kamraxa"><th scope="row" class="lx" rowspan="1">kamraxa</th><td>burned </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="kana to see"><tr data-w="kana"><th scope="row" class="lx" rowspan="1">kana</th><td>to see </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kanxi to look"><tr data-w="kanxi"><th scope="row" class="lx" rowspan="1">kanxi</th><td>to look </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kapa to speak; to talk; to chat"><tr data-w="kapa"><th scope="row" class="lx" rowspan="1">kapa</th><td>to speak; to talk; to chat </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kaw more than"><tr data-w="kaw"><th scope="row" class="lx" rowspan="1">kaw</th><td>more than </td><td class="ty">particle/adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="kawa to hear"><tr data-w="kawa"><th scope="row" class="lx" rowspan="1">kawa</th><td>to hear </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kawe tall"><tr data-w="kawe"><th scope="row" class="lx" rowspan="1">kawe</th><td>tall </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="kawxi to listen"><tr data-w="kawxi"><th scope="row" class="lx" rowspan="1">kawxi</th><td>to listen </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kax to call"><tr data-w="kax"><th scope="row" class="lx" rowspan="1">kax</th><td>to call </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kaxi to name (something or someone)"><tr data-w="kaxi"><th scope="row" class="lx" rowspan="1">kaxi</th><td>to name (something or someone) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kaxli name"><tr data-w="kaxli"><th scope="row" class="lx" rowspan="1">kaxli</th><td>name </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="kayax call out"><tr data-w="kayax"><th scope="row" class="lx" rowspan="1">kayax</th><td>call out </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kefi new"><tr data-w="kefi"><th scope="row" class="lx" rowspan="1">kefi</th><td>new </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="keikei so"><tr data-w="keikei"><th scope="row" class="lx" rowspan="1">keikei</th><td>so </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="kelpakelpa to call (on a phone)"><tr data-w="kelpakelpa"><th scope="row" class="lx" rowspan="1">kelpakelpa</th><td>to call (on a phone) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="keme to smell"><tr data-w="keme"><th scope="row" class="lx" rowspan="1">keme</th><td>to smell <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: kemekeme — to smell</small></td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kemxi to sniff; to smell (actively)"><tr data-w="kemxi"><th scope="row" class="lx" rowspan="1">kemxi</th><td>to sniff; to smell (actively) <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: kemxikemxi — to smell (actively)</small></td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kewe to taste"><tr data-w="kewe"><th scope="row" class="lx" rowspan="1">kewe</th><td>to taste </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kewxi to taste (actively)"><tr data-w="kewxi"><th scope="row" class="lx" rowspan="1">kewxi</th><td>to taste (actively) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="keya thin"><tr data-w="keya"><th scope="row" class="lx" rowspan="1">keya</th><td>thin </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="ki small"><tr data-w="ki"><th scope="row" class="lx" rowspan="1">ki</th><td>small </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="kia just; only"><tr data-w="kia"><th scope="row" class="lx" rowspan="1">kia</th><td>just; only </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="kiak open"><tr data-w="kiak"><th scope="row" class="lx" rowspan="1">kiak</th><td>open </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="kianar a while; some time"><tr data-w="kianar"><th scope="row" class="lx" rowspan="1">kianar</th><td>a while; some time </td><td class="ty">phrase</td></tr>
+</tbody>
+<tbody class="ent" data-s="kiaw to open"><tr data-w="kiaw"><th scope="row" class="lx" rowspan="1">kiaw</th><td>to open </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kiena not yet (with lan)"><tr data-w="kiena"><th scope="row" class="lx" rowspan="1">kiena</th><td>not yet (with lan) <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: kiena — have yet to</small></td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="kileiri youth"><tr data-w="kileiri"><th scope="row" class="lx" rowspan="1">kileiri</th><td>youth </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="kili young"><tr data-w="kili"><th scope="row" class="lx" rowspan="1">kili</th><td>young </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="kiliyon child"><tr data-w="kiliyon"><th scope="row" class="lx" rowspan="1">kiliyon</th><td>child </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="kime short (size words to revisit)"><tr data-w="kime"><th scope="row" class="lx" rowspan="1">kime</th><td>short (size words to revisit) <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: kia — short</small></td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="kioto bird"><tr data-w="kioto"><th scope="row" class="lx" rowspan="1">kioto</th><td>bird <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="kiweve height; length"><tr data-w="kiweve"><th scope="row" class="lx" rowspan="1">kiweve</th><td>height; length </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="kiwuru dog"><tr data-w="kiwuru"><th scope="row" class="lx" rowspan="1">kiwuru</th><td>dog <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="ko big"><tr data-w="ko"><th scope="row" class="lx" rowspan="1">ko</th><td>big </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="koe thick; fat; wide"><tr data-w="koe"><th scope="row" class="lx" rowspan="1">koe</th><td>thick; fat; wide </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="koenie thickness; width"><tr data-w="koenie"><th scope="row" class="lx" rowspan="1">koenie</th><td>thickness; width </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="ko&#x27;o many"><tr data-w="ko&#x27;o"><th scope="row" class="lx" rowspan="1">ko&#x27;o</th><td>many </td><td class="ty">adj/quantifier</td></tr>
+</tbody>
+<tbody class="ent" data-s="kora cat"><tr data-w="kora"><th scope="row" class="lx" rowspan="1">kora</th><td>cat <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="kuali happy; happiness"><tr data-w="kuali"><th scope="row" class="lx" rowspan="1">kuali</th><td>happy; happiness <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: kuali — happy</small></td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="kunerane to stab"><tr data-w="kunerane"><th scope="row" class="lx" rowspan="1">kunerane</th><td>to stab </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kuneranxi to stab (on purpose)"><tr data-w="kuneranxi"><th scope="row" class="lx" rowspan="1">kuneranxi</th><td>to stab (on purpose) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="kunexli to cut; to slice"><tr data-w="kunexli"><th scope="row" class="lx" rowspan="1">kunexli</th><td>to cut; to slice </td><td class="ty">verb</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-l" aria-labelledby="h-l"><h2 id="h-l">L</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="la really; for real"><tr data-w="la"><th scope="row" class="lx" rowspan="1">la</th><td>really; for real </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="la&#x27;ali memory"><tr data-w="la&#x27;ali"><th scope="row" class="lx" rowspan="1">la&#x27;ali</th><td>memory </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="lai to be there is; there are"><tr data-w="lai"><th scope="row" class="lx" rowspan="2">lai</th><td><span class="sn">1.</span> to be </td><td class="ty">verb</td></tr>
+<tr data-w="lai"><td><span class="sn">2.</span> there is; there are </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="lai-ilis to resemble; to look like; to be like"><tr data-w="lai-ilis"><th scope="row" class="lx" rowspan="1">lai-ilis</th><td>to resemble; to look like; to be like </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="lala late"><tr data-w="lala"><th scope="row" class="lx" rowspan="1">lala</th><td>late <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Notion spelling: “lal a”</small></td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="lam a dish"><tr data-w="lam"><th scope="row" class="lx" rowspan="1">lam</th><td>a dish </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="lan no"><tr data-w="lan"><th scope="row" class="lx" rowspan="1">lan</th><td>no </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="lanaria anymore"><tr data-w="lanaria"><th scope="row" class="lx" rowspan="1">lanaria</th><td>anymore </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="lanav to descend; to move downwards"><tr data-w="lanav"><th scope="row" class="lx" rowspan="1">lanav</th><td>to descend; to move downwards </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="lani nothing"><tr data-w="lani"><th scope="row" class="lx" rowspan="1">lani</th><td>nothing </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="lanma nowhere"><tr data-w="lanma"><th scope="row" class="lx" rowspan="1">lanma</th><td>nowhere </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="lanon no one"><tr data-w="lanon"><th scope="row" class="lx" rowspan="1">lanon</th><td>no one </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="laso blue"><tr data-w="laso"><th scope="row" class="lx" rowspan="1">laso</th><td>blue </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="lau to love (in general)"><tr data-w="lau"><th scope="row" class="lx" rowspan="1">lau</th><td>to love (in general) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="laue love (south)"><tr data-w="laue"><th scope="row" class="lx" rowspan="1">laue</th><td>love (south) </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="lau&#x27;i term of endearment (romantic)"><tr data-w="lau&#x27;i"><th scope="row" class="lx" rowspan="1">lau&#x27;i</th><td>term of endearment (romantic) </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="lav tongue"><tr data-w="lav"><th scope="row" class="lx" rowspan="1">lav</th><td>tongue </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="lawa dark blue"><tr data-w="lawa"><th scope="row" class="lx" rowspan="1">lawa</th><td>dark blue </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="lawil love (north/standard)"><tr data-w="lawil"><th scope="row" class="lx" rowspan="1">lawil</th><td>love (north/standard) </td><td class="ty">verb/noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="lawmana to combine “mana” with someone; to get “married”"><tr data-w="lawmana"><th scope="row" class="lx" rowspan="1">lawmana</th><td>to combine “mana” with someone; to get “married” </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="laya long"><tr data-w="laya"><th scope="row" class="lx" rowspan="1">laya</th><td>long </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="lea to like; to enjoy"><tr data-w="lea"><th scope="row" class="lx" rowspan="1">lea</th><td>to like; to enjoy </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="lei conditional particle"><tr data-w="lei"><th scope="row" class="lx" rowspan="1">lei</th><td>conditional particle </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="leia beautiful"><tr data-w="leia"><th scope="row" class="lx" rowspan="1">leia</th><td>beautiful </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="lei-erwa-on to care greatly (would die for)"><tr data-w="lei-erwa-on"><th scope="row" class="lx" rowspan="1">lei-erwa-on</th><td>to care greatly (would die for) </td><td class="ty">phrase</td></tr>
+</tbody>
+<tbody class="ent" data-s="lema to care"><tr data-w="lema"><th scope="row" class="lx" rowspan="1">lema</th><td>to care </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="lemva slow"><tr data-w="lemva"><th scope="row" class="lx" rowspan="1">lemva</th><td>slow </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="lera to remind; to remember"><tr data-w="lera"><th scope="row" class="lx" rowspan="1">lera</th><td>to remind; to remember </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="levai never"><tr data-w="levai"><th scope="row" class="lx" rowspan="1">levai</th><td>never </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="lew stain; splatter"><tr data-w="lew"><th scope="row" class="lx" rowspan="1">lew</th><td>stain; splatter </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="ley to change"><tr data-w="ley"><th scope="row" class="lx" rowspan="1">ley</th><td>to change </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="-li thing"><tr data-w="-li"><th scope="row" class="lx" rowspan="1">-li</th><td>thing <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">suffix</td></tr>
+</tbody>
+<tbody class="ent" data-s="li thing; something"><tr data-w="li"><th scope="row" class="lx" rowspan="1">li</th><td>thing; something </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="lia so (casual) to think"><tr data-w="lia"><th scope="row" class="lx" rowspan="2">lia</th><td><span class="sn">1.</span> so (casual) </td><td class="ty">adv</td></tr>
+<tr data-w="lia"><td><span class="sn">2.</span> to think </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="lis face; flat surface"><tr data-w="lis"><th scope="row" class="lx" rowspan="1">lis</th><td>face; flat surface </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="lo past particle"><tr data-w="lo"><th scope="row" class="lx" rowspan="1">lo</th><td>past particle </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="louba bottle; jug"><tr data-w="louba"><th scope="row" class="lx" rowspan="1">louba</th><td>bottle; jug </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="lua to go"><tr data-w="lua"><th scope="row" class="lx" rowspan="1">lua</th><td>to go </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="lua-valia to fall asleep"><tr data-w="lua-valia"><th scope="row" class="lx" rowspan="1">lua-valia</th><td>to fall asleep </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="luaxl way"><tr data-w="luaxl"><th scope="row" class="lx" rowspan="1">luaxl</th><td>way </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="luluy excuse"><tr data-w="luluy"><th scope="row" class="lx" rowspan="1">luluy</th><td>excuse </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="luna glowing"><tr data-w="luna"><th scope="row" class="lx" rowspan="1">luna</th><td>glowing </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="lundi lundian (adj/noun)"><tr data-w="lundi"><th scope="row" class="lx" rowspan="1">lundi</th><td>Lundian (adj/noun) </td><td class="ty">proper noun/adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="lundiyanl l undian language?"><tr data-w="lundiyanl"><th scope="row" class="lx" rowspan="1">lundiyanl</th><td>L Undian language? <span class="mk mk-q" title="entry looks garbled in Notion (word and meaning); the PDF only uses “Lundiyani” as the language name; kept as is">?</span><small class="nt">Check: entry looks garbled in Notion (word and meaning); the PDF only uses “Lundiyani” as the language name; kept as is</small></td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="luran to come to move (yourself); to travel"><tr data-w="luran"><th scope="row" class="lx" rowspan="2">luran</th><td><span class="sn">1.</span> to come </td><td class="ty">verb</td></tr>
+<tr data-w="luran"><td><span class="sn">2.</span> to move (yourself); to travel </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="lurani to run"><tr data-w="lurani"><th scope="row" class="lx" rowspan="1">lurani</th><td>to run <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Notion spelling: “luran i”</small></td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="lurankai to move (someone or something)"><tr data-w="lurankai"><th scope="row" class="lx" rowspan="1">lurankai</th><td>to move (someone or something) <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Notion spelling: “luran kai”</small></td><td class="ty">verb</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-m" aria-labelledby="h-m"><h2 id="h-m">M</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="ma place; area"><tr data-w="ma"><th scope="row" class="lx" rowspan="1">ma</th><td>place; area </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="madrai tangled; stuck; caught; trapped"><tr data-w="madrai"><th scope="row" class="lx" rowspan="1">madrai</th><td>tangled; stuck; caught; trapped </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="mai just now; recent particle"><tr data-w="mai"><th scope="row" class="lx" rowspan="1">mai</th><td>just now; recent particle </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="maia confident"><tr data-w="maia"><th scope="row" class="lx" rowspan="1">maia</th><td>confident </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="mail to need"><tr data-w="mail"><th scope="row" class="lx" rowspan="1">mail</th><td>to need </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="malai parent (in general)"><tr data-w="malai"><th scope="row" class="lx" rowspan="1">malai</th><td>parent (in general) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="mana spiritual energy"><tr data-w="mana"><th scope="row" class="lx" rowspan="1">mana</th><td>spiritual energy <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="manani powerful; strong (spiritually, mentally)"><tr data-w="manani"><th scope="row" class="lx" rowspan="1">manani</th><td>powerful; strong (spiritually, mentally) </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="mataw so much; so many"><tr data-w="mataw"><th scope="row" class="lx" rowspan="1">mataw</th><td>so much; so many </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="maxa where"><tr data-w="maxa"><th scope="row" class="lx" rowspan="1">maxa</th><td>where </td><td class="ty">question particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="me question particle"><tr data-w="me"><th scope="row" class="lx" rowspan="1">me</th><td>question particle </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="medra test; exam; challenge"><tr data-w="medra"><th scope="row" class="lx" rowspan="1">medra</th><td>test; exam; challenge </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="menavecli serious"><tr data-w="menavecli"><th scope="row" class="lx" rowspan="1">menavecli</th><td>serious </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="menki to ask"><tr data-w="menki"><th scope="row" class="lx" rowspan="1">menki</th><td>to ask </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="merei to fill"><tr data-w="merei"><th scope="row" class="lx" rowspan="1">merei</th><td>to fill </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="metali to deal with"><tr data-w="metali"><th scope="row" class="lx" rowspan="1">metali</th><td>to deal with </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="meya to become"><tr data-w="meya"><th scope="row" class="lx" rowspan="1">meya</th><td>to become </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="mirai growing"><tr data-w="mirai"><th scope="row" class="lx" rowspan="1">mirai</th><td>growing </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="miri old"><tr data-w="miri"><th scope="row" class="lx" rowspan="1">miri</th><td>old </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="misiri lundian animal"><tr data-w="misiri"><th scope="row" class="lx" rowspan="1">misiri</th><td>Lundian animal </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="mono crazy; mentally deranged"><tr data-w="mono"><th scope="row" class="lx" rowspan="1">mono</th><td>crazy; mentally deranged </td><td class="ty">adj</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-n" aria-labelledby="h-n"><h2 id="h-n">N</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="na one future particle some (plural)"><tr data-w="na"><th scope="row" class="lx" rowspan="3">na</th><td><span class="sn">1.</span> one </td><td class="ty">number/particle</td></tr>
+<tr data-w="na"><td><span class="sn">2.</span> future particle </td><td class="ty">particle</td></tr>
+<tr data-w="na"><td><span class="sn">3.</span> some (plural) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">article</td></tr>
+</tbody>
+<tbody class="ent" data-s="na-a-nari time to time; sometimes; occasionally"><tr data-w="na-a-nari"><th scope="row" class="lx" rowspan="1">na-a-nari</th><td>time to time; sometimes; occasionally </td><td class="ty">phrase</td></tr>
+</tbody>
+<tbody class="ent" data-s="nai in; at; on"><tr data-w="nai"><th scope="row" class="lx" rowspan="1">nai</th><td>in; at; on </td><td class="ty">preposition</td></tr>
+</tbody>
+<tbody class="ent" data-s="naji stupid; dumb"><tr data-w="naji"><th scope="row" class="lx" rowspan="1">naji</th><td>stupid; dumb </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="nali there"><tr data-w="nali"><th scope="row" class="lx" rowspan="1">nali</th><td>there </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="nama somewhere"><tr data-w="nama"><th scope="row" class="lx" rowspan="1">nama</th><td>somewhere <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: naoma — somewhere</small></td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="nao most"><tr data-w="nao"><th scope="row" class="lx" rowspan="1">nao</th><td>most </td><td class="ty">adv/det</td></tr>
+</tbody>
+<tbody class="ent" data-s="naon someone"><tr data-w="naon"><th scope="row" class="lx" rowspan="1">naon</th><td>someone </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="napa to continue; to keep on"><tr data-w="napa"><th scope="row" class="lx" rowspan="1">napa</th><td>to continue; to keep on </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="nau to hate (to be annoyed by something, but not that much)"><tr data-w="nau"><th scope="row" class="lx" rowspan="1">nau</th><td>to hate (to be annoyed by something, but not that much) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="naxwa dark"><tr data-w="naxwa"><th scope="row" class="lx" rowspan="1">naxwa</th><td>dark </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="ne 3s inanimate"><tr data-w="ne"><th scope="row" class="lx" rowspan="1">ne</th><td>3s inanimate </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="nefi really"><tr data-w="nefi"><th scope="row" class="lx" rowspan="1">nefi</th><td>really </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="nei this"><tr data-w="nei"><th scope="row" class="lx" rowspan="1">nei</th><td>this </td><td class="ty">demonstrative</td></tr>
+</tbody>
+<tbody class="ent" data-s="nela gray"><tr data-w="nela"><th scope="row" class="lx" rowspan="1">nela</th><td>gray </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="-nen plural suffix (inanimate, after a vowel)"><tr data-w="-nen"><th scope="row" class="lx" rowspan="1">-nen</th><td>plural suffix (inanimate, after a vowel) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">suffix</td></tr>
+</tbody>
+<tbody class="ent" data-s="nera black"><tr data-w="nera"><th scope="row" class="lx" rowspan="1">nera</th><td>black </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="nes until"><tr data-w="nes"><th scope="row" class="lx" rowspan="1">nes</th><td>until </td><td class="ty">conjunction</td></tr>
+</tbody>
+<tbody class="ent" data-s="nesa next"><tr data-w="nesa"><th scope="row" class="lx" rowspan="1">nesa</th><td>next </td><td class="ty">adj/particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="neue voice (south)"><tr data-w="neue"><th scope="row" class="lx" rowspan="1">neue</th><td>voice (south) </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="new tire; wheel"><tr data-w="new"><th scope="row" class="lx" rowspan="1">new</th><td>tire; wheel </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="newes confused"><tr data-w="newes"><th scope="row" class="lx" rowspan="1">newes</th><td>confused </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="nexani to happen"><tr data-w="nexani"><th scope="row" class="lx" rowspan="1">nexani</th><td>to happen </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="neya that"><tr data-w="neya"><th scope="row" class="lx" rowspan="1">neya</th><td>that </td><td class="ty">demonstrative</td></tr>
+</tbody>
+<tbody class="ent" data-s="ni the (plural)"><tr data-w="ni"><th scope="row" class="lx" rowspan="1">ni</th><td>the (plural) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">article</td></tr>
+</tbody>
+<tbody class="ent" data-s="nia to make someone feel an emotion; to render"><tr data-w="nia"><th scope="row" class="lx" rowspan="1">nia</th><td>to make someone feel an emotion; to render </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="niala night"><tr data-w="niala"><th scope="row" class="lx" rowspan="1">niala</th><td>night </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="nilie 3p inanimate"><tr data-w="nilie"><th scope="row" class="lx" rowspan="1">nilie</th><td>3p inanimate </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="nivya to live (live/grow in a certain area)"><tr data-w="nivya"><th scope="row" class="lx" rowspan="1">nivya</th><td>to live (live/grow in a certain area) <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Notion spelling: “nivy a”</small></td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="no or"><tr data-w="no"><th scope="row" class="lx" rowspan="1">no</th><td>or </td><td class="ty">conjunction</td></tr>
+</tbody>
+<tbody class="ent" data-s="nomoxe the place where someone died"><tr data-w="nomoxe"><th scope="row" class="lx" rowspan="1">nomoxe</th><td>the place where someone died </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="nua to hope"><tr data-w="nua"><th scope="row" class="lx" rowspan="1">nua</th><td>to hope </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="nualai to dream; to wish; to daydream"><tr data-w="nualai"><th scope="row" class="lx" rowspan="1">nualai</th><td>to dream; to wish; to daydream </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="nya year"><tr data-w="nya"><th scope="row" class="lx" rowspan="1">nya</th><td>year </td><td class="ty">noun</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-o" aria-labelledby="h-o"><h2 id="h-o">O</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="o 2s"><tr data-w="o"><th scope="row" class="lx" rowspan="1">o</th><td>2s </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="oan all"><tr data-w="oan"><th scope="row" class="lx" rowspan="1">oan</th><td>all </td><td class="ty">det</td></tr>
+</tbody>
+<tbody class="ent" data-s="ole 2p"><tr data-w="ole"><th scope="row" class="lx" rowspan="1">ole</th><td>2p </td><td class="ty">pronoun</td></tr>
+</tbody>
+<tbody class="ent" data-s="olta hello; hi"><tr data-w="olta"><th scope="row" class="lx" rowspan="1">olta</th><td>hello; hi </td><td class="ty">interjection</td></tr>
+</tbody>
+<tbody class="ent" data-s="-on person"><tr data-w="-on"><th scope="row" class="lx" rowspan="1">-on</th><td>person <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">suffix</td></tr>
+</tbody>
+<tbody class="ent" data-s="on person; people for"><tr data-w="on"><th scope="row" class="lx" rowspan="2">on</th><td><span class="sn">1.</span> person; people </td><td class="ty">noun</td></tr>
+<tr data-w="on"><td><span class="sn">2.</span> for </td><td class="ty">preposition</td></tr>
+</tbody>
+<tbody class="ent" data-s="on-a-oni each other"><tr data-w="on-a-oni"><th scope="row" class="lx" rowspan="1">on-a-oni</th><td>each other </td><td class="ty">reciprocal pronoun/phrase</td></tr>
+</tbody>
+<tbody class="ent" data-s="oned version of yourself/of another person"><tr data-w="oned"><th scope="row" class="lx" rowspan="1">oned</th><td>version of yourself/of another person </td><td class="ty">noun/phrase</td></tr>
+</tbody>
+<tbody class="ent" data-s="osil eye"><tr data-w="osil"><th scope="row" class="lx" rowspan="1">osil</th><td>eye </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="ov command particle (ov + verb + person)"><tr data-w="ov"><th scope="row" class="lx" rowspan="1">ov</th><td>command particle (ov + verb + person) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">particle</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-p" aria-labelledby="h-p"><h2 id="h-p">P</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="pal word"><tr data-w="pal"><th scope="row" class="lx" rowspan="1">pal</th><td>word </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="pano almost"><tr data-w="pano"><th scope="row" class="lx" rowspan="1">pano</th><td>almost </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="pao all (south)"><tr data-w="pao"><th scope="row" class="lx" rowspan="1">pao</th><td>all (south) </td><td class="ty">det</td></tr>
+</tbody>
+<tbody class="ent" data-s="pay village; town"><tr data-w="pay"><th scope="row" class="lx" rowspan="1">pay</th><td>village; town </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="payi&#x27;an large city"><tr data-w="payi&#x27;an"><th scope="row" class="lx" rowspan="1">payi&#x27;an</th><td>large city </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="pers ugly"><tr data-w="pers"><th scope="row" class="lx" rowspan="1">pers</th><td>ugly </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="prina ready to prepare; to get ready"><tr data-w="prina"><th scope="row" class="lx" rowspan="2">prina</th><td><span class="sn">1.</span> ready </td><td class="ty">adj</td></tr>
+<tr data-w="prina"><td><span class="sn">2.</span> to prepare; to get ready </td><td class="ty">verb</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-r" aria-labelledby="h-r"><h2 id="h-r">R</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="ra two"><tr data-w="ra"><th scope="row" class="lx" rowspan="1">ra</th><td>two <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: re — two</small></td><td class="ty">number</td></tr>
+</tbody>
+<tbody class="ent" data-s="rai yes"><tr data-w="rai"><th scope="row" class="lx" rowspan="1">rai</th><td>yes </td><td class="ty">interjection</td></tr>
+</tbody>
+<tbody class="ent" data-s="raxarane to genocide"><tr data-w="raxarane"><th scope="row" class="lx" rowspan="1">raxarane</th><td>to genocide </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="raxavi to destroy; to ruin"><tr data-w="raxavi"><th scope="row" class="lx" rowspan="1">raxavi</th><td>to destroy; to ruin </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="raxi to break down"><tr data-w="raxi"><th scope="row" class="lx" rowspan="1">raxi</th><td>to break down </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="rayex dress; cloak"><tr data-w="rayex"><th scope="row" class="lx" rowspan="1">rayex</th><td>dress; cloak </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="rei hot; sexy"><tr data-w="rei"><th scope="row" class="lx" rowspan="1">rei</th><td>hot; sexy </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="reiki light green; bright green"><tr data-w="reiki"><th scope="row" class="lx" rowspan="1">reiki</th><td>light green; bright green </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="resa to lose"><tr data-w="resa"><th scope="row" class="lx" rowspan="1">resa</th><td>to lose </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="resi lost"><tr data-w="resi"><th scope="row" class="lx" rowspan="1">resi</th><td>lost </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="reva far"><tr data-w="reva"><th scope="row" class="lx" rowspan="1">reva</th><td>far </td><td class="ty">adj/adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="reva-de away from; out of"><tr data-w="reva-de"><th scope="row" class="lx" rowspan="1">reva-de</th><td>away from; out of </td><td class="ty">prep/phrase</td></tr>
+</tbody>
+<tbody class="ent" data-s="revenuv distance"><tr data-w="revenuv"><th scope="row" class="lx" rowspan="1">revenuv</th><td>distance </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="revxa inconsiderate; tactless"><tr data-w="revxa"><th scope="row" class="lx" rowspan="1">revxa</th><td>inconsiderate; tactless </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="roi to turn"><tr data-w="roi"><th scope="row" class="lx" rowspan="1">roi</th><td>to turn </td><td class="ty">verb</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-s" aria-labelledby="h-s"><h2 id="h-s">S</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="sa to be able; can relative marker: who, that (noun + sa + clause)"><tr data-w="sa"><th scope="row" class="lx" rowspan="2">sa</th><td><span class="sn">1.</span> to be able; can </td><td class="ty">modal verb</td></tr>
+<tr data-w="sa"><td><span class="sn">2.</span> relative marker: who, that (noun + sa + clause) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="saina maybe (northern dialect)"><tr data-w="saina"><th scope="row" class="lx" rowspan="1">saina</th><td>maybe (northern dialect) </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="salai to sail; to drive"><tr data-w="salai"><th scope="row" class="lx" rowspan="1">salai</th><td>to sail; to drive </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="sanai to stay"><tr data-w="sanai"><th scope="row" class="lx" rowspan="1">sanai</th><td>to stay </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="sati strong (physically)"><tr data-w="sati"><th scope="row" class="lx" rowspan="1">sati</th><td>strong (physically) </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="sawn to phase"><tr data-w="sawn"><th scope="row" class="lx" rowspan="1">sawn</th><td>to phase </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="sawni annoying"><tr data-w="sawni"><th scope="row" class="lx" rowspan="1">sawni</th><td>annoying </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="sax to crush; to trample"><tr data-w="sax"><th scope="row" class="lx" rowspan="1">sax</th><td>to crush; to trample </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="sefi easy; basic"><tr data-w="sefi"><th scope="row" class="lx" rowspan="1">sefi</th><td>easy; basic </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="sele white"><tr data-w="sele"><th scope="row" class="lx" rowspan="1">sele</th><td>white </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="selu to believe"><tr data-w="selu"><th scope="row" class="lx" rowspan="1">selu</th><td>to believe </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="seludi uncover"><tr data-w="seludi"><th scope="row" class="lx" rowspan="1">seludi</th><td>uncover </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="sena to learn"><tr data-w="sena"><th scope="row" class="lx" rowspan="1">sena</th><td>to learn </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="senakai to teach"><tr data-w="senakai"><th scope="row" class="lx" rowspan="1">senakai</th><td>to teach </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="serene peaceful; calm"><tr data-w="serene"><th scope="row" class="lx" rowspan="1">serene</th><td>peaceful; calm </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="sewli body"><tr data-w="sewli"><th scope="row" class="lx" rowspan="1">sewli</th><td>body </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="sila to write"><tr data-w="sila"><th scope="row" class="lx" rowspan="1">sila</th><td>to write </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="silavi to spell out"><tr data-w="silavi"><th scope="row" class="lx" rowspan="1">silavi</th><td>to spell out </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="silu yellow"><tr data-w="silu"><th scope="row" class="lx" rowspan="1">silu</th><td>yellow </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="sión twelve"><tr data-w="sión"><th scope="row" class="lx" rowspan="1">sión</th><td>twelve <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">number</td></tr>
+</tbody>
+<tbody class="ent" data-s="sipa to finish; to end"><tr data-w="sipa"><th scope="row" class="lx" rowspan="1">sipa</th><td>to finish; to end </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="sipli end"><tr data-w="sipli"><th scope="row" class="lx" rowspan="1">sipli</th><td>end </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="siyo to fuck; to have sex"><tr data-w="siyo"><th scope="row" class="lx" rowspan="1">siyo</th><td>to fuck; to have sex </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="skasta scared"><tr data-w="skasta"><th scope="row" class="lx" rowspan="1">skasta</th><td>scared </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="skastax to scare"><tr data-w="skastax"><th scope="row" class="lx" rowspan="1">skastax</th><td>to scare </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="skews net; cage; trap"><tr data-w="skews"><th scope="row" class="lx" rowspan="1">skews</th><td>net; cage; trap </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="skin book"><tr data-w="skin"><th scope="row" class="lx" rowspan="1">skin</th><td>book </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="so to know (obtained knowledge; facts or how to do something)"><tr data-w="so"><th scope="row" class="lx" rowspan="1">so</th><td>to know (obtained knowledge; facts or how to do something) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="sona to know; to be acquainted with people; places and areas of study smart; intelligent"><tr data-w="sona"><th scope="row" class="lx" rowspan="2">sona</th><td><span class="sn">1.</span> to know; to be acquainted with people; places and areas of study </td><td class="ty">verb</td></tr>
+<tr data-w="sona"><td><span class="sn">2.</span> smart; intelligent </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="soza please (south)"><tr data-w="soza"><th scope="row" class="lx" rowspan="1">soza</th><td>please (south) </td><td class="ty">interjection</td></tr>
+</tbody>
+<tbody class="ent" data-s="stafi to bring"><tr data-w="stafi"><th scope="row" class="lx" rowspan="1">stafi</th><td>to bring </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="stafixi to lead"><tr data-w="stafixi"><th scope="row" class="lx" rowspan="1">stafixi</th><td>to lead </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="starex mess"><tr data-w="starex"><th scope="row" class="lx" rowspan="1">starex</th><td>mess </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="stela to grab; to take"><tr data-w="stela"><th scope="row" class="lx" rowspan="1">stela</th><td>to grab; to take </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="steli take down; remove"><tr data-w="steli"><th scope="row" class="lx" rowspan="1">steli</th><td>take down; remove </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="steravi to stretch"><tr data-w="steravi"><th scope="row" class="lx" rowspan="1">steravi</th><td>to stretch </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="strovxi dangerous"><tr data-w="strovxi"><th scope="row" class="lx" rowspan="1">strovxi</th><td>dangerous </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="surovixe to suffer; to be in pain"><tr data-w="surovixe"><th scope="row" class="lx" rowspan="1">surovixe</th><td>to suffer; to be in pain </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="surox pain; suffering"><tr data-w="surox"><th scope="row" class="lx" rowspan="1">surox</th><td>pain; suffering </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="suxl to suck"><tr data-w="suxl"><th scope="row" class="lx" rowspan="1">suxl</th><td>to suck </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="swila to spin"><tr data-w="swila"><th scope="row" class="lx" rowspan="1">swila</th><td>to spin </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="sya to try"><tr data-w="sya"><th scope="row" class="lx" rowspan="1">sya</th><td>to try </td><td class="ty">verb</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-t" aria-labelledby="h-t"><h2 id="h-t">T</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="ta to have"><tr data-w="ta"><th scope="row" class="lx" rowspan="1">ta</th><td>to have </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="tafrax insane; unbelievable; shocking; obscene"><tr data-w="tafrax"><th scope="row" class="lx" rowspan="1">tafrax</th><td>insane; unbelievable; shocking; obscene </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="takwa to save (for yourself); to hide; to keep (to oneself)"><tr data-w="takwa"><th scope="row" class="lx" rowspan="1">takwa</th><td>to save (for yourself); to hide; to keep (to oneself) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="talei habitual particle (“used to”)"><tr data-w="talei"><th scope="row" class="lx" rowspan="1">talei</th><td>habitual particle (“used to”) <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span></td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="taluv depth deep"><tr data-w="taluv"><th scope="row" class="lx" rowspan="2">taluv</th><td><span class="sn">1.</span> depth <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Notion spelling: “talu v”</small></td><td class="ty">noun</td></tr>
+<tr data-w="taluv"><td><span class="sn">2.</span> deep </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="tana maybe"><tr data-w="tana"><th scope="row" class="lx" rowspan="1">tana</th><td>maybe </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="tanya to dance"><tr data-w="tanya"><th scope="row" class="lx" rowspan="1">tanya</th><td>to dance </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="taro type of lundian vehicle"><tr data-w="taro"><th scope="row" class="lx" rowspan="1">taro</th><td>type of Lundian vehicle </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="tas wall"><tr data-w="tas"><th scope="row" class="lx" rowspan="1">tas</th><td>wall </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="tavan mouth"><tr data-w="tavan"><th scope="row" class="lx" rowspan="1">tavan</th><td>mouth </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="tavenxi to spit"><tr data-w="tavenxi"><th scope="row" class="lx" rowspan="1">tavenxi</th><td>to spit </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="tavnei spit"><tr data-w="tavnei"><th scope="row" class="lx" rowspan="1">tavnei</th><td>spit <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Notion spelling: “tavne i”</small></td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="taw amount; number"><tr data-w="taw"><th scope="row" class="lx" rowspan="1">taw</th><td>amount; number </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="taxavi disappear"><tr data-w="taxavi"><th scope="row" class="lx" rowspan="1">taxavi</th><td>disappear </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="taxi patch"><tr data-w="taxi"><th scope="row" class="lx" rowspan="1">taxi</th><td>patch </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="tayave to belong"><tr data-w="tayave"><th scope="row" class="lx" rowspan="1">tayave</th><td>to belong </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="tefri perfect"><tr data-w="tefri"><th scope="row" class="lx" rowspan="1">tefri</th><td>perfect </td><td class="ty">particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="teila day"><tr data-w="teila"><th scope="row" class="lx" rowspan="1">teila</th><td>day </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="terawi interested"><tr data-w="terawi"><th scope="row" class="lx" rowspan="1">terawi</th><td>interested </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="tesi to say; to tell"><tr data-w="tesi"><th scope="row" class="lx" rowspan="1">tesi</th><td>to say; to tell </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="tevai to kiss"><tr data-w="tevai"><th scope="row" class="lx" rowspan="1">tevai</th><td>to kiss </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="teypi to sit"><tr data-w="teypi"><th scope="row" class="lx" rowspan="1">teypi</th><td>to sit </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="ti finger"><tr data-w="ti"><th scope="row" class="lx" rowspan="1">ti</th><td>finger </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="tiacina to snow"><tr data-w="tiacina"><th scope="row" class="lx" rowspan="1">tiacina</th><td>to snow </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="tiakwe to rain"><tr data-w="tiakwe"><th scope="row" class="lx" rowspan="1">tiakwe</th><td>to rain </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="tili kind; type"><tr data-w="tili"><th scope="row" class="lx" rowspan="1">tili</th><td>kind; type </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="tima hand"><tr data-w="tima"><th scope="row" class="lx" rowspan="1">tima</th><td>hand </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="tisa quiet; silent"><tr data-w="tisa"><th scope="row" class="lx" rowspan="1">tisa</th><td>quiet; silent </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="tisawi quiet; silence"><tr data-w="tisawi"><th scope="row" class="lx" rowspan="1">tisawi</th><td>quiet; silence </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="tiyila to hail"><tr data-w="tiyila"><th scope="row" class="lx" rowspan="1">tiyila</th><td>to hail </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="toa still"><tr data-w="toa"><th scope="row" class="lx" rowspan="1">toa</th><td>still </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="topali disappointed"><tr data-w="topali"><th scope="row" class="lx" rowspan="1">topali</th><td>disappointed </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="topavi to disappoint"><tr data-w="topavi"><th scope="row" class="lx" rowspan="1">topavi</th><td>to disappoint </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="trev path"><tr data-w="trev"><th scope="row" class="lx" rowspan="1">trev</th><td>path </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="trevax cross"><tr data-w="trevax"><th scope="row" class="lx" rowspan="1">trevax</th><td>cross <span class="mk mk-q" title="type was “noun/verb?” in Notion; trevax is not in the PDF, so it is kept as is">?</span><small class="nt">Check: type was “noun/verb?” in Notion; trevax is not in the PDF, so it is kept as is</small></td><td class="ty">noun/verb?</td></tr>
+</tbody>
+<tbody class="ent" data-s="tu&#x27;ali lundian plant"><tr data-w="tu&#x27;ali"><th scope="row" class="lx" rowspan="1">tu&#x27;ali</th><td>lundian plant <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Notion spelling: “t u&#x27; ali”</small></td><td class="ty">noun</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-u" aria-labelledby="h-u"><h2 id="h-u">U</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="urane to harm"><tr data-w="urane"><th scope="row" class="lx" rowspan="1">urane</th><td>to harm <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: surone — to harm; to hurt</small></td><td class="ty">verb</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-v" aria-labelledby="h-v"><h2 id="h-v">V</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="vali hill"><tr data-w="vali"><th scope="row" class="lx" rowspan="1">vali</th><td>hill </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="valia to sleep"><tr data-w="valia"><th scope="row" class="lx" rowspan="1">valia</th><td>to sleep </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="vantasi roof; ceiling"><tr data-w="vantasi"><th scope="row" class="lx" rowspan="1">vantasi</th><td>roof; ceiling <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Notion spelling: “vantas i”</small></td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="veiye problem"><tr data-w="veiye"><th scope="row" class="lx" rowspan="1">veiye</th><td>problem </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="vema lip"><tr data-w="vema"><th scope="row" class="lx" rowspan="1">vema</th><td>lip </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="vera to do"><tr data-w="vera"><th scope="row" class="lx" rowspan="1">vera</th><td>to do </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="veyli lie"><tr data-w="veyli"><th scope="row" class="lx" rowspan="1">veyli</th><td>lie </td><td class="ty">verb/noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="veyure poisonous"><tr data-w="veyure"><th scope="row" class="lx" rowspan="1">veyure</th><td>poisonous </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="veyuv poison"><tr data-w="veyuv"><th scope="row" class="lx" rowspan="1">veyuv</th><td>poison </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="voli to throw"><tr data-w="voli"><th scope="row" class="lx" rowspan="1">voli</th><td>to throw </td><td class="ty">verb</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-w" aria-labelledby="h-w"><h2 id="h-w">W</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="wa last; behind; after"><tr data-w="wa"><th scope="row" class="lx" rowspan="1">wa</th><td>last; behind; after </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="wakti warrior; soldier"><tr data-w="wakti"><th scope="row" class="lx" rowspan="1">wakti</th><td>warrior; soldier </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="wali over there; yonder"><tr data-w="wali"><th scope="row" class="lx" rowspan="1">wali</th><td>over there; yonder </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="wansi complain"><tr data-w="wansi"><th scope="row" class="lx" rowspan="1">wansi</th><td>complain </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="waran to waste"><tr data-w="waran"><th scope="row" class="lx" rowspan="1">waran</th><td>to waste </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="wuru wolf"><tr data-w="wuru"><th scope="row" class="lx" rowspan="1">wuru</th><td>wolf <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">noun</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-x" aria-labelledby="h-x"><h2 id="h-x">X</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="xa what that (that-clauses)"><tr data-w="xa"><th scope="row" class="lx" rowspan="2">xa</th><td><span class="sn">1.</span> what </td><td class="ty">question particle</td></tr>
+<tr data-w="xa"><td><span class="sn">2.</span> that (that-clauses) <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">conjunction</td></tr>
+</tbody>
+<tbody class="ent" data-s="xak to hate; to despise (very seriously)"><tr data-w="xak"><th scope="row" class="lx" rowspan="1">xak</th><td>to hate; to despise (very seriously) </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="xana to want"><tr data-w="xana"><th scope="row" class="lx" rowspan="1">xana</th><td>to want </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="xanarya when"><tr data-w="xanarya"><th scope="row" class="lx" rowspan="1">xanarya</th><td>when </td><td class="ty">conjunction</td></tr>
+</tbody>
+<tbody class="ent" data-s="xaon who"><tr data-w="xaon"><th scope="row" class="lx" rowspan="1">xaon</th><td>who </td><td class="ty">question particle</td></tr>
+</tbody>
+<tbody class="ent" data-s="xar next to; near; close when? (question word); “when” when the when-clause comes first (xanarya is the conjunction “when”)"><tr data-w="xar"><th scope="row" class="lx" rowspan="2">xar</th><td><span class="sn">1.</span> next to; near; close </td><td class="ty">prep</td></tr>
+<tr data-w="xar"><td><span class="sn">2.</span> when? (question word); “when” when the when-clause comes first (xanarya is the conjunction “when”) <span class="mk mk-cor" title="Corrected to match the Oct 14 grammar reference">corrected</span><small class="nt">Notion: xar — when (conjunction)</small></td><td class="ty">question particle/conjunction</td></tr>
+</tbody>
+<tbody class="ent" data-s="xasc dust"><tr data-w="xasc"><th scope="row" class="lx" rowspan="1">xasc</th><td>dust </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="xaseci dusty"><tr data-w="xaseci"><th scope="row" class="lx" rowspan="1">xaseci</th><td>dusty </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="xataw how many; how much"><tr data-w="xataw"><th scope="row" class="lx" rowspan="1">xataw</th><td>how many; how much </td><td class="ty">question phrase</td></tr>
+</tbody>
+<tbody class="ent" data-s="xati what kind; what type"><tr data-w="xati"><th scope="row" class="lx" rowspan="1">xati</th><td>what kind; what type </td><td class="ty">question phrase</td></tr>
+</tbody>
+<tbody class="ent" data-s="xela light gray"><tr data-w="xela"><th scope="row" class="lx" rowspan="1">xela</th><td>light gray </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="-xi doing it actively or on purpose"><tr data-w="-xi"><th scope="row" class="lx" rowspan="1">-xi</th><td>doing it actively or on purpose <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">suffix</td></tr>
+</tbody>
+<tbody class="ent" data-s="xides soot; ash"><tr data-w="xides"><th scope="row" class="lx" rowspan="1">xides</th><td>soot; ash </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="xilai to glow; to shine"><tr data-w="xilai"><th scope="row" class="lx" rowspan="1">xilai</th><td>to glow; to shine </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="xili sparkly; glittery"><tr data-w="xili"><th scope="row" class="lx" rowspan="1">xili</th><td>sparkly; glittery </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="xilu metallic; shiny"><tr data-w="xilu"><th scope="row" class="lx" rowspan="1">xilu</th><td>metallic; shiny </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="xitka right now"><tr data-w="xitka"><th scope="row" class="lx" rowspan="1">xitka</th><td>right now </td><td class="ty">adv</td></tr>
+</tbody>
+<tbody class="ent" data-s="xle- undoing"><tr data-w="xle-"><th scope="row" class="lx" rowspan="1">xle-</th><td>undoing <span class="mk mk-pdf" title="Added from the Oct 14 grammar reference">PDF</span></td><td class="ty">prefix</td></tr>
+</tbody>
+<tbody class="ent" data-s="xlera to forget"><tr data-w="xlera"><th scope="row" class="lx" rowspan="1">xlera</th><td>to forget </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="xlexa to breathe"><tr data-w="xlexa"><th scope="row" class="lx" rowspan="1">xlexa</th><td>to breathe </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="xora soil; dirt; ground"><tr data-w="xora"><th scope="row" class="lx" rowspan="1">xora</th><td>soil; dirt; ground </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="xwitiwi to whisper; to murmur"><tr data-w="xwitiwi"><th scope="row" class="lx" rowspan="1">xwitiwi</th><td>to whisper; to murmur <span class="mk mk-fix" title="Spacing fixed as the grammar reference says">spacing fixed</span><small class="nt">Notion spelling: “xwit i wi”</small></td><td class="ty">verb</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-y" aria-labelledby="h-y"><h2 id="h-y">Y</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="yada to sing"><tr data-w="yada"><th scope="row" class="lx" rowspan="1">yada</th><td>to sing </td><td class="ty">verb</td></tr>
+</tbody>
+<tbody class="ent" data-s="yadaon singer"><tr data-w="yadaon"><th scope="row" class="lx" rowspan="1">yadaon</th><td>singer </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="yami foot"><tr data-w="yami"><th scope="row" class="lx" rowspan="1">yami</th><td>foot </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="yamo foot (plural)"><tr data-w="yamo"><th scope="row" class="lx" rowspan="1">yamo</th><td>foot (plural) </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="yamti toe"><tr data-w="yamti"><th scope="row" class="lx" rowspan="1">yamti</th><td>toe </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="yani language"><tr data-w="yani"><th scope="row" class="lx" rowspan="1">yani</th><td>language </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="yila ice"><tr data-w="yila"><th scope="row" class="lx" rowspan="1">yila</th><td>ice </td><td class="ty">noun</td></tr>
+</tbody>
+<tbody class="ent" data-s="yilaxi icy; freezing; very cold"><tr data-w="yilaxi"><th scope="row" class="lx" rowspan="1">yilaxi</th><td>icy; freezing; very cold </td><td class="ty">adj</td></tr>
+</tbody>
+</table></div></section>
+<section class="lg" id="letter-z" aria-labelledby="h-z"><h2 id="h-z">Z</h2><div class="tbl-wrap"><table class="ref-table lex"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Type</th></tr></thead>
+<tbody class="ent" data-s="zain disgusting; horrible"><tr data-w="zain"><th scope="row" class="lx" rowspan="1">zain</th><td>disgusting; horrible </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="zala purple (more violet, pinkish)"><tr data-w="zala"><th scope="row" class="lx" rowspan="1">zala</th><td>purple (more violet, pinkish) </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="zalawa indigo; blueish purple"><tr data-w="zalawa"><th scope="row" class="lx" rowspan="1">zalawa</th><td>indigo; blueish purple </td><td class="ty">adj</td></tr>
+</tbody>
+<tbody class="ent" data-s="zen time (as in every time); turn (like in a game)"><tr data-w="zen"><th scope="row" class="lx" rowspan="1">zen</th><td>time (as in every time); turn (like in a game) </td><td class="ty">noun</td></tr>
+</tbody>
+</table></div></section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Lundiyani lexicon &middot; <a href="../">Modern Lunde grammar</a></p>
+    </div>
+  </footer>
+  <script>
+  (function () {
+    var box = document.getElementById('lx-search'), q = document.getElementById('lx-q'), count = document.getElementById('lx-count');
+    var ents = document.querySelectorAll('tbody.ent'), groups = document.querySelectorAll('section.lg');
+    box.hidden = false;
+    function run() {
+      var t = q.value.trim().toLowerCase(), n = 0;
+      for (var i = 0; i < ents.length; i++) { var hit = !t || ents[i].getAttribute('data-s').indexOf(t) !== -1; ents[i].hidden = !hit; if (hit) n++; }
+      for (var j = 0; j < groups.length; j++) { groups[j].hidden = !groups[j].querySelector('tbody.ent:not([hidden])'); }
+      count.textContent = t ? n + (n === 1 ? ' word' : ' words') + ' found' : '';
+    }
+    q.addEventListener('input', run);
+  }());
+  </script>
+</body>
+</html>

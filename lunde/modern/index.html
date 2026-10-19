@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modern Lunde (Lundiyani) | Alex Bahia</title>
+  <meta name="description" content="Grammar reference for Lundiyani, the modern form of Lunde: pronouns, word order, verb particles, nouns and numbers, questions, clauses, word formation and glossed example sentences.">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <style>
+    /* Page-scoped styles for the Modern Lunde grammar page (fonts/colors borrowed from the Old Lundian pages). */
+    .ml { --lx: "Gentium Book Plus", Georgia, serif; --ui: "Archivo", system-ui, sans-serif; --ink3: #6b7680; --line: #dfe3e1; --soft: #f1f3f2; }
+    .ml .lx { font-family: var(--lx); font-style: italic; font-size: 1.05em; }
+    .ml .meta { color: var(--muted); font-size: .95rem; margin: -.5rem 0 1rem; }
+    .ml .meta a { font-weight: 600; }
+    .ml-layout { display: grid; gap: 1.5rem 2.5rem; }
+    @media (min-width: 900px) { .ml-layout { grid-template-columns: 13rem minmax(0,1fr); } .ml-toc { position: sticky; top: 1rem; align-self: start; } }
+    .ml-toc { font-family: var(--ui); font-size: .9rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1rem; }
+    .ml-toc p { margin: 0 0 .4rem; font-weight: 700; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink3); }
+    .ml-toc ol { margin: 0; padding-left: 1.2rem; display: grid; gap: .2rem; }
+    .ml-toc a { text-decoration: none; }
+    .ml-toc a:hover { text-decoration: underline; }
+    .mref { scroll-margin-top: 1rem; padding-top: .25rem; border-top: 1px solid var(--border); margin-bottom: 2.5rem; }
+    .mref:first-child { border-top: 0; }
+    .mref h2 { margin-top: 1rem; }
+    .mref h3 { margin-top: 1.5rem; scroll-margin-top: 1rem; }
+    .mref .lede { font-size: 1.1rem; }
+    .tbl-wrap { overflow-x: auto; margin: 1rem 0; }
+    .ref-table { border-collapse: collapse; font-size: .97rem; background: var(--surface); min-width: 18rem; }
+    .ref-table th, .ref-table td { border: 1px solid var(--line); padding: .4rem .7rem; text-align: left; vertical-align: top; }
+    .ref-table th { background: var(--soft); font-family: var(--ui); font-weight: 600; font-size: .85rem; color: #3d4750; }
+    .ref-table.nums td, .ref-table.nums th { text-align: center; padding: .4rem .5rem; }
+    .ref-table.grid tbody td:first-child { font-family: var(--ui); }
+    ol.ex { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+    ol.ex > li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: .7rem .9rem; }
+    .ex-tr { margin: 0 0 .35rem; font-weight: 600; }
+    .gl { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; }
+    .gl + .gl { margin-top: .5rem; padding-top: .5rem; border-top: 1px dashed var(--line); }
+    .gw { display: inline-grid; }
+    .g1 { font-size: 1.1rem; }
+    .g2 { font-family: var(--ui); font-size: .78rem; letter-spacing: .04em; color: var(--ink3); }
+    .abbr { background: var(--soft); border-radius: var(--radius); padding: .7rem .9rem; font-size: .95rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="site-title" href="../../">Alex Bahia</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../poetry/">Poetry</a></li>
+        <li><a href="../../lunde/" aria-current="page">Lunde</a></li>
+        <li><a href="../../languages/">Other languages</a></li>
+        <li><a href="../../gallery/">Gallery</a></li>
+        <li><a href="../../about/">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap ml">
+    <p class="breadcrumb"><a href="../">Lunde</a> / Modern Lunde</p>
+    <h1>Modern Lunde (Lundiyani)</h1>
+    <nav class="sub-nav" aria-label="Lunde sections">
+      <ul>
+        <li><a href="../">Old Lundian</a></li>
+        <li><a href="./" aria-current="page">Modern Lunde</a></li>
+        <li><a href="lexicon/">Lexicon</a></li>
+      </ul>
+    </nav>
+    <p class="meta">Lundiyani Grammar Reference &middot; Oct 14, 2026 &middot; Alex Bahia &middot; <a href="lexicon/">Lexicon</a> &middot; <a href="lundiyani-grammar-reference.pdf" download>Download the PDF</a> &middot; Old Lundian: <a href="../conjugator/">conjugator</a>, <a href="../conjugator/grammar.html">grammar</a></p>
+    <div class="ml-layout">
+      <nav class="ml-toc" aria-label="On this page">
+        <p>Contents</p>
+        <ol><li><a href="#overview">Overview and principles</a></li><li><a href="#pronouns">Pronouns and possession</a></li><li><a href="#word-order">Word order</a></li><li><a href="#verbs">Verbs and particles</a></li><li><a href="#nouns">Nouns, articles and numbers</a></li><li><a href="#questions">Questions</a></li><li><a href="#clauses">Clauses and commands</a></li><li><a href="#word-formation">Word formation</a></li><li><a href="#vocabulary">Vocabulary decisions</a></li><li><a href="#examples">Example sentences</a></li><li><a href="lexicon/">Lexicon (word list)</a></li></ol>
+      </nav>
+      <div class="ml-body">
+    <section class="mref" id="overview" aria-labelledby="overview-h">
+      <h2 id="overview-h">Overview and principles</h2>
+<p class="lede">Lundiyani is the modern form of Lunde: an isolating lingua franca spoken across the conworld, much later than Old Lundian and very different from it.</p>
+<ul>
+<li><strong>History.</strong> Many peoples speak it, so it has dialect and register doublets, borrowings, and changes from Old Lundian that aren&#x27;t always regular. The imperfection is intended.</li>
+<li><strong>Type.</strong> Verbs never change form. Tense, aspect, mood and negation are separate particles. The only grammatical suffixes are possessive -de and the plurals -i, -en and -nen.</li>
+<li><strong>Etymology.</strong> Most modern words have no worked-out etymology, and none is needed.</li>
+<li><strong>Working method.</strong> New forms are checked against the rules below. Only contradictions with a stated rule and real ambiguities get flagged.</li>
+<li><strong>Sounds.</strong> There is no h sound; Old h is lost (Old hara → ara). x is a different sound.</li>
+</ul>
+<!-- PDF line: "The full word list is in the Lexicon tab: Lexicon". The Lexicon tab now lives at lexicon/ (built by build_lexicon.py from Alex's Notion export). -->
+<p>The full word list is in the <a href="lexicon/">Lexicon</a>.</p>
+    </section>
+    <section class="mref" id="pronouns" aria-labelledby="pronouns-h">
+      <h2 id="pronouns-h">Pronouns and possession</h2>
+<p class="lede">Pronouns have one form for subject and object; possessives add -de.</p>
+<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Person</th><th scope="col">Pronoun</th><th scope="col">Possessive</th></tr></thead><tbody>
+<tr><td>1st singular</td><td class="lx">i</td><td>ide (my)</td></tr>
+<tr><td>2nd singular</td><td class="lx">o</td><td>ode (your)</td></tr>
+<tr><td>3rd singular, animate</td><td class="lx">a</td><td>ade (his, her)</td></tr>
+<tr><td>3rd singular, inanimate</td><td class="lx">ne</td><td>nede (its)</td></tr>
+<tr><td>1st plural</td><td class="lx">ilie</td><td>iliede (our)</td></tr>
+<tr><td>2nd plural</td><td class="lx">ole</td><td>olede (your)</td></tr>
+<tr><td>3rd plural, animate</td><td class="lx">ale</td><td>alede (their)</td></tr>
+<tr><td>3rd plural, inanimate</td><td class="lx">nilie</td><td>niliede (their)</td></tr>
+</tbody></table></div>
+<ul>
+<li>-de attaches to any word, nouns included: i onde osili (the person&#x27;s eyes).</li>
+<li>-de is a remnant of the Old Lundian genitive (kide, ude, dade).</li>
+<li>Each other: on-a-oni. ale lau on-a-oni (they love each other).</li>
+<li>Reflexive: amon. a lo kanxi amon (she looked at herself).</li>
+</ul>
+    </section>
+    <section class="mref" id="word-order" aria-labelledby="word-order-h">
+      <h2 id="word-order-h">Word order</h2>
+<p class="lede">The basic order is subject, verb, object, and modifiers come before what they modify.</p>
+<ul>
+<li>Before the noun: articles, demonstratives, possessors and adjectives. nei kawe on (this tall person), ide kora (my cat).</li>
+<li>Before the verb: negation and every tense, aspect or mood particle.</li>
+<li>After the noun: relative clauses. i on xaon lo lai yada (the person who was singing).</li>
+<li>At the end: the question particle me.</li>
+<li>Prepositions are separate words. No word attaches to another except the suffix -de and the plural endings.</li>
+<li>Exceptions: ta (to have) and commands put the verb before the subject.</li>
+</ul>
+<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Preposition</th><th scope="col">Meaning</th><th scope="col">Example</th></tr></thead><tbody>
+<tr><td class="lx">nai</td><td>in, at, on</td><td>nai ci louba (in the bottle)</td></tr>
+<tr><td class="lx">an</td><td>to, towards</td><td>an ci pay (to the village)</td></tr>
+<tr><td class="lx">de</td><td>from, of</td><td>de ci kala (from the sea)</td></tr>
+<tr><td class="lx">am</td><td>with</td><td>am ide kiwuru (with my dog)</td></tr>
+<tr><td class="lx">amb</td><td>by (the agent)</td><td>amb ni wakti (by the warriors)</td></tr>
+<tr><td class="lx">on</td><td>for</td><td>on o (for you)</td></tr>
+<tr><td class="lx">ewa</td><td>about</td><td>ewa o (about you)</td></tr>
+<tr><td class="lx">anta</td><td>before</td><td>anta o lo luran (before you came)</td></tr>
+</tbody></table></div>
+    </section>
+    <section class="mref" id="verbs" aria-labelledby="verbs-h">
+      <h2 id="verbs-h">Verbs and particles</h2>
+<p class="lede">Verbs never change form; tense, aspect, mood and negation are separate particles between the subject and the verb, and they combine freely.</p>
+<div class="tbl-wrap"><table class="ref-table slots"><thead><tr><th scope="col">Subject</th><th scope="col">Aspect</th><th scope="col">Negation</th><th scope="col">Tense or mood</th><th scope="col">lai, dei</th><th scope="col">Verb</th><th scope="col">Object</th><th scope="col">End</th></tr></thead><tbody>
+<tr><td class="lx">i</td><td class="lx">tefri, talei, mai, kiena</td><td class="lx">lan</td><td class="lx">lo, na, lei</td><td class="lx">lai, dei</td><td class="lx">vera</td><td class="lx">ne</td><td class="lx">me</td></tr>
+</tbody></table></div>
+<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Particle</th><th scope="col">Meaning</th><th scope="col">Example</th></tr></thead><tbody>
+<tr><td class="lx">(none)</td><td>present</td><td>i vera ne (I do it)</td></tr>
+<tr><td class="lx">lo</td><td>past</td><td>i lo lau o (I loved you)</td></tr>
+<tr><td class="lx">na</td><td>future</td><td>i na lau o (I will love you)</td></tr>
+<tr><td class="lx">lai + verb</td><td>progressive</td><td>i lo lai vera ne (I was doing it)</td></tr>
+<tr><td class="lx">dei + verb</td><td>passive</td><td>ci pay lo dei raxavi (the village was destroyed)</td></tr>
+<tr><td class="lx">tefri</td><td>perfect</td><td>i tefri lo eden (I have eaten)</td></tr>
+<tr><td class="lx">tefri lo lai</td><td>past perfect</td><td>i tefri lo lai eden (I had eaten)</td></tr>
+<tr><td class="lx">talei</td><td>habitual, “used to”</td><td>i talei lo yada (I used to sing)</td></tr>
+<tr><td class="lx">mai</td><td>just now</td><td>ilie mai lo eden (we just ate)</td></tr>
+<tr><td class="lx">kiena</td><td>not yet, with lan</td><td>ale kiena lan lo eden (they haven’t eaten yet)</td></tr>
+<tr><td class="lx">lei</td><td>conditional</td><td>as o lei luran, i lei lai kuali (if you came, I would be happy)</td></tr>
+<tr><td class="lx">lan</td><td>negation</td><td>i lan lo lai valia (I wasn’t sleeping)</td></tr>
+</tbody></table></div>
+<ul>
+<li>lai is also the copula (i lo lai kili, I was young) and, at the start of a sentence, means “there is”: lai anei nai ci louba (there is water in the bottle); negated, lan lai anei (there’s no water).</li>
+<li>lan comes after kiena and tefri, which work like adverbs: ale kiena lan lo eden (they haven’t eaten yet).</li>
+<li>A modal or second verb takes the bare verb: i lan sa valia (I can’t sleep), ilie mail kapa (we need to talk).</li>
+<li>Passive: tense + dei + verb, with amb for the agent. ci pay lo dei raxavi amb ni wakti (the village was destroyed by the warriors); i lo dei fastixi (I was blinded). dei comes from Old daze (by him or her), the agent in the Old passive of be + participle + ablative.</li>
+</ul>
+<h3 id="ta">ta (to have)</h3>
+<p>ta is the one verb that comes before its subject; particles and the object follow in the normal order.</p>
+<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Lundiyani</th><th scope="col">Meaning</th></tr></thead><tbody>
+<tr><td class="lx">ta i kora</td><td>I have a cat</td></tr>
+<tr><td class="lx">ta i lo kora</td><td>I had a cat</td></tr>
+<tr><td class="lx">ta i lan kora</td><td>I don&#x27;t have a cat</td></tr>
+<tr><td class="lx">ta o kora me?</td><td>Do you have a cat?</td></tr>
+<tr><td class="lx">ta nei kawe on ra kiwuri</td><td>This tall person has two dogs</td></tr>
+</tbody></table></div>
+    </section>
+    <section class="mref" id="nouns" aria-labelledby="nouns-h">
+      <h2 id="nouns-h">Nouns, articles and numbers</h2>
+<p class="lede">Plural nouns take -i, articles come from Old Lundian, and the numbers are the Old Lundian ones, unchanged.</p>
+<ul>
+<li>Plural -i: osil → osili (eyes), kiwuru → kiwuri (dogs), kora → kori (cats), on → oni (people).</li>
+<li>Inanimate nouns take -en after a consonant and -nen after a vowel: skin → skinen (books), louba → loubanen (bottles). Irregular: yami → yamo (feet). After any number above one the noun is plural: ra kiwuri (two dogs).</li>
+<li>Articles: the Old Lundian set without its accents (table below). Many speakers also use i with inanimate nouns.</li>
+</ul>
+<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Article</th><th scope="col">Animate</th><th scope="col">Inanimate</th><th scope="col">Plural</th></tr></thead><tbody>
+<tr><td>the</td><td class="lx">i</td><td class="lx">ci</td><td class="lx">ni</td></tr>
+<tr><td>a, some</td><td class="lx">ia</td><td class="lx">an</td><td class="lx">na</td></tr>
+</tbody></table></div>
+<p>an (a) and an (to) share one form; context tells them apart.</p>
+<ul>
+<li>Adjectives after lai: -de marks a permanent quality such as color or size, and only in a plain “X is ADJ” sentence: i onde osili lai lasode (the person’s eyes are blue). It never appears before a noun (ko kiwuru, a big dog) or in comparisons. Without -de the word names a state or an impression: i lai kuali, literally “I am happiness” (kuali = happy, happiness).</li>
+<li>Comparison: kaw + adjective + da. i wuru lai kaw ko da i kiwuru (the wolf is bigger than the dog).</li>
+<li>Superlative: i kaw + adjective. a lai i kaw leia on nai ci payi’an (she is the most beautiful person in the city).</li>
+</ul>
+<p>Numbers count in base twelve, as in Old Lundian. Before a noun the bare form is used; when counting, é- goes in front (é-na, é-ra).</p>
+<div class="tbl-wrap"><table class="ref-table nums"><thead><tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">8</th><th scope="col">9</th><th scope="col">10</th><th scope="col">11</th><th scope="col">12</th></tr></thead>
+<tbody><tr><td class="lx">na</td><td class="lx">ra</td><td class="lx">ara</td><td class="lx">du</td><td class="lx">jayu</td><td class="lx">java</td><td class="lx">isa</td><td class="lx">gvena</td><td class="lx">fisa</td><td class="lx">dion</td><td class="lx">fiú</td><td class="lx">sión</td></tr></tbody></table></div>
+<p>Powers of twelve: sión (12), igyión (144), galatión (1,728), ayatión (20,736). Numbers are built as in Old Lundian: rasión (24), sión-na (13). The list’s re (two) is outdated.</p>
+    </section>
+    <section class="mref" id="questions" aria-labelledby="questions-h">
+      <h2 id="questions-h">Questions</h2>
+<p class="lede">Yes/no questions end in me; question words stay where the answer would go, or move to the front.</p>
+<ul>
+<li>o lo vera ne me? (Did you do it?)</li>
+<li>o lai vera xa? or xa o lai vera? (What are you doing?) In place is more grammatical; both are common.</li>
+<li>xaon lau o? (Who loves you?) A subject question word is already in place at the start.</li>
+<li>Questions with a question word take no me.</li>
+</ul>
+<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th></tr></thead><tbody>
+<tr><td class="lx">xa</td><td>what</td></tr>
+<tr><td class="lx">xaon</td><td>who</td></tr>
+<tr><td class="lx">maxa</td><td>where</td></tr>
+<tr><td class="lx">xar</td><td>when (also: near)</td></tr>
+<tr><td class="lx">anxa</td><td>why</td></tr>
+<tr><td class="lx">axla</td><td>how</td></tr>
+<tr><td class="lx">xataw</td><td>how many, how much</td></tr>
+<tr><td class="lx">xati</td><td>what kind</td></tr>
+</tbody></table></div>
+    </section>
+    <section class="mref" id="clauses" aria-labelledby="clauses-h">
+      <h2 id="clauses-h">Clauses and commands</h2>
+<p class="lede">Subordinate clauses open with a conjunction; relative clauses use sa after the noun; commands are ov + verb + person.</p>
+<ul>
+<li>and: a before a consonant, ad before a vowel. ide kora ad ode kiwuru (my cat and your dog).</li>
+<li>when: xanarya after the main clause: a lo lai yada xanarya o lo luran (she was singing when you came). When the when-clause comes first, xar, though xanarya also works: xar i lo lai kili, i talei lo yada (when I was young, I used to sing).</li>
+<li>if: as, with lei in both clauses. as o lei luran, i lei lai kuali (if you came, I would be happy).</li>
+<li>Other conjunctions: ema (because), ant (but), anta (before), nes (until), dal or ana (while), no (or).</li>
+<li>Relative clauses: noun + sa + clause, as in Old Lundian, for people and things: i on sa yada lai ide bana (the person who sings is my brother). ci skin sa o lo sila lai leia (the book that you wrote is beautiful). xaon is also used for people: i on xaon lo lai yada lai kuali (the person who was singing is happy).</li>
+<li>That-clauses: xa. i so xa o na luran (I know that you will come).</li>
+</ul>
+<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Command</th><th scope="col">Meaning</th></tr></thead><tbody>
+<tr><td class="lx">ov lua</td><td>go! (formally ov lua o)</td></tr>
+<tr><td class="lx">ov lua ilie</td><td>let&#x27;s go</td></tr>
+<tr><td class="lx">ov lua a</td><td>let him or her go</td></tr>
+<tr><td class="lx">ov lua ale</td><td>let them go</td></tr>
+</tbody></table></div>
+<p>The person comes after the verb. With singular you it has fallen out of use (ov eden, eat!), but formal writing keeps it (ov eden o). Negation follows ov: ov lan lua ilie (let’s not go). ov keeps commands apart from o (you).</p>
+    </section>
+    <section class="mref" id="word-formation" aria-labelledby="word-formation-h">
+      <h2 id="word-formation-h">Word formation</h2>
+<p class="lede">A few productive suffixes build new words; unlike the particles, they are part of the word.</p>
+<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Pattern</th><th scope="col">Meaning</th><th scope="col">Examples</th></tr></thead><tbody>
+<tr><td class="lx">plain verb</td><td>experiencing</td><td>kana (see), kawa (hear), ampa (feel)</td></tr>
+<tr><td class="lx">-xi</td><td>doing it actively or on purpose</td><td>kanxi (look), kawxi (listen), ampxi (touch)</td></tr>
+<tr><td class="lx">-kai</td><td>making someone do it</td><td>edenkai (feed), enakai (explain), iloarikai (make cry); works on any verb</td></tr>
+<tr><td class="lx">-on</td><td>person</td><td>yadaon (singer), kiliyon (child)</td></tr>
+<tr><td class="lx">-li</td><td>thing</td><td>kaxli (name), sipli (end)</td></tr>
+<tr><td class="lx">xle-</td><td>undoing</td><td>xlera (forget), from lera (remember)</td></tr>
+</tbody></table></div>
+<p>nia (to make someone feel an emotion) is a separate verb, never a suffix: it can make someone sad, but not make them cry: o lo nia i drese (you made me sad).</p>
+<p>The indefinite words form a grid:</p>
+<div class="tbl-wrap"><table class="ref-table grid"><thead><tr><th scope="col"></th><th scope="col">any</th><th scope="col">every</th><th scope="col">some</th><th scope="col">no</th></tr></thead><tbody>
+<tr><td>person</td><td class="lx">avon</td><td class="lx">elion</td><td class="lx">naon</td><td class="lx">lanon</td></tr>
+<tr><td>thing</td><td class="lx">avali</td><td class="lx">eleili</td><td class="lx">li</td><td class="lx">lani</td></tr>
+<tr><td>place</td><td class="lx">avama</td><td class="lx">eleima</td><td class="lx">nama</td><td class="lx">lanma</td></tr>
+<tr><td>time</td><td class="lx">avaya (forever)</td><td class="lx">evai (always)</td><td class="lx">na-a-nari (sometimes)</td><td class="lx">levai (never)</td></tr>
+<tr><td>before a noun</td><td class="lx">ava</td><td class="lx">elei (elei teila, every day)</td><td class="lx"></td><td class="lx"></td></tr>
+</tbody></table></div>
+<!-- Alex's correction (Oct 18): added elei, "every" before a noun (elei teila, every day, Round 1 sentence 3); not in the Oct 14 PDF grid. ava ("any", det) added from Alex's lexicon. -->
+    </section>
+    <section class="mref" id="vocabulary" aria-labelledby="vocabulary-h">
+      <h2 id="vocabulary-h">Vocabulary decisions</h2>
+<p class="lede">These were settled on 2026-10-14 and override the master vocabulary list.</p>
+<div class="tbl-wrap"><table class="ref-table "><thead><tr><th scope="col">Word</th><th scope="col">Decision</th></tr></thead><tbody>
+<tr><td class="lx">keme, kemxi</td><td>smell, sniff (were kemekeme, kemxikemxi)</td></tr>
+<tr><td class="lx">ini</td><td>here (was ina)</td></tr>
+<tr><td class="lx">nama</td><td>somewhere (was naoma)</td></tr>
+<tr><td class="lx">xar</td><td>when? and near; xanarya is the conjunction “when”</td></tr>
+<tr><td class="lx">o, ole</td><td>you (singular), you (plural)</td></tr>
+<tr><td class="lx">ta</td><td>to have; ave is dropped</td></tr>
+<tr><td class="lx">kime</td><td>short; size words to revisit</td></tr>
+<tr><td class="lx">urane</td><td>to harm</td></tr>
+<tr><td class="lx">erane</td><td>to kill, from the Old namon irrana (irrasa, to grab)</td></tr>
+<tr><td class="lx">mana</td><td>spiritual energy; lawmana = to marry</td></tr>
+<tr><td class="lx">na, ra, ara…</td><td>numbers are the Old Lundian ones; re is outdated</td></tr>
+<tr><td class="lx">lurankai</td><td>to move someone; -kai and -xi are part of the word</td></tr>
+<tr><td class="lx">ov</td><td>command particle; replaces o so commands don’t look like “you”</td></tr>
+<tr><td class="lx">ara</td><td>three; Lundiyani has no h (Old hara)</td></tr>
+<tr><td class="lx">dei</td><td>passive particle</td></tr>
+<tr><td class="lx">amon</td><td>reflexive: herself, himself, itself</td></tr>
+<tr><td class="lx">adar, idar</td><td>to leave, to arrive; idari is outdated</td></tr>
+<tr><td class="lx">malai</td><td>parent (in general); family and animal words vary by region and all stay</td></tr>
+<tr><td class="lx">lala, lurani, tu&#x27;ali, taluv, tavnei, vantasi, xwitiwi, nivya</td><td>the spaces in the master list were typos</td></tr>
+</tbody></table></div>
+<ul>
+<li>Doublets (resa and akaxl, kaxi and kaxli, dal and ana…) are deliberate dialect or register variants. <small class="upd">(Update, Oct 18, 2026: kaxi and kaxli are no longer a doublet: kaxi = to name, a verb; kaxli = name, a noun.)</small><!-- Alex resolved kaxi/kaxli on 2026-10-18; the PDF text above is unchanged. --></li>
+<li>au and aw spell the same sound.</li>
+<li>Final a → ai happened in some words only; it is not a rule.</li>
+<li>Karen is not a word; a → al is not a rule.</li>
+</ul>
+    </section>
+    <section class="mref" id="examples" aria-labelledby="examples-h">
+      <h2 id="examples-h">Example sentences</h2>
+<p class="lede">The first elicited sentences, glossed word by word with two slips fixed (me in 9, ad in 13).</p>
+<h3 id="round-1">Round 1</h3>
+<ol class="ex">
+<li value="1"><p class="ex-tr">1. &#x27;I have eaten.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">tefri</span><span class="g2">PRF</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">eden</span><span class="g2">eat</span></span></div></li>
+<li value="2"><p class="ex-tr">2. &#x27;I had eaten when you came.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">tefri</span><span class="g2">PRF</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">eden</span><span class="g2">eat</span></span><span class="gw"><span class="g1 lx">xanarya</span><span class="g2">when</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">luran</span><span class="g2">come</span></span></div></li>
+<li value="3"><p class="ex-tr">3. &#x27;When I was young, I used to sing every day.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">xar</span><span class="g2">when</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">kili</span><span class="g2">young</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">talei</span><span class="g2">HAB</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">yada</span><span class="g2">sing</span></span><span class="gw"><span class="g1 lx">elei</span><span class="g2">every</span></span><span class="gw"><span class="g1 lx">teila</span><span class="g2">day</span></span></div></li>
+<li value="4"><p class="ex-tr">4. &#x27;She was singing when you came.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">a</span><span class="g2">3SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">yada</span><span class="g2">sing</span></span><span class="gw"><span class="g1 lx">xanarya</span><span class="g2">when</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">luran</span><span class="g2">come</span></span></div></li>
+<li value="5"><p class="ex-tr">5. &#x27;We just ate.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ilie</span><span class="g2">1PL</span></span><span class="gw"><span class="g1 lx">mai</span><span class="g2">REC</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">eden</span><span class="g2">eat</span></span></div></li>
+<li value="6"><p class="ex-tr">6. &#x27;They haven&#x27;t eaten yet.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ale</span><span class="g2">3PL</span></span><span class="gw"><span class="g1 lx">kiena</span><span class="g2">YET</span></span><span class="gw"><span class="g1 lx">lan</span><span class="g2">NEG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">eden</span><span class="g2">eat</span></span></div></li>
+<li value="7"><p class="ex-tr">7. &#x27;If you came, I would be happy.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">as</span><span class="g2">if</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lei</span><span class="g2">COND</span></span><span class="gw"><span class="g1 lx">luran,</span><span class="g2">come</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lei</span><span class="g2">COND</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">kuali</span><span class="g2">happy</span></span></div></li>
+<li value="8"><p class="ex-tr">8. &#x27;I wasn&#x27;t sleeping.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lan</span><span class="g2">NEG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">valia</span><span class="g2">sleep</span></span></div></li>
+<li value="9"><p class="ex-tr">9. &#x27;Did you have a dog?&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ta</span><span class="g2">have</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">ia</span><span class="g2">INDF</span></span><span class="gw"><span class="g1 lx">kiwuru</span><span class="g2">dog</span></span><span class="gw"><span class="g1 lx">me</span><span class="g2">Q</span></span></div></li>
+<li value="10"><p class="ex-tr">10. &#x27;My cat and your dog are small.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i-de</span><span class="g2">1SG-POSS</span></span><span class="gw"><span class="g1 lx">kora</span><span class="g2">cat</span></span><span class="gw"><span class="g1 lx">ad</span><span class="g2">and</span></span><span class="gw"><span class="g1 lx">o-de</span><span class="g2">2SG-POSS</span></span><span class="gw"><span class="g1 lx">kiwuru</span><span class="g2">dog</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">ki-de</span><span class="g2">small-DE</span></span></div></li>
+<li value="11"><p class="ex-tr">11. &#x27;The person&#x27;s eyes are blue.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">on-de</span><span class="g2">person-POSS</span></span><span class="gw"><span class="g1 lx">osil-i</span><span class="g2">eye-PL</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">laso-de</span><span class="g2">blue-DE</span></span></div></li>
+<li value="12"><p class="ex-tr">12. &#x27;This tall person has two dogs.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ta</span><span class="g2">have</span></span><span class="gw"><span class="g1 lx">nei</span><span class="g2">this</span></span><span class="gw"><span class="g1 lx">kawe</span><span class="g2">tall</span></span><span class="gw"><span class="g1 lx">on</span><span class="g2">person</span></span><span class="gw"><span class="g1 lx">ra</span><span class="g2">two</span></span><span class="gw"><span class="g1 lx">kiwur-i</span><span class="g2">dog-PL</span></span></div></li>
+<li value="13"><p class="ex-tr">13. &#x27;I saw a cat, and the cat saw me.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">kana</span><span class="g2">see</span></span><span class="gw"><span class="g1 lx">ia</span><span class="g2">INDF</span></span><span class="gw"><span class="g1 lx">kora,</span><span class="g2">cat</span></span><span class="gw"><span class="g1 lx">ad</span><span class="g2">and</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">kora</span><span class="g2">cat</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">kana</span><span class="g2">see</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span></div></li>
+<li value="14"><p class="ex-tr">14. &#x27;Who loves you?&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">xaon</span><span class="g2">who</span></span><span class="gw"><span class="g1 lx">lau</span><span class="g2">love</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span></div></li>
+<li value="15"><p class="ex-tr">15. &#x27;What are you doing?&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">vera</span><span class="g2">do</span></span><span class="gw"><span class="g1 lx">xa</span><span class="g2">what</span></span></div><div class="gl"><span class="gw"><span class="g1 lx">xa</span><span class="g2">what</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">vera</span><span class="g2">do</span></span></div></li>
+<li value="16"><p class="ex-tr">16. &#x27;The person who was singing is happy.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">on</span><span class="g2">person</span></span><span class="gw"><span class="g1 lx">xaon</span><span class="g2">who</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">yada</span><span class="g2">sing</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">kuali</span><span class="g2">happy</span></span></div></li>
+<li value="17"><p class="ex-tr">17. &#x27;Let&#x27;s eat! Let&#x27;s go!&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ov</span><span class="g2">IMP</span></span><span class="gw"><span class="g1 lx">eden</span><span class="g2">eat</span></span><span class="gw"><span class="g1 lx">ilie</span><span class="g2">1PL</span></span></div><div class="gl"><span class="gw"><span class="g1 lx">ov</span><span class="g2">IMP</span></span><span class="gw"><span class="g1 lx">lua</span><span class="g2">go</span></span><span class="gw"><span class="g1 lx">ilie</span><span class="g2">1PL</span></span></div></li>
+</ol>
+<!-- Alex's corrections (Oct 18): talei is glossed HAB (habitual) instead of the PDF's IPFV "imperfective" (here and in Round 1 sentence 3); the command particle is ov (the PDF note said "IMP command o"). -->
+<p class="abbr" id="abbreviations"><strong>Abbreviations:</strong> PRF perfect (tefri), HAB habitual (talei), REC just now (mai), YET not yet (kiena), COND conditional (lei), NEG lan, IMP command ov, DEF and INDF the articles i and ia, POSS -de, PL plural -i.</p>
+<h3 id="round-2">Round 2, checked</h3>
+<ol class="ex">
+<li value="1"><p class="ex-tr">1. &#x27;There is water in the bottle.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">anei</span><span class="g2">water</span></span><span class="gw"><span class="g1 lx">nai</span><span class="g2">in</span></span><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">louba</span><span class="g2">bottle</span></span></div></li>
+<li value="2"><p class="ex-tr">2. &#x27;Some people came to the village.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">na</span><span class="g2">INDF.PL</span></span><span class="gw"><span class="g1 lx">on-i</span><span class="g2">person-PL</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">luran</span><span class="g2">come</span></span><span class="gw"><span class="g1 lx">an</span><span class="g2">to</span></span><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">pay</span><span class="g2">village</span></span></div></li>
+<li value="3"><p class="ex-tr">3. &#x27;I came from the sea with my dog.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">luran</span><span class="g2">come</span></span><span class="gw"><span class="g1 lx">de</span><span class="g2">from</span></span><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">kala</span><span class="g2">sea</span></span><span class="gw"><span class="g1 lx">am</span><span class="g2">with</span></span><span class="gw"><span class="g1 lx">i-de</span><span class="g2">1SG-POSS</span></span><span class="gw"><span class="g1 lx">kiwuru</span><span class="g2">dog</span></span></div></li>
+<li value="4"><p class="ex-tr">4. &#x27;The wolf is bigger than the dog.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">wuru</span><span class="g2">wolf</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">kaw</span><span class="g2">more</span></span><span class="gw"><span class="g1 lx">ko</span><span class="g2">big</span></span><span class="gw"><span class="g1 lx">da</span><span class="g2">than</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">kiwuru</span><span class="g2">dog</span></span></div></li>
+<li value="5"><p class="ex-tr">5. &#x27;She is the most beautiful person in the city.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">a</span><span class="g2">3SG</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">kaw</span><span class="g2">more</span></span><span class="gw"><span class="g1 lx">leia</span><span class="g2">beautiful</span></span><span class="gw"><span class="g1 lx">on</span><span class="g2">person</span></span><span class="gw"><span class="g1 lx">nai</span><span class="g2">in</span></span><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">payi&#x27;an</span><span class="g2">city</span></span></div></li>
+<li value="6"><p class="ex-tr">6. &#x27;They destroyed the village.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ale</span><span class="g2">3PL</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">raxavi</span><span class="g2">destroy</span></span><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">pay</span><span class="g2">village</span></span></div></li>
+<li value="7"><p class="ex-tr">7. &#x27;I made her cry.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">iloari-kai</span><span class="g2">cry-CAUS</span></span><span class="gw"><span class="g1 lx">a</span><span class="g2">3SG</span></span></div></li>
+<li value="8"><p class="ex-tr">8. &#x27;I saw the bird, but I didn&#x27;t look at it.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">kana</span><span class="g2">see</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">kioto,</span><span class="g2">bird</span></span><span class="gw"><span class="g1 lx">ant</span><span class="g2">but</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lan</span><span class="g2">NEG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">kanxi</span><span class="g2">look</span></span><span class="gw"><span class="g1 lx">a</span><span class="g2">3SG</span></span></div></li>
+<li value="9"><p class="ex-tr">9. &#x27;Where do you live?&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">nivya</span><span class="g2">live</span></span><span class="gw"><span class="g1 lx">maxa</span><span class="g2">where</span></span></div></li>
+<li value="10"><p class="ex-tr">10. &#x27;Why didn&#x27;t you come?&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lan</span><span class="g2">NEG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">luran</span><span class="g2">come</span></span><span class="gw"><span class="g1 lx">anxa</span><span class="g2">why</span></span></div></li>
+<li value="11"><p class="ex-tr">11. &#x27;How many cats do you have?&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ta</span><span class="g2">have</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">xataw</span><span class="g2">how.many</span></span><span class="gw"><span class="g1 lx">kor-i</span><span class="g2">cat-PL</span></span></div></li>
+<li value="12"><p class="ex-tr">12. &#x27;I can&#x27;t sleep because I&#x27;m sad.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lan</span><span class="g2">NEG</span></span><span class="gw"><span class="g1 lx">sa</span><span class="g2">can</span></span><span class="gw"><span class="g1 lx">valia</span><span class="g2">sleep</span></span><span class="gw"><span class="g1 lx">ema</span><span class="g2">because</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">drese</span><span class="g2">sad</span></span></div></li>
+<li value="13"><p class="ex-tr">13. &#x27;I know that you will come.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">so</span><span class="g2">know</span></span><span class="gw"><span class="g1 lx">xa</span><span class="g2">that</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">na</span><span class="g2">FUT</span></span><span class="gw"><span class="g1 lx">luran</span><span class="g2">come</span></span></div></li>
+<li value="14"><p class="ex-tr">14. &#x27;The book that you wrote is beautiful.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">skin</span><span class="g2">book</span></span><span class="gw"><span class="g1 lx">sa</span><span class="g2">REL</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">sila</span><span class="g2">write</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">leia</span><span class="g2">beautiful</span></span></div></li>
+<li value="15"><p class="ex-tr">15. &#x27;We need to talk.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ilie</span><span class="g2">1PL</span></span><span class="gw"><span class="g1 lx">mail</span><span class="g2">need</span></span><span class="gw"><span class="g1 lx">kapa</span><span class="g2">talk</span></span></div></li>
+<li value="16"><p class="ex-tr">16. &#x27;They love each other.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ale</span><span class="g2">3PL</span></span><span class="gw"><span class="g1 lx">lau</span><span class="g2">love</span></span><span class="gw"><span class="g1 lx">on-a-oni</span><span class="g2">each.other</span></span></div></li>
+<li value="17"><p class="ex-tr">17. &#x27;I have twenty-five dogs.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ta</span><span class="g2">have</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">rasión-na</span><span class="g2">twenty-five</span></span><span class="gw"><span class="g1 lx">kiwur-i</span><span class="g2">dog-PL</span></span></div></li>
+</ol>
+<p class="abbr"><strong>New abbreviations:</strong> INDF.PL na (some), CAUS -kai, REL sa. Sentence 6 is the active version; the passive is still being settled.</p>
+<h3 id="round-3">Round 3, checked</h3>
+<ol class="ex">
+<li value="1"><p class="ex-tr">1. &#x27;The village was destroyed by the warriors.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">pay</span><span class="g2">village</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">dei</span><span class="g2">PASS</span></span><span class="gw"><span class="g1 lx">raxavi</span><span class="g2">destroy</span></span><span class="gw"><span class="g1 lx">amb</span><span class="g2">by</span></span><span class="gw"><span class="g1 lx">ni</span><span class="g2">DEF.PL</span></span><span class="gw"><span class="g1 lx">wakti</span><span class="g2">warrior</span></span></div></li>
+<li value="2"><p class="ex-tr">2. &#x27;I was blinded.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">dei</span><span class="g2">PASS</span></span><span class="gw"><span class="g1 lx">fastixi</span><span class="g2">blind</span></span></div></li>
+<li value="3"><p class="ex-tr">3. &#x27;I bought two bottles and three books.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">dail</span><span class="g2">buy</span></span><span class="gw"><span class="g1 lx">ra</span><span class="g2">two</span></span><span class="gw"><span class="g1 lx">louba-nen</span><span class="g2">bottle-PL</span></span><span class="gw"><span class="g1 lx">ad</span><span class="g2">and</span></span><span class="gw"><span class="g1 lx">ara</span><span class="g2">three</span></span><span class="gw"><span class="g1 lx">skin-en</span><span class="g2">book-PL</span></span></div></li>
+<li value="4"><p class="ex-tr">4. &#x27;The person who sings is my brother.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">on</span><span class="g2">person</span></span><span class="gw"><span class="g1 lx">sa</span><span class="g2">REL</span></span><span class="gw"><span class="g1 lx">yada</span><span class="g2">sing</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">i-de</span><span class="g2">1SG-POSS</span></span><span class="gw"><span class="g1 lx">bana</span><span class="g2">brother</span></span></div></li>
+<li value="5"><p class="ex-tr">5. &#x27;You made me sad.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">nia</span><span class="g2">make</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">drese</span><span class="g2">sad</span></span></div></li>
+<li value="6"><p class="ex-tr">6. &#x27;The dog is big.&#x27; / &#x27;I saw a big dog.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">kiwuru</span><span class="g2">dog</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">ko-de</span><span class="g2">big-DE</span></span></div><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">kana</span><span class="g2">see</span></span><span class="gw"><span class="g1 lx">ia</span><span class="g2">INDF</span></span><span class="gw"><span class="g1 lx">ko</span><span class="g2">big</span></span><span class="gw"><span class="g1 lx">kiwuru</span><span class="g2">dog</span></span></div></li>
+<li value="7"><p class="ex-tr">7. &#x27;Open the bottle!&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ov</span><span class="g2">IMP</span></span><span class="gw"><span class="g1 lx">kiaw</span><span class="g2">open</span></span><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">louba</span><span class="g2">bottle</span></span></div></li>
+<li value="8"><p class="ex-tr">8. &#x27;Let&#x27;s not go.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ov</span><span class="g2">IMP</span></span><span class="gw"><span class="g1 lx">lan</span><span class="g2">NEG</span></span><span class="gw"><span class="g1 lx">lua</span><span class="g2">go</span></span><span class="gw"><span class="g1 lx">ilie</span><span class="g2">1PL</span></span></div></li>
+<li value="9"><p class="ex-tr">9. &#x27;There&#x27;s no water.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">lan</span><span class="g2">NEG</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">anei</span><span class="g2">water</span></span></div></li>
+<li value="10"><p class="ex-tr">10. &#x27;Before you came, I was sad.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">anta</span><span class="g2">before</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">luran,</span><span class="g2">come</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">drese</span><span class="g2">sad</span></span></div></li>
+<li value="11"><p class="ex-tr">11. &#x27;I did it for you.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">vera</span><span class="g2">do</span></span><span class="gw"><span class="g1 lx">ne</span><span class="g2">3SG.INAN</span></span><span class="gw"><span class="g1 lx">on</span><span class="g2">for</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span></div></li>
+<li value="12"><p class="ex-tr">12. &#x27;We talked about you.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ilie</span><span class="g2">1PL</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">kapa</span><span class="g2">talk</span></span><span class="gw"><span class="g1 lx">ewa</span><span class="g2">about</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span></div></li>
+<li value="13"><p class="ex-tr">13. &#x27;I&#x27;ll wait until you come.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">na</span><span class="g2">FUT</span></span><span class="gw"><span class="g1 lx">dalod</span><span class="g2">wait</span></span><span class="gw"><span class="g1 lx">nes</span><span class="g2">until</span></span><span class="gw"><span class="g1 lx">o</span><span class="g2">2SG</span></span><span class="gw"><span class="g1 lx">luran</span><span class="g2">come</span></span></div></li>
+<li value="14"><p class="ex-tr">14. &#x27;She looked at herself.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">a</span><span class="g2">3SG</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">kanxi</span><span class="g2">look</span></span><span class="gw"><span class="g1 lx">amon</span><span class="g2">self</span></span></div></li>
+<li value="15"><p class="ex-tr">15. &#x27;The cat&#x27;s eyes are green.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">i</span><span class="g2">DEF</span></span><span class="gw"><span class="g1 lx">kora-de</span><span class="g2">cat-POSS</span></span><span class="gw"><span class="g1 lx">osil-i</span><span class="g2">eye-PL</span></span><span class="gw"><span class="g1 lx">lai</span><span class="g2">be</span></span><span class="gw"><span class="g1 lx">reiki-de</span><span class="g2">green-DE</span></span></div></li>
+</ol>
+<p class="abbr"><strong>New abbreviations:</strong> PASS dei, DEF.PL ni. Commands in the earlier rounds now use ov.</p>
+    </section>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Modern Lunde grammar reference &middot; <a href="lundiyani-grammar-reference.pdf">PDF version</a></p>
+    </div>
+  </footer>
+<!--
+  Open questions (from the PDF, kept off the public page). [x] = ticked/struck through as resolved in the PDF.
+  [x] Where does lan go next to an aspect particle? Sentence 6 has ale kiena lan lo eden, but the stated rule puts lan right after the subject.
+  [x] Sentence 2: does i tefri lo lai eden mean "had eaten" or "had been eating"? How is the other one said?
+  [x] Sentence 3 uses xar as the conjunction "when" at the start. Is xar the conjunction when the when-clause comes first?
+  [x] Sentence 9 (ta o lo ia kiwuru) has no me. Is me optional in yes/no questions?
+  [x] Sentence 13 has a i kora, but the a/ad rule gives ad before a vowel.
+  [x] -de on predicate adjectives: lai kide, lai lasode, but lai kili, lai kuali. Inherent property vs passing state?
+  [x] Articles: is the inanimate "a" an (Old án), even though an also means "to"? In the plural, does ni cover both "the" and "some", or is na still "some"?
+  [ ] Plural rule: does -i replace a final vowel (kiwuru -> kiwuri) and get added after a consonant (osil -> osili)? Do inanimate nouns pluralize the same way?
+  [x] adar / idar or adari / idari (leave, arrive)?
+  [ ] Still unconfirmed from the first batch: the insults (pana, lande, viade), jos (blood) and kuner (knife).
+  [x] Spacing in the master list: lal a, nivy a, t u' ali, talu v, tavne i, vantas i, xwit i wi.
+  [x] Passive with dei: is it tense + dei + verb, with amb for the agent (ci pay lo dei raxavi amb ni wakti)?
+  [x] Inanimate plural: when is it -ne and when -nen?
+  [x] Relative clauses for people: sa, xaon, or both?
+-->
+</body>
+</html>

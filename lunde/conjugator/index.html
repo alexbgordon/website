@@ -1,0 +1,270 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!-- added for alexbahia site: link back to the main site -->
+<div id="site-backlink" role="navigation" aria-label="Alex Bahia site" style="max-width:1560px;margin:0 auto;box-sizing:border-box;padding:10px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));font:600 12px/1.3 var(--f-ui,sans-serif);letter-spacing:.02em;color:var(--ink-3,#5d6b72)"><a href="../../" style="color:inherit;text-decoration:none">Alex Bahia home</a> <span aria-hidden="true">/</span> <a href="../" style="color:inherit;text-decoration:none">Lunde</a></div>
+<title>Old Lundian Conjugator</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Every Old Lundian verb conjugated and declined by rule, with the derivation of each form.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="lunde.css">
+<style>
+/* Conjugator layout: verb index | verb sheet | derivation panel (a bottom sheet below 1180px). */
+.bench { display: grid; gap: 22px 28px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 820px) { .bench { grid-template-columns: 214px minmax(0, 1fr); } }
+@media (min-width: 1180px) { .bench { grid-template-columns: 214px minmax(0, 1fr) minmax(300px, 344px); } }
+
+/* verb index */
+.index { display: grid; gap: 8px; align-content: start; min-width: 0; }
+@media (min-width: 820px) {
+  .index {
+    position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px);
+    max-height: calc(100vh - 24px); grid-template-rows: auto auto minmax(0, 1fr);
+  }
+}
+#index-form { display: grid; gap: 6px; margin: 0; }
+.index label { font: 600 12px/1.35 var(--f-ui); color: var(--ink-2); }
+#q {
+  width: 100%; box-sizing: border-box; font: italic 400 17px/1.2 var(--f-lx);
+  padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--ink);
+}
+#q::placeholder { color: var(--ink-3); }
+.icount { margin: 0; font-size: 12px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.vlist { position: relative; list-style: none; margin: 0; padding: 0 2px 0 0; overflow: auto; display: grid; gap: 1px; align-content: start; }
+.vi { display: grid; width: 100%; text-align: left; border: 0; background: none; border-radius: 6px; padding: 5px 8px; cursor: pointer; }
+.vi:hover { background: var(--line-soft); }
+.vi[aria-current="true"] { background: var(--ink); color: var(--bg); }
+.vi-base { font: italic 400 17px/1.25 var(--f-lx); }
+.vi-gloss { font-size: 12px; line-height: 1.3; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vi[aria-current="true"] .vi-gloss { color: inherit; opacity: .72; }
+.vi-new { border: 1px dashed var(--ink-3); margin-bottom: 4px; }
+.vi-err { font-size: 13px; line-height: 1.4; color: var(--bad); padding: 6px 8px; }
+@media (max-width: 819px) {
+  .vlist { display: flex; gap: 6px; overflow-x: auto; padding: 0 0 6px; }
+  .vlist > li { flex: none; }
+  .vi { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+  .vi-gloss { display: none; }
+  .vi-new .vi-gloss { display: block; }
+  .vi-err { max-width: 80vw; white-space: normal; }
+}
+
+/* verb sheet */
+.sheet { min-width: 0; container-type: inline-size; display: grid; gap: 30px; align-content: start; }
+.vhead { display: grid; gap: 10px; }
+.hw-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 18px; }
+.headword { margin: 0; font: italic 700 clamp(40px, 8.5cqi, 68px)/1.02 var(--f-lx); letter-spacing: -.01em; min-width: 0; }
+.hw-btn { border: 0; background: none; padding: 0; font: inherit; letter-spacing: inherit; cursor: pointer; text-align: left; overflow-wrap: anywhere; border-bottom: 2px solid transparent; }
+.hw-btn:hover, .hw-btn.sel { border-bottom-color: var(--line); }
+.hw-ipa { font: 400 19px/1.3 var(--f-lx); color: var(--ink-2); }
+.hw-sub { margin: 0; color: var(--ink-2); font-size: 14px; }
+.hw-sub .lx { font-size: 16.5px; color: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 600 11.5px/1 var(--f-ui); letter-spacing: .03em; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--line); color: var(--ink-2); background: var(--panel); }
+.bases { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 7px; }
+.bases li { display: grid; grid-template-columns: 16px 64px minmax(84px, max-content) minmax(0, 1fr); gap: 2px 10px; align-items: baseline; }
+.bases .g { align-self: center; }
+.b-name, .mode-name { font: 700 11.5px/1 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--mc); }
+.b-form { font: italic 400 19px/1.2 var(--f-lx); }
+.b-mean { font-size: 15px; }
+.b-mean.none { color: var(--ink-3); font-style: italic; }
+.b-tag { font-size: 12px; font-style: normal; color: var(--ink-3); white-space: nowrap; }
+@container (max-width: 540px) {
+  .bases li { grid-template-columns: 16px 64px minmax(0, 1fr); }
+  .b-mean { grid-column: 3; }
+}
+.vnotes { margin: 0; color: var(--ink-2); font-size: 14px; max-width: 72ch; }
+.vq-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: -14px; }
+.vq { display: inline-flex; flex-wrap: wrap; gap: 4px 9px; align-items: baseline; padding: 7px 11px; border-radius: 6px; background: var(--q-wash); text-decoration: none; font-size: 13.5px; }
+.vq:hover { box-shadow: inset 0 0 0 1px var(--q); }
+.vq-n { font: 700 11px/1 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--q); }
+
+.hlbar {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + 8px); z-index: 6;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 14px;
+  padding: 9px 10px 9px 14px; margin-bottom: -16px; border-radius: 8px;
+  background: var(--ink); color: var(--bg); font-size: 13.5px; box-shadow: var(--shadow);
+}
+.hlbar b { font-weight: 600; }
+.hlbar button { border: 1px solid currentColor; background: none; border-radius: 999px; padding: 4px 11px; font-size: 12.5px; cursor: pointer; color: inherit; }
+
+.modes { display: grid; gap: 24px 18px; grid-template-columns: minmax(0, 1fr); }
+@container (min-width: 880px) { .modes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.mode { min-width: 0; display: grid; gap: 4px; align-content: start; }
+.mode-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.mode-head .g { align-self: center; }
+.mode-base { font: italic 400 18px/1.2 var(--f-lx); }
+.mode-gist { font-size: 12.5px; color: var(--ink-3); }
+.mode.is-unused .par { opacity: .55; }
+.par.imp tbody th, .par.decl tbody th { width: 1%; }
+.par.decl thead th { vertical-align: bottom; }
+.par.decl .pg { display: block; margin-top: 2px; }
+.par.decl tbody th { padding-block: 4px; }
+
+.nf { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px 18px; margin: 0; }
+.nf > div { display: grid; gap: 2px; align-content: start; min-width: 0; }
+.nf dt { display: flex; align-items: center; gap: 6px; padding-left: 8px; font: 600 11.5px/1.2 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--mc); }
+.nf dt .g { width: 12px; height: 12px; }
+.suf { text-transform: none; letter-spacing: 0; font: italic 400 15px/1 var(--f-lx); color: var(--ink-3); }
+.nf dd { margin: 0; }
+.nf .fm { font-size: 21px; }
+
+.fam { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 18px 28px; }
+.fam-g h4, .used-g h4 { margin: 0 0 4px; font: 600 11.5px/1.2 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.fam-g ul { list-style: none; margin: 0; padding: 0; }
+.fam-g li { display: grid; grid-template-columns: minmax(7.5em, max-content) minmax(0, 1fr); gap: 0 10px; align-items: baseline; border-top: 1px solid var(--line-soft); }
+.fam-t { display: grid; padding: 6px 0; min-width: 0; }
+.fam-l { font-size: 12.5px; color: var(--ink-3); }
+.fam-m { font-size: 14px; color: var(--ink); }
+.attested { margin: 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.8; }
+.att-h { color: var(--ink-3); margin-right: 4px; }
+.att { white-space: nowrap; margin-right: 12px; }
+.att .lx { font-style: italic; font-size: 16px; color: var(--ink); }
+
+.used { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 16px 28px; }
+.used-g { display: grid; align-content: start; }
+.ru {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: baseline;
+  width: 100%; text-align: left; border: 0; border-top: 1px solid var(--line-soft); background: none;
+  padding: 7px 8px; cursor: pointer; font-size: 13.5px; line-height: 1.4;
+}
+.ru:hover { background: var(--line-soft); }
+.ru[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.ru-n { font: 600 12px/1 var(--f-ui); color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ru[aria-pressed="true"] .ru-n { color: inherit; }
+
+/* derivation panel */
+.deriv { min-width: 0; }
+@media (min-width: 1180px) {
+  .deriv {
+    position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px);
+    max-height: calc(100vh - 24px); overflow: auto; box-sizing: border-box;
+    background: var(--panel); border: 1px solid var(--line-soft); border-radius: 12px; box-shadow: var(--shadow);
+    padding: 18px 18px 22px;
+  }
+  .d-close { display: none; }
+}
+@media (max-width: 1179px) {
+  .deriv {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; box-sizing: border-box;
+    max-height: min(72vh, 660px); overflow: auto;
+    background: var(--panel); border-top: 1px solid var(--line); border-radius: 14px 14px 0 0; box-shadow: var(--shadow);
+    padding-top: 16px; padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    transform: translateY(102%); visibility: hidden;
+    transition: transform .22s ease, visibility 0s linear .22s;
+  }
+  .deriv.open { transform: none; visibility: visible; transition: transform .22s ease; }
+}
+.d-top { display: grid; gap: 4px; position: relative; max-width: 640px; margin-inline: auto; }
+.d-close {
+  position: absolute; top: -6px; right: -4px; width: 38px; height: 38px; border: 0; border-radius: 50%;
+  background: var(--line-soft); font: 400 22px/1 var(--f-ui); cursor: pointer;
+}
+.d-form { margin: 8px 0 0; font: italic 700 36px/1.08 var(--f-lx); overflow-wrap: anywhere; padding-right: 40px; }
+.d-ipa { margin: 0; font: 400 17px/1.3 var(--f-lx); color: var(--ink-2); }
+.d-meta { margin: 6px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 13.5px; color: var(--ink-2); }
+.d-meta b { font: 700 11.5px/1 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--mc); }
+.d-meta .lx { font-style: italic; font-size: 16px; color: var(--ink); }
+.d-gloss { flex-basis: 100%; }
+.d-gloss .lx { font-size: 16px; }
+.d-empty { margin: 8px 0 0; color: var(--ink-2); }
+.d-empty a { color: var(--q); font-weight: 600; }
+.d-under-only { margin: 8px 0 0; }
+.d-extra { margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--line-soft); display: grid; gap: 8px; font-size: 13.5px; color: var(--ink-2); }
+.d-extra p { margin: 0; }
+.d-k { font: 600 11px/1 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-right: 4px; }
+.d-extra .lx { font-style: italic; font-size: 17px; color: var(--ink); }
+.d-ipa2 { font-family: var(--f-lx); font-size: 15px; color: var(--ink-2); }
+.d-note { margin: 10px 0 0; font-size: 13.5px; color: var(--ink-2); }
+.d-hint { color: var(--ink-3); font-size: 12.5px; }
+.d-decl { display: grid; gap: 6px; }
+
+/* reference sections */
+.ref { margin-top: 64px; display: grid; gap: 18px; scroll-margin-top: 12px; }
+.ref > header { display: grid; gap: 6px; max-width: 74ch; padding-top: 18px; border-top: 1px solid var(--line); }
+.ref h2 { margin: 0; font: 800 clamp(22px, 2.5vw, 29px)/1.1 var(--f-ui); font-stretch: 118%; letter-spacing: -.01em; text-wrap: balance; }
+.ref .lede { font-size: 15px; }
+</style>
+
+<div class="page">
+  <header class="mast">
+    <div class="mast-l">
+      <p class="eyebrow">Lunde · the old, formal register · prototype</p>
+      <h1>Old Lundian Conjugator</h1>
+      <p class="lede">Every form is built from a stem and an ending by the rules in the Old Lundian Grammar Reference. Pick a verb or type a new one, then click any form to see how it was built.</p>
+      <ul class="key" aria-label="The three verb forms">
+        <li class="m-samon"><svg class="g" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4.6" fill="currentColor"/></svg><b>samon</b> the event</li>
+        <li class="m-namon"><svg class="g" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.1" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="8" r="2.5" fill="currentColor"/></svg><b>namon</b> experienced inside</li>
+        <li class="m-exmon"><svg class="g" viewBox="0 0 16 16" aria-hidden="true"><circle cx="5" cy="8" r="3.6" fill="currentColor"/><path d="M9.6 8h4.6M12 5.6 14.4 8 12 10.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><b>exmon</b> directed outward</li>
+      </ul>
+    </div>
+    <div class="mast-r">
+      <nav class="sitenav" aria-label="Pages">
+        <a href="index.html" aria-current="page">Conjugator</a>
+        <a href="grammar.html">Grammar</a>
+      </nav>
+      <a class="badge" id="badge" href="#checks"><span class="dot"></span>Running the checks…</a>
+      <nav class="toplinks" aria-label="Sections">
+        <a href="#questions">Open questions</a>
+        <a href="#rules">Verb rules</a>
+        <a href="#checks">Checks</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="bench">
+    <nav class="index" aria-label="Verbs">
+      <form id="index-form" role="search">
+        <label for="q">Find a verb, or type a new samon base</label>
+        <input id="q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="nileasa, to see, pyelasa">
+      </form>
+      <p class="icount" id="icount"></p>
+      <ul class="vlist" id="vlist"></ul>
+    </nav>
+
+    <main class="sheet" id="sheet"></main>
+
+    <aside class="deriv" id="deriv" aria-label="How the selected form is built" tabindex="-1"></aside>
+  </div>
+
+  <section class="ref" id="questions" aria-labelledby="questions-h">
+    <header>
+      <p class="eyebrow">For you to decide</p>
+      <h2 id="questions-h">Open questions</h2>
+      <p class="lede">The questions from this round, then what your answers settled. Until you decide, the engine follows the doc as it stands, except where a newer answer already overrides it.</p>
+    </header>
+    <div id="questions-body"></div>
+  </section>
+
+  <section class="ref" id="rules" aria-labelledby="rules-h">
+    <header>
+      <p class="eyebrow">Reference</p>
+      <h2 id="rules-h">Verb rules</h2>
+      <p class="lede">The rules the engine applies to verbs, in the order it applies them, with every verb each rule touches.</p>
+    </header>
+    <div id="rules-body"></div>
+  </section>
+
+  <section class="ref" id="checks" aria-labelledby="checks-h">
+    <header>
+      <p class="eyebrow">Proof</p>
+      <h2 id="checks-h">Checks against the reference</h2>
+      <p class="ck-sum" id="checks-sum"></p>
+    </header>
+    <div id="checks-body"></div>
+  </section>
+
+  <footer class="foot">
+    <span>Engine v0.2 · 47 verbs · rules as of Oct 18 2026</span>
+    <span>Source: <a href="https://claude.ai/code/artifact/4706b91e-ef2a-4a69-89d8-d26564a85157" target="_blank" rel="noopener">Old Lundian Grammar Reference</a></span>
+  </footer>
+</div>
+
+<script src="lunde-engine.js"></script>
+<script src="lexicon.js"></script>
+<script src="lunde-tests.js"></script>
+<script src="lunde-runner.js"></script>
+<script src="lunde-ui.js"></script>
+<script src="conjugator.js"></script>
+
+</body></html>
