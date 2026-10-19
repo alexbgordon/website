@@ -6,7 +6,7 @@
   --surface: #FBF8F1;     /* poetry: --sheet */
   --text: #211C17;        /* poetry: --ink */
   --text-2: #4F463C;      /* poetry: --ink2 */
-  --muted: #74695C;       /* poetry: --muted */
+  --muted: #665C50;       /* poetry: --muted, darkened for contrast */
   --accent: #A3241A;      /* poetry: --red */
   --accent-soft: #F0D8CE; /* poetry: --wash */
   --border: #E2D8C6;      /* poetry: --rule */
@@ -118,7 +118,7 @@ a:hover { text-decoration-thickness: 2px; }
 .lang-section { padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 2rem; scroll-margin-top: 1rem; }
 .lang-section h2 { margin-top: 0.5rem; }
 .lang-note { color: var(--muted); font-size: 0.95rem; margin: -0.25rem 0 0.5rem; }
-/* Editable context block: Alexandre writes about each language here */
+/* Optional per-language context block */
 .lang-context {
   background: var(--accent-soft); border-left: 3px solid var(--accent);
   border-radius: 0 var(--radius) var(--radius) 0;

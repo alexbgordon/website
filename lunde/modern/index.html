@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modern Lunde (Lundiyani) | Alex Bahia</title>
+  <title>Modern Lunde grammar | Alex Bahia</title>
   <meta name="description" content="Grammar reference for Lundiyani, the modern form of Lunde: pronouns, word order, verb particles, nouns and numbers, questions, clauses, word formation and glossed example sentences.">
   <link rel="stylesheet" href="../../assets/site.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,11 +16,13 @@
     .ml .meta { color: var(--muted); font-size: .95rem; margin: -.5rem 0 1rem; }
     .ml .meta a { font-weight: 600; }
     .ml-layout { display: grid; gap: 1.5rem 2.5rem; }
+    @media (max-width: 899px) { .ml-layout { grid-template-columns: minmax(0,1fr); } }
     @media (min-width: 900px) { .ml-layout { grid-template-columns: 13rem minmax(0,1fr); } .ml-toc { position: sticky; top: 1rem; align-self: start; } }
     .ml-toc { font-family: var(--ui); font-size: .9rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1rem; }
     .ml-toc p { margin: 0 0 .4rem; font-weight: 700; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink3); }
     .ml-toc ol { margin: 0; padding-left: 1.2rem; display: grid; gap: .2rem; }
-    .ml-toc a { text-decoration: none; }
+    .ml-toc a { text-decoration: none; overflow-wrap: anywhere; }
+    .ml-layout > * { min-width: 0; }
     .ml-toc a:hover { text-decoration: underline; }
     .mref { scroll-margin-top: 1rem; padding-top: .25rem; border-top: 1px solid var(--border); margin-bottom: 2.5rem; }
     .mref:first-child { border-top: 0; }
@@ -63,15 +65,14 @@
 </header>
 <!-- site-header:end -->
   <main id="main" class="wrap ml">
-    <p class="breadcrumb"><a href="../">Lunde</a> / Modern Lunde</p>
-    <h1>Modern Lunde (Lundiyani)</h1>
+    <h1>Modern Lunde grammar</h1>
 <!-- lunde-nav:start -->
 <nav class="lunde-nav" aria-label="Lunde sections">
   <ul class="lunde-sections">
     <li><a href="../../lunde/">Overview</a></li>
     <li><a href="../../lunde/conjugator/">Old Lundian conjugator</a></li>
-    <li><a href="../../lunde/modern/" aria-current="page">Modern Lunde</a></li>
-    <li><a href="../../lunde/modern/lexicon/">Lexicon</a></li>
+    <li><a href="../../lunde/modern/" aria-current="page">Modern Lunde grammar</a></li>
+    <li><a href="../../lunde/modern/lexicon/">Modern Lunde lexicon</a></li>
   </ul>
 </nav>
 <!-- lunde-nav:end -->
@@ -92,7 +93,6 @@
 <li><strong>Working method.</strong> New forms are checked against the rules below. Only contradictions with a stated rule and real ambiguities get flagged.</li>
 <li><strong>Sounds.</strong> There is no h sound; Old h is lost (Old hara → ara). x is a different sound.</li>
 </ul>
-<!-- PDF line: "The full word list is in the Lexicon tab: Lexicon". The Lexicon tab now lives at lexicon/ (built by build_lexicon.py from Alex's Notion export). -->
 <p>The full word list is in the <a href="lexicon/">Lexicon</a>.</p>
     </section>
     <section class="mref" id="pronouns" aria-labelledby="pronouns-h">
@@ -279,7 +279,7 @@
 <tr><td class="lx">amon</td><td>reflexive: herself, himself, itself</td></tr>
 <tr><td class="lx">adar, idar</td><td>to leave, to arrive; idari is outdated</td></tr>
 <tr><td class="lx">malai</td><td>parent (in general); family and animal words vary by region and all stay</td></tr>
-<tr><td class="lx">lala, lurani, tu&#x27;ali, taluv, tavnei, vantasi, xwitiwi, nivya</td><td>the spaces in the master list were typos</td></tr>
+<tr><td class="lx">lala, lurani, tu&#x27;ali, taluv, tavnei, vantasi, xwitiwi, nivya</td><td>written without internal spaces; earlier spellings with spaces were typos</td></tr>
 </tbody></table></div>
 <ul>
 <li>Doublets (resa and akaxl, kaxi and kaxli, dal and ana…) are deliberate dialect or register variants. <small class="upd">(Update, Oct 18, 2026: kaxi and kaxli are no longer a doublet: kaxi = to name, a verb; kaxli = name, a noun.)</small><!-- Alex resolved kaxi/kaxli on 2026-10-18; the PDF text above is unchanged. --></li>
@@ -333,7 +333,7 @@
 <li value="16"><p class="ex-tr">16. &#x27;They love each other.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ale</span><span class="g2">3PL</span></span><span class="gw"><span class="g1 lx">lau</span><span class="g2">love</span></span><span class="gw"><span class="g1 lx">on-a-oni</span><span class="g2">each.other</span></span></div></li>
 <li value="17"><p class="ex-tr">17. &#x27;I have twenty-five dogs.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ta</span><span class="g2">have</span></span><span class="gw"><span class="g1 lx">i</span><span class="g2">1SG</span></span><span class="gw"><span class="g1 lx">rasión-na</span><span class="g2">twenty-five</span></span><span class="gw"><span class="g1 lx">kiwur-i</span><span class="g2">dog-PL</span></span></div></li>
 </ol>
-<p class="abbr"><strong>New abbreviations:</strong> INDF.PL na (some), CAUS -kai, REL sa. Sentence 6 is the active version; the passive is still being settled.</p>
+<p class="abbr"><strong>New abbreviations:</strong> INDF.PL na (some), CAUS -kai, REL sa. Sentence 6 is the active version; the passive is formed with dei.</p>
 <h3 id="round-3">Round 3, checked</h3>
 <ol class="ex">
 <li value="1"><p class="ex-tr">1. &#x27;The village was destroyed by the warriors.&#x27;</p><div class="gl"><span class="gw"><span class="g1 lx">ci</span><span class="g2">DEF.INAN</span></span><span class="gw"><span class="g1 lx">pay</span><span class="g2">village</span></span><span class="gw"><span class="g1 lx">lo</span><span class="g2">PST</span></span><span class="gw"><span class="g1 lx">dei</span><span class="g2">PASS</span></span><span class="gw"><span class="g1 lx">raxavi</span><span class="g2">destroy</span></span><span class="gw"><span class="g1 lx">amb</span><span class="g2">by</span></span><span class="gw"><span class="g1 lx">ni</span><span class="g2">DEF.PL</span></span><span class="gw"><span class="g1 lx">wakti</span><span class="g2">warrior</span></span></div></li>
@@ -357,7 +357,7 @@
       </div>
     </div>
 <!-- lunde-pager:start -->
-<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../lunde/conjugator/grammar.html" rel="prev"><span>&larr; Back</span> Old Lundian grammar</a><a class="lp-next" href="../../lunde/modern/lexicon/" rel="next"><span>Next &rarr;</span> Lunde lexicon</a></nav>
+<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../lunde/conjugator/grammar.html" rel="prev"><span>&larr; Previous</span> Old Lundian grammar</a><a class="lp-next" href="../../lunde/modern/lexicon/" rel="next"><span>Next &rarr;</span> Modern Lunde lexicon</a></nav>
 <!-- lunde-pager:end -->
   </main>
   <footer class="site-footer">
@@ -365,22 +365,5 @@
       <p>Modern Lunde grammar reference &middot; <a href="lundiyani-grammar-reference.pdf">PDF version</a></p>
     </div>
   </footer>
-<!--
-  Open questions (from the PDF, kept off the public page). [x] = ticked/struck through as resolved in the PDF.
-  [x] Where does lan go next to an aspect particle? Sentence 6 has ale kiena lan lo eden, but the stated rule puts lan right after the subject.
-  [x] Sentence 2: does i tefri lo lai eden mean "had eaten" or "had been eating"? How is the other one said?
-  [x] Sentence 3 uses xar as the conjunction "when" at the start. Is xar the conjunction when the when-clause comes first?
-  [x] Sentence 9 (ta o lo ia kiwuru) has no me. Is me optional in yes/no questions?
-  [x] Sentence 13 has a i kora, but the a/ad rule gives ad before a vowel.
-  [x] -de on predicate adjectives: lai kide, lai lasode, but lai kili, lai kuali. Inherent property vs passing state?
-  [x] Articles: is the inanimate "a" an (Old án), even though an also means "to"? In the plural, does ni cover both "the" and "some", or is na still "some"?
-  [ ] Plural rule: does -i replace a final vowel (kiwuru -> kiwuri) and get added after a consonant (osil -> osili)? Do inanimate nouns pluralize the same way?
-  [x] adar / idar or adari / idari (leave, arrive)?
-  [ ] Still unconfirmed from the first batch: the insults (pana, lande, viade), jos (blood) and kuner (knife).
-  [x] Spacing in the master list: lal a, nivy a, t u' ali, talu v, tavne i, vantas i, xwit i wi.
-  [x] Passive with dei: is it tense + dei + verb, with amb for the agent (ci pay lo dei raxavi amb ni wakti)?
-  [x] Inanimate plural: when is it -ne and when -nen?
-  [x] Relative clauses for people: sa, xaon, or both?
--->
 </body>
 </html>

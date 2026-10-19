@@ -1,4 +1,5 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<a class="skip-link" href="#main">Skip to content</a>
 <!-- added for alexbahia site: shared header and Lunde sub-nav -->
 <!-- site-header:start -->
 <header class="site-header">
@@ -16,14 +17,14 @@
   </div>
 </header>
 <!-- site-header:end -->
-<div class="lunde-chrome">
+<div class="wrap tool-sheet" id="main" tabindex="-1">
 <!-- lunde-nav:start -->
 <nav class="lunde-nav" aria-label="Lunde sections">
   <ul class="lunde-sections">
     <li><a href="../../lunde/">Overview</a></li>
     <li><a href="../../lunde/conjugator/" aria-current="page">Old Lundian conjugator</a></li>
-    <li><a href="../../lunde/modern/">Modern Lunde</a></li>
-    <li><a href="../../lunde/modern/lexicon/">Lexicon</a></li>
+    <li><a href="../../lunde/modern/">Modern Lunde grammar</a></li>
+    <li><a href="../../lunde/modern/lexicon/">Modern Lunde lexicon</a></li>
   </ul>
   <ul class="lunde-tool" aria-label="Old Lundian conjugator">
     <li><a href="index.html" aria-current="page">Conjugator</a></li>
@@ -33,13 +34,11 @@
   </ul>
 </nav>
 <!-- lunde-nav:end -->
-</div>
-<title>Old Lundian Conjugator</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<title>Old Lundian conjugator | Alex Bahia</title>
 <meta name="description" content="Every Old Lundian verb conjugated and declined by rule, with the derivation of each form.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
 <link rel="stylesheet" href="lunde.css">
 <style>
 /* Conjugator layout: verb index | verb sheet | derivation panel (a bottom sheet below 1180px). */
@@ -225,7 +224,7 @@
   <header class="mast">
     <div class="mast-l">
       <p class="eyebrow">Lunde · the old, formal register · prototype</p>
-      <h1>Old Lundian Conjugator</h1>
+      <h1>Old Lundian conjugator</h1>
       <p class="lede">Every form is built from a stem and an ending by the rules in the Old Lundian Grammar Reference. Pick a verb or type a new one, then click any form to see how it was built.</p>
       <ul class="key" aria-label="The three verb forms">
         <li class="m-samon"><svg class="g" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4.6" fill="currentColor"/></svg><b>samon</b> the event</li>
@@ -234,10 +233,6 @@
       </ul>
     </div>
     <div class="mast-r">
-      <nav class="sitenav" aria-label="Pages">
-        <a href="index.html" aria-current="page">Conjugator</a>
-        <a href="grammar.html">Grammar</a>
-      </nav>
       <a class="badge" id="badge" href="#checks"><span class="dot"></span>Running the checks…</a>
       <nav class="toplinks" aria-label="Sections">
         <a href="#questions">Open questions</a>
@@ -264,9 +259,9 @@
 
   <section class="ref" id="questions" aria-labelledby="questions-h">
     <header>
-      <p class="eyebrow">For you to decide</p>
+      <p class="eyebrow">Still open</p>
       <h2 id="questions-h">Open questions</h2>
-      <p class="lede">The questions from this round, then what your answers settled. Until you decide, the engine follows the doc as it stands, except where a newer answer already overrides it.</p>
+      <p class="lede">The open questions about the grammar, then the ones already settled. Until a question is decided, the engine follows the Grammar Reference as it stands, except where a newer decision already overrides it.</p>
     </header>
     <div id="questions-body"></div>
   </section>
@@ -288,19 +283,16 @@
     </header>
     <div id="checks-body"></div>
   </section>
-
-  <footer class="foot">
-    <span>Engine v0.2 · 47 verbs · rules as of Oct 18 2026</span>
-    <span>Source: <a href="https://claude.ai/code/artifact/4706b91e-ef2a-4a69-89d8-d26564a85157" target="_blank" rel="noopener">Old Lundian Grammar Reference</a></span>
-  </footer>
 </div>
 
 <!-- added for alexbahia site: back/next through the Lunde pages -->
-<div class="lunde-chrome">
 <!-- lunde-pager:start -->
-<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../lunde/" rel="prev"><span>&larr; Back</span> Lunde overview</a><a class="lp-next" href="../../lunde/conjugator/grammar.html" rel="next"><span>Next &rarr;</span> Old Lundian grammar</a></nav>
+<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../lunde/" rel="prev"><span>&larr; Previous</span> Lunde overview</a><a class="lp-next" href="../../lunde/conjugator/grammar.html" rel="next"><span>Next &rarr;</span> Old Lundian grammar</a></nav>
 <!-- lunde-pager:end -->
 </div>
+<footer class="site-footer">
+  <div class="wrap"><p>Old Lundian conjugator &middot; engine v0.2 &middot; 47 verbs &middot; rules as of Oct 18, 2026</p></div>
+</footer>
 <script src="lunde-engine.js"></script>
 <script src="lexicon.js"></script>
 <script src="lunde-tests.js"></script>

@@ -23,3 +23,45 @@
 }
 /* Small capitals labels in the poetry page's typewriter face */
 .eyebrow { font-family: 'Courier Prime', 'Courier New', ui-monospace, monospace; font-weight: 400; }
+
+/* ---- Site standard (review H1): the tool sits on the same paper sheet as every other page ----
+   Scoped overrides only; the conjugator's own layout, logic and the verb-form / case / check colours
+   (--samon, --namon, --exmon, --case, --q, --ok, --bad and their washes) are untouched. */
+body {
+  background: #E7E0CF;                 /* the site desk */
+  font: 400 19px/1.6 'EB Garamond', Georgia, 'Times New Roman', serif;
+  display: flex; flex-direction: column; min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.tool-sheet {
+  box-sizing: border-box; width: calc(100% - 32px); max-width: 1360px; margin: 0 auto 44px;
+  padding: 56px 64px; background: #FBF8F1; flex: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 24px 44px -24px rgba(60, 40, 20, .38);
+}
+.tool-sheet:focus { outline: none; }
+.tool-sheet .page { max-width: none; margin: 0; padding: 0; }
+.tool-sheet .lunde-nav { margin: 0 0 1.75rem; }
+.tool-sheet .lunde-pager { margin: 2.5rem 0 0; }
+/* headings: the site's weight 500, no condensed/expanded display face */
+.mast h1 { font: 500 2.1rem/1.25 var(--f-ui); font-stretch: normal; letter-spacing: 0; }
+.ref h2, .gsec h2 { font: 500 1.45rem/1.25 var(--f-ui); font-stretch: normal; letter-spacing: 0; }
+.blk-head h3, .rule-blk h3, .gsec h3 { font-weight: 400; font-stretch: normal; font-family: 'Courier Prime', 'Courier New', ui-monospace, monospace; }
+.qc-n { font-weight: 500; font-stretch: normal; }
+.lede { font-size: 1em; }
+/* shared footer and skip link (same as assets/site.css) */
+.site-footer { color: #665C50; font-family: 'Courier Prime', 'Courier New', ui-monospace, monospace; font-size: 12px; letter-spacing: .08em; }
+.site-footer .wrap { box-sizing: border-box; width: calc(100% - 32px); max-width: 1360px; margin: 0 auto; padding: 0 64px 24px; }
+.site-footer p { margin: 0; }
+.skip-link { position: absolute; left: -999px; top: 0; background: #A3241A; color: #fff; padding: .5rem 1rem; z-index: 10; }
+.skip-link:focus { left: .5rem; top: .5rem; }
+@media (max-width: 640px) {
+  body { font-size: 18px; }
+  .tool-sheet { padding: 32px 22px 36px; }
+  .site-footer .wrap { padding: 0 22px 24px; }
+  .mast h1 { font-size: 1.7rem; }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body { background: #15120E; }
+  :root:not([data-theme="light"]) .tool-sheet { background: #221E19; box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 24px 44px -24px rgba(0,0,0,.7); }
+  :root:not([data-theme="light"]) .site-footer { color: #A99D8B; }
+}

@@ -4,7 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Courier+Prime:wght@400;700&display=swap");
 
 .site-header {
-  --ab-ink: #211C17; --ab-muted: #74695C; --ab-red: #A3241A; --ab-rule: #E2D8C6;
+  --ab-ink: #211C17; --ab-muted: #665C50; --ab-red: #A3241A; --ab-rule: #E2D8C6;
   --ab-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
   --ab-mono: 'Courier Prime', 'Courier New', ui-monospace, monospace;
 }
@@ -41,7 +41,7 @@
 
 /* Lunde section sub-nav and back/next pager (same markup on every Lunde page, from site_header.py) */
 .lunde-nav, .lunde-pager, .lunde-chrome {
-  --ab-ink: #211C17; --ab-muted: #74695C; --ab-red: #A3241A; --ab-rule: #E2D8C6;
+  --ab-ink: #211C17; --ab-muted: #665C50; --ab-red: #A3241A; --ab-rule: #E2D8C6;
   --ab-mono: 'Courier Prime', 'Courier New', ui-monospace, monospace;
 }
 @media (prefers-color-scheme: dark) {

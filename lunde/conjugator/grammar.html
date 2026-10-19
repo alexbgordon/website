@@ -3,12 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Old Lundian Grammar</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<title>Old Lundian grammar | Alex Bahia</title>
 <meta name="description" content="The rules of Old Lundian, with every example built live by the Lunde engine.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
 <link rel="stylesheet" href="lunde.css">
 <style>
 /* Grammar layout: a sticky table of contents beside one reading column; tools sit in panels inside it. */
@@ -108,6 +107,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
 <link rel="stylesheet" href="site-theme.css"><!-- alexbahia site: poetry-page palette and fonts -->
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <!-- added for alexbahia site: shared header and Lunde sub-nav -->
 <!-- site-header:start -->
 <header class="site-header">
@@ -125,14 +125,14 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
   </div>
 </header>
 <!-- site-header:end -->
-<div class="lunde-chrome">
+<div class="wrap tool-sheet" id="main" tabindex="-1">
 <!-- lunde-nav:start -->
 <nav class="lunde-nav" aria-label="Lunde sections">
   <ul class="lunde-sections">
     <li><a href="../../lunde/">Overview</a></li>
     <li><a href="../../lunde/conjugator/" aria-current="page">Old Lundian conjugator</a></li>
-    <li><a href="../../lunde/modern/">Modern Lunde</a></li>
-    <li><a href="../../lunde/modern/lexicon/">Lexicon</a></li>
+    <li><a href="../../lunde/modern/">Modern Lunde grammar</a></li>
+    <li><a href="../../lunde/modern/lexicon/">Modern Lunde lexicon</a></li>
   </ul>
   <ul class="lunde-tool" aria-label="Old Lundian conjugator">
     <li><a href="index.html">Conjugator</a></li>
@@ -142,19 +142,14 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
   </ul>
 </nav>
 <!-- lunde-nav:end -->
-</div>
 <div class="page">
   <header class="mast">
     <div class="mast-l">
       <p class="eyebrow">Lunde · the old, formal register · prototype</p>
-      <h1>Old Lundian Grammar</h1>
+      <h1>Old Lundian grammar</h1>
       <p class="lede">The rules of the Grammar Reference, from sounds to numbers. Every example on this page is built live by the same engine that runs the conjugator, and every tool takes your own words.</p>
     </div>
     <div class="mast-r">
-      <nav class="sitenav" aria-label="Pages">
-        <a href="index.html">Conjugator</a>
-        <a href="grammar.html" aria-current="page">Grammar</a>
-      </nav>
       <a class="badge" id="badge" href="index.html#checks"><span class="dot"></span>Running the checks…</a>
     </div>
   </header>
@@ -513,7 +508,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
       <!-- 9. Open questions -->
       <section class="gsec" id="questions" aria-labelledby="gq-h">
         <header>
-          <p class="eyebrow">For you to decide</p>
+          <p class="eyebrow">Still open</p>
           <h2 id="gq-h">Open questions</h2>
           <p class="lede">The same questions as on the conjugator. Each link opens the verb at the form in question.</p>
         </header>
@@ -521,19 +516,16 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
       </section>
     </main>
   </div>
-
-  <footer class="foot">
-    <span>Engine v0.2 · rules as of Oct 18 2026</span>
-    <span>Source: <a href="https://claude.ai/code/artifact/4706b91e-ef2a-4a69-89d8-d26564a85157" target="_blank" rel="noopener">Old Lundian Grammar Reference</a></span>
-  </footer>
 </div>
 
 <!-- added for alexbahia site: back/next through the Lunde pages -->
-<div class="lunde-chrome">
 <!-- lunde-pager:start -->
-<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../lunde/conjugator/" rel="prev"><span>&larr; Back</span> Old Lundian conjugator</a><a class="lp-next" href="../../lunde/modern/" rel="next"><span>Next &rarr;</span> Modern Lunde grammar</a></nav>
+<nav class="lunde-pager" aria-label="Lunde pages, in order"><a class="lp-back" href="../../lunde/conjugator/" rel="prev"><span>&larr; Previous</span> Old Lundian conjugator</a><a class="lp-next" href="../../lunde/modern/" rel="next"><span>Next &rarr;</span> Modern Lunde grammar</a></nav>
 <!-- lunde-pager:end -->
 </div>
+<footer class="site-footer">
+  <div class="wrap"><p>Old Lundian grammar &middot; engine v0.2 &middot; rules as of Oct 18, 2026</p></div>
+</footer>
 <script src="lunde-engine.js"></script>
 <script src="lexicon.js"></script>
 <script src="lunde-tests.js"></script>
