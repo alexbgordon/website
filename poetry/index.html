@@ -132,6 +132,17 @@ button{font:inherit;color:inherit}
 .mn.on{left:10px;right:-14px;padding:12px 14px 14px;background:var(--wash);color:var(--ink)}
 .mn.on .n{font-size:24px;line-height:1;vertical-align:-2px}
 .mn.on .bd{display:block}
+.mn{cursor:default}
+.mn .mh{display:block;width:100%;background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;text-align:inherit;cursor:pointer}
+.nsrc{display:block;margin-top:8px;font-style:normal;font-size:13px;line-height:1.5;color:var(--muted)}
+.nsrc a{color:inherit}
+.bd bdi[lang="he"],.more bdi[lang="he"],.more dt.he{font-family:var(--hebrew);font-style:normal}
+.more{margin-top:56px;padding-top:12px;border-top:1px solid var(--rule);font-size:16px;line-height:1.55}
+.more dl{margin:0}
+.more dt{color:var(--red);margin-top:14px}
+.more dd{margin:2px 0 0;font-style:italic;color:var(--ink2)}
+.split .rs .sec{margin-block:2.4em 1.1em}
+.rows > .rs:first-child .sec{margin-top:.3em}
 
 /* translation: the sheet is cut in half */
 .split .rows{font-size:18px}
@@ -152,6 +163,7 @@ button{font:inherit;color:inherit}
 .card .lab{margin:2px 0 6px;font-size:19px}
 .card .lab.he{font-family:var(--hebrew)}
 .card .bd{margin:0;font-style:italic;color:var(--ink2);font-size:16px}
+.card{max-height:70vh;overflow-y:auto}
 
 @media (max-width:900px){
   .sheet,.sheet.narrow,.sheet.wide{padding:44px 22px 40px}
@@ -163,6 +175,10 @@ button{font:inherit;color:inherit}
   .split .rows::before{display:none}
   .split .r .o{order:0}
   .split .r .tr{order:1;color:var(--muted);font-style:italic;margin-bottom:.5em}
+  .split .rs .sec{margin-block:0}
+  .split .rs .sec.o{margin-top:2.4em}
+  .split .rs .sec.tr{margin-bottom:1.1em}
+  .rows > .rs:first-child .sec.o{margin-top:.3em}
   .split .r.cols{display:none}
   .ix a{flex-wrap:wrap;row-gap:0}
   .ix .d{display:none}
@@ -224,7 +240,10 @@ button{font:inherit;color:inherit}
                            (~fr and ~es work the same way)
      *italic*  **bold**    formatting
      [[phrase|3]]          note anchor: puts a red 3 after the phrase
-   Notes: write them in `notes: {3: {en: '...'}}`. Empty = TBD.
+   Notes: write them in `notes: {3: {en: '...'}}` (HTML allowed). An anchor
+   with no note shows as plain text. `more: [{label, en}]` = further notes
+   without an anchor, listed under the poem. `lang` = language code of the
+   original (lines in another script are detected automatically).
    ===================================================================== */
 
 const SITE = {
@@ -281,89 +300,148 @@ const BIBLIO = [
 
 const POEMS = [
 
-{ id: 'sakura', title: 'Sakura', langs: ['Spanish', 'Japanese'], codes: 'ES · JA', dir: 'ltr', script: true, src: `
+{ id: 'sakura', title: 'Sakura', langs: ['Spanish', 'Japanese'], codes: 'ES · JA', dir: 'ltr', script: true, lang: "es", trTitle: { en: "Cherry Blossom" },
+  notes: {"1": {"en": "Echoes Kajii Motojirō's short prose piece “Under the Cherry Trees” (Sakura no ki no shita ni wa, 1928), which opens: “There are dead bodies buried under the cherry trees!” Kajii imagines the roots drawing up the corpses' “crystalline liquid” to colour the blossoms, an image the poem answers later with “sangre clara” (clear blood). Kajii is named in the poem itself (“las flores de Kajii”).<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Motojir%C5%8D_Kajii\" target=\"_blank\" rel=\"noopener\">Wikipedia: Motojirō Kajii</a> · <a href=\"https://www.newwriting.net/2017/01/under-the-cherry-trees/\" target=\"_blank\" rel=\"noopener\">Kajii, “Under the Cherry Trees” (English translation)</a></span>"}, "2": {"en": "<span lang=\"ja\">花吹雪</span> hanafubuki, literally “flower blizzard”: the storm of cherry petals that blows down when the blossoms scatter.<span class=\"nsrc\"><a href=\"https://jisho.org/word/%E8%8A%B1%E5%90%B9%E9%9B%AA\" target=\"_blank\" rel=\"noopener\">Jisho</a></span>"}, "3": {"en": "<span lang=\"ja\">物語絵</span> monogatari-e, “story pictures”: Japanese paintings that illustrate narrative tales such as The Tale of Genji, often on handscrolls (emakimono).<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Emakimono\" target=\"_blank\" rel=\"noopener\">Wikipedia: Emakimono</a></span>"}, "4": {"en": "<span lang=\"ja\">愛</span> ai, love. When the poem gives love a colour, it is red or pink. Written in Latin letters inside a Spanish line, it reads almost like a name, and it sounds exactly like <span lang=\"ja\">哀</span> ai, sorrow, which sets up note 5.<span class=\"nsrc\"><a href=\"https://jisho.org/word/%E6%84%9B\" target=\"_blank\" rel=\"noopener\">Jisho</a></span>"}, "5": {"en": "“ai ga ai ni naru”: love (<span lang=\"ja\">愛</span>) becomes sorrow (<span lang=\"ja\">哀</span>). Both characters are read ai, so the line sounds like “ai becomes ai”; the change happens only in the writing, not in the sound. <span lang=\"ja\">哀</span> is also the aware of mono no aware, the ache of watching something pass.<span class=\"nsrc\"><a href=\"https://jisho.org/word/%E6%84%9B\" target=\"_blank\" rel=\"noopener\">Jisho</a> · <a href=\"https://jisho.org/search/%E5%93%80\" target=\"_blank\" rel=\"noopener\">Jisho</a> · <a href=\"https://en.wikipedia.org/wiki/Mono_no_aware\" target=\"_blank\" rel=\"noopener\">Wikipedia: Mono no aware</a></span>"}, "6": {"en": "Amaru, the serpent or dragon deity of Andean (Quechua and Aymara) myth. The roots intertwined beneath the cherry trees call up the serpent, here a symbol of strength.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Amaru_(mythology)\" target=\"_blank\" rel=\"noopener\">Wikipedia: Amaru (mythology)</a></span>"}, "7": {"en": "<span lang=\"ja\">木霊</span> kodama is an echo, and also the spirit that lives in a tree (folk belief says a mountain echo is the tree spirit answering). <span lang=\"ja\">子供</span> kodomo is a child. Call out someone's name, and what comes back: an echo, or a child? The two words are one vowel apart, a near-rhyme English can't keep.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Kodama_(spirit)\" target=\"_blank\" rel=\"noopener\">Wikipedia: Kodama (spirit)</a> · <a href=\"https://jisho.org/word/%E5%AD%90%E4%BE%9B\" target=\"_blank\" rel=\"noopener\">Jisho</a></span>"}},
+  more: [{"label": "pan diario", "en": "“Daily bread” recalls the Lord's Prayer (“el pan nuestro de cada día”): the dead feed the trees.<span class=\"nsrc\"><a href=\"https://es.wikipedia.org/wiki/Padre_nuestro\" target=\"_blank\" rel=\"noopener\">Wikipedia (es): Padre nuestro</a></span>"}, {"label": "ojo siniestro", "en": "In Spanish siniestro means “left” as well as “sinister” (sinister is also Latin for left). The English “sinister eye” keeps both.<span class=\"nsrc\"><a href=\"https://dle.rae.es/siniestro\" target=\"_blank\" rel=\"noopener\">RAE, Diccionario</a></span>"}, {"label": "葉桜 hazakura", "en": "A cherry tree in leaf after its blossoms have fallen, a late-spring seasonal word, matching the closing stanza: “solo queden hojas en las ramas”.<span class=\"nsrc\"><a href=\"https://jisho.org/word/%E8%91%89%E6%A1%9C\" target=\"_blank\" rel=\"noopener\">Jisho</a></span>"}],
+  src: `
 # 序
 = jo
+~en Prelude
 
 Te pensé hasta
+~en I thought of you even
 en Japón, '24,
+~en in Japan, in '24,
 viendo sakuras
+~en watching the cherry blossoms
 cayendo desde el cielo.
+~en falling out of the sky.
 
 # 蕾
 = tsubomi
+~en Bud
 
 En Japón dicen
+~en In Japan they say
 que los muertos duermen
+~en the dead lie sleeping
 [[bajo los sakuras|1]],
+~en beneath the cherry trees,
 cobrados por la tierra,
+~en claimed by the earth,
 
 y allí siguen, enroscados,
+~en and there they stay, curled tight,
 dándoles pan diario.
+~en giving them their daily bread.
 De allí, enraizado,
+~en From there, taking root,
 vendría el rosa de sus flores.
+~en would come the pink of their flowers.
 
 # 満開
 = mankai
+~en Full Bloom
 
 Flor de sakura,
+~en Cherry blossom,
 cae en tu ojo siniestro.
+~en falling into your sinister eye.
 Dos deshojados,
+~en Two of us, stripped of our petals,
 tú y yo, juntos en el suelo.
+~en you and I, together on the ground.
 
 Bajo el [[hanafubuki|2]],
+~en Under the blizzard of petals,
 un [[monogatari-e|3]],
+~en a painted tale:
 del color del amor
+~en the color of love
 eran las flores de Kajii.
+~en were Kajii's blossoms.
 
 Rosas del [[Ai|4]] pasado
+~en Roses of an Ai gone by,
 raíz a rama— rojo mutado.
+~en root to branch — a red transmuted.
 [[愛 が 哀 に なる|5]]、
 = ai ga ai ni naru,
+~en Love turns into sorrow,
 le corre sangre clara, [[Amaru|6]].
+~en and clear blood runs through it, Amaru.
 
 # 散る
 = chiru
+~en Scattering
 
 Que tuviéramos algo, no lo sabré.
+~en Whether we had something, I will never know.
 Es que yo por ti me enloquecí,
+~en The truth is, I went mad for you;
 Te di todo: sangre, amor, aire
+~en I gave you everything: blood, love, air,
 pa' que pudieses florecer.
+~en so that you could bloom.
 
 Jamás supe y jamás sabré
+~en I never knew and I will never know
 lo que pasaba por tu mente.
+~en what was going through your mind.
 Me desangraba, y ahí quedabas,
+~en I was bleeding out, and there you stayed,
 clavado, de piedra, sin decir nada.
+~en rooted, made of stone, saying nothing.
 
 No cuidabas tus pasos:
+~en You didn't watch your step,
 entonces me dejaste caer,
+~en and so you let me fall,
 un romántico desesperado,
+~en a hopeless romantic,
 tal el último pétalo que cayó ayer.
+~en like the last petal that fell yesterday.
 
 # 落花
 = rakka
+~en Fallen Blossoms
 
 Un día, a tu lado de nuevo,
+~en One day, beside you again,
 me desperté, y el alma también.
+~en I woke up, and my soul did too.
 Te miré otra vez, y la última fue.
+~en I looked at you once more, and it was the last time.
 
 # 葉桜
 = hazakura
+~en Leaf-Cherry
 
 Cada primavera vuelvo pensándote
+~en Every spring I come back thinking of you,
 cuando los cerezos, hasta en Nueva York,
+~en when the cherry trees, even in New York,
 se encienden de rosa; les grito tu nombre—
+~en catch fire in pink; I shout your name at them —
 名を呼べば、[[木霊か子供|7]]?
 = na wo yobeba, kodama ka kodomo?
+~en I call your name: an echo, or a child?
 
 Y aunque oír tu nombre aún me dé escalofríos,
+~en And though hearing your name still sends a shiver through me,
 y aunque ahora solo queden hojas en las ramas
+~en and though only leaves are left on the branches now
 —verdes, tranquilas, pero ya sin flores—
+~en — green, quiet, but with no flowers anymore —
 atesoro que algo tan bonito pueda durar tan poco tiempo.
+~en I treasure that something so beautiful can last so short a time.
 ` },
 
 { id: 'barcelona', title: 'Barcelona', langs: ['Catalan'], codes: 'CA', dir: 'ltr', script: false,
-  trTitle: { en: 'Barcelona', fr: 'Barcelone', es: 'Barcelona' }, src: `
+  trTitle: { en: 'Barcelona', fr: 'Barcelone', es: 'Barcelona' }, lang: "ca",
+  notes: {"1": {"en": "The hill above Barcelona's harbour, with its castle, the palaces of the 1929 Exposition and the 1992 Olympic ring, looking out over the Mediterranean it “embraces”.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Montju%C3%AFc\" target=\"_blank\" rel=\"noopener\">Wikipedia: Montjuïc</a></span>"}, "2": {"en": "Both Sant Jordi and Gaudí. On Sant Jordi's Day (23 April), the feast of Catalonia's dragon-slaying patron saint, Barcelona fills with roses and books. Dragons also run through Gaudí's city, from the roof of Casa Batlló to the Park Güell salamander.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Saint_George%27s_Day_in_Catalonia\" target=\"_blank\" rel=\"noopener\">Wikipedia: Saint George&#x27;s Day in Catalonia</a> · <a href=\"https://en.wikipedia.org/wiki/Casa_Batll%C3%B3\" target=\"_blank\" rel=\"noopener\">Wikipedia: Casa Batlló</a></span>"}, "3": {"en": "Gaudí's mosaic salamander (often called el drac, the dragon) on the main stairway of Park Güell. “The park of the salamander” is Park Güell.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Park_G%C3%BCell\" target=\"_blank\" rel=\"noopener\">Wikipedia: Park Güell</a></span>"}},
+  more: [{"label": "dir-se Alexandre", "en": "Alexandre is the standard Catalan form of Alexander (and the French one too), so in Barcelona the name is an ordinary local name, not a foreign one.<span class=\"nsrc\"><a href=\"https://ca.wikipedia.org/wiki/Alexandre_(nom)\" target=\"_blank\" rel=\"noopener\">Wikipedia (ca): Alexandre (nom)</a></span>"}],
+  src: `
 On l'atzur mediterrani
 ~en Where the Mediterranean azure
 ~fr Où l'azur méditerranéen
@@ -409,307 +487,527 @@ de la [[salamandra|3]],
 ~es *donde es normal llamarse Alexandre.*
 ` },
 
-{ id: 'andromeda', title: 'ΑΝΔΡΟΜΕΔΑ', roma: 'Andromeda', langs: ['English', 'Greek', 'Latin', 'Amharic'], codes: 'EN · GRC · LA · AM', dir: 'ltr', script: true, src: `
+{ id: 'andromeda', title: 'ΑΝΔΡΟΜΕΔΑ', roma: 'Andromeda', langs: ['English', 'Greek', 'Latin', 'Amharic'], codes: 'EN · GRC · LA · AM', dir: 'ltr', script: true, lang: "en", epiLang: "la", trTitle: { en: "Andromeda" },
+  notes: {"1": {"en": "“Descendant of Abas”: Perseus. Abas was the father of Acrisius, whose daughter Danaë bore Perseus. The epigraph is Ovid, Metamorphoses 4.672–675, where Perseus first sees Andromeda chained to the rock and almost takes her for a marble statue.<span class=\"nsrc\"><a href=\"https://www.thelatinlibrary.com/ovid/ovid.met4.shtml\" target=\"_blank\" rel=\"noopener\">The Latin Library: Ovid, Metamorphoses IV</a> · <a href=\"https://en.wikipedia.org/wiki/Acrisius\" target=\"_blank\" rel=\"noopener\">Wikipedia: Acrisius</a></span>"}, "2": {"en": "Medusa's name is the feminine participle of <span lang=\"grc\">μέδω</span>, “to protect, rule over”: guardian, ruler. Andromeda's name is usually explained as “ruler of men” or “mindful of a man”. In the myth Perseus beheads Medusa and then, flying home, rescues Andromeda, so the question sets the two women against each other. The verb <span lang=\"grc\">μεδομένη</span> is bent on purpose: in classical Greek the middle voice means “mindful of”, and the poem turns it toward “ruled by”.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Medusa\" target=\"_blank\" rel=\"noopener\">Wikipedia: Medusa</a> · <a href=\"https://en.wikipedia.org/wiki/Andromeda_(mythology)\" target=\"_blank\" rel=\"noopener\">Wikipedia: Andromeda (mythology)</a> · <a href=\"https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0057:entry=me/dw\" target=\"_blank\" rel=\"noopener\">Perseus Digital Library</a></span>"}, "3": {"en": "<span lang=\"am\">ጩኸት</span>, “scream”, in Amharic. In Greek myth Andromeda's father Cepheus was king of Aethiopia; her scream is written in Amharic, in Ge'ez script, the language of the land the myth gives her.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Andromeda_(mythology)\" target=\"_blank\" rel=\"noopener\">Wikipedia: Andromeda (mythology)</a></span>"}, "4": {"en": "In the Leiden conventions used by editors of inscriptions and papyri, double square brackets ⟦ ⟧ mark text deliberately erased in antiquity, and “- - -” marks lost letters of unknown number. Her words were not lost; they were erased.<span class=\"nsrc\"><a href=\"https://papyri.info/docs/leiden_plus\" target=\"_blank\" rel=\"noopener\">papyri.info: Leiden conventions</a></span>"}, "5": {"en": "The Andromeda Galaxy (M31) is one of the few galaxies whose light is blueshifted: it is approaching the Milky Way at about 110 km/s. Its central black hole is roughly 100–230 million solar masses; ours, Sagittarius A*, is about 4 million, so “twenty times” is a poetic rounding of a ratio closer to 25–50. The long-standing prediction was that the two galaxies will merge; a 2025 study in Nature Astronomy puts the chance of a merger within 10 billion years at about 50%.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Andromeda_Galaxy\" target=\"_blank\" rel=\"noopener\">Wikipedia: Andromeda Galaxy</a> · <a href=\"https://en.wikipedia.org/wiki/Sagittarius_A*\" target=\"_blank\" rel=\"noopener\">Wikipedia: Sagittarius A*</a> · <a href=\"https://www.nature.com/articles/s41550-025-02563-1\" target=\"_blank\" rel=\"noopener\">Nature Astronomy (2025)</a> · <a href=\"https://science.nasa.gov/missions/hubble/apocalypse-when-hubble-casts-doubt-on-certainty-of-galactic-collision/\" target=\"_blank\" rel=\"noopener\">NASA</a></span>"}},
+  more: [{"label": "“painted it away”", "en": "Ovid himself (Heroides 15.35–36) calls Andromeda fusca, dark with the colour of her native land, yet European painting almost always shows her pale. The line holds both: the dark at the galaxy's core, and an Ethiopian princess painted white.<span class=\"nsrc\"><a href=\"https://www.greekmythology.com/sources/ovid/heroides/15-sappho-to-phaon\" target=\"_blank\" rel=\"noopener\">Ovid, Heroides 15</a></span>"}, {"label": "“her mother's debt” · “priced like a bride”", "en": "Cassiopeia boasted that she (or her daughter) was more beautiful than the Nereids, so Poseidon sent a sea monster, and Andromeda was chained to the rock to pay for it. In Ovid, Perseus bargains for her as his bride before he fights the monster (Metamorphoses 4.695–705).<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Andromeda_(mythology)\" target=\"_blank\" rel=\"noopener\">Wikipedia: Andromeda (mythology)</a> · <a href=\"https://www.thelatinlibrary.com/ovid/ovid.met4.shtml\" target=\"_blank\" rel=\"noopener\">The Latin Library: Ovid, Metamorphoses IV</a></span>"}, {"label": "obsidian", "en": "Obsidian is volcanic glass that breaks into extremely sharp edges, which is why it was used for blades: glass that becomes a weapon when it breaks.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Obsidian\" target=\"_blank\" rel=\"noopener\">Wikipedia: Obsidian</a></span>"}, {"label": "The form of section I", "en": "Stanzas 2–4 are iambic pentameter in rhymed couplets, the English line “used for six hundred years”.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Heroic_couplet\" target=\"_blank\" rel=\"noopener\">Wikipedia: Heroic couplet</a></span>"}],
+  src: `
 > *quam simul ad duras religatam bracchia cautes*
+~en As soon as Abas's great-grandson saw her,
 > *vidit* [[*Abantiades*|1]]*, nisi quod levis aura capillos*
+~en her arms bound to the hard rocks (had a light breeze not
 > *moverat et tepido manabant lumina fletu,*
+~en stirred her hair, and her eyes not streamed with warm tears,
 > *marmoreum ratus esset opus;* (Ovid, *Metamorphoses* 4.672–675)
+~en he would have taken her for a work of marble) (Ovid, Metamorphoses 4.672–675)
 
 # I. SENTENCE
+~en I. SENTENCE
 
 \t\t\t\t\tThe sea's
+~en The sea's
 \t\t\tmighty ego,
+~en mighty ego,
 to be assuaged
+~en to be assuaged
 
 demanded that the girl be bound and caged.
+~en demanded that the girl be bound and caged.
 Beautiful of terror, bound to that stone,
+~en Beautiful of terror, bound to that stone,
 and gilded ropes held fast her wrists, her waist,
+~en and gilded ropes held fast her wrists, her waist,
 yet she it was who held him with her gaze.
+~en yet she it was who held him with her gaze.
 
 A savior sent from heaven, cut her free,
+~en A savior sent from heaven, cut her free,
 and thought her marble — cold, and carved to be
+~en and thought her marble — cold, and carved to be
 admired — until the wind disturbed her hair,
+~en admired — until the wind disturbed her hair,
 a burning tear undid the statue there.
+~en a burning tear undid the statue there.
 
 He drew her from the deep; his hands, a yoke,
+~en He drew her from the deep; his hands, a yoke,
 closed 'round a ring, another chain to choke;
+~en closed 'round a ring, another chain to choke;
 her mother's debt, for which with life she'd pay,
+~en her mother's debt, for which with life she'd pay,
 priced like a bride, she too was giv'n away.
+~en priced like a bride, she too was giv'n away.
 
 and carried she was,
+~en and carried she was,
 \t\t\tfrom monster
+~en from monster
 \t\t\t\t\tto marriage.
+~en to marriage.
 
 # II. ONOMA
+~en II. NAME
 
 Κηφῆος θυγάτηρ,
 = Kēphēos thygátēr,
+~en Daughter of Cepheus,
 Κασσιεπείης ἀνάσσης,
 = Kassiepeíēs anássēs,
+~en of Queen Cassiopeia,
 νηρηΐδων καλλίων  — ΑΝΔΡΟΜΕΔΑ,
 = nērēḯdōn kallíōn — Andromeda,
+~en fairer than the Nereids — ANDROMEDA,
 ἀλλ᾽ ἦν ἀνδρὸς μεδομένη;
 = all' ēn andròs medoménē?
+~en but was she one a man held sway over?
 ἢ ἀνδρῶν [[**μέδουσα;**|2]]
 = ē andrôn médousa?
+~en Or the one who held sway over men — a Medusa?
 
 # III. [[ጩኸት|3]]
 = č'uhät
+~en III. SCREAM
 
 [[⟦ - - - ⟧|4]]
+~en ⟦ - - - ⟧ (erased)
 
 «እኔ፡ብርጭቆ፡አይደለሁም። ኦብሲዲያን፡ሲሰበር፡እኔ፡የበለጠ፡ስለታም፡እሆናለሁ።»
 = «Ǝne bǝrč'ǝqo aydellehum. Obsidiyan sīsebber, ǝne yebelet'e sǝlet'am ǝhonallehu.»
+~en “I'm not glass, as obsidian breaks, the sharper I become.”
 
 # IV. APPROACH
+~en IV. APPROACH
 
 Nearly everything in the universe
+~en Nearly everything in the universe
 is receding—redshifted.
+~en is receding—redshifted.
 ΑΝΔΡΟΜΕΔΑ is, however, falling
+~en ΑΝΔΡΟΜΕΔΑ is, however, falling
 onto us —[[blueshifted|5]]
+~en onto us —blueshifted
 
 at a hundred and ten
+~en at a hundred and ten
 kilometers a second.
+~en kilometers a second.
 
 Her core holds a hundred million suns of appetite,
+~en Her core holds a hundred million suns of appetite,
 an appetite twenty times the one we keep.
+~en an appetite twenty times the one we keep.
 For so long, they feared this dark at her core
+~en For so long, they feared this dark at her core
 and painted it      away.
+~en and painted it      away.
 
 In roughly four billion years,
+~en In roughly four billion years,
 they say, the galaxies will meet.
+~en they say, the galaxies will meet.
 She whose fate men once decided
+~en She whose fate men once decided
 now holds ours.
+~en now holds ours.
 
 The bound woman is coming,
+~en The bound woman is coming,
 and she has grown greater now
+~en and she has grown greater now
 than we can fathom.
+~en than we can fathom.
 
 And I wonder, as I admire from afar,
+~en And I wonder, as I admire from afar,
 the celestial vault that dazzles the night,
+~en the celestial vault that dazzles the night,
 if she is blazing home, or rather seeks revenge.
+~en if she is blazing home, or rather seeks revenge.
 ` },
 
-{ id: 'plus-ultra', title: 'Plus Ultra', langs: ['Italian', 'Latin'], codes: 'IT · LA', dir: 'ltr', script: false, src: `
+{ id: 'plus-ultra', title: 'Plus Ultra', langs: ['Italian', 'Latin'], codes: 'IT · LA', dir: 'ltr', script: false, lang: "it", trTitle: { en: "Further Beyond" },
+  notes: {"1": {"en": "The speaker's grandmother, who is also the subject of the fifth poem, “Nana”."}, "2": {"en": "Dante, Inferno XIV.51. Capaneus, the blasphemer lying unbowed under the rain of fire, says: “As I was alive, so am I dead.” He still defies Jove after death.<span class=\"nsrc\"><a href=\"https://divinacommedia.dante.global/inferno/testo/inf14.htm\" target=\"_blank\" rel=\"noopener\">Dante, Inferno XIV</a> · <a href=\"https://en.wikipedia.org/wiki/Capaneus\" target=\"_blank\" rel=\"noopener\">Wikipedia: Capaneus</a></span>"}, "3": {"en": "The antiphon sung as the body leaves the church at a Latin funeral Mass: “May the angels lead you into paradise.” It is also the last movement of Fauré's Requiem.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/In_paradisum\" target=\"_blank\" rel=\"noopener\">Wikipedia: In paradisum</a> · <a href=\"https://en.wikipedia.org/wiki/Requiem_(Faur%C3%A9)\" target=\"_blank\" rel=\"noopener\">Wikipedia: Requiem (Fauré)</a></span>"}, "4": {"en": "Saint-Exupéry's The Little Prince: the prince's single rose, which he loves because he has tamed her, and the fox's lesson that “you become responsible forever for what you have tamed”.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/The_Little_Prince\" target=\"_blank\" rel=\"noopener\">Wikipedia: The Little Prince</a></span>"}, "5": {"en": "“Nothing further beyond” was said to be inscribed on the Pillars of Hercules at the Strait of Gibraltar, the edge of the known world. Charles V dropped the non and took Plus Ultra, “further beyond”, as his motto; it is still Spain's national motto.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Plus_ultra_(motto)\" target=\"_blank\" rel=\"noopener\">Wikipedia: Plus ultra (motto)</a></span>"}},
+  more: [{"label": "Lux perpetua", "en": "From the Requiem introit: “Requiem aeternam dona eis, Domine, et lux perpetua luceat eis” (eternal rest grant them, O Lord, and let perpetual light shine on them). The poem answers: perpetual, yes, but never yours.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Requiem\" target=\"_blank\" rel=\"noopener\">Wikipedia: Requiem</a></span>"}, {"label": "Non spero: spiro", "en": "Inverts the Latin motto Dum spiro, spero, “while I breathe, I hope”. The next line does the same in a single letter: credo / crepo, “I believe” / “I burst”.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Dum_spiro_spero\" target=\"_blank\" rel=\"noopener\">Wikipedia: Dum spiro spero</a></span>"}, {"label": "in capulo", "en": "Latin capulus: coffin, bier.<span class=\"nsrc\"><a href=\"https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0059:entry=capulus\" target=\"_blank\" rel=\"noopener\">Perseus Digital Library</a></span>"}, {"label": "I muri fiammanti del mondo", "en": "Echoes Lucretius, De rerum natura 1.73: Epicurus's mind “went far beyond the flaming walls of the world” (flammantia moenia mundi), defying religion to do it.<span class=\"nsrc\"><a href=\"https://classicalanthology.theclassicslibrary.com/2019/06/16/de-rerum-natura-1-62-79-lucretius-devotion-to-epicurus/\" target=\"_blank\" rel=\"noopener\">Lucretius, De rerum natura 1.62–79</a></span>"}, {"label": "sino ad Andromeda", "en": "A reference to the third poem, “<span lang=\"grc\">ΑΝΔΡΟΜΕΔΑ</span>”: the galaxy and the princess."}, {"label": "Lucifero", "en": "Latin lucifer, “light-bearer”, the morning star, later the name of the fallen angel. The kiss for both God and Lucifer sits inside the poem's light imagery.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Lucifer\" target=\"_blank\" rel=\"noopener\">Wikipedia: Lucifer</a></span>"}, {"label": "Nec caelum est… mentre ardeva", "en": "The speaker is Giordano Bruno, burned at the stake in Rome's Campo de' Fiori in 1600. He taught an infinite universe with no centre and innumerable worlds, so the one who speaks “while he burned” is Bruno himself.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Giordano_Bruno\" target=\"_blank\" rel=\"noopener\">Wikipedia: Giordano Bruno</a></span>"}],
+  src: `
 # I. REQUIEM
+~en I. REQUIEM
 
 Mattina d’ottobre,
+~en An October morning,
 ‘na cassa di pino, chiaro.
+~en a pine box, pale;
 quattro maniglie d'ottone,
+~en four brass handles,
 col chiodo di pena, storto.
+~en and the nail of grief, driven in crooked.
 
 ornamento.   in morte
+~en ornament.   in death
 nessuno guarda
+~en no one looks
 
 rose bianche, già stanche,
+~en white roses, already weary,
 legate con lo spago;
+~en tied up with string;
 né la cera che cola
+~en nor the wax that drips
 e s'indurisce sul marmo,
+~en and hardens on the marble,
 
 sandalo.   in scandalo
+~en sandalwood.   in scandal
 nessuno sente
+~en no one senses
 
 Un Odore di terra bagnata,
+~en A Smell of wet earth,
 d'incenso e di catrame,
+~en of incense and of tar;
 fuori, sull'asfalto
+~en outside, on the asphalt,
 colombi e due gomme,
+~en pigeons, and two tires,
 
 incerti.   in transitu
+~en uncertain.   in passing
 nessuno riprende
+~en no one takes it up again
 
 una catena d'oro
+~en a gold chain
 sul collo di [[Nana|1]],
+~en on Nana's neck,
 e le sue mani guidando
+~en and her hands guiding
 la luce per buio.
+~en the light through the dark.
 
 benedicendo.   in capulo
+~en blessing.   on the bier
 tutti conoscono
+~en everyone knows
 
-il uomo nel legno,
+l'uomo nel legno,
+~en the man in the wood,
 con la mia faccia,
+~en with my face,
 le mie mani e paure
+~en my hands and my fears
 pettinate per bene
+~en neatly combed
 
 ornamento.   post mortem
-nessuno sapra:
+~en ornament.   post mortem
+nessuno saprà:
+~en no one will know:
 
 mai ci credevo
+~en I never believed
 quello che dissero.
+~en a word of what they said.
 [[*Qual io fui vivo,*|2]]
+~en What I was alive,
 *tal son morto.*
+~en such am I dead.
 
 # II. IN PARADISUM
+~en II. INTO PARADISE
 
 Ed entra il coro:
+~en And the choir comes in:
 
 [[*In paradisum deducant te angeli*|3]] —
+~en May the angels lead you into paradise —
 
 e la voce, cristallina,
+~en and the voice, crystalline,
 scende, e non è suono:
+~en descends, and is not sound:
 
 E l'armonia angelica,
+~en And the angelic harmony,
 l'aria organometallica,
+~en the organ-metal air,
 mi passa per capum
+~en passes through my head:
 ignis est deorum.
+~en it is the fire of the gods.
 
 Non spero: spiro.
+~en I do not hope: I breathe.
 Non ci credo: ne crepo.
+~en I do not believe: I burst.
 La mia hybris implode
+~en My hubris implodes
 in milli trilli santi,
+~en into a thousand holy trills,
 
 e dall'implosione
+~en and from the implosion
 la spinta prendo.
+~en I take my thrust.
 
 *Lux perpetua*
+~en Light perpetual
 
 *Perpetua*, immo:
+~en Perpetual, yes indeed:
 Sed nōn hīc:
+~en But not here:
 Nōn vestra:
+~en Not yours:
 Nunquam vestra erat
+~en It was never yours
 
 # III. CONGEDO I
+~en III. ENVOI I
 
 Dunque vado.
+~en So I go.
 
 Addio alla creta,
+~en Farewell to the clay,
 al fango ed alla radice,
+~en to the mud and to the root,
 al pane, al vino,
+~en to the bread, to the wine,
 alla ruggine sui cancelli.
+~en to the rust on the gates.
 
 Addio alla cera
+~en Farewell to the wax
 che si scioglie
+~en that melts away
 per illuminare un santo
+~en to light up a saint
 di gesso.
+~en made of plaster.
 
 Addio alle cose
+~en Farewell to the things
 che finiscono.
+~en that come to an end.
 
 Una rosa mi mira
+~en A rose gazes at me
 e per un momento resto.
+~en and for a moment I stay.
 [[La rosa del principe|4]],
+~en The prince's rose,
 l'unica, la mia,
+~en the only one, mine,
 quella che avevo addomesticato.
+~en the one I had tamed.
 
 Resto.
+~en I stay.
 
 E poi vado lo stesso.
+~en And then I go all the same.
 
 Addio pur a lui,
+~en Farewell to him as well,
 piccolo, laggiù,
+~en small, down there,
 che tiene ancora il cappello in mano
+~en still holding his hat in his hand,
 e non sa alzare la testa.
+~en unable to lift his head.
 
 # IV. CONGEDO II
+~en IV. ENVOI II
 
 Dunque prendo volo.
+~en So I take flight.
 
 La nuvola si apre
+~en The cloud opens,
 Non per il Portalo
+~en Not for the Portal;
 La gravità graziosa
+~en gracious gravity
 per me non è più grave.
+~en weighs on me no more.
 
 
 O Dio, se ci sei davvero,
+~en O God, if You are really there,
 a Te vengo a parlare !
+~en I am coming to speak to You!
 
 Non mi fido di Te,
+~en I do not trust You,
 e non Ti chiedo venia,
+~en and I do not ask Your pardon,
 ché mai crederò
-in quello che non mi lasci tocare !
+~en for I will never believe
+in quello che non mi lasci toccare !
+~en in what You will not let me touch!
 
 I muri fiammanti
+~en The flaming walls
 del mondo li rompo —
+~en of the world — I break them;
 Vado oltre i mondi,
+~en I go beyond the worlds,
 e sino ad Andromeda: addio.
+~en as far as Andromeda: farewell.
 
 E a Te, darò un bacio.
+~en And to You, I will give a kiss.
 Ed a Lucifero pure !
+~en And to Lucifer as well!
 
 *Qual io fui vivo,*
+~en What I was alive,
 *tal son morto !*
+~en such am I dead!
 
 # V. PLUS ULTRA
+~en V. FURTHER BEYOND
 
 Su le colonne antiche
+~en On the ancient columns
 stava inciso: [[*non plus ultra.*|5]]
+~en was carved: non plus ultra.
 Non oltre. Férmati.
+~en No further. Stop.
 
 Nec caelum est,
+~en There is no heaven,
 nec profundum est,
+~en there is no depth,
 nec medium est
+~en there is no middle
 —così diceva a Roma
+~en — so he said in Rome
 mentre ardeva !
+~en as it burned!
 
 Non giungo.
+~en I do not arrive.
 Non voglio giungere.
+~en I do not want to arrive.
 
 Movo ove il lume
+~en I move where the light
 ancor non ha un nome,
+~en has no name yet,
 
 *plus ultra,*
+~en further beyond,
 *plus ultra,*
+~en further beyond,
 
 e più in là !
+~en and further still!
 ` },
 
-{ id: 'nana', title: 'Nana', langs: ['French'], codes: 'FR', dir: 'ltr', script: false, src: `
+{ id: 'nana', title: 'Nana', langs: ['French'], codes: 'FR', dir: 'ltr', script: false, lang: "fr", trTitle: { en: "Nana" },
+  notes: {"1": {"en": "Nana is the poet's grandmother, who loves orchids; the poem is about her."}},
+  more: [{"label": "The form", "en": "A French sonnet in alexandrines, the twelve-syllable classic line of French verse, framed by a refrain couplet.<span class=\"nsrc\"><a href=\"https://fr.wikipedia.org/wiki/Alexandrin\" target=\"_blank\" rel=\"noopener\">Wikipedia (fr): Alexandrin</a> · <a href=\"https://fr.wikipedia.org/wiki/Sonnet\" target=\"_blank\" rel=\"noopener\">Wikipedia (fr): Sonnet</a></span>"}, {"label": "chue", "en": "The literary past participle of choir, “to fall”.<span class=\"nsrc\"><a href=\"https://fr.wiktionary.org/wiki/choir\" target=\"_blank\" rel=\"noopener\">Wiktionary</a></span>"}],
+  src: `
 *Buvant la nuit pour rendre le jour,*
+~en Drinking in the night to give back the day,
 *les [[orchidées|1]] de Nana demeurent toujours.*
+~en Nana's orchids remain, always.
 
 
 Nana enchante un champ de [[poussière étoilée|2]].
+~en Nana enchants a field of stardust.
 Elle bêche et remue la terre nourricière,
+~en She digs and turns the nourishing earth,
 tout en leur chantant une éternelle prière,
+~en singing to them all the while an endless prayer,
 et chaque orchidée, un petit astre blessé.
+~en and every orchid is a small, wounded star.
 
 Et quand une étincelle chue du ciel, brisée,
+~en And when a spark fallen from the sky, broken,
 que Nana recueille de sa main tutélaire,
+~en which Nana gathers in her guardian hand,
 replante et nourrit de son amour de grand-mère,
+~en replants, and feeds with her grandmother's love,
 brille — elle sourit d’un grand sourire comblé.
+~en shines — she smiles a wide, contented smile.
 
 Et quand mes yeux, versent des perles de diamants,
+~en And when my eyes pour out pearls of diamond,
 des éclats de chagrin, elle essuie ardemment,
+~en splinters of grief, she wipes them away fervently,
 faisant vivre l’instant; l’apaiser doucement.
+~en making the moment live; soothing it gently.
 
 Quand elle ne sera plus là pour nous bercer,
+~en When she is no longer here to rock us to sleep,
 Nana brillera sur nous, puis sur les bébés,
+~en Nana will shine on us, then on the babies,
 faisant vivre les fleurs; béantes calmement.
+~en making the flowers live; calmly opened wide.
 
 
 *Buvant la nuit pour rendre l’amour,*
+~en Drinking in the night to give back love,
 *les orchidées de Nana brilleront toujours.*
+~en Nana's orchids will shine forever.
 ` },
 
-{ id: 'no-tengas-rencor', title: 'No tengas rencor, amor.', untitled: true, langs: ['Spanish'], codes: 'ES', dir: 'ltr', script: false, src: `
+{ id: 'no-tengas-rencor', title: 'No tengas rencor, amor.', untitled: true, langs: ['Spanish'], codes: 'ES', dir: 'ltr', script: false, lang: "es", trTitle: { en: "Don't hold it against me, my love." },
+  notes: {},
+  more: [{"label": "que implotando explote", "en": "The closing lines follow a real stellar death: in a core-collapse supernova the core implodes and the rebound blows the star apart. Compare the “llanto supernova” of “777”.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Supernova\" target=\"_blank\" rel=\"noopener\">Wikipedia: Supernova</a></span>"}],
+  src: `
 *No tengas rencor, amor.*
+~en Don't hold it against me, my love.
 *Sabe que yo*
+~en Know that I
 *no te he olvidado.*
+~en have not forgotten you.
 
 La vida es una estrella
+~en Life is a star
 que brilla, brilla.
+~en that shines and shines.
 Antes no sabes que arde,
+~en At first you don't know it is burning;
 solo da, y da,
+~en it only gives, and gives,
 rosas rayas buscando
+~en pink rays searching
 tu ojo llorando.
+~en for your weeping eye.
 
 Y tú, [[niño omnisciente|1]],
+~en And you, all-knowing child,
 quien brillas, brillas,
+~en you who shine and shine,
 no sabes que ocultas
-tus gastas, gastas
+~en you don't know that you are hiding
+te gastas, gastas
+~en how you spend yourself, and spend,
 te regalas entero
+~en you give yourself away entire
 \t*al cielo que ni te mira.*
+~en to a sky that won't even look at you.
 
 
 QUE IMPLOTANDO EXPLOTE
+~en MAY IT EXPLODE BY IMPLODING
 QUE OFUSCANDO ALUMBRE
+~en MAY IT GIVE LIGHT BY DARKENING
 QUE CREANDO DESTROCE
+~en MAY IT DESTROY BY CREATING
 Y QUE MATANDO AME
+~en AND MAY IT LOVE BY KILLING
 ` },
 
 { id: 'safek', title: 'סָפֵק בלי סוף', roma: 'Safek Bli Sof', langs: ['Hebrew'], codes: 'HE', dir: 'rtl', script: true,
-  trTitle: { en: 'Doubt Without End' }, src: `
+  trTitle: { en: 'Doubt Without End' }, lang: "he",
+  notes: {"1": {"en": "“The Infinite Light”. In Lurianic Kabbalah, as recorded by Chaim Vital in Etz Chaim, the light of Ein Sof first fills everything, leaving no room (lo hayah makom) for a world.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Lurianic_Kabbalah\" target=\"_blank\" rel=\"noopener\">Wikipedia: Lurianic Kabbalah</a> · <a href=\"https://en.wikipedia.org/wiki/Isaac_Luria\" target=\"_blank\" rel=\"noopener\">Wikipedia: Isaac Luria</a></span>"}, "2": {"en": "Tzimtzum: God's contraction, or withdrawal, of the infinite light to leave an empty space (chalal), into which a single line of light (kav) enters, the exact sequence of these lines. The same root returns at the end (<bdi lang=\"he\">יִצְטַמְצֵם</bdi>), when the story contracts into a book.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Tzimtzum\" target=\"_blank\" rel=\"noopener\">Wikipedia: Tzimtzum</a></span>"}, "3": {"en": "Shevirat ha-kelim, “the breaking of the vessels”: the vessels made to hold the light could not contain it and shattered, scattering sparks (nitzotzot) into all things. In Luria, gathering those sparks is the work of tikkun.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Lurianic_Kabbalah\" target=\"_blank\" rel=\"noopener\">Wikipedia: Lurianic Kabbalah</a></span>"}, "4": {"en": "The four worlds of Kabbalah: Atzilut (Emanation), Beriah (Creation), Yetzirah (Formation) and Assiah (Action), the levels between the divine and this world.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Four_Worlds\" target=\"_blank\" rel=\"noopener\">Wikipedia: Four Worlds</a></span>"}, "5": {"en": "Isaiah 45:11: “Ask Me of the things to come (ha-otiyot).” There the word means “the coming things” or “signs”, but it is spelled the same as <bdi lang=\"he\">אוֹתִיּוֹת</bdi>, “letters”, the word the poem has just used (“letters of light”).<span class=\"nsrc\"><a href=\"https://www.chabad.org/library/bible_cdo/aid/15976/jewish/Chapter-45.htm\" target=\"_blank\" rel=\"noopener\">Chabad.org: Isaiah 45</a></span>"}},
+  more: [{"label": "The title", "en": "“Doubt without end” plays on Ein Sof, “without end”, the Kabbalistic name for the Infinite.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Ein_Sof\" target=\"_blank\" rel=\"noopener\">Wikipedia: Ein Sof</a></span>"}, {"label": "בְּרֵאשִׁית הָיָה קוֹל", "en": "“In the beginning was a voice” joins Genesis 1:1 (Bereshit) to John 1:1 (“In the beginning was the Word”). The voice then breaks into tongues (safot), as at the Tower of Babel, where safah is the word for language.<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Genesis.1.1\" target=\"_blank\" rel=\"noopener\">Sefaria: Genesis 1:1</a> · <a href=\"https://www.sefaria.org/Genesis.11.1\" target=\"_blank\" rel=\"noopener\">Sefaria: Genesis 11:1</a> · <a href=\"https://en.wikipedia.org/wiki/John_1:1\" target=\"_blank\" rel=\"noopener\">Wikipedia: John 1:1</a></span>"}, {"label": "דְּבָרִים words / things", "en": "Hebrew davar means both “word” and “thing”.<span class=\"nsrc\"><a href=\"https://en.wiktionary.org/wiki/%D7%93%D7%91%D7%A8\" target=\"_blank\" rel=\"noopener\">Wiktionary</a></span>"}, {"label": "מִצַּלְעוֹ", "en": "Eve from Adam's rib (tzela): Genesis 2:21–22.<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Genesis.2.21\" target=\"_blank\" rel=\"noopener\">Sefaria: Genesis 2:21</a></span>"}, {"label": "הַשַּׁרְשֶׁרֶת The Chain", "en": "Recalls seder hishtalshelut, the Kabbalistic chain of descent of the worlds from the Infinite down to this one. Here the chain runs from the voice down to “me”.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Seder_hishtalshelus\" target=\"_blank\" rel=\"noopener\">Wikipedia: Seder hishtalshelus</a></span>"}, {"label": "The Inverted Revelation", "en": "The “You said” lines quote Isaiah 44–45: “I am the Lord who makes all things, who alone stretched out the heavens” (44:24); “who calls you by your name” (45:3); “I form light and create darkness” (45:7); “Truly You are a God who hides Himself” (45:15). In Isaiah 45:4 God says “I called you by your name… though you have not known Me”; the poem turns it around: if You called me by my name, why do I not know You?<span class=\"nsrc\"><a href=\"https://www.chabad.org/library/bible_cdo/aid/15976/jewish/Chapter-45.htm\" target=\"_blank\" rel=\"noopener\">Chabad.org: Isaiah 45</a> · <a href=\"https://www.sefaria.org/Isaiah.44.24\" target=\"_blank\" rel=\"noopener\">Sefaria: Isaiah 44:24</a></span>"}],
+  src: `
 # הַיְרִידָה
 = ha-yeridah
+~en The Descent
 
 [[אוֹר אֵין־סוֹף|1]]
 = Or Ein Sof
@@ -741,6 +1039,7 @@ Y QUE MATANDO AME
 
 # הַשַּׁרְשֶׁרֶת
 = ha-sharsheret
+~en The Chain
 
 בְּרֵאשִׁית הָיָה קוֹל
 = bereshit hayah kol
@@ -769,16 +1068,18 @@ Y QUE MATANDO AME
 ~en And in the voices — speech.
 וּבַדִּבּוּר — מִלָּה
 = u-va-dibbur — milah
-~en And from the speech — a word.
+~en And in the speech — a word.
 וְהַמִּלָּה הַהִיא הָיְתָה אֲנִי
 = ve-ha-milah ha-hi haytah ani
 ~en And that word became me.
 
 # [ נְשִׁימָה ]
 = neshimah
+~en [ Breath ]
 
 # הָעֲלִיָּה
 = ha-aliyah
+~en The Ascent
 
 וַאֲנִי — חֵלֶק מִן־הָעוֹלָם
 = va-ani — chelek min ha-olam
@@ -823,9 +1124,11 @@ Y QUE MATANDO AME
 
 # [ נְשִׁימָה ]
 = neshimah
+~en [ Breath ]
 
 # הַמַּחֲנָק
 = ha-machanak
+~en The Choking
 
 וְאִם מִמֶּנּוּ הַכֹּל
 = ve-im mimenu ha-kol
@@ -836,9 +1139,9 @@ Y QUE MATANDO AME
 לָמָּה נִסְתָּר, לָמָּה שׁוֹתֵק
 = lamah nistar, lamah shotek
 ~en Why hidden, why silent?
-לָמָּה [[עֲשָׂרָה עוֹלָמוֹת|4]] בֵּינִי וּבֵינוֹ
-= lamah asarah olamot beini u-veino
-~en Why ten worlds between me and Him?
+לָמָּה [[אַרְבָּעָה עוֹלָמוֹת|4]] בֵּינִי וּבֵינוֹ
+= lamah arba'ah olamot beini u-veino
+~en Why four worlds between me and Him?
 לָמָּה, לָמָּה, לָמָּה
 = lamah, lamah, lamah
 ~en Why, why, why?
@@ -848,6 +1151,7 @@ Y QUE MATANDO AME
 
 # הַהִתְגַּלּוּת הַהֲפוּכָה
 = ha-hitgalut ha-hafukhah
+~en The Inverted Revelation
 
 אָמַרְתָּ: אָנֹכִי עֹשֶׂה כֹּל
 = amarta: Anokhi oseh kol
@@ -890,97 +1194,150 @@ Y QUE MATANDO AME
 ~en cannot find Yourself?
 ` },
 
-{ id: 'lashon', title: 'לָשׁוֹן', roma: 'Lashon', langs: ['Hebrew'], codes: 'HE', dir: 'rtl', script: true, src: `
+{ id: 'lashon', title: 'לָשׁוֹן', roma: 'Lashon', langs: ['Hebrew'], codes: 'HE', dir: 'rtl', script: true, lang: "he", trTitle: { en: "Tongue" },
+  notes: {"1": {"en": "“A two-edged sword”, literally “a sword of mouths” (pi, mouth): the tongue is built into the idiom. Psalm 149:6; compare Proverbs 5:4.<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Psalms.149.6\" target=\"_blank\" rel=\"noopener\">Sefaria: Psalms 149:6</a> · <a href=\"https://www.sefaria.org/Proverbs.5.4\" target=\"_blank\" rel=\"noopener\">Sefaria: Proverbs 5:4</a></span>"}, "2": {"en": "Proverbs 18:21, quoted exactly: “Death and life are in the power of the tongue.”<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Proverbs.18.21\" target=\"_blank\" rel=\"noopener\">Sefaria: Proverbs 18:21</a></span>"}, "3": {"en": "“The tongue is holy” plays on lashon ha-kodesh, “the holy tongue”, the traditional name for Hebrew. Lashon means both “tongue” and “language”, which is why the English keeps “tongue” throughout.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Lashon_Hakodesh\" target=\"_blank\" rel=\"noopener\">Wikipedia: Lashon Hakodesh</a></span>"}},
+  more: [],
+  src: `
 הַלָּשׁוֹן קְדוֹשָׁה, וְעַל־כֵּן [[חֶרֶב פִּיפִיּוֹת|1]]
 = Ha-lashon kdoshah, ve-al ken cherev pifiyot
+~en The tongue is holy, and so it is a two-edged sword;
 הֵם אוֹמְרִים: מָוֶת וְחַיִּים [[בְּיַד־לָשׁוֹן|2]]
 = Hem omrim: mavet ve-chayyim be-yad lashon
+~en they say: death and life are in the power of the tongue,
 וְהָאוֹחֵז בָּהּ — יִזָּהֵר פֶּן תַּחְתֹּךְ בּוֹ
 = Ve-ha-ochez bah — yizaher pen tachtokh bo
+~en and whoever takes hold of it, let him beware it does not cut him.
 
 
 לֹא אֲנִי בָּאתִי [[אֶל־הַלָּשׁוֹן|3]]
 = Lo ani bati el ha-lashon
+~en It was not I who came to the tongue:
 [[וָאָבֹא|4]] בַּלָּשׁוֹן וְהַלָּשׁוֹן בִּי בָּאָה
 = va-avo ba-lashon ve-ha-lashon bi ba'ah
+~en I came into the tongue, and the tongue came into me.
 בָּהּ אֲנִי חוֹשֵׁב, וַאֲנִי רוֹאֶה בָּהּ
 = Bah ani choshev, va-ani ro'eh bah
+~en In it I think, and by it I see.
 ` },
 
-{ id: 'maskil', title: 'מַשְׂכִּיל לְזֶרַע יִשְׂרָאֵל', roma: 'Maskil le-Zera Yisrael', langs: ['Hebrew'], codes: 'HE', dir: 'rtl', script: true, src: `
+{ id: 'maskil', title: 'מַשְׂכִּיל לְזֶרַע יִשְׂרָאֵל', roma: 'Maskil le-Zera Yisrael', langs: ['Hebrew'], codes: 'HE', dir: 'rtl', script: true, lang: "he", trTitle: { en: "A Maskil by or for the Zera Yisrael" },
+  notes: {"1": {"en": "Psalm 42:2, quoted exactly: “As a deer longs for streams of water, so my soul longs for You, O God.” The next line adapts 42:3, “My soul thirsts for God.”<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Psalms.42.2\" target=\"_blank\" rel=\"noopener\">Sefaria: Psalms 42:2</a></span>"}, "2": {"en": "The stanza weaves together Jonah 2:4 (“You cast me into the deep, into the heart of the seas… all Your breakers and waves passed over me”), Psalm 42:8 (“Deep calls to deep”), rewritten as “wave called out to wave”, and Psalm 69:2 (“the waters have come up to my soul”).<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Jonah.2.4\" target=\"_blank\" rel=\"noopener\">Sefaria: Jonah 2:4</a> · <a href=\"https://www.sefaria.org/Psalms.42.8\" target=\"_blank\" rel=\"noopener\">Sefaria: Psalms 42:8</a> · <a href=\"https://www.sefaria.org/Psalms.69.2\" target=\"_blank\" rel=\"noopener\">Sefaria: Psalms 69:2</a></span>"}, "3": {"en": "“Other waters”: baptism, set against the Jewish ritual immersion of the mikveh. Hebrew uses the same root, <bdi lang=\"he\">ט־ב־ל</bdi>, for both.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Mikveh\" target=\"_blank\" rel=\"noopener\">Wikipedia: Mikveh</a></span>"}, "4": {"en": "Psalm 119:18, “Gal einai ve-abitah”, “Open my eyes, that I may behold.” Here gal is the imperative of “uncover”, spelled the same as gal, “wave”, from the second stanza: the Hebrew verb that means both wave and uncover.<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Psalms.119.18\" target=\"_blank\" rel=\"noopener\">Sefaria: Psalms 119:18</a></span>"}},
+  more: [{"label": "The title", "en": "Maskil is the heading of several psalms, including Psalm 42, which the poem opens by quoting. In modern Hebrew a maskil is also a follower of the Haskalah, the Jewish Enlightenment: “I measure the world in number and in doubt.” The Hebrew le- can mean “by” or “for”, so the poem is a maskil by, or for, the Zera Yisrael.<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Psalms.42.1\" target=\"_blank\" rel=\"noopener\">Sefaria: Psalms 42:1</a> · <a href=\"https://en.wikipedia.org/wiki/Haskalah\" target=\"_blank\" rel=\"noopener\">Wikipedia: Haskalah</a></span>"}, {"label": "זֶרַע יִשְׂרָאֵל Zera Yisrael", "en": "“Seed of Israel”: a term in Jewish law for someone of Jewish descent who is not Jewish under the traditional matrilineal rule, for example through a father or grandparent, or a family that left Judaism generations ago. That is the speaker's situation in the fourth stanza, where the great-grandmother was immersed in “other waters”.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Zera_Yisrael\" target=\"_blank\" rel=\"noopener\">Wikipedia: Zera Yisrael</a></span>"}, {"label": "יְהַלְלוּהוּ שָׁמַיִם וָאָרֶץ", "en": "Psalm 69:35, quoted exactly: “Let heaven and earth praise Him, the seas and everything that moves in them.”<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Psalms.69.35\" target=\"_blank\" rel=\"noopener\">Sefaria: Psalms 69:35</a></span>"}, {"label": "כָּלוּ עֵינַי מְיַחֵל לֵאלֹהָי", "en": "Psalm 69:4, quoted exactly: “My eyes fail while I wait for my God.” Psalm 69, a psalm of drowning (“I have sunk in deep mire”, 69:3), runs under the whole poem.<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Psalms.69.4\" target=\"_blank\" rel=\"noopener\">Sefaria: Psalms 69:4</a> · <a href=\"https://www.sefaria.org/Psalms.69.3\" target=\"_blank\" rel=\"noopener\">Sefaria: Psalms 69:3</a></span>"}, {"label": "קוֹרֶה / כּוֹרֵעַ", "en": "“Happens” and “kneels” are near-homophones in Hebrew (koreh / korea), a pun English can't keep."}, {"label": "הוֹגֶה", "en": "To murmur, recite or meditate, as in Psalm 1:2: “on His Torah he meditates day and night.”<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Psalms.1.2\" target=\"_blank\" rel=\"noopener\">Sefaria: Psalms 1:2</a></span>"}, {"label": "הַתְּהוֹם", "en": "Tehom, “the deep”, the primeval deep of Genesis 1:2.<span class=\"nsrc\"><a href=\"https://www.sefaria.org/Genesis.1.2\" target=\"_blank\" rel=\"noopener\">Sefaria: Genesis 1:2</a></span>"}],
+  src: `
 [[כְּאַיָּל תַּעֲרֹג|1]] עַל־אֲפִיקֵי מָיִם
 = Ke-ayal ta'arog al afikei mayim
+~en As a deer longs for streams of water,
 כֵּן נַפְשִׁי תַעֲרֹג אֵלֶיךָ אֱלֹהִים
 = Ken nafshi ta'arog eilekha Elohim
+~en so my soul longs for You, O God.
 צָמְאָה נַפְשִׁי לְמַעַנְךָ
 = Tzam'ah nafshi le-ma'ankha
+~en My soul is thirsty for You,
 אַךְ יָרֵאתִי פֶּן־לֹא תַעֲנֶה
 = Akh yareti pen lo ta'aneh
+~en but I was afraid You would not answer.
 
 וַתַּשְׁלִיכֵנִי מְצוּלָה בִּלְבַב יַמִּים
 = Va-tashlikheni metzulah bi-lvav yamim
+~en You cast me into the deep, into the heart of the seas;
 מִשְׁבָּר עַל מִשְׁבָּר עָבַר עָלַי
 = Mishbar al mishbar avar alai
+~en breaker upon breaker swept over me,
 וַיִּקְרָא [[גַּל|2]] אֶל גַּל בַּלָּיְלָה
 = Va-yikra gal el gal ba-laylah
+~en and wave called out to wave in the night,
 וְלֹא נִשְׁמַע עוֹד, כִּי עַד־נֶפֶשׁ בָּאוּ מָיִם
 = Ve-lo nishma od, ki ad nefesh ba'u mayim
+~en and was heard no more, for the waters had come up to my soul.
 
 קוֹרֵא אֲנִי בַּתְּהִלִּים
 = Kore ani ba-Tehillim
+~en I read in the Psalms:
 יְהַלְלוּהוּ שָׁמַיִם וָאָרֶץ
 = Yehaleluhu shamayim va-aretz
+~en let heaven and earth praise Him,
 יַמִּים וְכָל־רֹמֵשׂ בָּם
 = Yamim ve-khol romes bam
+~en the seas, and everything that moves in them.
 אַךְ אֵיךְ אֲהַלֵּל
 = Akh eikh ahalel
+~en But how am I to praise?
 
 וְסָבָתִי לֹא יָדְעָה עִבְרִית
 = Ve-savati lo yad'ah ivrit
+~en My grandmother did not know Hebrew,
 וְאִמָּהּ הִטְבִּילוּהָ [[בְּמַיִם אֲחֵרִים|3]]
 = Ve-imah hitbiluha be-mayim acherim
+~en and her mother was immersed in other waters.
 אֵינֶנִּי מַאֲמִין כְּפִי שֶׁהֵם הֶאֱמִינוּ
 = Eineni ma'amin kefi she-hem he'eminu
+~en I do not believe the way they believed;
 אֲנִי מוֹדֵד עוֹלָם בְּמִסְפָּר וּבְסָפֵק
 = Ani moded olam be-mispar u-ve-safek
+~en I measure the world in number and in doubt.
 
 כָּלוּ עֵינַי מְיַחֵל לֵאלֹהָי
 = Kalu einai meyachel l'Elohai
+~en My eyes have worn out, waiting for my God.
 [[גַּל עֵינַי|4]] וְאַבִּיטָה, אֱלֹהָי
 = Gal einai ve-abitah, Elohai
+~en Open my eyes, that I may see, my God:
 מַדּוּעַ כְּשֶׁאֲנִי הוֹגֶה מִלָּה עַתִּיקָה
 = Madua kshe-ani hogeh milah atikah
+~en why, when I murmur an ancient word,
 מַשֶּׁהוּ קוֹרֶה בִּי, מַשֶּׁהוּ בִּי כּוֹרֵעַ
 = Mashehu koreh bi, mashehu bi korea
+~en does something happen in me, something in me kneel?
 
 עַל־כֵּן אֶכְתֹּב לְמַעַן אֶשְׁאַף רוּחַ
 = Al ken ekhtov le-ma'an esh'af ruach
+~en So I write, that I may draw breath;
 אֶכְתֹּב לְמַעַן לֹא אֶטְבַּע
 = Ekhtov le-ma'an lo etba
+~en I write so that I will not drown,
 כִּי הַכּוֹתֵב מֵרִים רֹאשׁוֹ
 = Ki ha-kotev merim rosho
+~en for the one who writes lifts his head,
 מְעַט מְעַט מֵעַל הַתְּהוֹם
 = Me'at me'at me'al ha-tehom
+~en little by little, above the deep.
 ` },
 
-{ id: '777', title: '777', titleNote: 1, langs: ['Spanish'], codes: 'ES', dir: 'ltr', script: false, src: `
+{ id: '777', title: '777', titleNote: 1, langs: ['Spanish'], codes: 'ES', dir: 'ltr', script: false, lang: "es", trTitle: { en: "777" },
+  notes: {"2": {"en": "A supernova is the explosive death of a star, briefly outshining its whole galaxy: the destello último, the last flash. Compare the closing lines of “No tengas rencor, amor.”<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Supernova\" target=\"_blank\" rel=\"noopener\">Wikipedia: Supernova</a></span>"}},
+  more: [{"label": "Mientras por competir…", "en": "The opening copies the opening of Góngora's sonnet “Mientras por competir con tu cabello” (1582), and the mientras… mientras… mientras structure follows its run of “while…” clauses. Góngora ends on “en tierra, en humo, en polvo, en sombra, en nada”; this sonnet answers with “el aire, el fuego, el trueno y la mente”, and humo (smoke) becomes me ahúma.<span class=\"nsrc\"><a href=\"https://es.wikisource.org/wiki/Mientras_por_competir_con_tu_cabello\" target=\"_blank\" rel=\"noopener\">Wikisource</a></span>"}, {"label": "muero", "en": "The last word breaks the -oro rhyme (oro / enamoro / muero) on purpose: the rhyme dies with the speaker."}, {"label": "ruego", "en": "Rogar is both to pray and to beg."}, {"label": "claroscuro", "en": "Chiaroscuro: the painter's play of strong light and shadow.<span class=\"nsrc\"><a href=\"https://en.wikipedia.org/wiki/Chiaroscuro\" target=\"_blank\" rel=\"noopener\">Wikipedia: Chiaroscuro</a></span>"}, {"label": "de la raíz a rama", "en": "An echo of “Sakura”: “raíz a rama — rojo mutado”."}],
+  src: `
 Mientras por competir con tu ojo puro,
+~en While, to compete with your pure eye,
 siete prismas del sol le muerden fuego;
+~en seven prisms of the sun bite fire from it;
 mientras, en fractales del mundo ciego,
+~en while, in the fractals of the blind world,
 siete golpes magullan, los enduro;
+~en seven blows bruise me, and I endure them;
 
 Mientras con ambos labios al sol juro,
+~en while with both lips I swear to the sun
 No negar mi sed que es sin sosiego;
+~en never to deny my thirst, which knows no rest;
 mientras me ahúma aire sangre, me entrego,
+~en while air and blood fill me with smoke, I give myself,
 de la raíz a rama, al claroscuro:
+~en from the root to the branch, to the chiaroscuro:
 
 ruego el aire, el fuego, el trueno y la mente,
+~en I beg the air, the fire, the thunder and the mind,
 y responde el sol al explotar en oro,
+~en and the sun answers, bursting into gold,
 matando pensamientos de repente.
+~en killing every thought at once.
 
 No solo en luz o en halo me enamoro,
+~en Not only in light or in a halo do I fall in love,
 mas con destello último, juntamente,
+~en but with one last flash, all together,
 en llanto [[supernova|2]], ardo y me muero
+~en in a supernova of tears, I burn and I die
 ` }
 
 ];
@@ -992,7 +1349,7 @@ en llanto [[supernova|2]], ardo y me muero
   const UI = { en: {
     translate: 'Translate', enter: 'Enter the poems →', preface: 'Preface', bibliography: 'Bibliography', index: 'Index',
     about: 'About this poem', aboutTBD: '[The inspiration behind the poem — TBD]', notes: 'Notes', noteTBD: '[Note — TBD]',
-    roma: 'Romanization', tr: 'Translation', soon: 'soon', note: 'Note', original: 'Original'
+    roma: 'Romanization', tr: 'Translation', soon: 'soon', note: 'Note', original: 'Original', more: 'More notes'
   } }[L];
   const LANGNAME = { en: 'English', fr: 'Français', es: 'Español' };
   const app = document.getElementById('app');
@@ -1004,6 +1361,9 @@ en llanto [[supernova|2]], ardo y me muero
   const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const isHe = s => /[֐-׿]/.test(s);
   const isBig = s => /[぀-鿿ሀ-፿]/.test(s);
+  const lineLang = (s, p, epi) => isHe(s) ? 'he' : /[ሀ-፿]/.test(s) ? 'am' : /[぀-ヿ一-鿿]/.test(s) ? 'ja' :
+    (/[Ͱ-Ͽἀ-῿]/.test(s) && !/[a-z]{3}/.test(s.replace(/[Ͱ-Ͽἀ-῿]/g, ''))) ? 'grc' : (epi && p.epiLang) ? p.epiLang : (p.lang || '');
+  const langAttr = l => l ? ' lang="' + l + '"' + (l === 'he' ? ' dir="rtl"' : '') : '';
 
   /* ---------- the poem format ---------- */
   function tok(str) {
@@ -1020,11 +1380,12 @@ en llanto [[supernova|2]], ardo y me muero
     return out;
   }
   const plain = toks => toks.map(t => t.inner ? plain(t.inner) : t.s).join('');
-  function inl(toks, notes) {
+  function inl(toks, notes, have) {
     return toks.map(t => {
       if (t.k === 't') return esc(t.s);
-      if (t.k === 'i') return '<i>' + esc(t.s) + '</i>';
-      if (t.k === 'b') return '<b>' + esc(t.s) + '</b>';
+      if (t.k === 'i') return '<i>' + inl(tok(t.s), notes, have) + '</i>';
+      if (t.k === 'b') return '<b>' + inl(tok(t.s), notes, have) + '</b>';
+      if (have && !have(t.n)) return inl(t.inner);
       if (notes && !notes.some(x => x.n === t.n)) notes.push({ n: t.n, label: plain(t.inner).trim() });
       return '<button type="button" class="a" data-n="' + t.n + '" aria-pressed="false">' + inl(t.inner) + '<sup>' + t.n + '</sup></button>';
     }).join('');
@@ -1104,35 +1465,49 @@ en llanto [[supernova|2]], ardo y me muero
     const p = POEMS[i], rtl = p.dir === 'rtl', canTr = hasTr(p);
     const roma = state.roma && p.script, split = state.split && canTr;
     const notes = [];
+    const have = p.notes ? n => !!(p.notes[n] && p.notes[n][L]) : null;
     let title = esc(p.title);
-    if (p.titleNote) { notes.push({ n: p.titleNote, label: p.title }); title = '<button type="button" class="a" data-n="' + p.titleNote + '" aria-pressed="false">' + title + '<sup>' + p.titleNote + '</sup></button>'; }
+    if (p.titleNote && (!have || have(p.titleNote))) { notes.push({ n: p.titleNote, label: p.title }); title = '<button type="button" class="a" data-n="' + p.titleNote + '" aria-pressed="false">' + title + '<sup>' + p.titleNote + '</sup></button>'; }
 
     let rows = '';
     if (split) {
       const oc = '<div class="o"' + (rtl ? ' dir="rtl"' : '') + '>' + UI.original + ' · ' + p.langs.join(' · ') + '<span class="tt"' + (rtl ? ' lang="he"' : '') + '>' + esc(p.title) + '</span></div>';
       const tc = '<div class="tr">' + LANGNAME[L] + '<span class="tt">' + esc((p.trTitle && p.trTitle[L]) || '') + '</span></div>';
-      rows += '<div class="r cols">' + (rtl ? tc + oc : oc + tc) + '</div>';
+      rows += '<div class="r cols">' + tc + oc + '</div>';
     }
     for (const b of parse(p.src)) {
       if (b.k === 'gap') { rows += '<div aria-hidden="true" style="height:' + (b.n * 1.15).toFixed(2) + 'em"></div>'; continue; }
       if (b.k === 'sec') {
         const cls = isHe(b.text) ? ' he' : isBig(b.text) ? ' big' : '';
-        rows += '<div class="sec"' + (isHe(b.text) ? ' dir="rtl" lang="he"' : '') + '>' + (b.num ? '<span class="num">' + b.num + '</span>' : '') +
-          '<div class="line"><span class="t' + cls + '">' + inl(tok(b.text), notes) + '</span></div>' +
+        const sl = lineLang(b.text, p, false);
+        const os = '<div class="sec' + (split ? ' o' : '') + '"' + langAttr(sl) + '>' + (b.num ? '<span class="num">' + b.num + '</span>' : '') +
+          '<div class="line"><span class="t' + cls + '">' + inl(tok(b.text), notes, have) + '</span></div>' +
           (roma && b.roma ? '<div class="sro" dir="ltr">' + esc(b.roma) + '</div>' : '') + '</div>';
+        if (split) {
+          const tt = (b.tr && b.tr[L]) || '', tm = tt.match(/^([IVXLC]+)\.\s+(.+)$/);
+          const ts = '<div class="sec tr" lang="' + L + '">' + (tm ? '<span class="num">' + tm[1] + '</span>' : '') +
+            '<div class="line"><span class="t">' + inl(tok(tm ? tm[2] : tt)) + '</span></div></div>';
+          rows += '<div class="r rs">' + ts + os + '</div>';
+        } else rows += os;
         continue;
       }
-      const o = '<div class="o"' + (rtl ? ' dir="rtl" lang="he"' : '') + '><div class="l' + (b.epi ? ' epi' : '') + '" style="--pad:' + (b.indent * 2.6).toFixed(1) + 'em">' + inl(tok(b.text), notes) + '</div>' +
+      const ll = lineLang(b.text, p, b.epi);
+      const o = '<div class="o"' + (rtl ? ' dir="rtl" lang="he"' : langAttr(ll)) + '><div class="l' + (b.epi ? ' epi' : '') + '" style="--pad:' + (b.indent * 2.6).toFixed(1) + 'em">' + inl(tok(b.text), notes, have) + '</div>' +
         (roma && b.roma ? '<div class="ro" dir="ltr">' + esc(b.roma) + '</div>' : '') + '</div>';
       if (split) {
-        const t = '<div class="tr" lang="' + L + '">' + (b.tr && b.tr[L] ? '<div class="l" style="--pad:' + (b.indent * 2.6).toFixed(1) + 'em">' + inl(tok(b.tr[L])) + '</div>' : '') + '</div>';
-        rows += '<div class="r">' + (rtl ? t + o : o + t) + '</div>';
+        const t = '<div class="tr" lang="' + L + '">' + (b.tr && b.tr[L] ? '<div class="l' + (b.epi ? ' epi' : '') + '" style="--pad:' + (b.indent * 2.6).toFixed(1) + 'em">' + inl(tok(b.tr[L])) + '</div>' : '') + '</div>';
+        rows += '<div class="r">' + t + o + '</div>';
       } else rows += '<div class="r">' + o + '</div>';
     }
 
     const prev = POEMS[(i + POEMS.length - 1) % POEMS.length], next = POEMS[(i + 1) % POEMS.length];
     const box = on => '<span class="box">[' + (on ? 'x' : '&nbsp;') + ']</span> ';
-    const marginNotes = notes.map(nt => '<button type="button" class="mn" data-n="' + nt.n + '" aria-expanded="false"><span class="n">' + nt.n + '</span><span class="lab' + (isHe(nt.label) ? ' he' : '') + '" dir="auto">' + esc(nt.label) + '</span><span class="bd">' + UI.noteTBD + '</span></button>').join('');
+    const nbody = n => (p.notes && p.notes[n] && p.notes[n][L]) || UI.noteTBD;
+    notes.forEach(nt => { nt.body = nbody(nt.n); });
+    const marginNotes = notes.map(nt => '<div class="mn" data-n="' + nt.n + '"><button type="button" class="mh" aria-expanded="false"><span class="n">' + nt.n + '</span><span class="lab' + (isHe(nt.label) ? ' he' : '') + '" dir="auto">' + esc(nt.label) + '</span></button><div class="bd">' + nt.body + '</div></div>').join('');
+    const more = (p.more || []).filter(m => m[L]);
+    const moreNotes = more.length ? '<section class="more" aria-label="' + UI.more + '"><p class="label">' + UI.more + '</p><dl>' +
+      more.map(m => '<dt dir="auto"' + (isHe(m.label) ? ' class="he"' : '') + '>' + esc(m.label) + '</dt><dd>' + m[L] + '</dd>').join('') + '</dl></section>' : '';
 
     app.innerHTML =
       '<article class="sheet' + (split ? ' wide split' : '') + '" aria-label="' + esc(p.roma || p.title) + '"><div class="pg">' +
@@ -1149,7 +1524,7 @@ en llanto [[supernova|2]], ardo y me muero
           (notes.length ? '<p class="label nl">' + UI.notes + '</p>' : '') + '</aside>' +
         '<div class="rows">' + rows + '</div>' +
         '<div class="margin" aria-label="' + UI.notes + '">' + marginNotes + '</div>' +
-      '</div>' +
+      '</div>' + moreNotes +
       '<nav class="pn" aria-label="Other poems"><a href="#p-' + prev.id + '"' + (prev.dir === 'rtl' ? ' lang="he"' : '') + '>← ' + esc(prev.title) + '</a>' +
         '<a class="mid" href="#poems">' + UI.index + '</a>' +
         '<a href="#p-' + next.id + '"' + (next.dir === 'rtl' ? ' lang="he"' : '') + '>' + esc(next.title) + ' →</a></nav>' +
@@ -1180,13 +1555,13 @@ en llanto [[supernova|2]], ardo y me muero
   function applyNote() {
     const n = state.note;
     app.querySelectorAll('.a').forEach(a => a.setAttribute('aria-pressed', String(+a.dataset.n === n)));
-    app.querySelectorAll('.mn').forEach(m => { const on = +m.dataset.n === n; m.classList.toggle('on', on); m.setAttribute('aria-expanded', String(on)); });
+    app.querySelectorAll('.mn').forEach(m => { const on = +m.dataset.n === n; m.classList.toggle('on', on); m.querySelector('.mh').setAttribute('aria-expanded', String(on)); });
     const nt = n != null && state.notes ? state.notes.find(x => x.n === n) : null;
     if (nt && narrow()) {
       document.getElementById('cardN').textContent = UI.note + ' ' + n;
       const lab = document.getElementById('cardL');
       lab.textContent = nt.label; lab.className = 'lab' + (isHe(nt.label) ? ' he' : ''); lab.dir = 'auto';
-      document.getElementById('cardB').textContent = UI.noteTBD;
+      document.getElementById('cardB').innerHTML = nt.body || UI.noteTBD;
       card.hidden = false;
     } else card.hidden = true;
     placeNotes();
@@ -1208,8 +1583,8 @@ en llanto [[supernova|2]], ardo y me muero
   }
 
   document.addEventListener('click', e => {
-    const a = e.target.closest('.a, .mn');
-    if (a) { toggleNote(+a.dataset.n); return; }
+    const a = e.target.closest('.a, .mh');
+    if (a) { toggleNote(+(a.dataset.n || a.closest('.mn').dataset.n)); return; }
     if (e.target.closest('#cardX')) { state.note = null; applyNote(); return; }
     const c = e.target.closest('.ctl');
     if (c && !c.disabled && state.poem) {
