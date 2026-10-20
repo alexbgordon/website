@@ -64,6 +64,14 @@ button{font:inherit;color:inherit}
 /* the quote's translate toggle: a small control above the quote, on the right, styled like the poems' controls */
 .epi-bar{max-width:27em;margin:-30px auto 6px;display:flex;justify-content:flex-end;font-size:21px}
 .epi-bar .ctl{font-size:13px}
+/* translation on: the Spanish quote on the left, the English on the right, the block widened past the narrow column; stacked on phones */
+.epi-wrap.on{width:min(1000px,calc(100vw - 160px));margin-left:50%;transform:translateX(-50%)}
+.epi-wrap.on .epi-bar{max-width:none;margin-top:-30px}
+.epi-wrap.on .epi-pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:56px;position:relative}
+.epi-wrap.on .epi-pair::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--rule)}
+.epi-wrap.on .epi,.epi-wrap.on .attr{max-width:none;margin-inline:0}
+.epi-wrap.on .epi{font-size:20px}
+.epi-wrap.on .epi-tr{margin:0;padding-top:0;border-top:0;max-width:none;font-size:19px;line-height:1.6}
 .enter{display:inline-block;margin-top:34px;padding-block:10px;text-decoration:none;font-size:18px}
 .enter:hover{color:var(--red)}
 .coll-open{margin:10px 0 30px;padding-bottom:22px;border-bottom:1px solid var(--rule);text-align:center}.coll-open .co-es{margin:0;font-size:19px;line-height:1.7;letter-spacing:.06em}.coll-open .co-en{margin:12px 0 0;font-size:15px;line-height:1.6;letter-spacing:.05em;font-style:italic;color:var(--ink2)}
@@ -220,6 +228,10 @@ h1[tabindex="-1"]:focus{outline:none}
   .about .nl{display:none}
   .margin{display:none}
   .split .r{grid-template-columns:minmax(0,1fr)}
+  .epi-wrap.on{width:auto;margin-left:0;transform:none}
+  .epi-wrap.on .epi-pair{display:block}
+  .epi-wrap.on .epi-pair::before{display:none}
+  .epi-wrap.on .epi-tr{margin-top:26px;padding-top:20px;border-top:1px solid var(--rule)}
   .split .rows::before{display:none}
   .split .rows.has-solo .r:not(.solo)::after{display:none}
   .split .r .o{order:0}
@@ -1474,10 +1486,11 @@ en llanto [[supernova|6]], ardo y me muero.
       '<article class="sheet narrow pref" id="preface-sheet" aria-label="' + UI.preface + '">' +
         '<div class="front">' +
           '<h1 class="sitename">ALEX BAHIA POETRY</h1><div class="redrule"></div>' +
-          '<div class="epi-bar"><button type="button" class="ctl" id="epiBtn" aria-pressed="false" aria-controls="epiTr" aria-label="' + UI.translate + ' the quote"><span class="box" aria-hidden="true">[&nbsp;]</span> ' + UI.translate + '</button></div>' +
-          '<blockquote class="epi" lang="es">' + PIZARNIK.es + '</blockquote>' +
-          '<p class="attr sc">— Alejandra Pizarnik</p>' +
-          '<div class="epi-tr" id="epiTr" lang="' + L + '" hidden>' + PIZARNIK[L] + '</div>' +
+          '<div class="epi-wrap" id="epiWrap"><div class="epi-bar"><button type="button" class="ctl" id="epiBtn" aria-pressed="false" aria-controls="epiTr" aria-label="' + UI.translate + ' the quote"><span class="box" aria-hidden="true">[&nbsp;]</span> ' + UI.translate + '</button></div>' +
+          '<div class="epi-pair"><div class="epi-o"><blockquote class="epi" lang="es">' + PIZARNIK.es + '</blockquote>' +
+          '<p class="attr sc">— Alejandra Pizarnik</p></div>' +
+          '<div class="epi-tr" id="epiTr" lang="' + L + '" hidden>' + PIZARNIK[L] + '</div></div>' +
+        '</div>' +
         '</div>' +
         '<p class="pref-lead">' + P.lead + '</p>' +
         P.body.map(t => '<p>' + t + '</p>').join('') +
@@ -1530,6 +1543,8 @@ en llanto [[supernova|6]], ardo y me muero.
     if (i < 0) { location.hash = 'poems'; return; }
     const p = POEMS[i], rtl = p.dir === 'rtl', canTr = hasTr(p);
     const roma = state.roma && p.script, split = state.split && canTr;
+    /* side by side: a left-to-right original on the left with the English on the right; Hebrew (right-to-left) mirrored, English left */
+    const pair = (tr, orig) => rtl ? tr + orig : orig + tr;
     const notes = [];
     const have = p.notes ? n => !!(p.notes[n] && p.notes[n][L]) : null;
     let title = esc(p.title);
@@ -1539,7 +1554,7 @@ en llanto [[supernova|6]], ardo y me muero.
     if (split) {
       const oc = '<div class="o"' + (rtl ? ' dir="rtl"' : '') + '>' + UI.original + ' · ' + p.langs.join(' · ') + '<span class="tt"' + (rtl ? ' lang="he"' : '') + '>' + esc(p.title) + '</span></div>';
       const tc = '<div class="tr">' + LANGNAME[L] + '<span class="tt">' + esc((p.trTitle && p.trTitle[L]) || '') + '</span></div>';
-      rows += '<div class="r cols">' + tc + oc + '</div>';
+      rows += '<div class="r cols">' + pair(tc, oc) + '</div>';
     }
     for (const b of parse(p.src)) {
       if (b.k === 'gap') { rows += '<div aria-hidden="true" style="height:' + (b.n * 1.15).toFixed(2) + 'em"></div>'; continue; }
@@ -1554,7 +1569,7 @@ en llanto [[supernova|6]], ardo y me muero.
           const tt = (b.tr && b.tr[L]) || '', tm = tt.match(/^([IVXLC]+)\.\s+(.+)$/);
           const ts = '<div class="sec tr" lang="' + L + '">' + (tm ? '<span class="num">' + tm[1] + '</span>' : '') +
             '<div class="line"><span class="t">' + inl(tok(tm ? tm[2] : tt)) + '</span></div></div>';
-          rows += '<div class="r rs">' + ts + os + '</div>';
+          rows += '<div class="r rs">' + pair(ts, os) + '</div>';
         } else rows += os;
         continue;
       }
@@ -1564,7 +1579,7 @@ en llanto [[supernova|6]], ardo y me muero.
       if (split && !(b.tr && b.tr[L])) rows += '<div class="r solo">' + o + '</div>';
       else if (split) {
         const t = '<div class="tr" lang="' + L + '">' + (b.tr && b.tr[L] ? '<div class="l' + (b.epi ? ' epi' : '') + '" style="--pad:' + (b.indent * 2.6).toFixed(1) + 'em">' + inl(tok(b.tr[L])) + '</div>' : '') + '</div>';
-        rows += '<div class="r">' + t + o + '</div>';
+        rows += '<div class="r">' + pair(t, o) + '</div>';
       } else rows += '<div class="r">' + o + '</div>';
     }
 
@@ -1684,6 +1699,7 @@ en llanto [[supernova|6]], ardo y me muero.
       eb.setAttribute('aria-pressed', String(on));
       eb.querySelector('.box').innerHTML = '[' + (on ? 'x' : '&nbsp;') + ']';
       document.getElementById('epiTr').hidden = !on;
+      document.getElementById('epiWrap').classList.toggle('on', on);
     }
   });
   document.addEventListener('change', e => { if (e.target.id === 'pick') location.hash = 'p-' + e.target.value; });
