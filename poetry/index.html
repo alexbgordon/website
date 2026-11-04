@@ -330,10 +330,10 @@ const COLLECTION_OPENING = [
 
 const PREFACE = {
   en: {
-    lead: 'I wrote these because I needed to get them out of me.',
+    lead: '',
     body: [
-      'I have never thought in one language. I was inventing languages before I could properly write in any of them — I still do — and along the way I learned real ones, and each of them took a different part of me. Writing this collection has been how I found out what those parts were. It has also been the calmest thing I do.',
-      "You don't need to read any of these languages. The translations are complete. The notes beside each poem are for anyone who wants to see what the translation had to leave behind — a pun in Greek, a Hebrew word that spells both <i>wave</i> and <i>uncover</i>, two Japanese words that sound almost alike, one an echo and one a child."
+      'I have never thought in one language. I was inventing languages before I could properly write in any of them — <a href="../lunde/" style="color:inherit;text-decoration:underline">I still do</a> — and along the way I learned real ones, and each of them took a different part of me. Writing this collection has been how I found out what those parts were. It has also been the calmest thing I do.',
+      "The translations are complete. The notes beside each poem are for anyone who wants to see what the translation had to leave behind — a pun in Greek, a Hebrew word that spells both <i>wave</i> and <i>uncover</i>, two Japanese words that sound almost alike, one an echo and one a child."
     ],
     langsTitle: 'The languages, and what each one is for',
     langs: [
@@ -1492,7 +1492,7 @@ en llanto [[supernova|6]], ardo y me muero.
           '<div class="epi-tr" id="epiTr" lang="' + L + '" hidden>' + PIZARNIK[L] + '</div></div>' +
         '</div>' +
         '</div>' +
-        '<p class="pref-lead">' + P.lead + '</p>' +
+        (P.lead ? '<p class="pref-lead">' + P.lead + '</p>' : '') +
         P.body.map(t => '<p>' + t + '</p>').join('') +
         '<h2 class="sc">' + P.langsTitle + '</h2>' +
         P.langs.map(([n, d]) => '<p class="lg"><b class="sc">' + n + '</b> — ' + d + '</p>').join('') +

@@ -5,7 +5,7 @@
 <link rel="preload" href="../../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lunde lexicon | Alex Bahia</title>
-  <meta name="description" content="The Lunde (Old Lundian) word list: 227 words with their meanings and types, taken from the Lunde engine.">
+  <meta name="description" content="The Lunde (Old Lundian) word list: every word with its meaning and type, taken from the Lunde engine.">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
   <link rel="stylesheet" href="../../assets/site.css">
   <style>
@@ -37,6 +37,9 @@
     .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     /* English meaning in the right-hand column; on phones the narrow columns wrap so the meaning stays on screen */
     @media (max-width: 600px) { .lex { table-layout: fixed; } .lex thead th:nth-child(1) { width: 32%; } .lex thead th:nth-child(2) { width: 22%; } .ref-table th, .ref-table td { padding: .35rem .45rem; } .lex th[scope=row], .lex td { white-space: normal; overflow-wrap: anywhere; } .lex .ipa { font-size: .68rem; } .lex td.ty { font-size: .72rem; white-space: normal; } }
+    /* first-person description under the title, in the Poetry/Languages preface style */
+    .ml .lang-desc { max-width: 604px; margin: 6px 0 22px; font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-style: italic; font-size: 22px; line-height: 1.5; color: var(--text); text-wrap: pretty; }
+    @media (max-width: 640px) { .ml .lang-desc { font-size: 20px; } }
   </style>
 </head>
 <body>
@@ -75,7 +78,9 @@
 </nav>
 <!-- lunde-nav:end -->
     <h1>Lunde lexicon (Old Lundian)</h1>
-    <p class="lede ab-measure">227 words (229 meanings), every one taken from the data the <a href="./">Lunde verb conjugator</a> runs on: the 47 verbs and their samon, namon and exmon meanings, the derived words the lexicon lists, nouns, demonstratives and place words, articles, and the engine's pronouns and number words. IPA and verb forms are built by the engine. See the <a href="grammar.html">Lunde grammar</a> for how words are built.</p>
+    <p class="lang-desc">Lunde (Old Lundian) is the literary language. A lot of things in it come in threes: there is a tripartite alignment and three main verb forms, because culturally the number three is considered perfect.</p>
+    <p class="lede ab-measure">Lunde (Old Lundian) is the old, formal register: its verbs come in three forms (samon, namon, exmon), its case marking is tripartite and it counts in base twelve.</p>
+    <p class="lede ab-measure">Every word is taken from the data the <a href="./">Lunde verb conjugator</a> runs on: the verbs and their samon, namon and exmon meanings, the derived words the lexicon lists, nouns, demonstratives and place words, articles, and the engine's pronouns and number words. IPA and verb forms are built by the engine. See the <a href="grammar.html">Lunde grammar</a> for how words are built.</p>
     <p class="legend ab-measure">Verbs are listed by their samon base (the event); a namon (experienced inside) or exmon (directed outward) base with its own meaning has its own entry. Meanings the reference has not defined yet are marked as such.</p>
     <div class="lx-tools" id="lx-tools" hidden>
       <div><label for="lx-q">Search (word or meaning)</label><input id="lx-q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. labasa, love, eye"></div>
@@ -320,7 +325,7 @@
 <!-- lunde-pager:end -->
   </main>
   <footer class="site-footer">
-    <div class="wrap"><p>Lunde lexicon &middot; 227 words from engine v0.3 &middot; <a href="grammar.html">Lunde grammar</a></p></div>
+    <div class="wrap"><p>Lunde lexicon &middot; engine v0.3 &middot; <a href="grammar.html">Lunde grammar</a></p></div>
   </footer>
   <script>
   (function () {

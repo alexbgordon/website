@@ -56,6 +56,11 @@
     .ft-words { color: var(--ink2); font-style: italic; }
     .ft-words .ft-word + .ft-word::before { content: " · "; color: var(--faint); font-style: normal; }
     @media (max-width: 640px) { .ft-grid { width: auto; left: 0; transform: none; columns: 1; } .ft-family { font-size: 16px; padding: 12px 12px 10px; } .ft-family ul { padding-left: 10px; } }
+    .lang-sheet .lang-intro { font-size: 22px; line-height: 1.5; margin-bottom: 30px; }
+    .lang-sheet .lang-gallery { margin: 26px 0 0; text-align: center; font-size: 30px; line-height: 1.2; }
+    .lang-sheet .lang-gallery a { color: var(--red); text-decoration: none; }
+    .lang-sheet .lang-gallery a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+    @media (max-width: 640px) { .lang-sheet .lang-intro { font-size: 20px; } }
   </style>
 </head>
 <body>
@@ -92,10 +97,11 @@
         <div class="lang-front">
           <h1 class="sitename" id="lang-h">Languages</h1><div class="redrule"></div>
         </div>
-        <p class="pref-lead">Two invented languages, one old and one modern.</p>
-        <p><strong>Lunde (Old Lundian)</strong> is the old, formal register: its verbs come in three forms (samon, namon, exmon), its case marking is tripartite and it counts in base twelve. <strong>Lundiyani (Modern Lundian)</strong> is the modern form of Lunde: an isolating lingua franca, much later than Lunde and very different from it, whose verbs never change form.</p>
+        <!-- SLOT languages-intro: Alex's preface (his own words). -->
+        <p class="pref-lead lang-intro" data-slot="languages-intro">I've been creating these languages for a while. I started when I was little, and I was inventing languages before I could properly write in any of them. Lundiyani (Modern Lundian) is my most fully fledged one: it has the most words, and it's the one I have a lot of things in.</p>
         <p class="coming">And more are coming.</p>
-        <p>Each language has its own lexicon, grammar and conjugators. Pick a language above; every form on these pages is built by rule from the grammar. Notebook pages for other invented languages are in the <a href="../gallery/">Gallery</a>.</p>
+        <p>Each language has its own lexicon, grammar and conjugators. Notebook pages for other invented languages are in the <a href="../gallery/">Gallery</a>.</p>
+        <p class="lang-gallery"><a href="../gallery/">Gallery</a></p>
         <section class="ft" aria-labelledby="ft-h">
           <h2 id="ft-h">Family tree</h2><div class="redrule"></div>
           <p class="ft-key">From the hand-drawn tree in the <a href="../gallery/#family-tree">Gallery</a>. Boxed names are boxed on the page. ? marks an uncertain reading; a dashed line, an uncertain link.</p>

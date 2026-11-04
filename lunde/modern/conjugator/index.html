@@ -295,7 +295,7 @@
   function list() {
     var t = $('q').value.trim().toLowerCase();
     var hits = VERBS.filter(function (v) { return !t || v.w.indexOf(t) !== -1 || v.meanings.join(' ').toLowerCase().indexOf(t) !== -1; });
-    $('icount').textContent = t ? hits.length + ' of ' + VERBS.length + ' verbs' : VERBS.length + ' verbs in the lexicon';
+    $('icount').textContent = t ? hits.length + ' of ' + VERBS.length + ' verbs' : '';
     $('vlist').innerHTML = hits.map(function (v) {
       return '<li><button type="button" class="vi" data-w="' + esc(v.w) + '"' + (state.verb === v ? ' aria-current="true"' : '') + '><span class="vi-base">' + esc(v.w) + '</span><span class="vi-gloss">' + esc(v.meanings[0]) + '</span></button></li>';
     }).join('');
