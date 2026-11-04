@@ -13,9 +13,9 @@
   --shadow: rgba(60, 40, 20, .38);
   --radius: 2px;
   --max: 1360px;          /* the shared card width (assets/chrome.css .ab-card) */
-  --font: 'EB Garamond', 'Shippori Mincho', 'Noto Serif Ethiopic', Georgia, 'Times New Roman', serif;
+  --font: 'EB Garamond', 'AB Fallback', 'Shippori Mincho', 'Noto Serif Ethiopic', Georgia, 'Times New Roman', serif;
   --serif: var(--font);
-  --mono: 'Courier Prime', 'Courier New', ui-monospace, monospace;
+  --mono: 'Courier Prime', 'AB Fallback', 'Courier New', ui-monospace, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {

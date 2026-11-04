@@ -8,41 +8,57 @@
   <meta name="description" content="Poems and invented languages by Alex Bahia.">
   <link rel="stylesheet" href="./assets/site.css">
   <style>
-    /* Homepage in the Poetry landing style: centered sheet, spaced-capitals name over a short red rule, italic hook, big red section headings */
-    .home { font-family: var(--serif); }
-    .home-sheet { max-width: 604px; margin: 0 auto; padding: 8px 0 24px; text-align: center; }
-    .home h1.sitename { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 19px; line-height: 1.6; letter-spacing: .38em; padding-left: .38em; text-transform: uppercase; color: var(--text); }
-    .home .redrule { width: 36px; height: 1px; background: var(--accent); margin: 22px auto 40px; }
-    .home-hook { margin: 0 0 56px; font-size: 25px; line-height: 1.4; font-style: italic; color: var(--text); text-wrap: balance; max-width: none; }
-    .home-sec { margin: 0 0 48px; }
-    .home-sec h2 { margin: 0 0 14px; font-family: var(--serif); font-weight: 500; font-size: 44px; line-height: 1.1; letter-spacing: .02em; }
+    /* Homepage: Poetry-page look, exactly two font sizes.
+       Size A (16px) = the header wordmark ALEX BAHIA: the wordmark and the three section titles (same face, caps, letter-spacing).
+       Size B (20px) = everything else on the page. */
+    :root { --home-a: 16px; --home-b: 20px; }
+    .home, .home * { font-size: var(--home-b); }
+    .home { font-family: var(--serif); line-height: 1.65; }
+    body .skip-link { font-size: var(--home-b); }
+    .site-header .site-nav a { font-size: var(--home-a); }
+    .site-footer, .site-footer p, .site-footer a { font-family: var(--serif); font-size: var(--home-b); letter-spacing: .04em; }
+    .home-sheet { max-width: 1000px; margin: 0 auto; padding: 8px 0 32px; text-align: center; }
+    .home h1.sitename { margin: 0; font-family: var(--serif); font-weight: 400; line-height: 1.6; letter-spacing: .38em; padding-left: .38em; text-transform: uppercase; color: var(--text); }
+    .home .redrule { width: 36px; height: 1px; background: var(--accent); margin: 22px auto 36px; }
+    .home-hook { margin: 0 auto 60px; font-style: italic; color: var(--text); text-wrap: balance; max-width: 40em; }
+    /* Pizarnik quote, as on the Poetry front page (same text, attribution and Translate toggle), widened */
+    .home .sc { font-variant-caps: all-small-caps; letter-spacing: .14em; }
+    .epi-wrap { margin: 0 auto 72px; padding: 0; max-width: 820px; }
+    .epi { margin: 0; text-align: left; font-style: italic; line-height: 1.7; text-wrap: pretty; color: var(--text); }
+    .attr { margin: 18px 0 0; text-align: right; color: var(--muted); }
+    .epi-tr { margin: 26px 0 0; text-align: left; line-height: 1.7; color: var(--text-2); padding-top: 20px; border-top: 1px solid var(--border); }
+    .epi-bar { margin: 0 0 6px; display: flex; justify-content: flex-end; }
+    .ctl { background: none; border: 0; min-height: 44px; padding: 0 4px; cursor: pointer; font-family: var(--serif); font-variant-caps: all-small-caps; letter-spacing: .12em; color: var(--muted); }
+    .ctl .box { color: var(--accent); font-family: var(--mono); }
+    .ctl:hover, .ctl[aria-pressed="true"] { color: var(--text); }
+    .epi-wrap.on { max-width: none; width: min(1160px, calc(100vw - 120px)); margin-left: 50%; transform: translateX(-50%); }
+    .epi-wrap.on .epi-pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); column-gap: 56px; position: relative; }
+    .epi-wrap.on .epi-pair::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--border); }
+    .epi-wrap.on .epi-tr { margin: 0; padding-top: 0; border-top: 0; }
+    /* the three sections: one row of three columns, thin red rules between them */
+    .home-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0 auto; max-width: 1000px; }
+    .home-sec { padding: 6px 28px 10px; }
+    .home-sec + .home-sec { border-left: 1px solid var(--accent); }
+    .home-sec h2 { margin: 0 0 14px; font-family: var(--ab-serif, var(--serif)); font-weight: 400; line-height: 1.3; letter-spacing: .34em; padding-left: .34em; text-transform: uppercase; }
+    .home-sec h2, .home-sec h2 a { font-size: var(--home-a); }
     .home-sec h2 a { color: var(--accent); text-decoration: none; }
     .home-sec h2 a:hover, .home-sec h2 a:focus-visible { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
-    .home-links { list-style: none; margin: 0; padding: 0; font-size: 21px; line-height: 1.5; }
+    .home-cta { margin: 0 0 12px; font-style: italic; color: var(--text-2); text-wrap: balance; }
+    .home-links { list-style: none; margin: 0; padding: 0; line-height: 1.5; }
     .home-links li { margin: 4px 0; }
     .home-links a { color: var(--text); text-decoration-color: var(--border); text-underline-offset: 4px; }
     .home-links a:hover { color: var(--accent); text-decoration-color: currentColor; }
-    @media (max-width: 640px) { .home .redrule { margin-bottom: 30px; } .home-hook { font-size: 22px; margin-bottom: 40px; } .home-sec { margin-bottom: 38px; } .home-sec h2 { font-size: 36px; } .home-links { font-size: 19px; } }
-    /* Pizarnik quote, as on the Poetry front page (same text, attribution and Translate toggle) */
-    .home { --faint: #B5A892; }
-    .home .sc { font-variant-caps: all-small-caps; letter-spacing: .14em; }
-    .epi-wrap { margin: 0 auto 72px; padding: 0; }
-    .epi { margin: 0 auto; max-width: 27em; text-align: left; font-style: italic; font-size: 21px; line-height: 1.6; text-wrap: pretty; color: var(--text); }
-    .attr { margin: 20px auto 0; max-width: 27em; text-align: right; font-size: 17px; color: var(--muted); }
-    .epi-tr { margin: 26px auto 0; max-width: 30em; text-align: left; font-size: 18px; line-height: 1.6; color: var(--text-2); padding-top: 20px; border-top: 1px solid var(--border); }
-    .epi-bar { max-width: 27em; margin: 0 auto 6px; display: flex; justify-content: flex-end; }
-    .ctl { background: none; border: 0; min-height: 44px; padding: 0 4px; cursor: pointer; font-family: var(--mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-    .ctl .box { color: var(--accent); }
-    .ctl:hover, .ctl[aria-pressed="true"] { color: var(--text); }
-    .epi-wrap.on { width: min(1000px, calc(100vw - 160px)); margin-left: 50%; transform: translateX(-50%); }
-    .epi-wrap.on .epi-bar { max-width: none; }
-    .epi-wrap.on .epi-pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); column-gap: 56px; position: relative; }
-    .epi-wrap.on .epi-pair::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--border); }
-    .epi-wrap.on .epi, .epi-wrap.on .attr { max-width: none; margin-inline: 0; }
-    .epi-wrap.on .epi { font-size: 20px; }
-    .epi-wrap.on .epi-tr { margin: 0; padding-top: 0; border-top: 0; max-width: none; font-size: 19px; }
-    @media (max-width: 900px) { .epi-wrap.on { width: auto; margin-left: 0; transform: none; } .epi-wrap.on .epi-pair { display: block; } .epi-wrap.on .epi-pair::before { display: none; } .epi-wrap.on .epi-tr { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border); } }
-    @media (max-width: 640px) { .epi { font-size: 19px; } .epi-wrap { margin-bottom: 56px; } }
+    @media (max-width: 900px) {
+      .epi-wrap.on { width: auto; margin-left: 0; transform: none; }
+      .epi-wrap.on .epi-pair { display: block; } .epi-wrap.on .epi-pair::before { display: none; }
+      .epi-wrap.on .epi-tr { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border); }
+    }
+    @media (max-width: 760px) {
+      .home-row { grid-template-columns: 1fr; }
+      .home-sec { padding: 26px 4px; }
+      .home-sec + .home-sec { border-left: 0; border-top: 1px solid var(--accent); }
+      .home-hook { margin-bottom: 44px; } .epi-wrap { margin-bottom: 48px; }
+    }
   </style>
 </head>
 <body>
@@ -74,8 +90,10 @@
           <p class="attr sc">— Alejandra Pizarnik</p></div>
           <div class="epi-tr" id="epiTr" lang="en" hidden>I feel that signs, that words, insinuate, allude. This complex way of feeling language leads me to believe that language cannot express reality; that we can only speak of the obvious. Hence my desire to make poems that are terribly exact, despite my innate surrealism, and to work with elements of the inner shadows. This is what has characterized my poems.</div></div>
       </figure>
+      <div class="home-row">
       <section class="home-sec" aria-labelledby="home-poetry">
         <h2 id="home-poetry"><a href="./poetry/">Poetry</a></h2>
+        <p class="home-cta">Please check out my favorite poems</p>
         <ul class="home-links">
           <li><a href="./poetry/#p-andromeda" lang="grc">ΑΝΔΡΟΜΕΔΑ</a></li>
           <li><a href="./poetry/#p-sakura" lang="es">Sakura</a></li>
@@ -84,6 +102,7 @@
       </section>
       <section class="home-sec" aria-labelledby="home-languages">
         <h2 id="home-languages"><a href="./lunde/">Languages</a></h2>
+        <p class="home-cta">Check out these two main languages</p>
         <ul class="home-links">
           <li><a href="./lunde/conjugator/lexicon.html">Lunde (Old Lundian)</a></li>
           <li><a href="./lunde/modern/lexicon/">Lundiyani (Modern Lundian)</a></li>
@@ -91,10 +110,12 @@
       </section>
       <section class="home-sec" aria-labelledby="home-gallery">
         <h2 id="home-gallery"><a href="./gallery/">Gallery</a></h2>
+        <p class="home-cta">Check out the gallery with all my notebook pages.</p>
         <ul class="home-links">
           <li><a href="./gallery/#family-tree">Language family tree</a></li>
         </ul>
       </section>
+      </div>
     </div>
   </main>
   <footer class="site-footer">

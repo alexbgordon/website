@@ -14,9 +14,9 @@
 :root{
   --desk:#E7E0CF; --sheet:#FBF8F1; --ink:#211C17; --ink2:#4F463C; --muted:#74695C; --faint:#B5A892;
   --rule:#E2D8C6; --muted-desk:#665C50; --red:#A3241A; --wash:#F0D8CE; --shadow:rgba(60,40,20,.38);
-  --serif:'EB Garamond','Shippori Mincho','Noto Serif Ethiopic',Georgia,'Times New Roman',serif;
-  --hebrew:'Frank Ruhl Libre','EB Garamond','Times New Roman',serif;
-  --mono:'Courier Prime','Courier New',ui-monospace,monospace;
+  --serif:'EB Garamond', 'AB Fallback','Shippori Mincho','Noto Serif Ethiopic',Georgia,'Times New Roman',serif;
+  --hebrew:'Frank Ruhl Libre','EB Garamond', 'AB Fallback','Times New Roman',serif;
+  --mono:'Courier Prime', 'AB Fallback','Courier New',ui-monospace,monospace;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){--muted-desk:#A99D8B;--desk:#15120E;--sheet:#221E19;--ink:#ECE4D4;--ink2:#CFC5B3;--muted:#A99D8B;--faint:#6A5F51;--rule:#3B342B;--red:#E5735E;--wash:#52302A;--shadow:rgba(0,0,0,.7);color-scheme:dark}
@@ -1486,11 +1486,6 @@ en llanto [[supernova|6]], ardo y me muero.
       '<article class="sheet narrow pref" id="preface-sheet" aria-label="' + UI.preface + '">' +
         '<div class="front">' +
           '<h1 class="sitename">ALEX BAHIA POETRY</h1><div class="redrule"></div>' +
-          '<div class="epi-wrap" id="epiWrap"><div class="epi-bar"><button type="button" class="ctl" id="epiBtn" aria-pressed="false" aria-controls="epiTr" aria-label="' + UI.translate + ' the quote"><span class="box" aria-hidden="true">[&nbsp;]</span> ' + UI.translate + '</button></div>' +
-          '<div class="epi-pair"><div class="epi-o"><blockquote class="epi" lang="es">' + PIZARNIK.es + '</blockquote>' +
-          '<p class="attr sc">— Alejandra Pizarnik</p></div>' +
-          '<div class="epi-tr" id="epiTr" lang="' + L + '" hidden>' + PIZARNIK[L] + '</div></div>' +
-        '</div>' +
         '</div>' +
         (P.lead ? '<p class="pref-lead">' + P.lead + '</p>' : '') +
         P.body.map(t => '<p>' + t + '</p>').join('') +
