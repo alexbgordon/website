@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<link rel="preload" href="../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Languages | Alex Bahia</title>
+  <meta name="description" content="Alex Bahia's invented languages: Lunde (Old Lundian) and Lundiyani (Modern Lundian), each with its own page of tools: lexicon, grammar, conjugators and numbers.">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* Overview, laid out like the Poetry landing page (poetry/index.html, front view): a narrow centered sheet,
+       a spaced-capitals title over a short red rule, an italic lead, then plain reading text. Same palette and fonts. */
+    .lang-page {
+      --sheet:#FBF8F1; --ink:#211C17; --ink2:#4F463C; --muted:#74695C; --faint:#B5A892; --rule:#E2D8C6; --muted-desk:#665C50; --red:#A3241A;
+      --serif:'EB Garamond', 'AB Fallback',Georgia,'Times New Roman',serif; --mono:'Courier Prime', 'AB Fallback','Courier New',ui-monospace,monospace;
+      background: var(--sheet); color: var(--ink); font-family: var(--serif); font-size: 19px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .lang-page { --sheet:#221E19; --ink:#ECE4D4; --ink2:#CFC5B3; --muted:#A99D8B; --faint:#6A5F51; --rule:#3B342B; --muted-desk:#A99D8B; --red:#E5735E; }
+    }
+    /* the sub-nav as the Poetry bar: one row, 40px, rule under it */
+    .lang-page .lunde-nav { height: 40px; margin: 0 0 1.75rem; }
+    .lang-page .lunde-nav .lunde-sections { gap: 0 26px; }
+    .lang-page .lunde-nav .lunde-sections a { padding-block: 10px; color: var(--muted-desk); }
+    .lang-page .lunde-nav .lunde-sections a:hover { color: var(--ink); }
+    .lang-page .lunde-nav .lunde-sections a[aria-current="page"] { color: var(--red); border-bottom-color: var(--red); }
+    .lang-page .lunde-nav .lunde-tool { display: none; }
+    /* the sheet: Poetry's .sheet.narrow inside the card */
+    .lang-sheet { max-width: 604px; margin: 0 auto; }
+    .lang-front { text-align: center; }
+    .lang-page h1.sitename { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 19px; line-height: 1.6; letter-spacing: .38em; padding-left: .38em; text-transform: uppercase; color: var(--ink); }
+    .redrule { width: 36px; height: 1px; background: var(--red); margin: 22px auto 54px; }
+    .pref-lead { margin: 6px 0 24px; font-size: 25px; line-height: 1.4; font-style: italic; text-wrap: balance; }
+    .lang-sheet p { margin: 0 0 14px; line-height: 1.65; max-width: none; }
+    .lang-sheet strong { font-weight: 600; font-variant-caps: all-small-caps; letter-spacing: .1em; font-size: 1.05em; }
+    .lang-sheet .coming { margin: 22px 0; text-align: center; font-style: italic; }
+    .lang-sheet a { color: inherit; text-decoration-color: var(--faint); text-underline-offset: 3px; }
+    .lang-sheet a:hover { color: var(--red); }
+    @media (max-width: 640px) { .redrule { margin-bottom: 40px; } .pref-lead { font-size: 22px; } .lang-page { font-size: 18px; } }
+    /* Family tree (from the hand-drawn tree in the Gallery): one card per family, connector lines in the red rule colour */
+    .ft { margin: 48px 0 8px; }
+    .ft h2 { margin: 0 0 6px; text-align: center; font-family: var(--serif); font-weight: 400; font-size: 19px; letter-spacing: .38em; padding-left: .38em; text-transform: uppercase; color: var(--ink); }
+    .ft .redrule { margin: 18px auto 18px; }
+    .lang-sheet .ft-key { text-align: center; font-size: 16px; color: var(--muted); font-style: italic; margin: 0 0 22px; }
+    .ft-grid { width: min(780px, calc(100vw - 40px)); position: relative; left: 50%; transform: translateX(-50%); columns: 2 300px; column-gap: 22px; }
+    .ft-family { break-inside: avoid; margin: 0 0 22px; padding: 14px 16px 12px; list-style: none; border: 1px solid var(--rule); background: var(--sheet); font-size: 17px; line-height: 1.35; }
+    .ft-family ul { list-style: none; margin: 0; padding: 0 0 0 16px; }
+    .ft-family li { position: relative; margin: 0; padding: 5px 0 0 14px; }
+    .ft-family > li { padding: 0; }
+    .ft-family ul > li::before { content: ""; position: absolute; left: 0; top: 0; height: 1.05em; width: 10px; border-left: 1px solid var(--faint); border-bottom: 1px solid var(--faint); }
+    .ft-family ul > li::after { content: ""; position: absolute; left: 0; top: 1.05em; bottom: 0; border-left: 1px solid var(--faint); }
+    .ft-family ul > li:last-child::after { display: none; }
+    .ft-box { display: inline-block; padding: 0 6px; border: 1px solid var(--ink2); }
+    .ft-family > li > .ft-box { border-color: var(--red); color: var(--red); }
+    .ft-words { color: var(--ink2); font-style: italic; }
+    /* languages with their own page: red accent and linked (the rule is in the tree generator, make_tree6.py) */
+    .lang-sheet a.ft-link { color: var(--red); text-decoration: none; }
+    .lang-sheet a.ft-link:hover, .lang-sheet a.ft-link:focus-visible { color: var(--red); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .ft-words .ft-word + .ft-word::before { content: " · "; color: var(--faint); font-style: normal; }
+    @media (max-width: 640px) { .ft-grid { width: auto; left: 0; transform: none; columns: 1; } .ft-family { font-size: 16px; padding: 12px 12px 10px; } .ft-family ul { padding-left: 10px; } }
+    .lang-sheet .lang-intro { font-size: 22px; line-height: 1.5; margin-bottom: 30px; }
+    .lang-sheet .lang-gallery { margin: 26px 0 0; text-align: center; font-size: 30px; line-height: 1.2; }
+    .lang-sheet .lang-gallery a { color: var(--red); text-decoration: none; }
+    .lang-sheet .lang-gallery a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+    @media (max-width: 640px) { .lang-sheet .lang-intro { font-size: 20px; } }
+    /* desktop: the text on the left, the family tree on the right; narrower screens keep the stacked layout */
+    @media (min-width: 1100px) {
+      .lang-sheet { max-width: 1240px; display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); column-gap: 56px; align-items: start; }
+      .lang-text { position: sticky; top: 28px; }
+      .lang-sheet > .ft { margin: 0 0 0 -28px; padding-left: 28px; border-left: 1px solid var(--rule); }
+      .ft-grid { width: auto; left: 0; transform: none; columns: 2 300px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+<!-- site-header:start -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../">Alex Bahia</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../poetry/">Poetry</a></li>
+        <li><a href="../languages/" aria-current="page">Languages</a></li>
+        <li><a href="../gallery/">Gallery</a></li>
+        <li><a href="../about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- site-header:end -->
+  <div class="ab-card lang-page" id="main" tabindex="-1">
+<!-- lunde-nav:start -->
+<nav class="lunde-nav" aria-label="Languages">
+  <ul class="lunde-sections">
+    <li><a href="../languages/" aria-current="page">Overview</a></li>
+    <li><a href="../languages/conjugator/lexicon.html">Lunde (Old Lundian)</a></li>
+    <li><a href="../languages/modern/lexicon/">Lundiyani (Modern Lundian)</a></li>
+  </ul>
+  <ul class="lunde-tool" aria-hidden="true"></ul>
+</nav>
+<!-- lunde-nav:end -->
+    <main>
+      <article class="lang-sheet" aria-labelledby="lang-h">
+        <div class="lang-text">
+        <div class="lang-front">
+          <h1 class="sitename" id="lang-h">Languages</h1><div class="redrule"></div>
+        </div>
+        <!-- SLOT languages-intro: Alex's preface (his own words). -->
+        <p class="pref-lead lang-intro" data-slot="languages-intro">I've been creating these languages for a while. I started when I was little, and I was inventing languages before I could properly write in any of them. <span style="font-style:normal">Lundiyani (Modern Lundian) is the most developed of them: it has the largest vocabulary, and it's the one I've made the most in.</span></p>
+        <p class="coming">And more are coming.</p>
+        <p>Each language has its own lexicon, grammar and conjugators. Notebook pages for other invented languages are in the <a href="../gallery/">Gallery</a>.</p>
+        </div>
+        <section class="ft" aria-labelledby="ft-h">
+          <h2 id="ft-h">Family tree</h2><div class="redrule"></div>
+          <p class="ft-key">From the hand-drawn tree in the <a href="../gallery/#family-tree">Gallery</a>.</p>
+          <div class="ft-grid">
+            <ul class="ft-family">
+              <li><span class="ft-box">Tobi-Alesanian</span>
+                <ul>
+                  <li><span class="ft-box">Nerathi-Naverian</span>
+                    <ul>
+                      <li><span class="ft-box">Nerathi</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Mahitrā</span> <span class="ft-word">Mesathi</span> <span class="ft-word">Sarathi</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Naverian</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Zuni</span> <span class="ft-word">Maraði</span> <span class="ft-word">Neravi</span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Drembian</span>
+                    <ul>
+                      <li><span class="ft-box">Lenevan</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Athina</span> <span class="ft-word">Merla</span> <span class="ft-word">Rakhon</span> <span class="ft-word">Lana</span> <span class="ft-word">Merlena</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Enderian</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Akoni</span> <span class="ft-word">Matirn</span> <span class="ft-word">Ender</span> <span class="ft-word">Dregwa</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Farikan</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Furling</span> <span class="ft-word">Fleryk</span> <span class="ft-word">Makhor</span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Feixanyan</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Waxinya</span> <span class="ft-word">Fexiayani</span></li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Lundarian</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Thalassa</span></li>
+                      <li><span class="ft-box">Celian</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Thála</span> <span class="ft-word">Másta</span> <span class="ft-word">Fitár</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box"><a class="ft-link" href="conjugator/lexicon.html">Lunde</a></span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Hirasyane</span> <span class="ft-word">Lloranija</span> <span class="ft-word"><a class="ft-link" href="modern/lexicon/">Lundiyani</a></span> <span class="ft-word">Skexlixya</span> <span class="ft-word">Zakelian</span> <span class="ft-word">Wisterian</span> <span class="ft-word">Llunefrian</span></li>
+                        </ul>
+                      </li>
+                      <li class="ft-words"><span class="ft-word">Hasaθn</span></li>
+                      <li><span class="ft-box">Rinayan</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Eirinya Erina</span> <span class="ft-word">Thasiria</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Valian</span>
+                        <ul>
+                          <li><span class="ft-box">Solarian</span>
+                            <ul>
+                              <li class="ft-words"><span class="ft-word">Hia</span> <span class="ft-word">Ligtja</span> <span class="ft-word">Sleja Sola</span></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Vokiyan</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Volkinian</span> <span class="ft-word">Tasivi</span> <span class="ft-word">Maiki</span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">Ganeva</span>
+                <ul>
+                  <li class="ft-words"><span class="ft-word">Titirüihi</span></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">Oluwian</span>
+                <ul>
+                  <li><span class="ft-box">Oluwi</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Tagosgū'i</span> <span class="ft-word">Misgowi</span></li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Lakȟoki</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Dankȟode</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">Marian</span>
+                <ul>
+                  <li class="ft-words"><span class="ft-word">Marrana</span> <span class="ft-word">Mirray P'i</span> <span class="ft-word">Hoip'i</span></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">Taθari</span>
+                <ul>
+                  <li><span class="ft-box">Lanari</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Lanar</span> <span class="ft-word">Luθivir</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">Uwian</span>
+                <ul>
+                  <li class="ft-words"><span class="ft-word">Iwi</span> <span class="ft-word">Uwu</span> <span class="ft-word">Owo</span></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">Maka-Siluan</span>
+                <ul>
+                  <li><span class="ft-box">Quskian</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Qisiq</span> <span class="ft-word">Moquk'eq</span> <span class="ft-word">Qasasivit</span></li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Turinian</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Taŕkur</span></li>
+                      <li><span class="ft-box">Maxkinian</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Məskilim</span> <span class="ft-word">Macigi</span> <span class="ft-word">Məxçəlgın</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Ifüxinian</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Ifüxin</span> <span class="ft-word">Mürin</span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Sikazrian</span>
+                    <ul>
+                      <li><span class="ft-box">Kaxarezhi</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Akar</span> <span class="ft-word">Imari</span></li>
+                        </ul>
+                      </li>
+                      <li class="ft-words"><span class="ft-word">Navxti</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">No'ohean</span>
+                <ul>
+                  <li class="ft-words"><span class="ft-word">No'ohea</span> <span class="ft-word">Ihoxi</span></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">Meztini-Mehakian</span>
+                <ul>
+                  <li><span class="ft-box">Meztinian</span>
+                    <ul>
+                      <li><span class="ft-box">Neeyakian</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Sitik'ak</span> <span class="ft-word">Neeyak'aj</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Kincinian</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Inkice</span> <span class="ft-word">Tzatzuko</span> <span class="ft-word">Taxca</span> <span class="ft-word">Uinkin</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Loconian</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Lloco</span> <span class="ft-word">Kiinpay</span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Mehakian</span>
+                    <ul>
+                      <li><span class="ft-box">Lufewan</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">La'ashwana</span> <span class="ft-word">Lulugwa</span> <span class="ft-word">Lukunda</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Tohekian</span>
+                        <ul>
+                          <li><span class="ft-box">Iluan</span>
+                            <ul>
+                              <li class="ft-words"><span class="ft-word">Ilu</span> <span class="ft-word">Ti'anu</span> <span class="ft-word">Mino</span></li>
+                            </ul>
+                          </li>
+                          <li><span class="ft-box">Siluan</span>
+                            <ul>
+                              <li class="ft-words"><span class="ft-word">Kua'i</span> <span class="ft-word">Silua</span> <span class="ft-word">Li’uha</span> <span class="ft-word">Mi'isa</span></li>
+                            </ul>
+                          </li>
+                          <li><span class="ft-box">Kahwitian</span>
+                            <ul>
+                              <li class="ft-words"><span class="ft-word">Kahwiti</span> <span class="ft-word">Hikahi</span></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Huakian</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Niuhwaik</span> <span class="ft-word">Kongsin</span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">Volkanian</span>
+                <ul>
+                  <li><span class="ft-box">Harethiy-Zahari</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Harethiy</span> <span class="ft-word">Zahari</span></li>
+                    </ul>
+                  </li>
+                  <li class="ft-words"><span class="ft-word">Nanaati</span></li>
+                  <li><span class="ft-box">Tazig</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Taz</span> <span class="ft-word">Tigi</span></li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Saharenian</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Sahareniaq</span> <span class="ft-word">Thastaq</span></li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Khanunian</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Hakán</span> <span class="ft-word">Khanun</span></li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Hirakian</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Hayrakh</span> <span class="ft-word">Kastan</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">Tsalian</span>
+                <ul>
+                  <li class="ft-words"><span class="ft-word">Tsála</span> <span class="ft-word">Dremba Tsála</span></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">Lihikian</span>
+                <ul>
+                  <li class="ft-words"><span class="ft-word">Zahiki</span> <span class="ft-word">Saleniki</span></li>
+                  <li><span class="ft-box">Ikusian</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Miikvavis</span> <span class="ft-word">Ikusi</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box">Mohakian</span>
+                <ul>
+                  <li class="ft-words"><span class="ft-word">Mohok'e</span></li>
+                  <li><span class="ft-box">Lehitian</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Lehi'ti</span> <span class="ft-word">Tahisi</span></li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Snoqwilian</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Snoqw'iłic</span> <span class="ft-word">Dəxwiłic</span></li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Ahonian</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Ahóǫ́no</span> <span class="ft-word">Sió</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </article>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; 2026 Alex Bahia</p>
+    </div>
+  </footer>
+  <script>
+  /* Old links to /languages/#old and /languages/#modern now open each language's own page, at the top. */
+  (function () {
+    var go = { old: 'conjugator/lexicon.html', modern: 'modern/lexicon/' }[location.hash.slice(1)];
+    if (go) location.replace(go);
+  }());
+  </script>
+</body>
+</html>

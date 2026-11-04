@@ -10,17 +10,17 @@ other scripts' fonts (Hebrew, Japanese, Ge'ez, Gentium) load from Google Fonts.
 ```
 index.html                        Home
 poetry/index.html                 Poetry
-lunde/index.html                  Languages: overview, then one tab per language (#old, #modern)
-lunde/conjugator/lexicon.html     Lunde lexicon (Old Lundian), generated from the engine's data
-lunde/conjugator/grammar.html     Lunde grammar
-lunde/conjugator/index.html       Lunde verb conjugator
-lunde/conjugator/cases.html       Lunde case conjugator   (built from grammar.html by build_tool_pages.py)
-lunde/conjugator/numbers.html     Lunde number conjugator (built from grammar.html by build_tool_pages.py)
-lunde/modern/lexicon/             Lundiyani lexicon (Modern Lundian)
-lunde/modern/index.html           Lundiyani grammar (+ the PDF)
-lunde/modern/conjugator/          Lundiyani verb conjugator (prototype)
-lunde/modern/numbers.html         Lundiyani numbers (build_modern_numbers.py; data in lunde/modern/lundiyani-numbers.js)
-lunde/grammar/                    Redirect to lunde/conjugator/grammar.html
+languages/index.html                  Languages: overview, then one tab per language (#old, #modern)
+languages/conjugator/lexicon.html     Lunde lexicon (Old Lundian), generated from the engine's data
+languages/conjugator/grammar.html     Lunde grammar
+languages/conjugator/index.html       Lunde verb conjugator
+languages/conjugator/cases.html       Lunde case conjugator   (built from grammar.html by build_tool_pages.py)
+languages/conjugator/numbers.html     Lunde number conjugator (built from grammar.html by build_tool_pages.py)
+languages/modern/lexicon/             Lundiyani lexicon (Modern Lundian)
+languages/modern/index.html           Lundiyani grammar (+ the PDF)
+languages/modern/conjugator/          Lundiyani verb conjugator (prototype)
+languages/modern/numbers.html         Lundiyani numbers (build_modern_numbers.py; data in languages/modern/lundiyani-numbers.js)
+languages/grammar/                    Redirect to languages/conjugator/grammar.html
 gallery/index.html                Photos of notebooks and language materials
 about/index.html                  About
 404.html                          Not-found page (GitHub Pages serves this automatically)

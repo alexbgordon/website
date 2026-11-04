@@ -18,7 +18,7 @@
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/poetry/">Poetry</a></li>
-        <li><a href="/lunde/">Languages</a></li>
+        <li><a href="/languages/">Languages</a></li>
         <li><a href="/gallery/">Gallery</a></li>
         <li><a href="/about/">About</a></li>
       </ul>
@@ -32,10 +32,10 @@
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/poetry/">Poetry</a></li>
-      <li><a href="/lunde/">Languages</a></li>
-      <li><a href="/lunde/conjugator/">Lunde verb conjugator</a></li>
-      <li><a href="/lunde/modern/">Lundiyani grammar</a></li>
-      <li><a href="/lunde/modern/lexicon/">Lundiyani lexicon</a></li>
+      <li><a href="/languages/">Languages</a></li>
+      <li><a href="/languages/conjugator/">Lunde verb conjugator</a></li>
+      <li><a href="/languages/modern/">Lundiyani grammar</a></li>
+      <li><a href="/languages/modern/lexicon/">Lundiyani lexicon</a></li>
       <li><a href="/gallery/">Gallery</a></li>
       <li><a href="/about/">About</a></li>
     </ul>
@@ -45,5 +45,7 @@
       <p>&copy; 2026 Alex Bahia</p>
     </div>
   </footer>
+<script>/* old /lunde/ addresses (renamed to /languages/ on 2026-11-04), including files with no stub such as the PDF */
+if (location.pathname.indexOf('/lunde/') === 0 || location.pathname === '/lunde') location.replace('/languages/' + location.pathname.replace(/^\/lunde\/?/, '') + location.search + location.hash);</script>
 </body>
 </html>
