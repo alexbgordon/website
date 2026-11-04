@@ -1502,12 +1502,19 @@ en llanto [[supernova|6]], ardo y me muero.
 
   function viewAPreface() {
     const first = POEMS[0], tl = q => q.dir === 'rtl' ? ' lang="he" dir="rtl"' : '';
+    /* the same Translation toggle as a poem (shared state.split): off shows only the Spanish; on cuts the sheet in half like a poem */
+    const split = state.split;
+    const box = on => '<span class="box">[' + (on ? 'x' : '&nbsp;') + ']</span> ';
+    const ctls = '<div class="ctls"><button type="button" class="ctl" data-act="split" aria-pressed="' + split + '">' + box(split) + UI.tr + '</button></div>';
+    const body = split
+      ? '<div class="rows"><div class="r cols"><div class="o">' + UI.original + ' · Spanish</div><div class="tr">' + LANGNAME[L] + '</div></div>' +
+          COLLECTION_OPENING.map(r => '<div class="r"><div class="o" lang="es"><div class="l">' + r[0] + '</div></div><div class="tr" lang="' + L + '"><div class="l">' + r[1] + '</div></div></div>').join('') + '</div>'
+      : '<div class="coll-open"><p class="co-es" lang="es">' + COLLECTION_OPENING.map(r => r[0]).join('<br>') + '</p></div>';
+    state.poem = null;
     app.innerHTML =
-      '<article class="sheet narrow prologue" id="prologue" aria-label="' + UI.index + ': ' + UI.aPreface + '">' +
+      '<article class="sheet narrow prologue' + (split ? ' wide split' : '') + '" id="prologue" aria-label="' + UI.index + ': ' + UI.aPreface + '">' +
         '<h1 class="ixh">' + UI.aPreface.toUpperCase() + '</h1>' +
-        '<p class="label red">' + UI.index + '</p>' +
-        '<div class="coll-open"><p class="co-es" lang="es">' + COLLECTION_OPENING.map(r => r[0]).join('<br>') + '</p>' +
-        '<p class="co-en">' + COLLECTION_OPENING.map(r => r[1]).join('<br>') + '</p></div>' +
+        '<p class="label red">' + UI.index + '</p>' + ctls + body +
         '<nav class="pn" aria-label="Other poems"><a href="#poems">← ' + UI.index + '</a>' +
           '<a href="#p-' + first.id + '"><bdi' + tl(first) + '>' + esc(first.title) + '</bdi> →</a></nav>' +
       '</article>';
@@ -1678,6 +1685,15 @@ en llanto [[supernova|6]], ardo y me muero.
     if (a) { toggleNote(+(a.dataset.n || a.closest('.mn').dataset.n)); return; }
     if (e.target.closest('#cardX')) { state.note = null; applyNote(); return; }
     const c = e.target.closest('.ctl');
+    if (c && !c.disabled && !state.poem && app.querySelector('#prologue')) {
+      state.split = !state.split;
+      save();
+      const y = window.scrollY;
+      viewAPreface();
+      window.scrollTo(0, y);
+      const again = app.querySelector('.ctl[data-act="split"]'); if (again) again.focus();
+      return;
+    }
     if (c && !c.disabled && state.poem) {
       if (c.dataset.act === 'roma') state.roma = !state.roma; else state.split = !state.split;
       save();
