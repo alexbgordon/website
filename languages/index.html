@@ -51,7 +51,7 @@
     .ft-family ul > li::after { content: ""; position: absolute; left: 0; top: 1.05em; bottom: 0; border-left: 1px solid var(--faint); }
     .ft-family ul > li:last-child::after { display: none; }
     .ft-box { display: inline-block; padding: 0 6px; border: 1px solid var(--ink2); }
-    .ft-family > li > .ft-box { border-color: var(--red); color: var(--red); }
+    .ft-family > li > .ft-box { border-color: var(--ink2); color: var(--ink); }   /* family labels: neutral; red is only for links (Alex 2026-11-04) */
     .ft-words { color: var(--ink2); font-style: italic; }
     /* languages with their own page: red accent and linked (the rule is in the tree generator, make_tree6.py) */
     .lang-sheet a.ft-link { color: var(--red); text-decoration: none; }
@@ -119,55 +119,17 @@
             <ul class="ft-family">
               <li><span class="ft-box">Tobi-Alesanian</span>
                 <ul>
-                  <li><span class="ft-box">Nerathi-Naverian</span>
-                    <ul>
-                      <li><span class="ft-box">Nerathi</span>
-                        <ul>
-                          <li class="ft-words"><span class="ft-word">Mahitrā</span> <span class="ft-word">Mesathi</span> <span class="ft-word">Sarathi</span></li>
-                        </ul>
-                      </li>
-                      <li><span class="ft-box">Naverian</span>
-                        <ul>
-                          <li class="ft-words"><span class="ft-word">Zuni</span> <span class="ft-word">Maraði</span> <span class="ft-word">Neravi</span></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><span class="ft-box">Drembian</span>
-                    <ul>
-                      <li><span class="ft-box">Lenevan</span>
-                        <ul>
-                          <li class="ft-words"><span class="ft-word">Athina</span> <span class="ft-word">Merla</span> <span class="ft-word">Rakhon</span> <span class="ft-word">Lana</span> <span class="ft-word">Merlena</span></li>
-                        </ul>
-                      </li>
-                      <li><span class="ft-box">Enderian</span>
-                        <ul>
-                          <li class="ft-words"><span class="ft-word">Akoni</span> <span class="ft-word">Matirn</span> <span class="ft-word">Ender</span> <span class="ft-word">Dregwa</span></li>
-                        </ul>
-                      </li>
-                      <li><span class="ft-box">Farikan</span>
-                        <ul>
-                          <li class="ft-words"><span class="ft-word">Furling</span> <span class="ft-word">Fleryk</span> <span class="ft-word">Makhor</span></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><span class="ft-box">Feixanyan</span>
-                    <ul>
-                      <li class="ft-words"><span class="ft-word">Waxinya</span> <span class="ft-word">Fexiayani</span></li>
-                    </ul>
-                  </li>
                   <li><span class="ft-box">Lundarian</span>
                     <ul>
+                      <li><span class="ft-box"><a class="ft-link" href="conjugator/lexicon.html">Lunde</a></span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Hirasyane</span> <span class="ft-word"><a class="ft-link" href="../gallery/#lloranija">Lloranija</a></span> <span class="ft-word"><a class="ft-link" href="modern/lexicon/">Lundiyani</a></span> <span class="ft-word">Skexlixya</span> <span class="ft-word">Zakelian</span> <span class="ft-word">Wisterian</span> <span class="ft-word"><a class="ft-link" href="../gallery/#lunevrian">Łunevrian</a></span></li>
+                        </ul>
+                      </li>
                       <li class="ft-words"><span class="ft-word">Thalassa</span></li>
                       <li><span class="ft-box">Celian</span>
                         <ul>
                           <li class="ft-words"><span class="ft-word">Thála</span> <span class="ft-word">Másta</span> <span class="ft-word">Fitár</span></li>
-                        </ul>
-                      </li>
-                      <li><span class="ft-box"><a class="ft-link" href="conjugator/lexicon.html">Lunde</a></span>
-                        <ul>
-                          <li class="ft-words"><span class="ft-word">Hirasyane</span> <span class="ft-word">Lloranija</span> <span class="ft-word"><a class="ft-link" href="modern/lexicon/">Lundiyani</a></span> <span class="ft-word">Skexlixya</span> <span class="ft-word">Zakelian</span> <span class="ft-word">Wisterian</span> <span class="ft-word">Llunefrian</span></li>
                         </ul>
                       </li>
                       <li class="ft-words"><span class="ft-word">Hasaθn</span></li>
@@ -192,11 +154,49 @@
                       </li>
                     </ul>
                   </li>
+                  <li><span class="ft-box">Nerathi-Naverian</span>
+                    <ul>
+                      <li><span class="ft-box">Nerathi</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Mahitrā</span> <span class="ft-word">Mesathi</span> <span class="ft-word">Sarathi</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Naverian</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Zuni</span> <span class="ft-word">Maraði</span> <span class="ft-word">Neravi</span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Drembian</span>
+                    <ul>
+                      <li><span class="ft-box">Lenevan</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Athina</span> <span class="ft-word"><a class="ft-link" href="../gallery/#merla">Merla</a></span> <span class="ft-word">Rakhon</span> <span class="ft-word">Lana</span> <span class="ft-word">Merlena</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Enderian</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Akoni</span> <span class="ft-word">Matirn</span> <span class="ft-word"><a class="ft-link" href="../gallery/#ender">Ender</a></span> <span class="ft-word">Dregwa</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="ft-box">Farikan</span>
+                        <ul>
+                          <li class="ft-words"><span class="ft-word">Furling</span> <span class="ft-word">Fleryk</span> <span class="ft-word">Makhor</span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><span class="ft-box">Feixanyan</span>
+                    <ul>
+                      <li class="ft-words"><span class="ft-word">Waxinya</span> <span class="ft-word">Fexiayani</span></li>
+                    </ul>
+                  </li>
                 </ul>
               </li>
             </ul>
             <ul class="ft-family">
-              <li><span class="ft-box">Ganeva</span>
+              <li><span class="ft-box"><a class="ft-link" href="../gallery/#ganeva">Ganeva</a></span>
                 <ul>
                   <li class="ft-words"><span class="ft-word">Titirüihi</span></li>
                 </ul>
@@ -205,7 +205,7 @@
             <ul class="ft-family">
               <li><span class="ft-box">Oluwian</span>
                 <ul>
-                  <li><span class="ft-box">Oluwi</span>
+                  <li><span class="ft-box"><a class="ft-link" href="../gallery/#oluwi">Oluwi</a></span>
                     <ul>
                       <li class="ft-words"><span class="ft-word">Tagosgū'i</span> <span class="ft-word">Misgowi</span></li>
                     </ul>
@@ -230,7 +230,7 @@
                 <ul>
                   <li><span class="ft-box">Lanari</span>
                     <ul>
-                      <li class="ft-words"><span class="ft-word">Lanar</span> <span class="ft-word">Luθivir</span></li>
+                      <li class="ft-words"><span class="ft-word"><a class="ft-link" href="../gallery/#lanar">Lanar</a></span> <span class="ft-word"><a class="ft-link" href="../gallery/#luthivir">Luθivir</a></span></li>
                     </ul>
                   </li>
                 </ul>
@@ -261,7 +261,7 @@
                       </li>
                       <li><span class="ft-box">Ifüxinian</span>
                         <ul>
-                          <li class="ft-words"><span class="ft-word">Ifüxin</span> <span class="ft-word">Mürin</span></li>
+                          <li class="ft-words"><span class="ft-word">Ifüxin</span> <span class="ft-word"><a class="ft-link" href="../gallery/#murin">Mürin</a></span></li>
                         </ul>
                       </li>
                     </ul>
@@ -291,9 +291,9 @@
                 <ul>
                   <li><span class="ft-box">Meztinian</span>
                     <ul>
-                      <li><span class="ft-box">Neeyakian</span>
+                      <li><span class="ft-box">Néyakian</span>
                         <ul>
-                          <li class="ft-words"><span class="ft-word">Sitik'ak</span> <span class="ft-word">Neeyak'aj</span></li>
+                          <li class="ft-words"><span class="ft-word">Sitik'ak</span> <span class="ft-word"><a class="ft-link" href="../gallery/#neyakaj">Néyak'aj</a></span></li>
                         </ul>
                       </li>
                       <li><span class="ft-box">Kincinian</span>
@@ -312,7 +312,7 @@
                     <ul>
                       <li><span class="ft-box">Lufewan</span>
                         <ul>
-                          <li class="ft-words"><span class="ft-word">La'ashwana</span> <span class="ft-word">Lulugwa</span> <span class="ft-word">Lukunda</span></li>
+                          <li class="ft-words"><span class="ft-word"><a class="ft-link" href="../gallery/#lomoz-almo">La'ashwana</a></span> <span class="ft-word">Lulugwa</span> <span class="ft-word">Lukunda</span></li>
                         </ul>
                       </li>
                       <li><span class="ft-box">Tohekian</span>
@@ -370,7 +370,7 @@
                   </li>
                   <li><span class="ft-box">Hirakian</span>
                     <ul>
-                      <li class="ft-words"><span class="ft-word">Hayrakh</span> <span class="ft-word">Kastan</span></li>
+                      <li class="ft-words"><span class="ft-word"><a class="ft-link" href="../gallery/#hayrakh">Hayrakh</a></span> <span class="ft-word">Kastan</span></li>
                     </ul>
                   </li>
                 </ul>
@@ -389,7 +389,7 @@
                   <li class="ft-words"><span class="ft-word">Zahiki</span> <span class="ft-word">Saleniki</span></li>
                   <li><span class="ft-box">Ikusian</span>
                     <ul>
-                      <li class="ft-words"><span class="ft-word">Miikvavis</span> <span class="ft-word">Ikusi</span></li>
+                      <li class="ft-words"><span class="ft-word"><a class="ft-link" href="../gallery/#miikvavis">Miikvavis</a></span> <span class="ft-word"><a class="ft-link" href="../gallery/#ikusi">Ikusi</a></span></li>
                     </ul>
                   </li>
                 </ul>
@@ -401,7 +401,7 @@
                   <li class="ft-words"><span class="ft-word">Mohok'e</span></li>
                   <li><span class="ft-box">Lehitian</span>
                     <ul>
-                      <li class="ft-words"><span class="ft-word">Lehi'ti</span> <span class="ft-word">Tahisi</span></li>
+                      <li class="ft-words"><span class="ft-word"><a class="ft-link" href="../gallery/#lehiti">Lehi'ti</a></span> <span class="ft-word">Tahisi</span></li>
                     </ul>
                   </li>
                   <li><span class="ft-box">Snoqwilian</span>
@@ -416,6 +416,9 @@
                   </li>
                 </ul>
               </li>
+            </ul>
+            <ul class="ft-family">
+              <li><span class="ft-box"><a class="ft-link" href="../gallery/#svnba">Svnbâ</a></span></li>
             </ul>
           </div>
         </section>
