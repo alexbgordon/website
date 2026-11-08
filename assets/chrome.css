@@ -339,3 +339,56 @@ html { scrollbar-gutter: stable; }
 .site-header { font-size: 18px; line-height: 1.6; }
 /* The current language in the sub-nav's first row */
 .lunde-nav a[aria-current="true"] { color: var(--ab-red); }
+
+/* Name in the band above the language navigation. Layout only.
+   Angular is required. Lunde pages use Lunde Angular; Lundiyani pages use Lundiyani Angular.
+   Files sit beside this stylesheet. The reading face is the only fallback.
+   Lundiyani does not fall back to a Lunde font. */
+@font-face {
+  font-family: "Lunde Angular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/Lunde-Angular-Draft.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Lundiyani Angular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/Lundiyani-Angular-Draft.ttf") format("truetype");
+}
+.lang-mast {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.7rem;
+  margin: 0 0 0.2rem;
+  padding: 0.45em 0 0.1em;
+  overflow: visible;
+}
+.ab-card:has(> .lang-mast) { padding-top: 12px; }
+.lang-mast-script {
+  font-size: clamp(1.75rem, 3.6vw, 2.25rem);
+  line-height: 1.5;
+  font-weight: 400;
+  font-feature-settings: "ccmp" 1, "mark" 1, "mkmk" 1;
+  font-kerning: normal;
+}
+.lang-mast[data-lang-mast="lunde"] .lang-mast-script {
+  font-family: "Lunde Angular", "EB Garamond", Georgia, serif;
+}
+.lang-mast[data-lang-mast="lundiyani"] .lang-mast-script {
+  font-family: "Lundiyani Angular", "EB Garamond", Georgia, serif;
+}
+.lang-mast-latin {
+  font-family: "EB Garamond", "AB Fallback", Georgia, serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ab-muted);
+}
+@media (max-width: 640px) {
+  .ab-card:has(> .lang-mast) { padding-top: 8px; }
+  .lang-mast-script { line-height: 1.6; }
+}

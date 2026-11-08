@@ -1,0 +1,160 @@
+/* Lunde script preview. Poetry sheet: EB Garamond reading text, Courier Prime labels, red rule.
+   The two script faces are separate families. Files live at the site root:
+     assets/fonts/Lunde-Draft.ttf
+     assets/fonts/Lunde-Angular-Draft.ttf
+   This stylesheet is linked from languages/conjugator/, so the urls step up to that folder.
+   font-display: swap keeps the Latin readable while a face loads, and if the file is absent. */
+
+@font-face {
+  font-family: "Lunde Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../assets/fonts/Lunde-Draft.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Lunde Angular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../assets/fonts/Lunde-Angular-Draft.ttf") format("truetype");
+}
+
+.lunde-script {
+  margin: 2.4rem 0 2.2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--border);
+  max-width: 40rem;
+}
+.lunde-script h2 {
+  margin: 0;
+  font-family: var(--serif, "EB Garamond", Georgia, serif);
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: .38em;
+  padding-left: .38em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.lunde-script-rule {
+  width: 36px;
+  height: 1px;
+  background: var(--accent);
+  margin: 16px 0 22px;
+  border: 0;
+}
+.lunde-script-lead {
+  margin: 0 0 1.15rem;
+  font-family: var(--serif, "EB Garamond", Georgia, serif);
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+.lunde-script-lead i { font-family: "Gentium Book Plus", Georgia, serif; }
+.lunde-script-label {
+  display: block;
+  margin: 0 0 0.2rem;
+  font-family: var(--mono, "Courier Prime", ui-monospace, monospace);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lunde-script-bar,
+.lunde-script-samples {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.15rem;
+  margin: 0 0 0.85rem;
+}
+.lunde-script-fonts { display: flex; flex-wrap: wrap; align-items: center; }
+.lunde-script-ctl {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  min-height: 44px;
+  padding: 8px 2px;
+  margin: 0 1.15rem 0 0;
+  cursor: pointer;
+  font-family: var(--mono, "Courier Prime", ui-monospace, monospace);
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lunde-script-ctl:hover { color: var(--text); }
+.lunde-script-ctl[aria-pressed="true"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.lunde-script-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 7.5rem;
+  margin: 0.3rem 0 1rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--serif, "EB Garamond", Georgia, serif);
+  font-size: 1.2rem;
+  line-height: 1.55;
+  resize: vertical;
+}
+.lunde-script-status {
+  min-height: 1.3em;
+  margin: 0.2rem 0 0;
+  font-family: var(--mono, "Courier Prime", ui-monospace, monospace);
+  font-size: 12px;
+  letter-spacing: .04em;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.lunde-script-preview {
+  margin: 0.15rem 0 0.55rem;
+  padding: 0.7em 0 0.85em;
+  min-height: 4.6em;
+  font-size: clamp(1.85rem, 4.2vw, 2.7rem);
+  line-height: 2.2;
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures contextual;
+  font-feature-settings: "ccmp" 1, "mark" 1, "mkmk" 1;
+  text-rendering: optimizeLegibility;
+}
+.lunde-script-preview[data-font="regular"] {
+  font-family: "Lunde Regular", "Gentium Book Plus", "EB Garamond", Georgia, serif;
+}
+.lunde-script-preview[data-font="angular"] {
+  font-family: "Lunde Angular", "Gentium Book Plus", "EB Garamond", Georgia, serif;
+}
+.lunde-script-preview.is-empty {
+  font-family: var(--serif, "EB Garamond", Georgia, serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--muted);
+  font-feature-settings: normal;
+  font-variant-ligatures: normal;
+}
+.lunde-script-notice {
+  margin: 0.2rem 0 0;
+  max-width: 40rem;
+  font-family: var(--mono, "Courier Prime", ui-monospace, monospace);
+  font-size: 13px;
+  letter-spacing: .02em;
+  line-height: 1.45;
+  color: var(--accent);
+}
+.lunde-script-notice[hidden] { display: none; }
+@media (max-width: 640px) {
+  .lunde-script { max-width: none; }
+  .lunde-script-preview { line-height: 2.35; padding-top: 0.85em; padding-bottom: 1em; }
+  .lunde-script-ctl { margin-right: 0.9rem; }
+}

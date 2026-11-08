@@ -7,6 +7,7 @@
   <title>Lundiyani lexicon | Alex Bahia</title>
   <meta name="description" content="The Lundiyani (Modern Lundian) word list: every word with its meaning and type.">
   <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="lundiyani-script.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap">
@@ -82,24 +83,55 @@
 </header>
 <!-- site-header:end -->
   <main id="main" class="wrap ab-card ml">
+<p class="lang-mast" data-lang-mast="lundiyani">
+  <span class="lang-mast-script" aria-hidden="true">Lundiyani</span>
+  <span class="lang-mast-latin">(Lundiyani)</span>
+</p>
 <!-- lunde-nav:start -->
 <nav class="lunde-nav" aria-label="Languages">
   <ul class="lunde-sections">
     <li><a href="../../../languages/">Overview</a></li>
     <li><a href="../../../languages/conjugator/lexicon.html">Lunde (Old Lundian)</a></li>
     <li><a href="../../../languages/modern/lexicon/" aria-current="true">Lundiyani (Modern Lundian)</a></li>
+    <li><a href="../../../languages/history/">History</a></li>
   </ul>
   <ul class="lunde-tool" aria-label="Lundiyani pages">
     <li><a href="../../../languages/modern/lexicon/" aria-current="page">Lexicon</a></li>
     <li><a href="../../../languages/modern/">Grammar</a></li>
     <li><a href="../../../languages/modern/conjugator/">Verb conjugator</a></li>
     <li><a href="../../../languages/modern/numbers.html">Numbers</a></li>
+    <li><a href="#script">Script</a></li>
   </ul>
 </nav>
 <!-- lunde-nav:end -->
     <h1>Lundiyani lexicon (Modern Lundian)</h1>
     <p class="lang-desc">Lundiyani (Modern Lundian) is the modern register. It's a lingua franca, influenced by many languages, and I've melded vocabulary from other languages into it.</p>
     <p class="lede">From the Lundiyani word list. The grammar is on the <a href="../">grammar page</a>.</p>
+    <section class="ly-script" id="script" data-lundiyani-script="preview" data-font-base="../../../" aria-labelledby="ly-script-h">
+      <h2 id="ly-script-h">Script</h2>
+      <hr class="ly-script-rule">
+      <p class="ly-script-lead">This draws the Lundiyani script. It is not a translation. The box keeps the Latin you type, and the preview paints those same letters in a Lundiyani font. Accents stay. <i>xl</i> stays <i>x</i> plus <i>l</i>, as in <i>kaxli</i>.</p>
+      <div class="ly-script-bar">
+        <div class="ly-script-fonts" role="group" aria-label="Lundiyani font">
+          <button type="button" class="ly-script-ctl" data-script-font="regular" aria-pressed="true">Regular</button>
+          <button type="button" class="ly-script-ctl" data-script-font="angular" aria-pressed="false">Angular</button>
+        </div>
+        <button type="button" class="ly-script-ctl" data-script-clear>Clear</button>
+      </div>
+      <label class="ly-script-label" for="ly-script-input">Romanized Lundiyani</label>
+      <textarea class="ly-script-input" id="ly-script-input" data-script-input rows="4" spellcheck="false" autocapitalize="off" autocomplete="off" lang="und" placeholder="i lan lo lai valia"></textarea>
+      <div class="ly-script-samples" role="group" aria-label="Samples from the grammar">
+        <span class="ly-script-label">Samples</span>
+        <button type="button" class="ly-script-ctl" data-script-sample="sleep">I wasn’t sleeping</button>
+        <button type="button" class="ly-script-ctl" data-script-sample="and">My cat and your dog</button>
+        <button type="button" class="ly-script-ctl" data-script-sample="has">This tall person has two dogs</button>
+        <button type="button" class="ly-script-ctl" data-script-sample="words">Words from the lexicon</button>
+      </div>
+      <p class="ly-script-label" id="ly-script-preview-h">Script preview</p>
+      <p class="ly-script-status" data-script-status role="status">Loading Regular.</p>
+      <div class="ly-script-preview is-empty" data-script-preview data-font="regular" lang="und" aria-labelledby="ly-script-preview-h" aria-live="polite">The script will appear here.</div>
+      <p class="ly-script-notice" data-script-notice role="status" hidden></p>
+    </section>
     <div class="lx-search" id="lx-search" hidden>
       <label for="lx-q"><strong>Search</strong> (word or meaning)</label><br>
       <input id="lx-q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. kora, water, to love">
@@ -1129,6 +1161,7 @@
       <p>Lundiyani lexicon &middot; <a href="../">Lundiyani grammar</a></p>
     </div>
   </footer>
+  <script src="lundiyani-script.js"></script>
   <script>
   (function () {
     var box = document.getElementById('lx-search'), q = document.getElementById('lx-q'), count = document.getElementById('lx-count');

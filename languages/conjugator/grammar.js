@@ -13,7 +13,7 @@
   var IRREG = LEX.irregular || {};
   var BY_ROOT = {}, BY_BASE = {};
   VERBS.forEach(function (v) { BY_ROOT[v.root] = v; BY_BASE[v.samon] = v; });
-  var LETTERS = /^[a-zäàāēīōūǟñłğ]+$/;
+  var LETTERS = /^[a-zäàāēīōūǟñŋłğ]+$/;
 
   function $(id) { return document.getElementById(id); }
   var CACHE = {};
@@ -65,14 +65,14 @@
     el.innerHTML = '<div class="tool-h"><h4>Syllables, stress and IPA</h4><p>Type any word in Lunde letters.</p></div>' +
       '<div class="fields"><div class="field w1"><label for="ipa-word">Word</label><input id="ipa-word" type="text" value="nileasa" autocomplete="off" autocapitalize="off" spellcheck="false"></div>' +
       '<label class="check" for="ipa-imon"><input id="ipa-imon" type="checkbox"> starts with the īmon ī-</label></div>' +
-      exampleChips(['nileasa', 'fastūos', 'xavunōs', 'ixahekanga', 'hekanga', 'gval', 'eked', 'tēllave'], 'data-ipa') +
+      exampleChips(['nileasa', 'fastūos', 'xavunōs', 'ixahekaŋa', 'hekaŋa', 'gval', 'eked', 'tēllave'], 'data-ipa') +
       '<div class="out" id="ipa-out" aria-live="polite"></div>';
     function update() {
       var word = $('ipa-word').value.trim().toLowerCase();
       var imon = $('ipa-imon').checked;
       var out = $('ipa-out');
       if (!word) { out.innerHTML = '<p class="why">Type a word to see its syllables.</p>'; return; }
-      if (!LETTERS.test(word)) { out.innerHTML = '<p class="out-err">Use Lunde letters only: a to z, ä, à, ā ē ī ō ū ǟ, ñ, ł and ğ.</p>'; return; }
+      if (!LETTERS.test(L.canon(word))) { out.innerHTML = '<p class="out-err">Use Lunde letters only: a to z, ä, à, ā ē ī ō ū ǟ, ñ, ŋ, ł and ğ. ng and ny are accepted spellings of ŋ and ñ.</p>'; return; }
       if (imon && word.charAt(0) !== 'ī') { out.innerHTML = '<p class="out-err">An īmon form starts with ī-. Untick the box or add the ī.</p>'; return; }
       var syl = L.syllabify(word, { imon: imon });
       var st = L.stress(word, { imon: imon });
@@ -96,7 +96,7 @@
 
   function buildStressTable(el) {
     var words = [
-      ['nileasa'], ['tavenuos'], ['menrakeden'], ['ixahekanga'], ['galatiōn'], ['tēllave'], ['labūn'], ['fastūos'],
+      ['nileasa'], ['tavenuos'], ['menrakeden'], ['ixahekaŋa'], ['galatiōn'], ['tēllave'], ['labūn'], ['fastūos'],
       ['īlabi', { imon: true }, 'the īmon of labi'], ['īssiūne', { base: 'īssi' }, 'comitative of īssi']
     ];
     var h = '<table class="dt"><thead><tr><th scope="col">Word</th><th scope="col">Syllables</th><th scope="col">IPA</th><th scope="col">Why</th></tr></thead><tbody>';
@@ -281,7 +281,7 @@
 
   function buildGerunds(el) {
     var bases = ['labasa', 'xasa', 'luasa', 'juasa', 'leasa', 'kahyasa', 'łasa'];
-    var h = '<table class="dt"><thead><tr><th scope="col">Dictionary form</th><th scope="col">Class</th><th scope="col">Samon -ior</th><th scope="col">Namon -inve</th><th scope="col">Exmon -anga</th></tr></thead><tbody>';
+    var h = '<table class="dt"><thead><tr><th scope="col">Dictionary form</th><th scope="col">Class</th><th scope="col">Samon -ior</th><th scope="col">Namon -inve</th><th scope="col">Exmon -aŋa</th></tr></thead><tbody>';
     bases.forEach(function (b) {
       var r = C(b);
       var cls = { consonant: 'consonant', short: 'short', u: 'u-stem', e: 'e-stem' }[r.info.cls] + (r.info.yFinal ? ', ends in y' : '');
@@ -426,11 +426,11 @@
         return '<td class="w">' + formLink(b[0], 'd.' + i, d.form) + '</td>';
       }).join('') + '</tr>';
     });
-    el.innerHTML = h + '</tbody><caption>Built from: the stem (for consonant stems, the bare stem: no e); stem + r (consonant stems: + er); stem + ox; root + anga. Hover a column for whom it describes.</caption></table>';
+    el.innerHTML = h + '</tbody><caption>Built from: the stem (for consonant stems, the bare stem: no e); stem + r (consonant stems: + er); stem + ox; root + aŋa. Hover a column for whom it describes.</caption></table>';
   }
 
   function buildAdjDeclension(el) {
-    var words = ['fastu', 'fastur', 'fastuox', 'fastanga'];
+    var words = ['fastu', 'fastur', 'fastuox', 'fastaŋa'];
     var labels = ['samon participle', 'namon participle', 'exmon participle', 'active adjective'];
     var decs = words.map(function (w) { return L.decline(w); });
     var h = '<table class="dt"><thead><tr><th scope="col">Case</th>' + words.map(function (w, i) { return '<th scope="col">' + esc(labels[i]) + '<span class="th-word">' + esc(w) + '</span></th>'; }).join('') + '</tr></thead><tbody>';
@@ -458,13 +458,13 @@
   function buildAdverbTool(el) {
     el.innerHTML = '<div class="tool-h"><h4>Make a manner adverb</h4><p>From an adjective or a noun.</p></div>' +
       '<div class="fields"><div class="field w1"><label for="adv-word">Adjective or noun</label><input id="adv-word" type="text" value="fastu" autocomplete="off" autocapitalize="off" spellcheck="false"></div></div>' +
-      exampleChips(['fastu', 'miade', 'ixahekanga', 'ixa', 'ilus'], 'data-adv') +
+      exampleChips(['fastu', 'miade', 'ixahekaŋa', 'ixa', 'ilus'], 'data-adv') +
       '<div class="out" id="adv-out" aria-live="polite"></div>';
     function update() {
       var w = $('adv-word').value.trim().toLowerCase();
       var out = $('adv-out');
       if (!w) { out.innerHTML = '<p class="why">Type a word.</p>'; return; }
-      if (!LETTERS.test(w)) { out.innerHTML = '<p class="out-err">Use Lunde letters only.</p>'; return; }
+      if (!LETTERS.test(L.canon(w))) { out.innerHTML = '<p class="out-err">Use Lunde letters only: a to z, ä, à, ā ē ī ō ū ǟ, ñ, ŋ, ł and ğ. ng and ny are accepted spellings of ŋ and ñ.</p>'; return; }
       var a = L.adverb(w);
       out.innerHTML = '<p class="big">' + esc(a.form) + '</p><p class="why">' + esc(L.RULES[a.rules[0]].text) + '.</p>';
     }

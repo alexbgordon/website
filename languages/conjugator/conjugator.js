@@ -31,7 +31,7 @@
     { code: '1p', gloss: 'let us' },
     { code: '3', gloss: 'let him, her, them' }
   ];
-  var GERUND_SUFFIX = { samon: '-ior', namon: '-inve', exmon: '-anga' };
+  var GERUND_SUFFIX = { samon: '-ior', namon: '-inve', exmon: '-aŋa' };
   var NUM_LABEL = { sg: 'Singular', an: 'Plural, animate', 'in': 'Plural, inanimate' };
 
   /* ------------------------------------------------------------------ */
@@ -162,11 +162,12 @@
       hits.sort(function (a, b) { return rank(VERBS[a]) - rank(VERBS[b]) || a - b; });
     }
     var h = [];
-    if (raw && !VERBS.some(function (v) { return v.samon === raw; })) {
-      if (/asa$/.test(raw)) {
+    var shown = L.canon(raw);
+    if (raw && !VERBS.some(function (v) { return v.samon === raw || v.samon === shown; })) {
+      if (/asa$/.test(shown)) {
         try {
-          L.analyze(raw);
-          h.push('<li><button type="button" class="vi vi-new" data-custom="' + esc(raw) + '"><span class="vi-base">' + esc(raw) +
+          L.analyze(shown);
+          h.push('<li><button type="button" class="vi vi-new" data-custom="' + esc(shown) + '"><span class="vi-base">' + esc(shown) +
             '</span><span class="vi-gloss">Conjugate this new verb</span></button></li>');
         } catch (err) {
           h.push('<li class="vi-err" role="status">' + esc(err.message) + '</li>');
@@ -609,14 +610,15 @@
     opts = opts || {};
     var res;
     try { res = L.conjugate(base); } catch (err) { renderIndex(); return false; }
-    state.idx = null; state.custom = base; state.decl = {};
-    state.entry = { root: res.info.stem, samon: base, meanings: { samon: null, namon: null, exmon: null }, custom: true };
+    var shown = res.info.samon;
+    state.idx = null; state.custom = shown; state.decl = {};
+    state.entry = { root: res.info.root, samon: shown, meanings: { samon: null, namon: null, exmon: null }, custom: true };
     state.res = res; state.hl = null;
     if (opts.imon !== undefined) { state.imon = opts.imon; }
     state.sel = opts.sel && itemFor(res, opts.sel) ? opts.sel : defaultSel(state.entry, res);
     renderIndex(); renderSheet(); renderDeriv();
-    UI.store('lunde.verb', base);
-    setHash(/^[a-z]+$/.test(base) ? base : '');
+    UI.store('lunde.verb', shown);
+    setHash(UI.slugOf(shown));
     return true;
   }
 

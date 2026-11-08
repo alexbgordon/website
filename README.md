@@ -34,6 +34,9 @@ assets/chrome.css                 Fonts, shared header, the page card, Languages
 - **Lundian** is the English name and appears only in parentheses: "Lunde (Old Lundian)", "Lundiyani (Modern Lundian)".
 - Spelling (Oct 18): ł = /ɬ/ (Welsh ll; once written xl); a written xl is x + l, only where a root in x meets a suffix
   in l (ixli, kaxli); ğ = /ɟ/ (once gy). The Lundiyani PDF keeps the old spellings and number words.
+- Lunde velar nasal ŋ and palatal nasal ñ: the Oct 18 reference wrote ng and ny. Canonical Lunde uses ŋ and ñ,
+  including where conjugation puts n against g or y (ēŋa, ēña). à stays à. The letters yn in -ēyn are not ny.
+  English prose and other languages are not respelled.
 - Page names: Lunde lexicon / grammar / verb conjugator / case conjugator / number conjugator;
   Lundiyani lexicon / grammar / verb conjugator / numbers. Main headings add the English name in parentheses.
 

@@ -1,5 +1,5 @@
 /*
- * Lunde rule engine, v0.3
+ * Lunde rule engine, v0.4
  * Implements the rules of the Lunde Grammar Reference (sessions 1 to 8, Oct 18 2026).
  *
  * Verbs: every form is stem + ending, then the sound rules apply in order:
@@ -7,6 +7,12 @@
  *   2. the length rule (two long vowels may not stand in neighboring syllables)
  *   3. y + ēyn -> yēñ
  *   4. dissimilation (v-V-v -> v-V-n, j-V-j -> j-V-n, x-V-x -> x-V-g)
+ *   5. spelling: ng is written ŋ and ny is written ñ (see canon)
+ *
+ * Orthography after the Oct 18 reference: that text wrote the velar nasal as the
+ * digraph ng and sometimes the palatal nasal as ny. Canonical Lunde uses the
+ * letters ŋ and ñ. à stays à (a + grave). hy and rr stay digraphs; ł and ğ stay
+ * single letters. The yn of -ēyn is not ny; only the existing y + ēyn rule makes ñ.
  * Nouns and adjectives: bare word (or its oblique stem) + case ending, with the case rules.
  * Also: pronouns, numbers (base twelve), manner adverbs, stress and IPA.
  * Each rule that fires is logged, so every form can explain itself.
@@ -27,12 +33,31 @@
   var LONG = 'āēīōūǟ';
   var LENGTHEN = { a: 'ā', e: 'ē', i: 'ī', o: 'ō', u: 'ū', 'ä': 'ǟ' };
   var SHORTEN = { 'ā': 'a', 'ē': 'e', 'ī': 'i', 'ō': 'o', 'ū': 'u', 'ǟ': 'ä' };
-  var LETTERS = /^[a-zäàāēīōūǟñłğ]+$/;
-  // Letter pairs that spell one sound. hy and ng are single consonants; rr is one long consonant.
-  // Orthography (Oct 18): the lateral fricative /ɬ/ is written ł (once xl) and /ɟ/ is written ğ (once gy),
-  // so both are single letters. A written xl is now two sounds, x + l, as where a root in x meets
-  // a suffix in l (ix + -li → ixli /ˈix.li/); the engine makes that spelling at such joins by itself.
-  var DIGRAPHS = ['hy', 'ng', 'rr'];
+  var LETTERS = /^[a-zäàāēīōūǟñŋłğ]+$/;
+  // Letter pairs that spell one sound. hy is one consonant; rr is one long consonant.
+  // ŋ and ñ are single letters. The Oct 18 reference wrote ŋ as ng and ñ sometimes as ny;
+  // canon() accepts those spellings and writes the letters. A written xl is two sounds,
+  // x + l, as where a root in x meets a suffix in l (ix + -li → ixli /ˈix.li/).
+  var DIGRAPHS = ['hy', 'rr'];
+  var LETTER_ERROR = 'Use Lunde letters only (a–z, ä, à, ā ē ī ō ū ǟ, ñ, ŋ, ł, ğ). ng and ny are accepted spellings of ŋ and ñ.';
+
+  /**
+   * Canonical Lunde spelling. ng → ŋ (one sound, including n meeting g) and ny → ñ
+   * (one sound, including n meeting y). Idempotent. Not for English prose: "giving"
+   * contains the letters ng. Call this only on a Lunde word.
+   */
+  function canon(s) {
+    return String(s == null ? '' : s)
+      .replace(/ng/gi, function (m) { return m.charAt(0) === 'N' ? 'Ŋ' : 'ŋ'; })
+      .replace(/ny/gi, function (m) { return m.charAt(0) === 'N' ? 'Ñ' : 'ñ'; });
+  }
+
+  /** Lookup key: ŋ and ng match, ñ and ny match. à is left as à. English "ng" round-trips. */
+  function fold(s) {
+    return canon(String(s == null ? '' : s).toLowerCase()).replace(/ŋ/g, 'ng').replace(/ñ/g, 'ny');
+  }
+
+  function prep(s) { return canon(String(s == null ? '' : s).trim().toLowerCase()); }
 
   function isV(c) { return !!c && VOWELS.indexOf(c) !== -1; }
   function isLong(c) { return !!c && LONG.indexOf(c) !== -1; }
@@ -159,7 +184,8 @@
     imp_bv:   { text: 'b → v before the exmon imperative g', section: 'Imperatives' },
     part_e:   { text: 'consonant stems put e before the namon participle\'s r, like e-stems (daber, iluser); the samon participle is the bare stem (dab, ilus)', section: 'Adjectives from verbs' },
     part_a:   { text: 'a bare stem that would end in a cluster other than -st, -rr or -nt takes a between its last two consonants (adar, amap)', section: 'Adjectives from verbs' },
-    act_u:    { text: 'active adjective: a u-stem drops its u before -anga', section: 'Adjectives from verbs' },
+    act_u:    { text: 'active adjective: a u-stem drops its u before -aŋa', section: 'Adjectives from verbs' },
+    ortho:    { text: 'spelling: ng is written ŋ, and ny is written ñ', section: 'Orthography' },
     ox_obl:   { text: 'the exmon participle drops its o before an ending (u- and e-stems)', section: 'Adjectives from verbs' },
     os_long:  { text: '-os: a stem-final u lengthens', section: 'Nouns from verbs' },
     case_a:   { text: 'after a consonant, a is inserted before the case ending', section: 'Cases' },
@@ -188,8 +214,8 @@
    * For the two-consonant rules, rr (long) and hy count as two, as the doc says.
    */
   function analyze(samon) {
-    var w = String(samon || '').trim().toLowerCase();
-    if (!LETTERS.test(w)) { throw new Error('Use Lunde letters only (a–z, ä, à, ā ē ī ō ū ǟ, ñ, ł, ğ).'); }
+    var w = prep(samon);
+    if (!LETTERS.test(w)) { throw new Error(LETTER_ERROR); }
     if (w.length < 4 || w.slice(-3) !== 'asa') { throw new Error('A samon base ends in -asa (like labasa, xasa, luasa).'); }
     var root = w.slice(0, -3);
     if (!root) { throw new Error('A samon base needs a root before -asa.'); }
@@ -318,6 +344,8 @@
     var before = w;
     w = dissimilate(w, function (id) { log(id); });
     if (w !== before) { log.form(w); }
+    var spelled = canon(w);
+    if (spelled !== w) { log('ortho', spelled); w = spelled; }
     return w;
   }
 
@@ -374,9 +402,9 @@
 
   /** Public: join any stem and ending by the sound rules (for the grammar page's tool). */
   function join(stem, ending, form) {
-    var s = String(stem || '').trim().toLowerCase();
-    var e = String(ending || '').trim().toLowerCase().replace(/^-/, '');
-    if (!LETTERS.test(s) || !LETTERS.test(e)) { throw new Error('Use Lunde letters only (a–z, ä, à, ā ē ī ō ū ǟ, ñ, ł, ğ).'); }
+    var s = prep(stem);
+    var e = prep(String(ending || '').replace(/^-/, ''));
+    if (!LETTERS.test(s) || !LETTERS.test(e)) { throw new Error(LETTER_ERROR); }
     var log = makeLogger();
     var w = joinWith(s, e, form || 'samon', log);
     return { form: w, underlying: s + ' + ' + e, rules: log.list, steps: log.steps, ipa: toIPA(w) };
@@ -481,7 +509,7 @@
     return {
       samon: derive(info.stem, 'ior', 'gerund'),
       namon: derive(info.stem, 'inve', 'gerund'),
-      exmon: derive(info.stem, 'anga', 'gerund')
+      exmon: derive(info.stem, 'aŋa', 'gerund')
     };
   }
 
@@ -528,8 +556,8 @@
     }
     var exmonP = derive(s, 'ox');
     var active;
-    if (info.cls === 'u') { active = ruled(s + ' + anga', s.slice(0, -1) + 'anga', 'act_u'); }
-    else { active = derive(s, 'anga'); }
+    if (info.cls === 'u') { active = ruled(s + ' + aŋa', s.slice(0, -1) + 'aŋa', 'act_u'); }
+    else { active = derive(s, 'aŋa'); }
     // The exmon participle drops its o before an ending (fastuox -> fastux-); consonant stems keep it (labox-).
     var exOblique = (info.cls === 'u' || info.cls === 'e') ? s + 'x' : exmonP.form;
 
@@ -560,8 +588,11 @@
   /** The īmon prefix: ī- before a consonant, y- before a vowel; ende- loses its e after ī. */
   function imon(w) {
     if (!w) { return null; }
-    if (w.indexOf('ende') === 0) { return { form: 'īnde' + w.slice(4), rule: 'imon_ende' }; }
-    return isV(w.charAt(0)) ? { form: 'y' + w, rule: 'imon_y' } : { form: 'ī' + w, rule: 'imon_i' };
+    var hit;
+    if (w.indexOf('ende') === 0) { hit = { form: 'īnde' + w.slice(4), rule: 'imon_ende' }; }
+    else { hit = isV(w.charAt(0)) ? { form: 'y' + w, rule: 'imon_y' } : { form: 'ī' + w, rule: 'imon_i' }; }
+    hit.form = canon(hit.form);
+    return hit;
   }
 
   /* ------------------------------------------------------------------ */
@@ -648,15 +679,16 @@
     var at = 0;
     while (at < w.length && d.charAt(at) === w.charAt(at)) { at++; }
     if (d !== w && at >= obl.length) { log('case_keep', w); }
+    w = canon(w);
     return { form: w, underlying: und, rules: log.list, steps: log.steps, ipa: toIPA(w, { base: opts.stressBase || word }) };
   }
 
   /** Full declension: { word, oblique, cases: [{ id, name, sg, an, in }] }. */
   function decline(word, opts) {
     opts = opts || {};
-    var w = String(word || '').trim().toLowerCase();
-    if (!LETTERS.test(w)) { throw new Error('Use Lunde letters only (a–z, ä, à, ā ē ī ō ū ǟ, ñ, ł, ğ).'); }
-    var o = { oblique: opts.oblique, obliqueRule: opts.obliqueRule, stressBase: opts.stressBase };
+    var w = prep(word);
+    if (!LETTERS.test(w)) { throw new Error(LETTER_ERROR); }
+    var o = { oblique: opts.oblique ? prep(opts.oblique) : opts.oblique, obliqueRule: opts.obliqueRule, stressBase: opts.stressBase ? prep(opts.stressBase) : opts.stressBase };
     if (!o.oblique && /[ue]ox$/.test(w)) { o.oblique = w.slice(0, -2) + 'x'; o.obliqueRule = 'ox_obl'; }
     if (!o.oblique && w === 'ney') { o.oblique = 'ne'; o.obliqueRule = 'obl_ne'; }
     // A caller-supplied oblique is logged under the rule that explains it, if one does.
@@ -754,10 +786,11 @@
   /* ------------------------------------------------------------------ */
 
   function adverb(word) {
-    var w = String(word || '').trim().toLowerCase();
+    var w = prep(word);
     if (!w) { return null; }
+    if (!LETTERS.test(w)) { throw new Error(LETTER_ERROR); }
     var v = isV(w.charAt(0));
-    return { form: (v ? 'ilis' : 'ili') + w, underlying: (v ? 'ilis' : 'ili') + '- + ' + w, rules: [v ? 'adv_ilis' : 'adv_ili'] };
+    return { form: canon((v ? 'ilis' : 'ili') + w), underlying: (v ? 'ilis' : 'ili') + '- + ' + w, rules: [v ? 'adv_ilis' : 'adv_ili'] };
   }
 
   /* ------------------------------------------------------------------ */
@@ -773,11 +806,11 @@
    * other long vowels take a secondary stress.
    */
   function stress(word, opts) {
-    var w = String(word).toLowerCase();
+    var w = canon(String(word).toLowerCase());
     var n = nuclei(w);
     if (!n.length) { return { primary: -1, secondary: [], count: 0, reason: 'none' }; }
     var primary, reason;
-    if (opts && opts.base && String(opts.base).toLowerCase() !== w) {
+    if (opts && opts.base && canon(String(opts.base).toLowerCase()) !== w) {
       primary = Math.min(stress(opts.base, { imon: opts.imon }).primary, n.length - 1);
       reason = 'base';
     } else if (opts && opts.imon && w.charAt(0) === 'ī') {
@@ -798,7 +831,7 @@
   var VOWEL_IPA = { a: 'a', e: 'ɛ', i: 'i', o: 'ɔ', u: 'u', 'ä': 'æ', 'à': 'ɑ', 'ā': 'aː', 'ē': 'ɛː', 'ī': 'iː', 'ō': 'ɔː', 'ū': 'uː', 'ǟ': 'æː' };
   var CONS_IPA = { p: 'p', b: 'b', t: 't', d: 'd', k: 'k', m: 'm', n: 'n', f: 'f', s: 's', z: 'z', l: 'l', h: 'h',
     c: 't͡s', x: 'x', j: 'ʒ', y: 'j', 'ñ': 'ɲ', r: 'r', v: 'β', g: 'ɣ',
-    'ł': 'ɬ', 'ğ': 'ɟ', hy: 'xʲ', ng: 'ŋ', rr: 'r' };
+    'ł': 'ɬ', 'ğ': 'ɟ', 'ŋ': 'ŋ', hy: 'xʲ', rr: 'r' };
   var ONSET_CLUSTERS = { dr: 1, py: 1, gv: 1, xn: 1 };
 
   function phoneOf(toks, i) {
@@ -826,7 +859,7 @@
    * and only the clusters dr, py, gv, xn can start a syllable together.
    */
   function syllabify(word, opts) {
-    var w = String(word).toLowerCase();
+    var w = canon(String(word).toLowerCase());
     var toks = tokenize(w);
     var phones = toks.map(function (t, i) { return phoneOf(toks, i); });
     var nuc = [];
@@ -885,7 +918,8 @@
   }
 
   return {
-    version: '0.3',
+    version: '0.4',
+    canon: canon, fold: fold, LETTERS: LETTERS,
     PERSONS: PERSONS, PRONOUNS: PRONOUNS, IMP_PERSONS: IMP_PERSONS, FORMS: FORMS, TENSES: TENSES,
     RULES: RULES, ENDINGS: ENDINGS, CASES: CASES, NUMBERS: NUMBERS, NUMBER_NAMES: NUMBER_NAMES, caseEndingShapes: caseEndingShapes,
     DIGITS: DIGITS, POWERS: POWERS, ZERO: ZERO, NUMBER_MAX: NUMBER_MAX, DIGRAPHS: DIGRAPHS,

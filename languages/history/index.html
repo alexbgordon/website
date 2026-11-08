@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="preload" href="../../assets/fonts/EBGaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/EBGaramond-italic-400-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/CourierPrime-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>History | Languages | Alex Bahia</title>
+  <meta name="description" content="The passage from Lunde, the old literary language, to Lundiyani, its modern lingua franca: the alphabet, the sounds, final i, and the grammar.">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    /* Poetry sheet, same palette as the Languages overview: spaced capitals, a red rule, then reading text. */
+    .hist {
+      --serif: 'EB Garamond', 'AB Fallback', Georgia, 'Times New Roman', serif;
+      --mono: 'Courier Prime', 'AB Fallback', 'Courier New', ui-monospace, monospace;
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1.65;
+    }
+    .hist h1.sitename {
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 19px;
+      line-height: 1.6;
+      letter-spacing: .38em;
+      padding-left: .38em;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--text);
+    }
+    .hist .redrule { width: 36px; height: 1px; background: var(--accent); margin: 22px auto 28px; border: 0; }
+    .hist .lead {
+      margin: 0 auto 1.4rem;
+      max-width: 38rem;
+      font-size: 1.35rem;
+      line-height: 1.45;
+      font-style: italic;
+      text-wrap: balance;
+    }
+    .hist .front { text-align: center; }
+    .hist h2 {
+      margin: 2.5rem 0 0.75rem;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.45rem;
+      letter-spacing: .02em;
+      line-height: 1.25;
+      max-width: 40rem;
+    }
+    .hist h3 {
+      margin: 1.5rem 0 0.4rem;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.05rem;
+      color: var(--accent);
+      max-width: 40rem;
+    }
+    .hist p, .hist li { max-width: 40rem; }
+    .hist p { margin: 0 0 0.9rem; }
+    .hist ul, .hist ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+    .hist li { margin: 0 0 0.45rem; }
+    .hist a { color: var(--accent); }
+    .hist i { font-family: 'Gentium Book Plus', Georgia, serif; }
+    .hist .onpage {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1.1rem;
+      margin: 0 auto 1.6rem;
+      max-width: 40rem;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .hist .onpage a { color: var(--muted); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+    .hist .onpage a:hover { color: var(--accent); }
+    .hist .src {
+      margin: 0.2rem 0 0;
+      max-width: 40rem;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .02em;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+    .hist .charts {
+      display: grid;
+      gap: 1rem;
+      margin: 1rem 0 0.5rem;
+      max-width: 52rem;
+    }
+    @media (min-width: 860px) {
+      .hist .charts { grid-template-columns: 1fr 1fr; align-items: start; }
+    }
+    .hist .panel {
+      margin: 0;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      min-width: 0;
+    }
+    .hist .panel img { display: block; width: 100%; height: auto; }
+    .hist .panel .panel-body, .hist .panel figcaption {
+      padding: 0.75rem 0.9rem 0.9rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text-2);
+    }
+    .hist .panel h3 { margin: 0 0 0.4rem; }
+    .hist .panel.compare { margin-top: 1rem; }
+    .hist .note {
+      margin: 0.8rem 0 0;
+      max-width: 40rem;
+      font-size: 1rem;
+      color: var(--text-2);
+    }
+    .hist .tbl-wrap { overflow-x: auto; margin: 0.6rem 0 0.4rem; max-width: 52rem; }
+    .hist table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 36rem;
+      background: var(--surface);
+      font-size: 1rem;
+    }
+    .hist caption {
+      caption-side: bottom;
+      text-align: left;
+      padding-top: 0.6rem;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .02em;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+    .hist th, .hist td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    .hist th {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hist td.w { font-family: 'Gentium Book Plus', Georgia, serif; font-style: italic; white-space: nowrap; }
+    .hist .further { list-style: none; padding: 0; margin: 0.4rem 0 0; }
+    .hist .further li { margin: 0; padding: 0.35rem 0; border-bottom: 1px solid var(--border); max-width: 40rem; }
+    .hist .further li:last-child { border-bottom: 0; }
+    @media (max-width: 640px) {
+      .hist { font-size: 18px; }
+      .hist .lead { font-size: 1.2rem; }
+      .hist h1.sitename { letter-spacing: .22em; padding-left: .22em; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+<!-- site-header:start -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="../../">Alex Bahia</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../poetry/">Poetry</a></li>
+        <li><a href="../../languages/" aria-current="page">Languages</a></li>
+        <li><a href="../../gallery/">Gallery</a></li>
+        <li><a href="../../about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- site-header:end -->
+  <main id="main" class="wrap ab-card hist" tabindex="-1">
+<!-- lunde-nav:start -->
+<nav class="lunde-nav" aria-label="Languages">
+  <ul class="lunde-sections">
+    <li><a href="../../languages/">Overview</a></li>
+    <li><a href="../../languages/conjugator/lexicon.html">Lunde (Old Lundian)</a></li>
+    <li><a href="../../languages/modern/lexicon/">Lundiyani (Modern Lundian)</a></li>
+    <li><a href="./" aria-current="page">History</a></li>
+  </ul>
+  <ul class="lunde-tool" aria-hidden="true"></ul>
+</nav>
+<!-- lunde-nav:end -->
+    <header class="front">
+      <h1 class="sitename" id="hist-h">From Lunde to Lundiyani</h1>
+      <hr class="redrule">
+      <p class="lead">An older literary language, and a much later lingua franca.</p>
+    </header>
+    <nav class="onpage" aria-label="On this page">
+      <a href="#script-history">Script</a>
+      <a href="#sounds">Sounds</a>
+      <a href="#final-i">Final i</a>
+      <a href="#grammar">Grammar</a>
+      <a href="#comparisons">Comparisons</a>
+      <a href="#limits">Inheritance</a>
+    </nav>
+    <p>Lunde (Old Lundian) is the older literary language. Lundiyani (Modern Lundian) is the lingua franca that descends from it, much later, shaped by many languages. Dialect and register vary. A large part of the vocabulary is inherited, and a large part is new.</p>
+    <p>The relationship is not one substitution applied throughout. Some words remain recognizable. Some endings survive in new offices. Other words have been reshaped. A great many Lundiyani words stand without a Lunde counterpart in the lexicons; what follows is the history of the forms that can be set side by side.</p>
+    <p>The account is read from the grammars and the lexicons. A correspondence is the correspondence of the words in which it appears.</p>
+    <p class="src">See the <a href="../modern/#sounds">Lundiyani grammar</a> and the <a href="../conjugator/lexicon.html#lx-table">Lunde lexicon</a>.</p>
+
+    <section id="script-history" aria-labelledby="script-h">
+      <h2 id="script-h">The script became a full alphabet</h2>
+      <p>The Lundiyani script is a full alphabet.</p>
+      <p>In the older hand, the vowel signs depend on position. An initial vowel carries an introductory shape. Medial <i>i</i> and <i>e</i> are strokes of different lengths; medial <i>o</i> and <i>u</i> are curls. Medial <i>a</i> is unwritten. Initial <i>a</i> and final <i>a</i> have forms of their own, so medial <i>a</i> is read from the syllable rather than from a letter in the line.</p>
+      <p>The modern alphabet has independent letters for <i>a</i>, <i>e</i>, <i>i</i>, <i>o</i> and <i>u</i>. What position once implied is written. The change is in the inventory of the script, not only in the ductus of the hand.</p>
+      <p>The alphabet still joins, and it still uses ligatures. A sheet of letters in combination shows the connected hand. It does not make the script a syllabary. Bowls, stems and rounded strokes continue from the old chart into the modern one. The comparative chart pairs letters by that visual structure. It does not trace the development of one glyph into another, and signs absent from the charts are left absent.</p>
+      <div class="charts">
+        <div class="panel">
+          <div class="panel-body">
+            <h3>Lunde (Old Lundian)</h3>
+            <p>The old hand is positional, as above: an introductory shape for an initial vowel, distinct medial strokes, and no written medial <i>a</i>.</p>
+            <p><strong>Lunde Regular</strong> and <strong>Lunde Angular</strong> are two present hands for that old script. Angular is a present-day treatment of Lunde. It is not a historical stage between Lunde and Lundiyani, and it is not an intermediate alphabet. The <a href="../conjugator/lexicon.html#script">script preview</a> sets the romanization in those hands. It is type, not a manuscript.</p>
+            <p class="src">See also the <a href="../conjugator/grammar.html#sounds">Lunde grammar, Sounds</a>.</p>
+          </div>
+        </div>
+        <figure class="panel">
+          <a href="../../gallery/#lundiyani"><img src="../../gallery/img/alphabet-sheet-2.jpg" width="367" height="480" alt="Handwritten Lundiyani alphabet sheet from a notebook, with a letter and a name in each row"></a>
+          <figcaption>Lundiyani alphabet, the notebook sheet in the <a href="../../gallery/#lundiyani">Gallery</a>. The vowels are independent letters in one inventory. The sheet records the modern alphabet; it does not derive each sign from an Old counterpart.</figcaption>
+        </figure>
+      </div>
+      <figure class="panel compare">
+        <a href="img/lunde-vs-lundiyani-script.png"><img src="img/lunde-vs-lundiyani-script.png" width="2400" height="2660" loading="lazy" alt="Comparative chart of Lunde and Lundiyani letters paired by shared bowls, stems and strokes."></a>
+        <figcaption>Comparative chart of the Lunde and Lundiyani scripts. Letters stand side by side where the structure corresponds. The chart records continuity of shape; it is not a derivation of each sign.</figcaption>
+      </figure>
+      <p class="note">The same written words continue on both sides: <a href="../conjugator/lexicon.html#lx-table"><i>on</i></a> and <a href="../modern/lexicon/#letter-o"><i>on</i></a>, <a href="../conjugator/lexicon.html#lx-table"><i>osil</i></a> and <a href="../modern/lexicon/#letter-o"><i>osil</i></a>, <a href="../conjugator/lexicon.html#lx-table"><i>kana</i></a> and <a href="../modern/lexicon/#letter-k"><i>kana</i></a>, <a href="../conjugator/lexicon.html#lx-table"><i>li</i></a> and <a href="../modern/lexicon/#letter-l"><i>li</i></a>. Where the forms diverge, as in <i>heneu</i> / <i>eneu</i> and <i>ilus</i> / <i>ilusi</i>, the comparison is lexical and is set out below.</p>
+    </section>
+
+    <section id="sounds" aria-labelledby="sounds-h2">
+      <h2 id="sounds-h2">The sounds</h2>
+      <h3>The loss of h</h3>
+      <p>Lundiyani has no <i>h</i>. <a href="../conjugator/lexicon.html#lx-table"><i>hara</i></a>, “three,” continues as <a href="../modern/lexicon/#letter-a"><i>ara</i></a>.</p>
+      <p><a href="../conjugator/lexicon.html#lx-table"><i>heneu</i></a>, “voice,” continues as <a href="../modern/lexicon/#letter-e"><i>eneu</i></a>, with the same loss of initial <i>h</i>. <a href="../conjugator/lexicon.html#lx-table"><i>hūł</i></a> and <a href="../modern/lexicon/#letter-u"><i>ułe</i></a>, “zero,” belong together, as the Lundiyani entry records; the vowel and the ending differ as well as the <i>h</i>.</p>
+      <p><i>h</i> does not become <i>x</i>. <i>x</i> is a separate sound, and it remains.</p>
+      <h3>Other correspondences</h3>
+      <ul>
+        <li>The correspondence <i>b</i> : <i>w</i> is visible in <a href="../conjugator/lexicon.html#lx-table"><i>alba</i></a> / <a href="../modern/lexicon/#letter-a"><i>alwa</i></a>, “red,” and in <a href="../conjugator/lexicon.html#lx-table"><i>kabana</i></a> / <a href="../modern/lexicon/#letter-k"><i>kawa</i></a>, “hear.” <a href="../conjugator/lexicon.html#lx-table"><i>käbana</i></a> / <a href="../modern/lexicon/#letter-k"><i>kewe</i></a>, “taste,” shows the same labial correspondence together with other changes in the word. These are the pairs in which it appears.</li>
+        <li><a href="../conjugator/lexicon.html#lx-table"><i>gvena</i></a> / <a href="../modern/lexicon/#letter-w"><i>wena</i></a>, “eight,” has a simpler modern onset. The correspondence is this number word. <i>g</i> is otherwise retained.</li>
+        <li><a href="../conjugator/lexicon.html#lx-table"><i>kämana</i></a> / <a href="../modern/lexicon/#letter-k"><i>keme</i></a>, “smell,” and <a href="../conjugator/lexicon.html#lx-table"><i>värasa</i></a> / <a href="../modern/lexicon/#letter-v"><i>vera</i></a>, “do,” show Old <i>ä</i> beside Modern <i>e</i>, in words whose endings are also reshaped. The correspondence is these forms. It is not a merger of every <i>ä</i> with <i>e</i>, and not every modern <i>e</i> continues an old <i>ä</i>.</li>
+      </ul>
+      <p>The two grammars describe the vowels differently. Lunde gives <i>e</i> and <i>o</i> as /ɛ/ and /ɔ/; Lundiyani gives /e/ and /o/. Lunde has no lexical tone. An accent that a font can draw is not a tone of the language.</p>
+      <h3>Continuity</h3>
+      <p><a href="../conjugator/lexicon.html#lx-table"><i>li</i></a>, “thing,” <a href="../conjugator/lexicon.html#lx-table"><i>on</i></a>, “person,” <a href="../conjugator/lexicon.html#lx-table"><i>osil</i></a>, “eye,” and <a href="../conjugator/lexicon.html#lx-table"><i>zen</i></a> / <a href="../modern/lexicon/#letter-z"><i>zen</i></a>, “time, occasion,” are written the same way in both languages, and so are several number words. The spelling agrees. The grammars do not equate the pronunciations. These forms are why a change at one ending is not a change at every ending.</p>
+      <p class="src">See the <a href="../conjugator/grammar.html#sounds">Lunde grammar, Sounds</a>, the <a href="../modern/#sounds">Lundiyani grammar, Sounds</a>, and the two lexicons.</p>
+    </section>
+
+    <section id="final-i" aria-labelledby="final-i-h">
+      <h2 id="final-i-h">Why do so many Modern words end in i?</h2>
+      <p>Final <i>i</i> is frequent in Lundiyani, and it has several sources. It was not added to every older word.</p>
+      <h3>Some i’s were already there</h3>
+      <p>Old <a href="../conjugator/lexicon.html#lx-table"><i>li</i></a> already means “thing,” and the articles <i>i</i>, <i>ci</i> and <i>ni</i> already end in <i>i</i>. The later language adds nothing to these words.</p>
+      <h3>Some mark a plural</h3>
+      <p>Modern <i>on</i> → <i>oni</i> is “person → people,” and <i>osil</i> → <i>osili</i> is “eye → eyes.” Lunde already forms the animate plural in <i>-i</i>, including <i>osili</i>. The ending is inherited. It is not a vowel inserted into every stem.</p>
+      <p>Modern <i>kora</i> → <i>kori</i>, “cat → cats,” and <i>kiwuru</i> → <i>kiwuri</i>, “dog → dogs,” replace the last vowel. They do not simply add one after it. Inanimate nouns take <i>-en</i> or <i>-nen</i>. <i>yami</i> → <i>yamo</i>, “foot → feet,” is irregular, and <i>yami</i> is singular though it ends in <i>i</i>.</p>
+      <h3>Some belong to a larger suffix</h3>
+      <p>In <i>ampa</i> / <i>ampxi</i>, “feel / touch,” and <i>kawa</i> / <i>kawxi</i>, “hear / listen,” <i>-xi</i> marks action that is active or intended. In <i>eden</i> / <i>edenkai</i>, “eat / feed,” <i>-kai</i> is causative. <i>-li</i> forms thing-words, as in <i>kaxli</i>, “name.” The whole suffix carries the meaning. The final <i>i</i> is not a separate morpheme doing one job in every word. Lunde already forms thing-words in <i>-li</i>, as in <i>edeli</i> and <i>tesseli</i>. <i>-kai</i> has no counterpart in the older grammar.</p>
+      <h3>Some are individual lexical changes</h3>
+      <p><a href="../conjugator/lexicon.html#lx-table"><i>ilus</i></a> and <a href="../modern/lexicon/#letter-i"><i>ilusi</i></a>, “beautiful,” differ by a written <i>i</i>. The addition is this adjective. It is not a productive rule for forming adjectives. <a href="../conjugator/lexicon.html#lx-table"><i>ine</i></a> / <a href="../modern/lexicon/#letter-i"><i>ini</i></a>, “here,” and <a href="../conjugator/lexicon.html#lx-table"><i>nale</i></a> / <a href="../modern/lexicon/#letter-n"><i>nali</i></a>, “there,” continue final <i>e</i> as <i>i</i>: the vowel is replaced, not followed by another. <a href="../modern/lexicon/#letter-t"><i>tesi</i></a>, “say, tell,” continues <a href="../conjugator/lexicon.html#lx-table"><i>tesseasa</i></a> in meaning. The modern verb is reshaped, and the <i>i</i> belongs to that form.</p>
+      <p>A large part of the modern vocabulary in final <i>i</i> has no older form beside it. The grammar records <i>a</i> → <i>ai</i> in some words only, not as a universal rule. Final <i>i</i> is not the continuation of every consonant-final word, every final <i>e</i>, or every final <i>u</i>. <i>on</i>, <i>osil</i>, <i>li</i> and <i>kana</i>, with its final <i>a</i>, stand as written.</p>
+      <p class="src">See the <a href="../conjugator/grammar.html#cases">Lunde grammar, Cases</a> and <a href="../conjugator/grammar.html#word-formation">Word formation</a>; the <a href="../modern/#nouns">Lundiyani grammar, Nouns</a> and <a href="../modern/#word-formation">Word formation</a>; and the lexicon entries for <i>ilus</i> / <i>ilusi</i>, <i>ine</i> / <i>ini</i>, <i>nale</i> / <i>nali</i> and <i>tesseasa</i> / <i>tesi</i>.</p>
+    </section>
+
+    <section id="grammar" aria-labelledby="grammar-h">
+      <h2 id="grammar-h">From endings to separate words</h2>
+      <p>Lunde writes much of the sentence inside the word. The verb distinguishes person, tense and three forms of meaning: <strong>samon</strong>, the event itself; <strong>namon</strong>, experience from within; and <strong>exmon</strong>, action directed outward. Case distinguishes the transitive subject, the intransitive subject and the object. <a href="../conjugator/grammar.html#cases"><i>Ki labi guse</i></a>, “I love you,” is one such sentence: <i>ki</i> is bare, and <i>guse</i> takes the object ending.</p>
+      <p>Lundiyani writes much of the same information as separate words. The verb does not change for person or for tense. <i>lo</i> marks the past, <i>na</i> the future, <i>lan</i> negation and <i>lei</i> the conditional. <i>lai</i> is the copula and the progressive marker. A pronoun has one form for subject and object. The morphology that remains is the possessive <i>-de</i>, the plural endings, and the derivational suffixes.</p>
+      <p>The older distinctions are not simply lost. <a href="../conjugator/lexicon.html#lx-table"><i>kana</i></a>, the namon “see,” remains <a href="../modern/lexicon/#letter-k"><i>kana</i></a>. <i>kanxi</i>, “look,” is that root with the active suffix <i>-xi</i>. <i>ampana</i> / <i>ampasa</i>, “feel / touch,” stand beside <i>ampa</i> / <a href="../modern/lexicon/#letter-a"><i>ampxi</i></a>. The three older forms organize meaning. They do not each become one modern suffix.</p>
+      <h3>Old material in new roles</h3>
+      <p>The grammars derive three pieces of the modern system from the old one.</p>
+      <ul>
+        <li>Possessive <i>-de</i> continues the old genitive. <i>kide</i> and <i>dade</i> stand beside <i>ide</i> and <i>ade</i>, “my” and “his or her.” The suffix is the continuity. The pronoun stems have changed; that change is not a law deleting <i>k</i>, <i>g</i> or <i>d</i> wherever they occur.</li>
+        <li>Passive <i>dei</i> continues <i>daze</i>, “by him or her,” the agent of the old passive: the verb “be,” a participle, and the ablative.</li>
+        <li><i>erane</i>, “kill,” continues <i>irrana</i>, the namon of <i>irrasa</i>, “grab.” The connection is of form and of meaning. The sense “kill” is not given by the sounds alone.</li>
+      </ul>
+      <p><i>-on</i> for persons, <i>-li</i> for things, and the reversing prefix <i>łe-</i> continue. A modern sense that only resembles an older one is a resemblance of meaning, not the survival of a suffix.</p>
+      <h3>Sentence shape</h3>
+      <p>The ordinary modern order is subject, verb, object. <i>Ki labi guse</i> has that order as well. In the sentences the grammars give, there is no reversal of order from Lunde to Lundiyani.</p>
+      <p>Location is written differently. In Lunde, location words follow the noun and can take directional case endings. In Lundiyani, <i>nai</i>, “in, at, on,” and <i>de</i>, “from, of,” precede what they govern. Relative clauses in <i>sa</i> follow the noun in both languages. The modern grammar records the construction as the old one.</p>
+      <p>Lundiyani keeps rules of its own. <i>ta</i>, “have,” stands before its subject, and a command is <i>ov</i> with the verb and the person. Negation is the word <i>lan</i>, set before the verb, rather than the older abessive of the subject pronoun in <a href="../conjugator/grammar.html#cases"><i>Kiūłe labi guse</i></a>. The language is analytic, and it still has rules and word-formation. Counting remains base twelve. The system continues. The individual number words do not all continue unchanged.</p>
+      <p class="src">See the <a href="../conjugator/grammar.html#verbs">Lunde grammar, Verbs</a>, <a href="../conjugator/grammar.html#cases">Cases</a>, <a href="../conjugator/grammar.html#adjectives">Adjectives</a> and <a href="../conjugator/grammar.html#word-formation">Word formation</a>; the <a href="../modern/#verbs">Lundiyani grammar, Verbs</a>, <a href="../modern/#pronouns">Pronouns</a>, <a href="../modern/#word-order">Word order</a> and <a href="../modern/#clauses">Clauses</a>; and the <a href="../modern/lundiyani-grammar-reference.pdf">Lundiyani grammar reference</a>.</p>
+    </section>
+
+    <section id="comparisons" aria-labelledby="comp-h">
+      <h2 id="comp-h">Compared forms</h2>
+      <p>The table sets attested forms side by side, with the meaning they share. Each note says what that pair shows. The Lunde link opens the lexicon at the list; the headword is the form in the first column. The Lundiyani link opens the letter under which the modern form is entered.</p>
+      <div class="tbl-wrap">
+        <table>
+          <caption>Sixteen pairs from the lexicons.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Lunde</th>
+              <th scope="col">Lundiyani</th>
+              <th scope="col">Meaning</th>
+              <th scope="col">What the comparison tells us</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">hara</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-a">ara</a></td>
+              <td>three</td>
+              <td>Loss of <i>h</i> in the word for three.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">heneu</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-e">eneu</a></td>
+              <td>voice</td>
+              <td>The same loss of initial <i>h</i>, in the word for voice.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">hūł</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-u">ułe</a></td>
+              <td>zero</td>
+              <td>The Lundiyani entry identifies <i>ułe</i> with Lunde <i>hūł</i>. The vowel and the ending differ as well.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">alba</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-a">alwa</a></td>
+              <td>red</td>
+              <td><i>b</i> : <i>w</i> in the word for red. The old form is a noun; the modern form is an adjective.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">kabana</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-k">kawa</a></td>
+              <td>hear</td>
+              <td><i>b</i> : <i>w</i> in the verb “hear,” with the ending reshaped.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">käbana</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-k">kewe</a></td>
+              <td>taste</td>
+              <td><i>b</i> : <i>w</i> together with <i>ä</i> : <i>e</i> and a reshaped ending.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">tēlla</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-t">teila</a></td>
+              <td>day</td>
+              <td>The word for day in both languages. The forms are close.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">ilus</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-i">ilusi</a></td>
+              <td>beautiful</td>
+              <td>An additional written <i>i</i> in this adjective.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">ine</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-i">ini</a></td>
+              <td>here</td>
+              <td>Final <i>e</i> continues as <i>i</i>.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">nale</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-n">nali</a></td>
+              <td>there</td>
+              <td>Final <i>e</i> continues as <i>i</i> in the word for there.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">kana</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-k">kana</a></td>
+              <td>see</td>
+              <td>The old namon “see” and the modern verb are the same written word.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">ampasa</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-a">ampxi</a></td>
+              <td>touch</td>
+              <td>The modern form is the active derivative in <i>-xi</i>.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">tesseasa</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-t">tesi</a></td>
+              <td>say, tell</td>
+              <td>The verb “say, tell,” reshaped. The <i>i</i> belongs to the modern form.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">li</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-l">li</a></td>
+              <td>thing</td>
+              <td>Final <i>i</i> is already present in the old word.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">osil</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-o">osil</a></td>
+              <td>eye</td>
+              <td>The singular is the same in writing. The plural <i>osili</i> is already old.</td>
+            </tr>
+            <tr>
+              <td class="w"><a href="../conjugator/lexicon.html#lx-table">on</a></td>
+              <td class="w"><a href="../modern/lexicon/#letter-o">on</a></td>
+              <td>person</td>
+              <td>The written form is the same, with no final vowel.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="limits" aria-labelledby="limits-h">
+      <h2 id="limits-h">Inheritance and change</h2>
+      <p>Lundiyani has a full alphabet, and it writes in separate words much of what Lunde wrote inside the word. Vocabulary is inherited, a set of grammatical pieces is inherited, and a great deal has changed. The correspondences above are the correspondences of the words cited. They are not a reconstruction of every form, and they include no unattested intermediate stage.</p>
+      <p>Further forms either join one of these patterns, stand apart from them, or show that two similar words have separate histories.</p>
+      <h3>Further reading</h3>
+      <ul class="further">
+        <li><a href="../conjugator/lexicon.html">Lunde lexicon</a> and <a href="../conjugator/grammar.html">Lunde grammar</a></li>
+        <li><a href="../modern/lexicon/">Lundiyani lexicon</a> and <a href="../modern/">Lundiyani grammar</a></li>
+        <li><a href="../modern/lundiyani-grammar-reference.pdf">Lundiyani grammar reference</a></li>
+        <li><a href="../../gallery/#lundiyani">Lundiyani notebook pages</a></li>
+        <li><a href="../conjugator/lexicon.html#script">Lunde script preview</a>, in the present hands Regular and Angular</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

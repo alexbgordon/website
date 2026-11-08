@@ -171,26 +171,26 @@
   imp('värasa', 'samon', 'vǟra vǟrun vǟras vǟrya', DOC);
   imp('värasa', 'namon', 'värru värrun värrus värre', CHAT);
   imp('värasa', 'exmon', 'vǟrga vǟrgun vǟrgas vǟrge', DOC);
-  imp('enasa', 'samon', 'ēna ēnun ēnas ēnya', CHAT);
+  imp('enasa', 'samon', 'ēna ēnun ēnas ēña', CHAT);
   imp('enasa', 'namon', 'ennu ennun ennus enne', CHAT);
-  imp('enasa', 'exmon', 'ēnga ēngun ēngas ēnge', CHAT);
+  imp('enasa', 'exmon', 'ēŋa ēŋun ēŋas ēŋe', CHAT);
   imp('sasa', 'samon', 'sā sōn sās sāya', CHAT);
   imp('sasa', 'exmon', 'sāga sāgun sāgas sāge', CHAT);
   imp('tesseasa', 'samon', 'tessēa tessēun tessēas tessēya', CHAT);
   imp('tesseasa', 'namon', 'tesseddu tesseddun tesseddus tessedde', CHAT);
   imp('tesseasa', 'exmon', 'tessēga tessēgun tessēgas tessēge', CHAT);
 
-  /* ---- Gerunds (samon -ior, namon -inve, exmon -anga) ---- */
-  ger('labasa', 'labior labinve labanga', DOC);
-  ger('xasa', 'xayor xainve xanga', DOC);
-  ger('luasa', 'lujor luinve luanga', DOC);
-  ger('juasa', 'junor juinve juanga', DOC);
-  ger('leasa', 'leyor leinve leanga', DOC);
-  ger('kahyasa', 'kahyeor kahyenve kahyanga', DOC);
-  ger('sasa', 'sayor sainve sanga', CHAT);
-  ger('enasa', 'enior eninve enanga', CHAT);
-  ger('tesseasa', 'tesseyor tesseinve tesseanga', CHAT);
-  ger('nileasa', 'nileyor nileinve nileanga', CHAT);
+  /* ---- Gerunds (samon -ior, namon -inve, exmon -aŋa) ---- */
+  ger('labasa', 'labior labinve labaŋa', DOC);
+  ger('xasa', 'xayor xainve xaŋa', DOC);
+  ger('luasa', 'lujor luinve luaŋa', DOC);
+  ger('juasa', 'junor juinve juaŋa', DOC);
+  ger('leasa', 'leyor leinve leaŋa', DOC);
+  ger('kahyasa', 'kahyeor kahyenve kahyaŋa', DOC);
+  ger('sasa', 'sayor sainve saŋa', CHAT);
+  ger('enasa', 'enior eninve enaŋa', CHAT);
+  ger('tesseasa', 'tesseyor tesseinve tesseaŋa', CHAT);
+  ger('nileasa', 'nileyor nileinve nileaŋa', CHAT);
 
   /* ---- Dictionary forms ---- */
   [['labasa', 'labevuos'], ['xasa', 'xavuos'], ['luasa', 'luvuos'], ['leasa', 'levuos'], ['keavasa', 'keavenuos'],
@@ -206,17 +206,17 @@
   der('fastuasa', 'samon participle', 'fastu', DOC);
   der('fastuasa', 'namon participle', 'fastur', DOC);
   der('fastuasa', 'exmon participle', 'fastuox', DOC);
-  der('fastuasa', 'active adjective', 'fastanga', DOC);
+  der('fastuasa', 'active adjective', 'fastaŋa', DOC);
   der('fastuasa', '-os (essence)', 'fastūos', DOC);
   der('fastuasa', '-on from the samon participle', 'fastuon', DOC);
   der('fastuasa', '-on from the namon participle', 'fasturon', DOC);
   der('fastuasa', '-on from the exmon participle', 'fastuxon', DOC);
-  der('fastuasa', '-on from the active adjective', 'fastangōn', DOC);
+  der('fastuasa', '-on from the active adjective', 'fastaŋōn', DOC);
   der('fastuasa', '-diun (animal)', 'fastudiun', DOC);
   der('miadeasa', 'samon participle', 'miade', DOC);
   der('miadeasa', 'namon participle', 'miader', DOC);
   der('miadeasa', 'exmon participle', 'miadeox', DOC);
-  der('miadeasa', 'active adjective', 'miadeanga', DOC);
+  der('miadeasa', 'active adjective', 'miadeaŋa', DOC);
   der('miadeasa', '-os (essence)', 'miadeos', DOC);
   der('miadeasa', '-on from the samon participle', 'miadeon', DOC);
   der('miadeasa', '-ver (one who does it)', 'miadever', DOC);
@@ -234,7 +234,7 @@
   der('nileasa', '-os (essence)', 'nileos', DOC);
   der('nileasa', 'namon participle', 'niler', CHAT);
   der('nileasa', 'exmon participle', 'nileox', CHAT);
-  der('nileasa', 'active adjective', 'nileanga', CHAT);
+  der('nileasa', 'active adjective', 'nileaŋa', CHAT);
   der('nileasa', '-li (object)', 'nileli', DOC);
   der('nileasa', '-del (machine)', 'niledel', DOC);
   der('keavasa', '-li (object)', 'keavli', DOC);
@@ -250,9 +250,9 @@
   der('tesseasa', '-li (object)', 'tesseli', DOC);
 
   /* ---- Stress (your answers, Oct 18) ---- */
-  [['labasa', 1], ['gistasa', 1], ['tavenuos', 1], ['menrakeden', 1], ['ixahekanga', 2], ['rāma', 0], ['yūla', 0],
+  [['labasa', 1], ['gistasa', 1], ['tavenuos', 1], ['menrakeden', 1], ['ixahekaŋa', 2], ['rāma', 0], ['yūla', 0],
    ['tēllave', 0], ['fastūos', 1], ['maūnar', 1], ['labūn', 0], ['xavunōs', 1], ['luvōsen', 1], ['galatiōn', 1],
-   ['īssim', 0], ['miadeangōn', 2], ['luūve', 1], ['rāmūna', 1], ['nileasa', 1], ['īssi', 0], ['fastūos', 1]
+   ['īssim', 0], ['miadeaŋōn', 2], ['luūve', 1], ['rāmūna', 1], ['nileasa', 1], ['īssi', 0], ['fastūos', 1]
   ].forEach(function (p) { str(p[0], p[1], null, 'Stress test, Oct 18'); });
   str('īlabi', 0, { imon: true }, 'Stress test, Oct 18');
   str('īssiūne', 0, { base: 'īssi' }, DOC);   // case endings never count: īs-si-ū-ne
@@ -269,7 +269,7 @@
   /* ---- IPA ---- */
   ipa('nileasa', '/ni.ˈlɛ.a.sa/', 'Phonology');
   ipa('xog', '/xɔk/', 'Phonology');
-  ipa('hekanga', '/hɛ.ˈka.ŋa/', 'Phonology');
+  ipa('hekaŋa', '/hɛ.ˈka.ŋa/', 'Phonology');
   ipa('gval', '/ɣval/', 'Phonology');
   ipa('ała', '/ˈa.ɬa/', 'Phonology');
   ipa('kahyasa', '/ka.ˈxʲa.sa/', 'Phonology');
@@ -284,10 +284,10 @@
   fin('ixasa', 'exmon', 'present', 'ixig ixug ixag ixagan ixigas ixugun ixagan', ANS);
   fin('ixasa', 'exmon', 'past', 'ixogi ixogu ixoga ixogan ixogas ixogun ixogan', ANS);
   der('ixasa', 'exmon participle', 'ixog', ANS);
-  der('juasa', 'active adjective', 'janga', ANS);
-  der('luasa', 'active adjective', 'langa', ANS);
-  der('eruasa', 'active adjective', 'eranga', ANS);
-  der('kamuasa', 'active adjective', 'kamanga', ANS);
+  der('juasa', 'active adjective', 'jaŋa', ANS);
+  der('luasa', 'active adjective', 'laŋa', ANS);
+  der('eruasa', 'active adjective', 'eraŋa', ANS);
+  der('kamuasa', 'active adjective', 'kamaŋa', ANS);
   // The samon participle of a consonant stem is the bare stem: dab, ilus (no e).
   der('dabasa', 'samon participle', 'dab', ANS2);
   der('ilusasa', 'samon participle', 'ilus', ANS2);
@@ -318,7 +318,7 @@
   /* ---- Cases: the adjective declension table ---- */
   decl('fastu', 'sg', 'fastu fastum fastuse fastuve fastude fastuze fastune fastułe', DOC);
   decl('fastur', 'sg', 'fastur fasturam fasturase fasturave fasturade fasturaze fasturūne fasturūłe', DOC);
-  decl('fastanga', 'sg', 'fastanga fastangam fastangase fastangave fastangade fastangaze fastangaūne fastangaūłe', DOC);
+  decl('fastaŋa', 'sg', 'fastaŋa fastaŋam fastaŋase fastaŋave fastaŋade fastaŋaze fastaŋaūne fastaŋaūłe', DOC);
   [['A', 'fastuox'], ['S', 'fastuxam'], ['O', 'fastuxase'], ['ALL', 'fastuxave'], ['GEN', 'fastuxade'], ['ABL', 'fastuxaze'], ['COM', 'fastuxūne']
   ].forEach(function (p) { cas('fastuox', p[0], 'sg', p[1], DOC); });
   // ł is one sound, and dissimilation never changes a case ending: fastuxūłe (the doc's table had fastuxūgle).
@@ -357,7 +357,7 @@
    ['fastūos', 'S', 'sg', 'fastūosam'], ['miadeos', 'S', 'sg', 'miadeosam'], ['jūos', 'S', 'sg', 'jūosam'], ['ixa', 'O', 'sg', 'ixase'],
    ['ixa', 'S', 'sg', 'ixam'], ['yūla', 'S', 'sg', 'yūlam'], ['fastuon', 'S', 'sg', 'fastuonam'], ['labver', 'O', 'sg', 'labverase'],
    ['amon', 'O', 'sg', 'amonase'], ['ilus', 'O', 'sg', 'ilusase'], ['ilus', 'S', 'sg', 'ilusam'], ['ała', 'S', 'sg', 'ałam'],
-   ['dab', 'S', 'sg', 'dabam'], ['ixahekanga', 'S', 'sg', 'ixahekangam'], ['labox', 'S', 'sg', 'laboxam'], ['ajalox', 'S', 'sg', 'ajaloxam'],
+   ['dab', 'S', 'sg', 'dabam'], ['ixahekaŋa', 'S', 'sg', 'ixahekaŋam'], ['labox', 'S', 'sg', 'laboxam'], ['ajalox', 'S', 'sg', 'ajaloxam'],
    ['miadeox', 'S', 'sg', 'miadexam'], ['fastuox', 'S', 'sg', 'fastuxam']
   ].forEach(function (p) { cas(p[0], p[1], p[2], p[3], DOC); });
 
@@ -387,10 +387,62 @@
   der('ixasa', '-li (object)', 'ixli', ANS4);
 
   /* ---- Manner adverbs ---- */
-  adv('ixahekanga', 'ilisixahekanga', DOC);
+  adv('ixahekaŋa', 'ilisixahekaŋa', DOC);
   adv('fastu', 'ilifastu', DOC);
   adv('miade', 'ilimiade', DOC);
   adv('ixa', 'ilisixa', DOC);
+
+  /* ---- Orthography: ng → ŋ, ny → ñ. Oct 18 wrote the digraphs; canonical output uses the letters.
+     à stays à. yn in -ēyn is not ny. English glosses are not Lunde words. ---- */
+  var ORTH = 'Orthography';
+  function spell(fn, input, output) { T.push({ kind: 'spell', fn: fn, in: input, out: output, src: ORTH }); }
+  spell('canon', 'hekanga', 'hekaŋa');
+  spell('canon', 'hekaŋa', 'hekaŋa');
+  spell('canon', 'ēnga', 'ēŋa');
+  spell('canon', 'ēnya', 'ēña');
+  spell('canon', 'ēña', 'ēña');
+  spell('canon', 'xayēñ', 'xayēñ');
+  spell('canon', 'yēyn', 'yēyn');
+  spell('canon', 'xayà', 'xayà');
+  spell('canon', 'à', 'à');
+  spell('canon', 'kahyasa', 'kahyasa');
+  spell('canon', 'hy', 'hy');
+  spell('canon', 'rr', 'rr');
+  spell('canon', 'łasa', 'łasa');
+  spell('canon', 'labeğ', 'labeğ');
+  spell('fold', 'hekaŋa', 'hekanga');
+  spell('fold', 'hekanga', 'hekanga');
+  spell('fold', 'ēña', 'ēnya');
+  spell('fold', 'ēnya', 'ēnya');
+  spell('fold', 'xayà', 'xayà');
+  spell('fold', 'xayēñ', 'xayēny');
+  // fold() round-trips English. canon() is only for a Lunde word, so these stay English under fold.
+  spell('fold', 'giving', 'giving');
+  spell('fold', 'blinding', 'blinding');
+  spell('fold', 'any', 'any');
+  spell('fold', 'language', 'language');
+  ipa('hekaŋa', '/hɛ.ˈka.ŋa/', ORTH);
+  ipa('hekanga', '/hɛ.ˈka.ŋa/', ORTH);
+  ipa('ēŋa', '/ˈɛː.ŋa/', ORTH);
+  ipa('ēnga', '/ˈɛː.ŋa/', ORTH);
+  ipa('ēña', '/ˈɛː.ɲa/', ORTH);
+  ipa('ēnya', '/ˈɛː.ɲa/', ORTH);
+  cas('fastaŋa', 'S', 'sg', 'fastaŋam', ORTH);
+  cas('fastanga', 'S', 'sg', 'fastaŋam', ORTH);
+  cas('ixahekaŋa', 'S', 'sg', 'ixahekaŋam', ORTH);
+  cas('ixahekanga', 'S', 'sg', 'ixahekaŋam', ORTH);
+  adv('ixahekanga', 'ilisixahekaŋa', ORTH);
+  // n-final stems: Oct 18 shapes were sōnya / sōnga and ēnya / ēnga. Canonical letters are ñ and ŋ.
+  imp('sonasa', 'samon', 'sōna sōnun sōnas sōña', ORTH);
+  imp('sonasa', 'exmon', 'sōŋa sōŋun sōŋas sōŋe', ORTH);
+  imp('enasa', 'samon', 'ēna ēnun ēnas ēña', ORTH);
+  imp('enasa', 'exmon', 'ēŋa ēŋun ēŋas ēŋe', ORTH);
+  der('hekasa', 'active adjective', 'hekaŋa', ORTH);
+  der('łasa', 'active adjective', 'łaŋa', ORTH);
+  der('fastuasa', 'active adjective', 'fastaŋa', ORTH);
+  der('nileasa', 'active adjective', 'nileaŋa', ORTH);
+  der('miadeasa', 'active adjective', 'miadeaŋa', ORTH);
+  T.push({ kind: 'lexicon', src: ORTH });
 
   return T;
 }));

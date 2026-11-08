@@ -92,6 +92,32 @@
           got = [L.toIPA(t.word, t.opts)];
           want = [t.expect];
           label = 'IPA of ' + t.word;
+        } else if (t.kind === 'spell') {
+          got = [L[t.fn](t.in)];
+          want = [t.out];
+          label = t.fn + ' ' + t.in;
+        } else if (t.kind === 'lexicon') {
+          if (!lexicon) { throw new Error('lexicon not loaded'); }
+          var problems = [];
+          Object.keys(lexicon.knownDerived || {}).forEach(function (k) {
+            (lexicon.knownDerived[k] || []).forEach(function (pair) {
+              var w = pair && pair[0];
+              if (typeof w !== 'string') { return; }
+              if (w !== L.canon(w) || /ng|ny/.test(w)) { problems.push(w); }
+            });
+          });
+          var packed = JSON.stringify(lexicon);
+          ['blinding', 'giving (in compounds)', 'maddening', 'thought-provoking', 'a blinding person'].forEach(function (g) {
+            if (packed.indexOf(g) === -1) { problems.push('missing gloss ' + g); }
+          });
+          var hek = (lexicon.verbs || []).filter(function (v) { return v.root === 'hek'; })[0];
+          var note = (hek && hek.notes) || '';
+          if (note.indexOf('hekaŋa') === -1 || note.indexOf('ixahekaŋa') === -1) { problems.push('hek note is not canonical'); }
+          if (/hekanga/.test(note)) { problems.push('hek note still spells ng'); }
+          if (note.indexOf('giving') === -1) { problems.push('hek note lost the English word giving'); }
+          got = [problems.join('; ') || 'ok'];
+          want = ['ok'];
+          label = 'lexicon headwords and English glosses';
         } else {
           throw new Error('unknown test kind ' + t.kind);
         }

@@ -1,0 +1,119 @@
+/* Lundiyani script preview. Not the Lunde faces.
+   assets/fonts/Lundiyani-Modern-Draft.ttf
+   assets/fonts/Lundiyani-Angular-Draft.ttf
+   Linked from languages/modern/lexicon/. */
+
+@font-face {
+  font-family: "Lundiyani Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../../assets/fonts/Lundiyani-Modern-Draft.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Lundiyani Angular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../../assets/fonts/Lundiyani-Angular-Draft.ttf") format("truetype");
+}
+
+.ly-script {
+  margin: 2.2rem 0 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+  max-width: 40rem;
+}
+.ly-script h2 {
+  margin: 0;
+  font-family: var(--serif, "EB Garamond", Georgia, serif);
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: .38em;
+  padding-left: .38em;
+  text-transform: uppercase;
+}
+.ly-script-rule { width: 36px; height: 1px; background: var(--accent); margin: 16px 0 22px; border: 0; }
+.ly-script-lead { margin: 0 0 1.15rem; font-size: 1.15rem; line-height: 1.55; }
+.ly-script-lead i { font-family: "Gentium Book Plus", Georgia, serif; }
+.ly-script-label {
+  display: block;
+  margin: 0 0 0.2rem;
+  font-family: var(--mono, "Courier Prime", ui-monospace, monospace);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.ly-script-bar, .ly-script-samples { display: flex; flex-wrap: wrap; align-items: center; margin: 0 0 0.85rem; }
+.ly-script-fonts { display: flex; flex-wrap: wrap; align-items: center; }
+.ly-script-ctl {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  min-height: 44px;
+  padding: 8px 2px;
+  margin: 0 1.15rem 0 0;
+  cursor: pointer;
+  font-family: var(--mono, "Courier Prime", ui-monospace, monospace);
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.ly-script-ctl:hover { color: var(--text); }
+.ly-script-ctl[aria-pressed="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.ly-script-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 7.5rem;
+  margin: 0.3rem 0 1rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--surface);
+  color: var(--text);
+  font: 1.2rem/1.55 var(--serif, "EB Garamond", Georgia, serif);
+  resize: vertical;
+}
+.ly-script-status {
+  min-height: 1.3em;
+  margin: 0.2rem 0 0;
+  font-family: var(--mono, "Courier Prime", ui-monospace, monospace);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.ly-script-preview {
+  margin: 0.15rem 0 0.55rem;
+  padding: 0.75em 0 0.9em;
+  min-height: 4.6em;
+  font-size: clamp(1.85rem, 4.2vw, 2.7rem);
+  line-height: 2.2;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-feature-settings: "ccmp" 1, "mark" 1, "mkmk" 1;
+}
+.ly-script-preview[data-font="regular"] { font-family: "Lundiyani Regular", "EB Garamond", Georgia, serif; }
+.ly-script-preview[data-font="angular"] { font-family: "Lundiyani Angular", "EB Garamond", Georgia, serif; }
+.ly-script-preview.is-empty {
+  font-family: var(--serif, "EB Garamond", Georgia, serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--muted);
+  font-feature-settings: normal;
+}
+.ly-script-notice {
+  margin: 0.2rem 0 0;
+  font-family: var(--mono, "Courier Prime", ui-monospace, monospace);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--accent);
+}
+.ly-script-notice[hidden] { display: none; }
+@media (max-width: 640px) {
+  .ly-script { max-width: none; }
+  .ly-script-preview { line-height: 2.35; }
+}

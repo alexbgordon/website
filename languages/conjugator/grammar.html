@@ -127,12 +127,17 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
 </header>
 <!-- site-header:end -->
 <div class="tool-sheet ab-card" id="main" tabindex="-1">
+<p class="lang-mast" data-lang-mast="lunde">
+  <span class="lang-mast-script" aria-hidden="true">Lunde</span>
+  <span class="lang-mast-latin">(Lunde)</span>
+</p>
 <!-- lunde-nav:start -->
 <nav class="lunde-nav" aria-label="Languages">
   <ul class="lunde-sections">
     <li><a href="../../languages/">Overview</a></li>
     <li><a href="../../languages/conjugator/lexicon.html" aria-current="true">Lunde (Old Lundian)</a></li>
     <li><a href="../../languages/modern/lexicon/">Lundiyani (Modern Lundian)</a></li>
+    <li><a href="../../languages/history/">History</a></li>
   </ul>
   <ul class="lunde-tool" aria-label="Lunde pages">
     <li><a href="../../languages/conjugator/lexicon.html">Lexicon</a></li>
@@ -140,6 +145,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
     <li><a href="../../languages/conjugator/">Verb conjugator</a></li>
     <li><a href="../../languages/conjugator/cases.html">Case conjugator</a></li>
     <li><a href="../../languages/conjugator/numbers.html">Number conjugator</a></li>
+    <li><a href="../../languages/conjugator/lexicon.html#script">Script</a></li>
   </ul>
 </nav>
 <!-- lunde-nav:end -->
@@ -212,13 +218,13 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
                 <tr><td class="w">ğ</td><td class="ipa">/ɟ/</td><td><i>labeğ</i> (once written gy)</td></tr>
                 <tr><td class="w">j</td><td class="ipa">/ʒ/</td><td><i>luj</i></td></tr>
                 <tr><td class="w">y</td><td class="ipa">/j/</td><td><i>kayà</i></td></tr>
-                <tr><td class="w">ñ</td><td class="ipa">/ɲ/</td><td><i>xayēñ</i></td></tr>
-                <tr><td class="w">ng</td><td class="ipa">/ŋ/</td><td><i>hekanga</i></td></tr>
+                <tr><td class="w">ñ</td><td class="ipa">/ɲ/</td><td><i>xayēñ</i>, <i>ēña</i> (Oct 18 also wrote <i>ny</i>, including where n meets y)</td></tr>
+                <tr><td class="w">ŋ</td><td class="ipa">/ŋ/</td><td><i>hekaŋa</i> (Oct 18 wrote the digraph <i>ng</i>, including in <i>-aŋa</i> and where n meets g)</td></tr>
                 <tr><td class="w">v</td><td class="ipa">/β/, /v/ after g</td><td><i>luvōs, gval</i></td></tr>
                 <tr><td class="w">r, rr</td><td class="ipa">/r/, /rː/</td><td><i>lir, irrasa</i></td></tr>
               </tbody>
             </table></div>
-            <p class="blk-note orth-note"><strong>Spelling (Oct 18):</strong> <i>ł</i> = Welsh ll; <i>xl</i> across a word boundary is <i>x</i> + <i>l</i> (<i>ixli</i>); <i>ğ</i> replaces <i>gy</i>.</p>
+            <p class="blk-note orth-note"><strong>Spelling (Oct 18):</strong> <i>ł</i> = Welsh ll; <i>xl</i> across a word boundary is <i>x</i> + <i>l</i> (<i>ixli</i>); <i>ğ</i> replaces <i>gy</i>. The velar nasal is the letter <i>ŋ</i> (that reference wrote <i>ng</i>). The palatal nasal is <i>ñ</i> (it already used <i>ñ</i> for y + <i>ēyn</i>, and wrote <i>ny</i> for the same sound). <i>à</i> stays <i>à</i>. <i>hy</i> and <i>rr</i> stay two-letter spellings.</p>
             <ul class="notes">
               <li><i>g</i> is /g/ only at the start of a word before a vowel (<i>ga</i>); elsewhere /ɣ/, including <i>gv-</i>.</li>
               <li>At the end of a word, <i>g</i> is /k/ (<i>xog</i> <span class="ipa">/xɔk/</span>), <i>d</i> is /ð/ and <i>b</i> is /β/.</li>
@@ -266,7 +272,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
             <ul class="notes">
               <li>An <i>i</i> between two vowels becomes a glide: <i>y</i> after a or e, <i>j</i> after u (<i>kayà, leyà, kamujà, lujor</i>).</li>
               <li>After <i>y</i>, <i>i</i> becomes <i>e</i>, in every ending (<i>kahye, kahyer, kahyeà, kahyex, kahyeor</i>).</li>
-              <li>An inserted <i>y</i> before <i>-ēyn</i> turns the ending's <i>yn</i> into <i>ñ</i> (<i>xayēñ, leyēñ, kahyēñ</i>).</li>
+              <li>An inserted <i>y</i> before <i>-ēyn</i> turns the ending's <i>yn</i> into <i>ñ</i> (<i>xayēñ, leyēñ, kahyēñ</i>). The letters <i>yn</i> are not <i>ny</i>; <i>-ēyn</i> stays except in this rule. A written <i>ny</i>, including n meeting y, is <i>ñ</i> (<i>ēña</i>).</li>
             </ul>
           </div>
           <div class="sub">
@@ -356,7 +362,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
         </div>
         <div class="sub">
           <h3>Gerunds and the dictionary form</h3>
-          <p>Each form has its own gerund ending: <i>-ior</i> (samon), <i>-inve</i> (namon), <i>-anga</i> (exmon). The dictionary form is the root + <i>-evuos</i> after a consonant, or the stem + <i>-vuos</i> after a vowel; dissimilation applies (<i>keavenuos</i>).</p>
+          <p>Each form has its own gerund ending: <i>-ior</i> (samon), <i>-inve</i> (namon), <i>-aŋa</i> (exmon). The dictionary form is the root + <i>-evuos</i> after a consonant, or the stem + <i>-vuos</i> after a vowel; dissimilation applies (<i>keavenuos</i>).</p>
           <div class="tw" data-build="gerunds"></div>
           <p class="blk-note">Every form of every verb is in the <a href="index.html">conjugator</a>.</p>
         </div>
@@ -427,7 +433,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
         <div class="tw" data-build="participles"></div>
         <ul class="notes">
           <li>Consonant stems add <i>e</i>, like e-stems: <i>dabe, iluse</i>; <i>daber, iluser</i>. This keeps u-stems distinct (<i>fastu, fastur</i>).</li>
-          <li>The active adjective uses the bare root: every u-stem drops its u (<i>fastanga, janga, langa, eranga, kamanga</i>); other stems keep their vowel. It may match the exmon gerund (<i>labanga</i>); that is accepted.</li>
+          <li>The active adjective uses the bare root: every u-stem drops its u (<i>fastaŋa, jaŋa, laŋa, eraŋa, kamaŋa</i>); other stems keep their vowel. It may match the exmon gerund (<i>labaŋa</i>); that is accepted.</li>
           <li>Not every verb needs all three participles.</li>
         </ul>
         <div class="sub">
@@ -444,7 +450,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
               <tr><th scope="row">Adjective</th><td class="w">ilus</td><td class="w">dab</td><td class="w">ała</td><td class="w">deres</td></tr>
               <tr><th scope="row">Essence (-os)</th><td class="w">ilusos</td><td class="w">dabos</td><td class="w">łos</td><td></td></tr>
               <tr><th scope="row">Samon participle</th><td class="w">ilus</td><td class="w">dab</td><td class="w">ła</td><td class="w">deres</td></tr>
-              <tr><th scope="row">Other</th><td><i>ilusox</i> adorned, <i>iluson</i> a beautiful person</td><td></td><td><i>łanga</i> harmful, <i>łon</i> a bad person; <i>łōs, łōn</i> are different words</td><td><i>dere</i> sorry</td></tr>
+              <tr><th scope="row">Other</th><td><i>ilusox</i> adorned, <i>iluson</i> a beautiful person</td><td></td><td><i>łaŋa</i> harmful, <i>łon</i> a bad person; <i>łōs, łōn</i> are different words</td><td><i>dere</i> sorry</td></tr>
             </tbody>
           </table></div>
         </div>
@@ -452,7 +458,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
           <h3>Adjectives from nouns, and adverbs</h3>
           <p>A noun becomes an adjective through a case: the genitive (red by nature), the comitative (marked with red) and the abessive (without red). These then decline like any e-final word: <i>albadem, albadese</i>.</p>
           <div class="tw" data-build="noun-adjectives"></div>
-          <p><i>ili-</i> before a consonant, <i>ilis-</i> before a vowel, + an adjective or a noun makes a manner adverb. Adverbs don't decline and go after the verb. A noun + <i>hekanga</i> (giving) makes an X-giving adjective: <i>ixahekanga</i> (bright), <i>erūoshekanga</i> (deadly).</p>
+          <p><i>ili-</i> before a consonant, <i>ilis-</i> before a vowel, + an adjective or a noun makes a manner adverb. Adverbs don't decline and go after the verb. A noun + <i>hekaŋa</i> (giving) makes an X-giving adjective: <i>ixahekaŋa</i> (bright), <i>erūoshekaŋa</i> (deadly).</p>
           <div class="tool" data-build="tool-adverb"></div>
         </div>
       </section>
@@ -514,7 +520,7 @@ a.fl:hover { text-decoration-color: var(--ink-2); }
 <!-- lunde-pager:end -->
 </div>
 <footer class="site-footer">
-  <div class="wrap"><p>Lunde grammar &middot; engine v0.3 &middot; rules as of Oct 18, 2026</p></div>
+  <div class="wrap"><p>Lunde grammar &middot; engine v0.4 &middot; rules as of Oct 18, 2026</p></div>
 </footer>
 <script src="lunde-engine.js"></script>
 <script src="lexicon.js"></script>

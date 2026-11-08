@@ -13,8 +13,15 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   };
-  UI.norm = function (s) { return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); };
-  UI.slugOf = function (base) { return UI.norm(String(base).replace(/ä/g, 'ae').replace(/à/g, 'ag')).replace(/[^a-z0-9]/g, ''); };
+  // ŋ/ng and ñ/ny are the same letter for lookup. à is still stripped here, as before;
+  // slugOf maps à to "ag" first so links keep the grave distinct from a.
+  UI.norm = function (s) {
+    return String(s || '').replace(/ŋ/g, 'ng').replace(/Ŋ/g, 'ng').replace(/ñ/g, 'ny').replace(/Ñ/g, 'ny')
+      .normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  };
+  UI.slugOf = function (base) {
+    return UI.norm(String(base).replace(/ä/g, 'ae').replace(/à/g, 'ag').replace(/ŋ/g, 'ng').replace(/ñ/g, 'ny')).replace(/[^a-z0-9]/g, '');
+  };
   UI.plural = function (n, one, many) { return n + ' ' + (n === 1 ? one : many); };
   UI.store = function (k, v) { try { root.localStorage.setItem(k, v); } catch (e) { /* storage unavailable */ } };
   UI.recall = function (k) { try { return root.localStorage.getItem(k); } catch (e) { return null; } };
@@ -119,7 +126,7 @@
     var cols = ['a', 'ā', 'à', 'e', 'ē', 'i', 'o', 'u', 'ū'];
     var sufs = [];
     L.FORMS.forEach(function (f) { L.TENSES.forEach(function (t) { L.ENDINGS[f][t].forEach(function (s) { sufs.push([s, f]); }); }); });
-    [['ior', 'gerund'], ['inve', 'gerund'], ['anga', 'gerund'], ['ox', 'none'], ['os', 'none'], ['on', 'none']].forEach(function (p) { sufs.push(p); });
+    [['ior', 'gerund'], ['inve', 'gerund'], ['aŋa', 'gerund'], ['ox', 'none'], ['os', 'none'], ['on', 'none']].forEach(function (p) { sufs.push(p); });
     var M = {};
     Object.keys(stems).forEach(function (v1) {
       M[v1] = {};
@@ -209,13 +216,14 @@
     'Participles of consonant stems: the samon participle is the bare stem (<i>dab, ilus, lab</i>); the namon puts e before r (<i>daber, iluser</i>).',
     'ł (once written xl) is one sound, /ɬ/. łasa conjugates like xasa, with the dictionary form <i>łavuos</i>. <i>łos</i> and <i>łon</i> (bare root) and <i>łōs, łōn</i> are different words.',
     'Dissimilation never changes a case ending: <i>fastuxūłe, veve, keavave</i>.',
-    'Every u-stem drops its u before -anga: <i>janga, langa, eranga, kamanga</i>.',
+    'Every u-stem drops its u before -aŋa: <i>jaŋa, laŋa, eraŋa, kamaŋa</i>.',
     'Imperatives lengthen the last vowel letter: <i>maīla, maīlga</i>.',
     'ixasa takes x-dissimilation: <i>ixig, ixug, ixag</i>; participle <i>ixog</i>.',
-    'Colliding forms stay: <i>xōg, kōn, tavunōs</i>, and -anga for both the exmon gerund and the active adjective.',
+    'Colliding forms stay: <i>xōg, kōn, tavunōs</i>, and -aŋa for both the exmon gerund and the active adjective.',
     'lasa\'s samon imperative 2p is <i>xālun</i>.',
     'Case endings are written consonant first, vowel second: <i>-am / -m</i>, <i>-i / -yi</i>.',
-    'Spelling (Oct 18): <i>ł</i> replaces xl where it is one sound (the Welsh ll); a written <i>xl</i> is x + l, where a root in x meets a suffix in l (<i>ixli</i>); <i>ğ</i> replaces gy. ng, hy and rr stay.',
+    'Spelling (Oct 18): <i>ł</i> replaces xl where it is one sound (the Welsh ll); a written <i>xl</i> is x + l, where a root in x meets a suffix in l (<i>ixli</i>); <i>ğ</i> replaces gy. hy and rr stay two-letter spellings.',
+    'The velar nasal is ŋ (the Oct 18 reference wrote ng, including in -aŋa and where n meets g: <i>hekaŋa, ēŋa</i>). The palatal nasal is ñ (that reference already used ñ for y + ēyn, and wrote ny for the same sound, including where n meets y: <i>ēña</i>). à stays à.',
     'A word may end only in -st, -rr or -nt; any other final cluster takes a between its consonants: <i>idar, amap, adar, alad</i>.',
     '<i>łōs</i> and <i>łōn</i> exist as nouns too; context tells them from <i>łos</i> and <i>łon</i>.',
     'Lunde is probably built from a genitive construction; left open.',
